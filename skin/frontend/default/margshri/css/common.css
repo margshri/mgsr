@@ -1,0 +1,32 @@
+/* Center the loader */
+#loader {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  z-index: 2;
+  width: 150px;
+  height: 150px;
+  margin: -75px 0 0 -75px;
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  /* border-top: 16px solid #3498db; */
+  border-top: 16px solid #117a8b;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+#overlay {
+    position: fixed; /* Sit on top of the page content */
+    width: 100%; /* Full width (cover the whole page) */
+    height: 100%; /* Full height (cover the whole page) */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /* background-color: rgba(0,0,0,0.5); /* Black background with opacity */
+    background-color: rgba(255,255,255,0.5);
+    z-index: 1; /* Specify a stack order in case you're using a different order for other elements */
+    cursor: pointer; /* Add a pointer on hover */
+}

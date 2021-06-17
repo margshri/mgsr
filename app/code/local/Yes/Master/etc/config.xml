@@ -1,0 +1,150 @@
+<?xml version="1.0"?>
+<config>
+
+    <modules>
+        <Yes_Master>
+            <version>1.0.0.0</version>
+        </Yes_Master>
+    </modules>
+    
+    <global>
+     		<models>	
+     				<yesmaster>
+     						<class>Yes_Master_Model</class>
+     						<resourceModel>yesmaster_mysql4</resourceModel>		
+     				</yesmaster>
+     				<yesmaster_mysql4>
+     						<class>Yes_Master_Model_MySql4</class>
+     						<entities>
+     								<fileupload><table>yes_fileupload</table></fileupload>
+     								<fileuploadstatus><table>yes_fileuploadstatus</table></fileuploadstatus>
+     								<fileuploadtemplate><table>yes_fileuploadtemplate</table></fileuploadtemplate>
+     								<fileuploadtype><table>yes_fileuploadtype</table></fileuploadtype>
+     								<zone><table>yes_officezone</table></zone>
+     								<officetype><table>yes_officetype</table></officetype>
+     								<offices><table>yes_office</table></offices>
+     								<useroffice><table>admin_user</table></useroffice>
+     								<state><table>yes_state</table></state>
+     								
+     								
+     					   </entities>
+     				</yesmaster_mysql4>
+     		</models>
+     		
+     		  <resources>
+		            <admin_setup>
+		                <setup>
+		                    <module>Yes_Master</module>
+		                </setup>
+		            </admin_setup>
+      		  </resources>
+      		  
+      		   <blocks>
+            		<yesmaster>
+                			<class>Yes_Master_Block</class>
+            		</yesmaster>
+        		</blocks>
+        		
+        		  <helpers>
+		            <yesmaster>
+		                <class>Yes_Master_Helper</class>
+		            </yesmaster>
+		        </helpers>
+    </global>
+    
+    <admin>
+    		<routers>
+    				<yesmaster>
+    						<use>admin</use>
+    						<args>
+    								<module>Yes_Master</module>
+    								<frontName>yesmaster</frontName>
+    						</args>
+    				</yesmaster>
+    		</routers>		
+    </admin>
+    
+   <adminhtml>    
+   		
+   		
+	    <menu>
+	        <!--  
+                            <yesmaster translate="title" module="admin">
+	                            	<title>Master</title>
+	                            	<children>
+	                            		<office translate="title" module="admin">
+	                            			<title>Office</title>
+	                            			<sort_order>01</sort_order>
+	                            			<children>
+				                            		<officetype translate="title" module="admin">
+					                            		<title>Office Type</title>
+					                                    <sort_order>01</sort_order>
+					                                    <action>yesmaster/office_officeType/index</action>
+													</officetype>
+													<office translate="title" module="admin">
+					                            		<title>Office</title>
+					                                    <sort_order>02</sort_order>
+					                                    <action>yesmaster/office_office/index</action>
+													</office>
+													<useroffice translate="title" module="admin">
+					                            		<title>User Office</title>
+					                                    <sort_order>03</sort_order>
+					                                    <action>yesmaster/office_userOffice/index</action>
+													</useroffice>
+											</children>		
+	                            		</office>
+	                            			                                    
+											                                    
+	                            	</children>
+	                            		
+	                                    
+                          </yesmaster>
+                          -->
+                          
+	    </menu>
+	    <acl>
+	    		<resources>
+	    				<admin>
+	    					<children>
+	    					    <!--  
+	    						<yesmaster translate="title" module="adminhtml">
+	    								<title>File Upload</title>
+	    								<sort_order>01</sort_order>
+	    								<children>
+	    										<productupload>
+	    													<title>Catalog Product Upload</title>
+	    													<sort_order>01</sort_order>
+	    										</productupload>
+	    								</children>
+	    								<title>Master Management</title>
+	    								<sort_order>02</sort_order>
+	    								<children>
+	    										<officetype translate="title" module="admin">
+					                            		<title>Office Type</title>
+					                                    <sort_order>01</sort_order>
+													</officetype>
+													<office translate="title" module="admin">
+					                            		<title>Office</title>
+					                                    <sort_order>02</sort_order>
+													</office>
+													<useroffice translate="title" module="admin">
+					                            		<title>User Office</title>
+					                                    <sort_order>03</sort_order>
+													</useroffice>
+	    								</children>
+	    						</yesmaster>
+	    						-->
+	    					  </children>	
+	    				</admin>
+	    		</resources>
+	    </acl>
+	    <layout>
+   				<updates>
+   							<yesmaster module="Yes_Master">
+   									<file>yesmaster.xml</file>
+   							</yesmaster>
+   				</updates>
+   		</layout>
+	    
+	 </adminhtml>   
+</config>

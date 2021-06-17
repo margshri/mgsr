@@ -1,0 +1,87 @@
+<?php // $offices = $this->getReportingOffices(); 
+	  //  echo $offices;
+	  //	var_dump($offices);
+	 //	exit;
+?>
+        <div class="entry-edit">
+            <div class="entry-edit-head">
+ 
+                    <h4 class="icon-head head-edit-form fieldset-legend">User Office Information</h4>
+                <div class="form-buttons"></div>
+            </div>
+   
+            <div class="fieldset " id="base_fieldset">
+                <div class="hor-scroll">
+       
+                    <table cellspacing="0" class="form-list">
+                            <tbody>
+                                <tr>
+                                        <td class="label">
+                                                    <label for="userName">User Name<span class="required"></span></label>
+                                        </td>
+                                        <td class="value">
+                                                <span><?php echo $this->getUserOfficeInfoData('username') ?></span>            
+                                        </td>
+                                </tr>
+                                
+                                <tr>
+                                        <td class="label">
+                                                    <label for="firstName">First Name <span class="required"></span></label>
+                                        </td>
+                                        <td class="value">
+                                                <span><?php echo $this->getUserOfficeInfoData('firstname') ?></span>            
+                                        </td>
+                                </tr>
+
+                                <tr>
+                                        <td class="label">
+                                                    <label for="lastName">Last Name<span class="required"></span></label>
+                                        </td>
+                                        <td class="value">
+                                                <span><?php echo $this->getUserOfficeInfoData('lastname') ?></span>            
+                                        </td>
+                                </tr>
+                                
+                                <tr>
+                                        <td class="label">
+                                                <label for="officeName">Office Name <span class="required"></span></label>
+                                        </td>
+                                        <td class="value">
+                                            <select name="officeName"  id="officeName">
+                                                 <?php $offices = $this->getOffices();?>
+                                                 <?php foreach($offices  as $row) {?>
+                                                 			<option value="<?php echo $row['OfficeID']?>"  <?php if( $row['OfficeID'] == $this->getUserOfficeInfoData('OfficeID') ){ echo 'Selected ="Selected"'; }?>   ><?php echo $row['OfficeName']?></option>
+                                                <?php }?>                                     
+                                            </select>
+                                        </td>
+                                </tr>
+
+                                <tr>
+                                        <td class="label">
+                                                <label for="reportingOfficeName">Reporting Office Name <span class="required"></span></label>
+                                        </td>
+                                        <td class="value">
+                                            <?php $offices = $this->getReportingOffices();
+                                                   $counter = 0 ;
+                                            ?>
+                                                 <?php  foreach( $offices  as $row) { ?>
+                                                        <input type="checkbox" name ="reportingOfficesChk" id ="<?php  echo "reportingOffice" .$counter;?>" class="l-tcb" value="<?php echo $row['OfficeID'];?>" <?php if($row['checked']=='checked') echo 'checked="checked"'; ?>/> <?php echo $row['OfficeName']?><br />
+                                                        
+                                                <?php  $counter++;}?>                                     
+                                        </td>
+                                </tr>
+
+         								
+                                <tr>
+                                        <td colspan="2" class="hidden">
+                                                <input id="user_id" name="user_id" value="<?php echo $this->getUserOfficeInfoData('user_id') ?>" type="hidden"/>
+                                                <input type="hidden" name="reportingOffices" id="reportingOffices" value="">
+                                         </td>
+                                </tr>
+                            </tbody>
+                    </table>
+                 
+                </div>
+            </div>
+
+    </div>

@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Yes_CatalogUpload>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Yes_CatalogUpload>
+        
+        <Yes_Master>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Yes_Master>
+        
+        
+	</modules>
+
+
+	
+</config>        

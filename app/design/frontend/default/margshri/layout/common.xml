@@ -1,0 +1,128 @@
+<?xml version="1.0"?>
+
+<layout version="0.1.0">
+    <frontend_customer_address translate="label">
+        <label>Customer Account Address</label>
+        <update handle="customer_account"/>
+        <reference name="root">
+            <action method="setHeaderTitle" translate="title" module="customer"><title>Address</title></action>
+        </reference>
+        <reference name="my.account.wrapper">
+            <block type="common/frontend_customer_address" name="frontend_customer_address" template="common/customer/address.phtml"/>
+        </reference>
+    </frontend_customer_address>
+    
+      
+    <common_frontend_donor_donor_showpratibhasammandonorlist>
+    	<reference name="header">
+            <remove name="top.slider"/>
+        	<remove name="top.menu"/>
+        </reference>
+    
+        <reference name="content">
+		    <block type="common/Frontend_Donor_Donor_PratibhaSammanDonorList"  name="Donor_List" template="common/responsive/donor/donor/pratibhasammandonorlist.phtml" />
+		</reference>
+	</common_frontend_donor_donor_showpratibhasammandonorlist>
+	
+	<common_frontend_donor_donor_showdevrajhealthdonorlist>
+    	<reference name="header">
+            <remove name="top.slider"/>
+        	<remove name="top.menu"/>
+        </reference>
+    
+        <reference name="content">
+		    <block type="common/Frontend_Donor_Donor_DevrajHealthDonorList"  name="Donor_List" template="common/responsive/donor/donor/devrajhealthdonorlist.phtml" />
+		</reference>
+	</common_frontend_donor_donor_showdevrajhealthdonorlist>
+	
+	
+	<common_frontend_donor_donor_showbuddhpurnimadonorlist>
+		
+		  
+    	<reference name="header">
+            <remove name="top.slider"/>
+        	<remove name="top.menu"/>
+        </reference>
+        
+        
+        <reference name="content">
+		    <block type="common/Frontend_Donor_Donor_BuddhPurnimaDonorList"  name="Donor_List" template="common/responsive/donor/donor/buddhpurnimadonorlist.phtml" />
+		</reference>
+	</common_frontend_donor_donor_showbuddhpurnimadonorlist>
+
+	<common_frontend_donor_donor_showgocoronadonorlist>
+    	<reference name="header">
+            <remove name="top.slider"/>
+            <remove name="top.menu"/>
+        </reference>
+    
+        <reference name="content">
+		    <block type="common/Frontend_Donor_Donor_DonorList"  name="Frontend_Donor_Donor_DonorList" template="common/responsive/donor/donor/donorlist.phtml" />
+		</reference>
+	</common_frontend_donor_donor_showgocoronadonorlist>
+	
+	
+	<common_frontend_member_member_showexecutivememberlist>
+    	<reference name="header">
+            <remove name="top.slider"/>
+        	<remove name="top.menu"/>
+        </reference>
+    
+        <reference name="content">
+		    <block type="common/Frontend_Member_Member_ExecutiveMemberList"  name="Executive_Member_List" template="common/responsive/member/member/executivememberlist.phtml" />
+		</reference>
+	</common_frontend_member_member_showexecutivememberlist>
+	
+	
+	<common_frontend_programme_programme_showprogrammelist>
+    	<reference name="header">
+            <remove name="top.slider"/>
+            <remove name="top.menu"/>
+        </reference>
+    
+        <reference name="content">
+		    <block type="common/Frontend_Programme_Programme_ProgrammeList"  name="Frontend_Programme_Programme_ProgrammeList" template="common/responsive/programme/programme/programmelist.phtml" />
+		</reference>
+	</common_frontend_programme_programme_showprogrammelist>
+	
+	<common_frontend_donor_donor_showdonorlist>
+    	<reference name="header">
+            <remove name="top.slider"/>
+            <remove name="top.menu"/>
+        </reference>
+    
+        <reference name="content">
+		    <block type="common/Frontend_Donor_Donor_DonorList"  name="Frontend_Donor_Donor_DonorList" template="common/responsive/donor/donor/donorlist.phtml" />
+		</reference>
+	</common_frontend_donor_donor_showdonorlist>
+	
+	
+	<common_frontend_donor_donor_showblooddonorfilterform>
+    	<reference name="header">
+            <remove name="top.slider"/>
+            <remove name="top.menu"/>
+        </reference>
+    
+        <reference name="content">
+		    <block type="common/Frontend_Donor_Donor_BloodDonorFilterForm"  name="Frontend_Donor_Donor_BloodDonorFilterForm" template="common/responsive/donor/donor/blooddonorfilterform.phtml" />
+		</reference>
+	</common_frontend_donor_donor_showblooddonorfilterform>
+	
+	
+	<common_frontend_donor_donor_showblooddonorlist>
+    	<reference name="header">
+            <remove name="top.slider"/>
+            <remove name="top.menu"/>
+        </reference>
+    
+        <reference name="content">
+		    <block type="common/Frontend_Donor_Donor_BloodDonorList"  name="Frontend_Donor_Donor_BloodDonorList" template="common/responsive/donor/donor/blooddonorlist.phtml" />
+		</reference>
+	</common_frontend_donor_donor_showblooddonorlist>
+	
+	
+</layout>
+
+
+
+

@@ -1,0 +1,234 @@
+<style type="text/css">
+#roundDiv
+{
+border-radius: 10px;
+border:1px solid #CCC;
+-moz-border-radius: 6px;
+-webkit-border-radius:6px;
+}
+</style>
+<?php //echo $this->getOfficeInfoData('OfficeCode'); exit; ?>
+        <div class="entry-edit">
+            <div class="entry-edit-head">
+ 
+                    <h4 class="icon-head head-edit-form fieldset-legend">Office Information</h4>
+                <div class="form-buttons"></div>
+            </div>
+   
+            <div class="fieldset " id="base_fieldset">
+                <div class="hor-scroll">
+                 
+                    <table cellspacing="0" class="form-list">
+                            <tbody>
+
+                                <tr>
+                                        <td class="label">
+                                                    <label for="officeCode">Office Code <span class="required">*</span></label>
+                                        </td>
+                                        <td class="value">
+                                                <input id="officeCode" name="officeCode" value="<?php echo $this->getOfficeInfoData('OfficeCode') ?>" class="required-entry required-entry input-text" type="text"/>            
+                                        </td>
+                                </tr>
+
+                                <tr>
+                                        <td class="label">
+                                                    <label for="officeName">Office Name<span class="required">*</span></label>
+                                        </td>
+                                        <td class="value">
+                                                <input id="officeName" name="officeName" value="<?php echo $this->getOfficeInfoData('OfficeName') ?>" class="required-entry required-entry input-text" maxlength="50" type="text"/>            
+                                        </td>
+                                </tr>
+
+
+                                <tr>
+                                        <td class="label">
+                                                <label for="oadd1">Address</label>
+                                        </td>
+                                        <td class="value">
+                                                <input id="oadd1" name="oadd1" value="<?php echo $this->getOfficeInfoData('oadd1') ?>"  class="input-text" maxlength="50" type="text"/>            
+                                        </td>
+                                </tr>
+
+                                <tr>
+                                        <td class="label">
+                                                <label for="oadd2"></label>
+                                        </td>
+                                        <td class="value">
+                                                <input id="oadd2" name="oadd2" value="<?php echo $this->getOfficeInfoData('oadd2') ?>"  class="input-text"   maxlength="50" type="text"/>            
+                                        </td>
+                                </tr>
+
+
+                                <tr>
+                                        <td class="label">
+                                                <label for="oadd3"></label>
+                                        </td>
+                                        <td class="value">
+                                                <input id="oadd3" name="oadd3" value="<?php echo $this->getOfficeInfoData('oadd3') ?>"  class="input-text"   maxlength="50" type="text"/>            
+                                        </td>
+                                </tr>
+
+                                <tr>
+                                        <td class="label">
+                                                <label for="oadd4"></label>
+                                        </td>
+                                        <td class="value">
+                                                <input id="oadd4" name="oadd4" value="<?php echo $this->getOfficeInfoData('oadd4') ?>"  class="input-text"  maxlength="50" type="text"/>            
+                                        </td>
+                                </tr>
+ 
+                                <tr>
+                                        <td class="label">
+                                                <label for="phone">Phone</label>
+                                        </td>
+                                        <td class="value">
+                                                <input id="ophone" name="ophone" value="<?php echo $this->getOfficeInfoData('ophone') ?>"  class="input-text"  maxlength="50" type="text"/>            
+                                        </td>
+                                </tr>
+
+
+                                
+                                <tr>
+                                        <td class="label">
+                                                <label for="stateName">State Name <span class="required">*</span></label>
+                                        </td>
+                                       
+                                        <td class="value">
+                                        	<select name="stateName"  id="stateName">
+                                        		<?php $states = $this->getState();?>
+                                        	     <?php foreach($states as $row) {?>
+                                                            <option value="<?php echo $row['stateId']?>" <?php if( $row['stateId'] == $this->getoFFICEInfoData('stateId') ){ echo 'Selected'; }?> ><?php echo $row['stateName']?></option>
+                                                            
+                                                <?php }?>                                     
+                                            </select>
+                                        </td>
+                                </tr>
+
+								<!-- 
+
+                                <tr>
+                                        <td class="label">
+                                                    <label for="invoiceSeed">Invoice Seed<span class="required">*</span></label>
+                                        </td>
+                                        <td class="value">
+                                                <input id="invoiceSeed" name="invoiceSeed" value="<?php //echo $this->getOfficeInfoData('invoiceSeed') ?>" class="required-entry required-entry input-text" type="text"/>            
+                                        </td>
+                                </tr>
+								-->
+                                <tr>
+                                        <td class="label">
+                                                <label for="tinno">TIN. No.</label>
+                                        </td>
+                                        <td class="value">
+                                                <input id="tinno" name="tinno" value="<?php echo $this->getOfficeInfoData('TINNo') ?>"  class="input-text"  maxlength="50" type="text"/>            
+                                        </td>
+                                </tr>
+								<!-- 
+                                <tr>
+                                        <td class="label">
+                                                <label for="crewBase">Crew Base</label>
+                                        </td>
+                                        <td class="value">
+                                            <select name="crewBase"  id="crewBase">
+												<option value="true"<?php //if(  $this->getOfficeInfoData('crewBase') == true && $this->getOfficeInfoData('officeID')>0  ){ echo 'Selected ="Selected"'; }?>   >Enable</option>
+												<option value="false"<?php //if(  $this->getOfficeInfoData('crewBase') == false && $this->getOfficeInfoData('officeID')>0  ){ echo 'Selected ="Selected"'; }?>   >Disable</option>
+                                             </select>
+                                        
+                                        </td>
+                                </tr>
+								 
+                                <tr>
+                                        <td class="label">
+                                                <label for="upliftmentBase">Upliftment Base</label>
+                                        </td>
+                                        <td class="value">
+                                            <select name="upliftmentBase"  id="upliftmentBase">
+												<option value="true"<?php //if(  $this->getOfficeInfoData('upliftmentBase') == true && $this->getOfficeInfoData('officeID')>0  ){ echo 'Selected ="Selected"'; }?>   >Enable</option>
+												<option value="false"<?php //if(  $this->getOfficeInfoData('upliftmentBase') == false && $this->getOfficeInfoData('officeID')>0  ){ echo 'Selected ="Selected"'; }?>   >Disable</option>
+                                             </select>
+                                        
+                                        </td>
+                                </tr>
+								-->
+
+								<tr>
+                                        <td class="label">
+                                                <label for="binStacking">BIN Stacking</label>
+                                        </td>
+                                        <td class="value">
+                                            <select name="binStacking"  id="binStacking">
+												<option value="0"<?php if(  $this->getOfficeInfoData('binStacking') == 0 && $this->getOfficeInfoData('OfficeID')>0  ){ echo 'Selected ="Selected"'; }?>   >Yes</option>
+												<option value="1"<?php if(  $this->getOfficeInfoData('binStacking') == 1 && $this->getOfficeInfoData('OfficeID')>0  ){ echo 'Selected ="Selected"'; }?>   >No</option>
+                                             </select>
+                                        
+                                        </td>
+                                </tr>
+                                
+                                
+                                <tr>
+                                        <td class="label">
+                                                <label for="tinno">BIN Address Abbreviation</label>
+                                        </td>
+                                        <td class="value">
+                                                <input id="binAddressAbbreviation" name="binAddressAbbreviation" value="<?php echo $this->getOfficeInfoData('binAddressAbbreviation') ?>"  class="input-text"  maxlength="10" type="text"/>            
+                                        </td>
+                                </tr>
+
+        						<tr>
+                                        <td class="label">
+                                                <label for="zone">Zone<span class="required">*</span></label>
+                                        </td>
+                                        <td class="value">
+                                            <select name="zone"  id="zone">
+                                                 <?php $zoneVO = $this->getZone();?>
+                                                 <?php foreach( $zoneVO  as $row) {?>
+                                                            <option value="<?php echo $row['ZoneId']?>"  <?php if( $row['ZoneId'] == $this->getoFFICEInfoData('ZoneId') ){ echo 'Selected ="Selected"'; }?>   ><?php echo $row['ZoneName']?></option>
+                                                <?php }?>                                     
+                                            </select>
+                                        </td>
+                                </tr>
+                                         
+        						<tr>
+                                        <td class="label">
+                                                <label for="officeType">Office Type<span class="required">*</span></label>
+                                        </td>
+                                        <td class="value">
+                                            <select name="officeType"  id="officeType">
+                                                 <?php $officeTypeVO = $this->getOfficeType();?>
+                                                 <?php foreach( $officeTypeVO  as $row) {?>
+                                                            <option value="<?php echo $row['OfficeTypeId']?>"  <?php if( $row['OfficeTypeId'] == $this->getoFFICEInfoData('OfficeTypeId') ){ echo 'Selected ="Selected"'; }?>   ><?php echo $row['TypeName']?></option>
+                                                <?php }?>                                     
+                                            </select>
+                                        </td>
+                                </tr>
+                               <!--           
+                                <tr>
+                                        <td class="label">
+                                                <label for="activity">Activity<span class="required"></span></label>
+                                        </td>
+                                        <td class="value">
+                                          <div class="auto-scroll" id ="roundDiv" > <!-- style="border:1px solid #CCC;" --><!-- 
+                                            <?php //$activityDTO = $this->getActivityByType();
+                                                  // $counter =0 ;
+                                            ?>
+                                                 <?php // foreach( $activityDTO  as $row) { ?>
+                                                        <input type="checkbox" name ="activityChk[]" id ="<?php //echo "activity" .$counter;?>" class="l-tcb" value="<?php //echo $row['ActivityId'];?>" <?php //if($row['checked']=='checked') echo 'checked="checked"'; ?>/> <?php //echo $row['ActivityName']?><br />
+                                                        
+                                                <?php // $counter++;}?> 
+   										  </div>                                       
+                                        </td>
+                                </tr>
+							
+								 -->
+                                <tr>
+                                        <td colspan="2" class="hidden">
+                                                <input id="officeID" name="officeID" value="<?php echo $this->getOfficeInfoData('OfficeID') ?>" type="hidden"/>
+                                         </td>
+                                </tr>
+                            </tbody>
+                    </table>
+                 
+                </div>
+            </div>
+
+    </div>

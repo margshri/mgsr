@@ -1,0 +1,118 @@
+<?php
+$HTMLFormID = $this->getHTMLFormID();
+?>
+
+<div class="content-header">
+    <table cellspacing="0">
+        <tr>
+
+            <td style="width:50%;"><h3 class="icon-head head-permissions-role"><?php echo ($this->getTemplateID() != null ) ? $this->__('Edit') : $this->__('Add') ?></h3></td>
+            <td class="form-buttons">
+                <?php echo $this->getBackButtonHtml() ?>
+                <?php echo $this->getResetButtonHtml() ?>
+                <?php echo $this->getSaveButtonHtml() ?>
+            </td>
+        </tr>
+    </table>
+</div>
+<form action="<?php echo $this->getUrl('*/*/save') ?>" method="post" id="<?php echo $HTMLFormID;?>">
+    <?php echo $this->getBlockHtml('formkey')?>
+    <?php echo $this->getEntropy(); ?>
+</form>
+<?php echo $this->getWYSIWYGHTML() ?>
+
+<script type="text/javascript">
+function smsTemplateVO(){
+	this.TemplateID = null;
+	this.TemplateName = null;
+	this.TemplateCode = null;
+	this.Query = null;
+	this.Content = null;
+	this.StatusID = null;
+}
+var newSMSTemplateDTO = new smsTemplateVO();
+</script>
+
+
+<script type="text/javascript">
+
+var formObj = new varienForm('<?php echo $HTMLFormID; ?>');
+var formJS  = {
+        	
+			submit : function(){
+        		if(  !formJS.saveValidation() ) return ;
+					formJS.saveAjax();
+			},
+
+            saveValidation : function(){
+				var errorMsg = '';
+             	if( !(formObj.validator && formObj.validator.validate())  ){
+	    	    	return false;
+    	    	}
+
+             	
+            	newSMSTemplateDTO.TemplateID = ($('TemplateID').value).strip();
+            	newSMSTemplateDTO.TemplateName = ($('TemplateName').value).strip();
+            	newSMSTemplateDTO.TemplateCode = ($('TemplateCode').value).strip();
+            	newSMSTemplateDTO.StatusID = ($('StatusID').value).strip();
+            	newSMSTemplateDTO.Query = ($('Query').value).strip();
+            	newSMSTemplateDTO.Content = ($('Content').value).strip();
+            	
+             	
+             	if(newSMSTemplateDTO.TemplateName == '' || newSMSTemplateDTO.TemplateName == null){
+					errorMsg += 'Please Enter Template Name .\n';
+				}
+
+             	if(newSMSTemplateDTO.TemplateCode == '' || newSMSTemplateDTO.TemplateCode == null){
+					errorMsg += 'Please Enter Template Code .\n';
+				}
+
+             	if(newSMSTemplateDTO.StatusID == '' || newSMSTemplateDTO.StatusID == null){
+					errorMsg += 'Please Select Status .\n';
+				}
+
+             	if(newSMSTemplateDTO.Content == '' || newSMSTemplateDTO.Content == null){
+					errorMsg += 'Please Enter Template Content .\n';
+				}
+             	
+             	if(newSMSTemplateDTO.Query == '' || newSMSTemplateDTO.Query == null){
+             		newSMSTemplateDTO.Query = null;
+				}
+
+	            if(errorMsg != ''){
+	            	alert(errorMsg);
+					return false;
+				}
+				
+				// DISABLE SAVE BUTTON FOR PREVENT DUPLICATE ENTRY
+				$('SMSTemplateSaveButtonID').style.disabled = true;
+				return true;	            
+            },					
+ 
+
+        	saveAjax: function(){
+            	var URL = "<?php echo $this->getUrl('*/*/save')?>" ;
+			    var parameters= {"SMSTemplateDataObj": JSON.stringify(newSMSTemplateDTO,null) };
+			    var callBackMethod ="formJS.responseSave";
+			    var callBackArgs =null;
+			    ajaxRequest.execute(URL, parameters, callBackMethod , callBackArgs );
+			    return false;
+	     	},
+
+	     	
+  	     	responseSave : function(response,args) {
+  	     		// ENABLE SAVE BUTTON 
+				$('SMSTemplateSaveButtonID').style.disabled = true;
+				var msg = new Array();
+            	if(response.SuccessMessage !=null){
+				 	window.location.href = "<?php echo $this->getUrl('*/*/index')?>";
+				 	return;
+				}else if(response.ErrorMessage !=null){
+					msg[0] = response.ErrorMessage;
+					MESSAGEHANDLER.errorMessagePublish(msg, $('messages'));
+	    			return false;
+	 			}
+     	 	}
+								
+};
+</script>

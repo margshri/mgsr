@@ -1,0 +1,113 @@
+<?php
+ 	$_htmlId      = $this->getHtmlId();
+    $formId 	  = "edit";	
+?>
+<div class="content-header">
+    <table cellspacing="0">
+        <tr>
+            
+            <td style="width:50%;"><h3 class="icon-head head-permissions-role"><?php echo ($this->getInfoData('OfficeTypeId') > 0 ) ? ($this->__('Edit ') ) : $this->__('Create') ?> Office Type</h3></td>
+            <td class="form-buttons">
+                <?php echo $this->getBackButtonHtml() ?>
+                <?php echo $this->getResetButtonHtml() ?>
+                <?php echo $this->getSaveButtonHtml() ?>
+            </td>
+        </tr>
+    </table>
+</div>
+
+
+
+<form action="<?php echo $this->getUrl('*/*/save') ?>" method="post" id="<?php echo $formId; ?>">
+    <?php  echo $this->getBlockHtml('formkey')?>
+    <?php  echo $this->getEntropy()?>
+</form>
+
+<script type="text/javascript">
+    var formObj = new varienForm('edit');
+    var officeTypeJS = {
+    form : '<?php echo $formId;?>',
+	saveButtonId: '',
+    submit : function(event) {
+                                   
+				    	 if(  !(formObj.validator && formObj.validator.validate())  ){
+					   	      return false;
+					      }                                              
+                         
+                         this.saveButtonId=event.target? event.target.id : event.srcElement.id;
+                         $(this.saveButtonId).disabled = true;
+                         officeTypeJS.saveAjax();                                                         
+    } ,
+
+
+
+    saveAjax: function(){
+        var URL = '<?=$this->getUrl('*/*/save')?>' ;
+        var parameters = Form.serialize(this.form);
+        
+        new Ajax.Request(URL, 
+                              {		method: 'post',
+                              		parameters: parameters,
+                              		onSuccess: function(transport) {
+				                                      try { 
+		        			                             	   if (transport.responseText.isJSON()) {
+		                    		                                        var response = transport.responseText.evalJSON();
+				                                                            if (response.error) {
+		        		                                                        alert(response.message);
+		                		                                            }
+		                        		                                    if(response.ajaxExpired && response.ajaxRedirect) {
+		                                			                                setLocation(response.ajaxRedirect);
+		                                            		                }
+		                                                    		        if(response['status'] =='ERROR'){
+		                                                         					   $('messages').innerHTML=  "<ul class='messages'><li class='error-msg'><ul><li>" + response['message']+ "</li></ul></li></ul>";
+		                                                            		}
+		                                                    		        if(response['status'] =='FAIL'){
+	                                                         					   $('messages').innerHTML=  "<ul class='messages'><li class='error-msg'><ul><li>" + response['message']+ "</li></ul></li></ul>";
+		                                                            		}
+		                                                            		
+				                                                            if(response['status'] =='SUCCESS'){
+		        			                                                 	   window.location= '<?=$this->getUrl('*/*/index');?>';
+			                                                                }
+		                                                        } else{
+				                                                        	alert("Response is not a JSON Object");                                                                 
+		                                                        }
+				                                         } catch(e) {
+		                                                			alert(e);
+		                                         		 }  
+                                 }, //onSuccess ,
+		        			     onFailure:  function(response){
+			        			     			//show_props(response);
+                                        	 	 errorWindow=window.open();
+	                                        	 newdocument=errorWindow.document;
+	                                        	 newdocument.write(response.responseText);
+	                                        	 newdocument.close();
+                                 }
+                              }//method
+                   );
+		        			    $(this.saveButtonId).disabled = false;				        			                                                       	
+                    			return false;
+         },
+
+     
+    
+    save : function() {
+            	varForm.submit();
+    },
+
+    getElementID:  function(elementName, arrEvent){
+           return arrEvent[0] + '_' +arrEvent[1] + '_' + arrEvent[2] + '_' + arrEvent[3] + '_' + elementName;
+		 },
+            
+	print : function() {
+    	 	var grnID = "<?php echo ($this->getData('goods_receipt_id')); ?>";
+    	   window.open("<?=$this->getUrl('*/*/print')?>" + "grnID/"+ grnID);
+    },
+    
+    isnumeric : function(input){
+            var RE = /^-{0,1}\d*\.{0,1}\d+$/;
+            return RE.test(input) ;
+    }            
+      
+ };
+                
+</script>

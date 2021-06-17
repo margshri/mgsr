@@ -1,0 +1,359 @@
+<?php
+	
+    $HTMLFormID = $this->getHTMLFormID();
+    $hospitalVO    = $this->getHospitalVO();    
+    
+    if($hospitalVO == null){
+    	$hospitalVO = new Margshri_WebPortal_VO_Center_Content_Type10_Hospital_HospitalVO();
+    }
+    
+    $countryOptions = $this->getCountryOptions();
+    $stateOptions   = $this->getStateOptions();
+    $districtOptions= $this->getDistrictOptions();
+    $cityOptions    = $this->getCityOptions();
+    $statusOptions  = $this->getStatusOptions();
+    $dynamicColumnOptions = $this->getDynamicColumnOptions();
+    $hospitalTypeOptions  = $this->getHospitalTypeOptions();
+    
+    
+    
+?>
+<script type="text/javascript">
+<!--
+
+//SET STATE 
+var stateList = '';
+var stateOptions = '<?php echo (sizeof($stateOptions) > 0) ?  json_encode($stateOptions) : '' ?>';
+if(stateOptions != ''){
+	stateList = JSON.parse(stateOptions);	
+}
+
+//SET DISTRICT 
+var districtList = '';
+var districtOptions = '<?php echo (sizeof($districtOptions) > 0) ?  json_encode($districtOptions) : '' ?>';
+if(districtOptions != ''){
+	districtList = JSON.parse(districtOptions);	
+}
+
+//SET STATE 
+var cityList = '';
+var cityOptions = '<?php echo (sizeof($cityOptions) > 0) ?  json_encode($cityOptions) : '' ?>';
+if(cityOptions != ''){
+	cityList = JSON.parse(cityOptions);	
+}
+
+//SET STATE 
+var HOSPITALVO  = '';
+var hospitalDTO = '<?php echo ($hospitalVO->getID() != null) ? json_encode($hospitalVO->getDataArray()) : '' ?>';
+if(hospitalDTO != ''){
+	HOSPITALVO = JSON.parse(hospitalDTO);
+}
+
+//-->
+</script>
+
+
+<div class="entry-edit">
+	<div class="entry-edit-head">
+		<h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__("Hospital") ?></h4>
+		<div class="form-buttons"></div>
+	</div>
+
+	<div class="fieldset " id="base_fieldset">
+		<div class="hor-scroll">
+		  <table style="">
+		  	<tr>
+		  		<td>
+		  			<table class="form-list">
+						<tbody>
+							<tr>
+								<td class="label">
+									<label for="Value">Name<span class="required">*</span></label>
+								</td>
+								<td class="value">
+									<input type="text" name="Value" id="Value" 
+									value="<?php echo $hospitalVO->getValue()  ?>" 
+									class="required-entry input-text" />
+								</td>
+							</tr>
+							
+							
+							<tr>
+								<td class="label">
+									<label for="Address">Address<span class="required">*</span></label>
+								</td>
+								<td class="value">
+									<textarea rows="3" cols="10" name="Address" id="Address" class="required-entry" style="height: 40px;" ><?php echo $hospitalVO->getAddress() ?></textarea>
+								</td>
+							</tr>
+		
+							<tr>
+								<td class="label">
+									<label for="CountryID">Country<span class="required">*</span></label>
+								</td>
+								<td class="value">
+									<select name="CountryID" id="CountryID" disabled="disabled">
+										<!--  <option>--Select--</option> -->
+										<?php foreach ($countryOptions as $key=>$value): ?>
+											<option value="<?php echo $key ?>" selected="selected"><?php echo $value ?></option>	
+										<?php endforeach; ?>
+									</select>
+								</td>
+							</tr>
+							
+							<tr>
+								<td class="label">
+									<label for="StateID">State<span class="required">*</span></label>
+								</td>
+								<td class="value">
+									<select name="StateID" id="StateID" onchange="formJS.setDistrictList(this.value)" class="validate-select">
+										<option value="">--Select--</option>
+										<?php foreach ($stateOptions as $key=>$value): ?>
+											<option value="<?php echo $key ?>" <?php echo ($hospitalVO->getStateID() == $key ) ? 'selected="selected"' : '' ?> ><?php echo $value['Name'] ?></option>	
+										<?php endforeach; ?>
+									</select>
+								</td>
+							</tr>
+							
+							<tr>
+								<td class="label">
+									<label for="DistrictID">District<span class="required">*</span></label>
+								</td>
+								<td class="value">
+									<select name="DistrictID" id="DistrictID" onchange="formJS.setCityList(this.value)"  class="validate-select">
+										<option value="">--Select--</option>
+									</select>
+								</td>
+							</tr>
+							
+							<tr>
+								<td class="label">
+									<label for="CityID">City<span class="required">*</span></label>
+								</td>
+								<td class="value">
+									<select name="CityID" id="CityID" class="validate-select">
+										<option value="">--Select--</option>
+									</select>
+								</td>
+							</tr>
+							
+							  
+							<tr>
+								<td class="label">
+									<label for="PinCode">Pin Code</label>
+								</td>
+								<td class="value">
+									<input type="text" name="PinCode" id="PinCode" 
+									value="<?php echo $hospitalVO->getPinCode() ?>" 
+									class="validate-number input-text" />
+								</td>
+							</tr>
+							
+							
+							<tr>
+								<td class="label">
+									<label for="Category1ID">First Category Name</label>
+								</td>
+								<td class="value">
+									<select name="Category1ID" id="Category1ID" onchange="formJS.setCategoryBox(this)" >
+										<option value="">--Select--</option>
+										<?php foreach ($dynamicColumnOptions as $key=>$value): ?>
+											<option value="<?php echo $key ?>" <?php echo ($hospitalVO->getCategory1ID() == $key ) ? 'selected="selected"' : '' ?> ><?php echo $value['Value'] ?></option>	
+										<?php endforeach; ?>
+									</select>
+									
+									<input type="text" name="Category1Value" id="Category1Value"  
+									value="<?php echo $hospitalVO->getCategory1Value() ?>" 
+									class="input-text" style="margin-top: 10px;" />
+								</td>
+							</tr>
+							
+
+							<tr>
+								<td class="label">
+									<label for="Category2ID">Second Category Name</label>
+								</td>
+								<td class="value">
+									<select name="Category2ID" id="Category2ID" onchange="formJS.setCategoryBox(this)" >
+										<option value="">--Select--</option>
+										<?php foreach ($dynamicColumnOptions as $key=>$value): ?>
+											<option value="<?php echo $key ?>" <?php echo ($hospitalVO->getCategory2ID() == $key ) ? 'selected="selected"' : '' ?> ><?php echo $value['Value'] ?></option>	
+										<?php endforeach; ?>
+									</select>
+									<input type="text" name="Category2Value" id="Category2Value"  
+									value="<?php echo $hospitalVO->getCategory2Value() ?>" 
+									class="input-text" style="margin-top: 10px;" />
+								</td>
+							</tr>
+							
+							
+							
+							<tr>
+								<td class="label">
+									<label for="Category3ID">Third Category Name</label>
+								</td>
+								<td class="value">
+									<select name="Category3ID" id="Category3ID" onchange="formJS.setCategoryBox(this)" >
+										<option value="">--Select--</option>
+										<?php foreach ($dynamicColumnOptions as $key=>$value): ?>
+											<option value="<?php echo $key ?>" <?php echo ($hospitalVO->getCategory3ID() == $key ) ? 'selected="selected"' : '' ?> ><?php echo $value['Value'] ?></option>	
+										<?php endforeach; ?>
+									</select>
+									<input type="text" name="Category3Value" id="Category3Value"  
+									value="<?php echo $hospitalVO->getCategory3Value() ?>" 
+									class="input-text" style="margin-top: 10px;" />
+								</td>
+							</tr>
+							
+							  
+							
+	
+							
+						</tbody>
+					</table>		
+		  		</td>	
+		  	
+		  		<td style="width: 200px;"></td>
+		  	
+		  		<td>
+					<table class="form-list">
+						<tbody>
+
+							<tr>
+								<td class="label">
+									<label for="TinNumber">Registration No.</label>
+								</td>
+								<td class="value">
+									<input type="text" name="TinNumber" id="TinNumber" 
+									value="<?php echo $hospitalVO->getTinNumber() ?>" 
+									class="input-text" />
+								</td>
+							</tr>
+							
+							
+							<tr>
+								<td class="label">
+									<label for="PANNumber">PAN No.</label>
+								</td>
+								<td class="value">
+									<input type="text" name="PANNumber" id="PANNumber" 
+									value="<?php echo $hospitalVO->getPANNumber() ?>" 
+									class="input-text" />
+								</td>
+							</tr>
+							
+						
+							<tr>
+								<td class="label">
+									<label for="WebsiteLink">Website Link</label>
+								</td>
+								<td class="value">
+									<input type="text" name="WebsiteLink" id="WebsiteLink" 
+									value="<?php echo $hospitalVO->getWebsiteLink() ?>" 
+									class="input-text" />
+								</td>
+							</tr>
+							
+						
+						
+						
+							<tr>
+								<td class="label">
+									<label for="LandLineNumber">Land Line Number</label>
+								</td>
+								<td class="value">
+									<input type="text" name="LandLineNumber" id="LandLineNumber" 
+									value="<?php echo $hospitalVO->getLandLineNumber() ?>" 
+									class="validate-phoneLax input-text" />
+								</td>
+							</tr>
+							
+							
+							<tr>
+								<td class="label">
+									<label for="MobileNumber1">Mobile Number 1</label>
+								</td>
+								<td class="value">
+									<input type="text" name="MobileNumber1" id="MobileNumber1" 
+									value="<?php echo $hospitalVO->getMobileNumber1() ?>" 
+									class="input-text validate-mobileno" />
+								</td>
+							</tr>
+							
+							
+							<tr>
+								<td class="label">
+									<label for="MobileNumber2">Mobile Number 2</label>
+								</td>
+								<td class="value">
+									<input type="text" name="MobileNumber2" id="MobileNumber2" 
+									value="<?php echo $hospitalVO->getMobileNumber2() ?>" 
+									class="input-text validate-mobileno" />
+								</td>
+							</tr>
+									
+									
+							<tr>
+								<td class="label">
+									<label for="Email">Email</label>
+								</td>
+								<td class="value">
+									<input type="text" name="Email" id="Email" 
+									value="<?php echo $hospitalVO->getEmail() ?>" 
+									class="validate-email input-text" />
+								</td>
+							</tr>	
+						
+							<tr>
+								<td class="label">
+									<label for="HospitalTypeID">Hospital Type<span class="required">*</span></label>
+								</td>
+								<td class="value">
+									<select name="HospitalTypeID" id="HospitalTypeID" class="validate-select">
+										<option value="">--Select--</option>
+										<?php foreach ($hospitalTypeOptions as $key=>$value): ?>
+											<option value="<?php echo $key ?>" <?php echo ($hospitalVO->getHospitalTypeID() == $key ) ? 'selected="selected"' : '' ?> ><?php echo $value ?></option>	
+										<?php endforeach; ?>
+									</select>
+								</td>
+							</tr>
+							
+						
+						
+							<tr>
+								<td class="label">
+									<label for="StatusID">Status<span class="required">*</span></label>
+								</td>
+								<td class="value">
+									<select name="StatusID" id="StatusID" class="validate-select">
+										<option value="">--Select--</option>
+										<?php foreach ($statusOptions as $key=>$value): ?>
+											<option value="<?php echo $key ?>" <?php echo ($hospitalVO->getStatusID() == $key ) ? 'selected="selected"' : '' ?> ><?php echo $value ?></option>	
+										<?php endforeach; ?>
+									</select>
+								</td>
+							</tr>
+		
+
+		
+							<tr>
+								<td class="label">
+									<label for="IsPaid">Is Paid (Sub Page)</label>
+								</td>
+								<td class="value">
+									<input type="checkbox" name="IsPaid" id="IsPaid" <?php echo ($hospitalVO->getIsPaid() == 1) ? "checked = 'checked'" : '' ?>>
+									<input type="hidden" id="ID" name="ID" value="<?php echo ($hospitalVO->getID() != null) ? $hospitalVO->getID() : 0  ?>">
+								</td>
+							</tr>
+							
+							
+							
+						</tbody>
+					</table>  		
+		  		</td>
+		  	</tr>
+		  </table>
+			
+		</div>
+	</div>
+</div>

@@ -1,0 +1,124 @@
+<?php
+$currentAdmitCardPrint= $this->getCurrentAdmitCardPrint();
+$currentAdmitCardPrint=$currentAdmitCardPrint['Success'];
+$HTMLFormID = $this->getHTMLFormID();
+?>
+  
+<div class="block block-list block-categories" >
+    <div id="block-categories" class="block-center-title active">
+        <strong><span id="CustomPageTitle">Admit Card Print</span></strong>
+        <p class="back-link"><a href="<?php echo $this->escapeUrl($this->getBackUrl()) ?>"><small>&laquo; </small><?php echo $this->__('Back') ?></a></p> 
+    </div>
+</div>
+
+<div style="text-align: center; margin-bottom: 10px !important;">
+	<a href="<?php echo Mage::getUrl('medicalcamp/Registration_Registration/index') ?>"> 
+		<img alt="middleImage" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . 'web_portal/frontend/advertisement/middle/ChamberOfCommerce/img_5.jpg' ?>" width="592px" height="150px">
+	</a>
+</div>
+	
+<div style="margin-bottom: 0px !important;">
+        
+        <table style="width: 100%">
+        	<tr>
+        		<td>
+			   		<table>
+			        	<tr>
+			        		<td style="padding: 15px; border-bottom: 1px solid #ddd;"><span>Registration Number</span></td>
+			        		<td style="padding: 15px; border-bottom: 1px solid #ddd;"><span><?php echo $currentAdmitCardPrint['AddharCardNumber'] ?></span></td>
+						</tr>
+						
+						<tr>
+			        		<td style="padding: 15px; border-bottom: 1px solid #ddd;"><span>Name Of Candidate</span></td>
+							<td style="padding: 15px; border-bottom: 1px solid #ddd;"><span><?php echo $currentAdmitCardPrint['FirstName'] . " " . $currentAdmitCardPrint['LastName'] ?></span></td>
+						</tr>
+						
+						<tr>
+			        		<td style="padding: 15px; border-bottom: 1px solid #ddd;"><span>Gender</span></td>
+			        		<?php  
+			        			$gender = ($currentAdmitCardPrint['Gender'] == 1) ? "Male" : "Female";
+			        		?>
+							<td style="padding: 15px; border-bottom: 1px solid #ddd;"><span><?php echo $gender ?></span></td>
+						</tr> 
+						
+						<tr>
+			        		<td style="padding: 15px; border-bottom: 1px solid #ddd;"><span>Roll Number</span></td>
+			        		<td style="padding: 15px; border-bottom: 1px solid #ddd;"><span><?php echo $currentAdmitCardPrint['RollNo'] ?></span></td>
+						</tr>  
+						
+						<tr>
+			        		<td style="padding: 15px; border-bottom: 1px solid #ddd;"><span>Centre Alloted</span></td>
+			        		<td style="padding: 15px; border-bottom: 1px solid #ddd;">
+			        			<span>Bihani Children</span><br />
+			        			<span>Academy (BCA)</span><br />
+								<span>Gagan Path</span><br />
+								<span>Sri Ganganagar</span>
+			        		</td>
+						</tr>
+						
+						<tr>
+			        		<td style="padding: 15px; border-bottom: 1px solid #ddd;"><span>Examination Date &amp; Time</span></td>
+			        		<td style="padding: 15px; border-bottom: 1px solid #ddd;">
+			        			<span><b>10 Sept. 2017, Sunday</b></span> <br />
+			        			<span><b>Time 11:00 am</b></span>
+			        		</td>
+						</tr>
+			       </table>     
+			     </td>
+			      
+			     
+			     <td>
+			   		<table >
+			        	<tr>
+			        		<td style="text-align: center; padding: 15px;">
+			        			<img alt="img" style="width: 100px !important; height: 120px !important; " src="<?php echo  Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . $currentAdmitCardPrint['ImageURL'] ?>">
+			        		</td>
+						</tr>
+			       </table>     
+			     </td>
+			  </tr>   
+       </table>
+</div>
+
+<div>
+	<div><p><b>INSTRUCTIONS:</b></p></div>
+	<ul>
+		<li>
+			<p>
+				1.	This admit card must be presented for verification along with <b>Aadhar card</b>b as recorded on the registration form on the test day. If proof of identification is not provided to the Invigilator prior to the examination, Invigilator reserve the right to refuse  the candidate  entry to sit the exam.
+			</p>
+		</li>
+		
+		<li>
+			<p>
+				2.	Please report to the examination venue at least 30 minutes prior to the examination start time. When attending the exam, candidates must ensure they are polite and courteous to other candidates and the Trainer/Invigilator.
+			</p>
+		</li>
+		
+		<li>
+			<p>
+				3.	Each paper has 50 MCQ questions.
+			</p>
+		</li>
+		
+		<li>
+			<p>
+				4.	Each question has four alternative responses marked serially as 1,2,3,4 /A,B,C,D. You have to darken only one circle or bubble indicating the correct answer on answer sheet using <b>BLUE BALL POINT PEN.</b>
+			</p>
+		</li>
+		
+		<li>
+			<p>
+				5.	Mobile Phone or any other electronic gadget in the examination hall is strictly prohibited
+			</p>
+		</li>
+	</ul>
+</div> 
+
+<div style="text-align: right;">
+	<img alt="signImg" style="width: 100px !important; height: 50px !important;" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . 'web_portal/frontend/advertisement/middle/ChamberOfCommerce/img_6.jpg' ?>" />
+</div>	
+	
+<div class="buttons-set" style="margin-top: 0px !important; border-top: none !important; border-bottom: 1px solid #E4E4E4 !important; ">
+  	<button type="button" title="<?php echo $this->__('Print') ?>" onclick="window.print()" id="AdmitCardPrintButton" name="AdmitCardPrintButton" class="button" onclick="return studentFormJS.submit() "><span><span><?php echo $this->__('Print') ?></span></span></button>
+</div>

@@ -1,0 +1,496 @@
+<?php
+	
+    $HTMLFormID = $this->getHTMLFormID();
+    $newsVO    = $this->getNewsVO();    
+    
+    if($newsVO == null){
+    	$newsVO = new Margshri_WebPortal_VO_Center_Content_Type7_News_NewsVO();
+    }
+    
+    $countryOptions = $this->getCountryOptions();
+    $stateOptions   = $this->getStateOptions();
+    $districtOptions= $this->getDistrictOptions();
+    $cityOptions    = $this->getCityOptions();
+    $statusOptions  = $this->getStatusOptions();
+    $dynamicColumnOptions = $this->getDynamicColumnOptions();
+    
+?>
+<script type="text/javascript">
+<!--
+
+//SET STATE 
+var stateList = '';
+var stateOptions = '<?php echo (sizeof($stateOptions) > 0) ?  json_encode($stateOptions) : '' ?>';
+if(stateOptions != ''){
+	stateList = JSON.parse(stateOptions);	
+}
+
+//SET DISTRICT 
+var districtList = '';
+var districtOptions = '<?php echo (sizeof($districtOptions) > 0) ?  json_encode($districtOptions) : '' ?>';
+if(districtOptions != ''){
+	districtList = JSON.parse(districtOptions);	
+}
+
+//SET STATE 
+var cityList = '';
+var cityOptions = '<?php echo (sizeof($cityOptions) > 0) ?  json_encode($cityOptions) : '' ?>';
+if(cityOptions != ''){
+	cityList = JSON.parse(cityOptions);	
+}
+
+//SET STATE 
+var NEWSVO  = '';
+var newsDTO = '<?php echo ($newsVO->getID() != null) ? json_encode($newsVO->getDataArray()) : '' ?>';
+if(newsDTO != ''){
+	NEWSVO = JSON.parse(newsDTO);
+}
+
+//-->
+</script>
+
+
+<div class="entry-edit">
+	<div class="entry-edit-head">
+		<h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__("News") ?></h4>
+		<div class="form-buttons"></div>
+	</div>
+
+	<div class="fieldset " id="base_fieldset">
+		<div class="hor-scroll">
+		  <table style="">
+		  	<tr>
+		  		<td>
+		  			<table class="form-list">
+						<tbody>
+							<tr>
+								<td class="label">
+									<label for="Value">Name<span class="required">*</span></label>
+								</td>
+								<td class="value">
+									<input type="text" name="Value" id="Value" 
+									value="<?php echo $newsVO->getValue() ?>" 
+									class="required-entry input-text" />
+								</td>
+							</tr>
+							
+							<tr>
+								<td class="label">
+									<label for="Code">Code<span class="required">*</span></label>
+								</td>
+								<td class="value">
+									<input type="text" name="Code" id="Code" 
+									value="<?php echo $newsVO->getCode() ?>" 
+									class="required-entry input-text" />
+								</td>
+							</tr>
+							
+							
+							<tr>
+								<td class="label">
+									<label for="Address">Address<span class="required">*</span></label>
+								</td>
+								<td class="value">
+									<textarea rows="3" cols="10" name="Address" id="Address" class="required-entry" style="height: 40px;" ><?php echo $newsVO->getAddress() ?></textarea>
+								</td>
+							</tr>
+		
+							<tr>
+								<td class="label">
+									<label for="CountryID">Country<span class="required">*</span></label>
+								</td>
+								<td class="value">
+									<select name="CountryID" id="CountryID" disabled="disabled">
+										<!--  <option>--Select--</option> -->
+										<?php foreach ($countryOptions as $key=>$value): ?>
+											<option value="<?php echo $key ?>" selected="selected"><?php echo $value ?></option>	
+										<?php endforeach; ?>
+									</select>
+								</td>
+							</tr>
+							
+							<tr>
+								<td class="label">
+									<label for="StateID">State</label>
+								</td>
+								<td class="value">
+									<select name="StateID" id="StateID" onchange="formJS.setDistrictList(this.value)" class="validate-select">
+										<option value="">--Select--</option>
+										<?php foreach ($stateOptions as $key=>$value): ?>
+											<option value="<?php echo $key ?>" <?php echo ($newsVO->getStateID() == $key ) ? 'selected="selected"' : '' ?> ><?php echo $value['Name'] ?></option>	
+										<?php endforeach; ?>
+									</select>
+								</td>
+							</tr>
+							
+							
+							
+							<tr>
+								<td class="label">
+									<label for="DistrictID">District</label>
+								</td>
+								<td class="value">
+									<select name="DistrictID" id="DistrictID" onchange="formJS.setCityList(this.value)">
+										<option value="">--Select--</option>
+									</select>
+								</td>
+							</tr>
+							
+							<tr>
+								<td class="label">
+									<label for="CityID">City</label>
+								</td>
+								<td class="value">
+									<select name="CityID" id="CityID">
+										<option value="">--Select--</option>
+									</select>
+								</td>
+							</tr>
+							  
+							<tr>
+								<td class="label">
+									<label for="PinCode">PinCode</label>
+								</td>
+								<td class="value">
+									<input type="text" name="PinCode" id="PinCode" 
+									value="<?php echo $newsVO->getPinCode() ?>" 
+									class="validate-number input-text" />
+								</td>
+							</tr>
+							
+							
+							<tr>
+								<td class="label">
+									<label for="Category1ID">First Category Name</label>
+								</td>
+								<td class="value">
+									<select name="Category1ID" id="Category1ID" onchange="formJS.setCategoryBox(this)" >
+										<option value="">--Select--</option>
+										<?php foreach ($dynamicColumnOptions as $key=>$value): ?>
+											<option value="<?php echo $key ?>" <?php echo ($newsVO->getCategory1ID() == $key ) ? 'selected="selected"' : '' ?> ><?php echo $value['Value'] ?></option>	
+										<?php endforeach; ?>
+									</select>
+									
+									<input type="text" name="Category1Value" id="Category1Value"  
+									value="<?php echo $newsVO->getCategory1Value() ?>" 
+									class="input-text" style="margin-top: 10px;" />
+								</td>
+							</tr>
+							
+
+							<tr>
+								<td class="label">
+									<label for="Category2ID">Second Category Name</label>
+								</td>
+								<td class="value">
+									<select name="Category2ID" id="Category2ID" onchange="formJS.setCategoryBox(this)" >
+										<option value="">--Select--</option>
+										<?php foreach ($dynamicColumnOptions as $key=>$value): ?>
+											<option value="<?php echo $key ?>" <?php echo ($newsVO->getCategory2ID() == $key ) ? 'selected="selected"' : '' ?> ><?php echo $value['Value'] ?></option>	
+										<?php endforeach; ?>
+									</select>
+									<input type="text" name="Category2Value" id="Category2Value"  
+									value="<?php echo $newsVO->getCategory2Value() ?>" 
+									class="input-text" style="margin-top: 10px;" />
+								</td>
+							</tr>
+							
+							
+							
+							<tr>
+								<td class="label">
+									<label for="Category3ID">Third Category Name</label>
+								</td>
+								<td class="value">
+									<select name="Category3ID" id="Category3ID" onchange="formJS.setCategoryBox(this)" >
+										<option value="">--Select--</option>
+										<?php foreach ($dynamicColumnOptions as $key=>$value): ?>
+											<option value="<?php echo $key ?>" <?php echo ($newsVO->getCategory3ID() == $key ) ? 'selected="selected"' : '' ?> ><?php echo $value['Value'] ?></option>	
+										<?php endforeach; ?>
+									</select>
+									<input type="text" name="Category3Value" id="Category3Value"  
+									value="<?php echo $newsVO->getCategory3Value() ?>" 
+									class="input-text" style="margin-top: 10px;" />
+								</td>
+							</tr>
+							
+							<tr>
+								<td class="value" colspan="2">
+									<div style="border: 1px solid; border-color: #AAA #C8C8C8 #C8C8C8 #AAA;">
+										<img id="Preview" alt="News Image" src="<?php echo ($newsVO->getImage() != null && $newsVO->getImage() != '' )  ? Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . $newsVO->getImage() : '' ?>"  width="487px" height="162px" style="border-style: hidden;"/>
+										<input type="file" id="Image" name="Image" onchange="return formJS.getFilePath()" style="display: none;" />
+								   	</div>
+							   	</td>
+							</tr>
+							
+							<tr>
+								<td class="value" colspan="2" style="text-align: right;">
+									<button type="button" id="Browse" name="Browse" onclick="return formJS.browseImageFile()" >Browse</button>
+								</td>
+							</tr>							
+							
+							
+							<tr>
+								<td class="value" colspan="2">
+									<div style="border: 1px solid; border-color: #AAA #C8C8C8 #C8C8C8 #AAA; width:200px; height:250px;">
+										<img id="PersonImagePreview" alt="Person Image" src="<?php echo ($newsVO->getPersonImage() != null && $newsVO->getPersonImage() != '' )  ? Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . $newsVO->getPersonImage() : '' ?>"  width="200px" height="250px" style="border-style: hidden;"/>
+										<input type="file" id="PersonImage" name="PersonImage" onchange="return formJS.getPersonImageFilePath()" style="display: none;" />
+								   	</div>
+							   	</td>
+							</tr>
+							
+							<tr>
+								<td class="value" colspan="2" style="text-align: right;">
+									<button type="button" id="PersonImageBrowse" name="PersonImageBrowse" onclick="return formJS.browsePersonImageFile()" >Browse</button>
+								</td>
+							</tr>
+							
+							
+							<tr>
+								<td class="value" colspan="2">
+									<div style="border: 1px solid; border-color: #AAA #C8C8C8 #C8C8C8 #AAA; width:200px; height:250px;">
+										<img id="Person2ImagePreview" alt="Person2 Image" src="<?php echo ($newsVO->getPerson2Image() != null && $newsVO->getPerson2Image() != '' )  ? Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . $newsVO->getPerson2Image() : '' ?>"  width="200px" height="250px" style="border-style: hidden;"/>
+										<input type="file" id="Person2Image" name="Person2Image" onchange="return formJS.getPerson2ImageFilePath()" style="display: none;" />
+								   	</div>
+							   	</td>
+							</tr>
+							
+							<tr>
+								<td class="value" colspan="2" style="text-align: right;">
+									<button type="button" id="Person2ImageBrowse" name="Person2ImageBrowse" onclick="return formJS.browsePerson2ImageFile()" >Browse</button>
+								</td>
+							</tr>
+	
+							
+						</tbody>
+					</table>		
+		  		</td>	
+		  	
+		  		<td style="width: 200px;"></td>
+		  	
+		  		<td>
+					<table class="form-list">
+						<tbody>
+
+							<tr>
+								<td class="label">
+									<label for="TinNumber">Registration No.</label>
+								</td>
+								<td class="value">
+									<input type="text" name="TinNumber" id="TinNumber" 
+									value="<?php echo $newsVO->getTinNumber() ?>" 
+									class="input-text" />
+								</td>
+							</tr>
+							
+							
+							<tr>
+								<td class="label">
+									<label for="PANNumber">PAN No.</label>
+								</td>
+								<td class="value">
+									<input type="text" name="PANNumber" id="PANNumber" 
+									value="<?php echo $newsVO->getPANNumber() ?>" 
+									class="input-text" />
+								</td>
+							</tr>
+							
+						
+							<tr>
+								<td class="label">
+									<label for="WebsiteLink">Website Link</label>
+								</td>
+								<td class="value">
+									<input type="text" name="WebsiteLink" id="WebsiteLink" 
+									value="<?php echo $newsVO->getWebsiteLink() ?>" 
+									class="input-text" />
+								</td>
+							</tr>
+							
+						
+						
+						
+							<tr>
+								<td class="label">
+									<label for="LandLineNumber">Land Line Number</label>
+								</td>
+								<td class="value">
+									<input type="text" name="LandLineNumber" id="LandLineNumber" 
+									value="<?php echo $newsVO->getLandLineNumber() ?>" 
+									class="validate-phoneLax input-text" />
+								</td>
+							</tr>
+							
+							
+							<tr>
+								<td class="label">
+									<label for="MobileNumber1">Mobile Number 1</label>
+								</td>
+								<td class="value">
+									<input type="text" name="MobileNumber1" id="MobileNumber1" 
+									value="<?php echo $newsVO->getMobileNumber1() ?>" 
+									class="input-text validate-mobileno" />
+								</td>
+							</tr>
+							
+							
+							<tr>
+								<td class="label">
+									<label for="MobileNumber2">Mobile Number 2</label>
+								</td>
+								<td class="value">
+									<input type="text" name="MobileNumber2" id="MobileNumber2" 
+									value="<?php echo $newsVO->getMobileNumber2() ?>" 
+									class="input-text validate-mobileno" />
+								</td>
+							</tr>
+									
+									
+							<tr>
+								<td class="label">
+									<label for="Email">Email</label>
+								</td>
+								<td class="value">
+									<input type="text" name="Email" id="Email" 
+									value="<?php echo $newsVO->getEmail() ?>" 
+									class="validate-email input-text" />
+								</td>
+							</tr>	
+
+							
+							
+							<tr>
+								<td class="label">
+									<label for="Description">Description<span class="required">*</span></label>
+								</td>
+								<td class="value">
+									<textarea rows="3" cols="10" name="Description" id="Description" class="required-entry" style="height: 40px;" ><?php echo $newsVO->getDescription() ?></textarea>
+								</td>
+							</tr>
+							
+							<tr>
+								<td class="label">
+									<label for="Description2">Description2</label>
+								</td>
+								<td class="value">
+									<textarea rows="3" cols="10" name="Description2" id="Description2" style="height: 40px;" ><?php echo $newsVO->getDescription2() ?></textarea>
+								</td>
+							</tr>
+						
+							<tr>
+								<td class="label"><label for="NewsDate">News Date<span
+										class="required">*</span>
+								</label>
+								</td>
+								<td class="value"><input id="NewsDate"
+									name="NewsDate" readonly="readonly"
+									value="<?php echo $newsVO->getNewsDate() ?>"
+									class="required-entry input-text" style="width: 175px;"
+									type="text" /> <img
+									src="<?php  echo Mage::getDesign()->getSkinUrl('images/grid-cal.gif') ?>"
+									alt="" class="v-middle" id="NewsDateIMG"
+									title="Select Date" style=""> 
+									<script type="text/javascript">
+		                                 //<![CDATA[ 
+		                                 Calendar.setup({
+		                                                  inputField: "NewsDate",
+		                                                  ifFormat: "%Y-%m-%d %H:%M:%S",
+		                                                  showsTime: 12,
+		                                                  button: "NewsDateIMG",
+		                                                  align: "Bl",
+		                                                  onClose   : function() { this.hide(); return validationControl.dateTime(); },
+		                                                  singleClick : true
+		                                               });
+                                        //]]> 
+                                    </script>
+								</td>	
+							</tr>
+							
+							<tr>
+								<td class="label"><label for="LaunchDate">Launch Date<span
+										class="required">*</span>
+								</label>
+								</td>
+								<td class="value"><input id="LaunchDate"
+									name="LaunchDate" readonly="readonly"
+									value="<?php echo $newsVO->getLaunchDate() ?>"
+									class="required-entry input-text" style="width: 175px;"
+									type="text" /> <img
+									src="<?php  echo Mage::getDesign()->getSkinUrl('images/grid-cal.gif') ?>"
+									alt="" class="v-middle" id="LaunchDateIMG"
+									title="Select Date" style=""> 
+									<script type="text/javascript">
+		                                 //<![CDATA[ 
+		                                 Calendar.setup({
+		                                                  inputField: "LaunchDate",
+		                                                  ifFormat: "%Y-%m-%d %H:%M:%S",
+		                                                  showsTime: 12,
+		                                                  button: "LaunchDateIMG",
+		                                                  align: "Bl",
+		                                                  onClose   : function() { this.hide(); return validationControl.dateTime(); },
+		                                                  singleClick : true
+		                                               });
+                                        //]]> 
+                                    </script>
+								</td>	
+							</tr>	
+							
+							<tr>
+								<td class="label"><label for="EndDate">End Date<span
+										class="required">*</span>
+								</label>
+								</td>
+								<td class="value"><input id="EndDate"
+									name="EndDate" readonly="readonly"
+									value="<?php echo $newsVO->getEndDate() ?>"
+									class="required-entry input-text" style="width: 175px;"
+									type="text" /> <img
+									src="<?php  echo Mage::getDesign()->getSkinUrl('images/grid-cal.gif') ?>"
+									alt="" class="v-middle" id="EndDateIMG"
+									title="Select Date" style=""> 
+									<script type="text/javascript">
+		                                 //<![CDATA[ 
+		                                 Calendar.setup({
+		                                                  inputField: "EndDate",
+		                                                  ifFormat: "%Y-%m-%d %H:%M:%S",
+		                                                  showsTime: 12,
+		                                                  button: "EndDateIMG",
+		                                                  align: "Bl",
+		                                                  onClose   : function() { this.hide(); return validationControl.dateTime(); },
+		                                                  singleClick : true
+		                                               });
+                                        //]]> 
+                                    </script>
+								</td>	
+							</tr>	
+						
+							<tr>
+								<td class="label">
+									<label for="StatusID">Status<span class="required">*</span></label>
+								</td>
+								<td class="value">
+									<select name="StatusID" id="StatusID" class="validate-select">
+										<option value="">--Select--</option>
+										<?php foreach ($statusOptions as $key=>$value): ?>
+											<option value="<?php echo $key ?>" <?php echo ($newsVO->getStatusID() == $key ) ? 'selected="selected"' : '' ?> ><?php echo $value ?></option>	
+										<?php endforeach; ?>
+									</select>
+									<input type="hidden" id="ID" name="ID" value="<?php echo ($newsVO->getID() != null) ? $newsVO->getID() : 0  ?>">
+								</td>
+							</tr>
+		
+		
+							
+							
+							
+							
+							
+						</tbody>
+					</table>  		
+		  		</td>
+		  	</tr>
+		  </table>
+			
+		</div>
+	</div>
+</div>

@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<config>
+	<menu>
+			<bestsellerproducts module="bestsellerproducts">
+				<title>Best Selling Products</title>
+				<sort_order>71</sort_order>               
+				<children>
+					<items module="bestsellerproducts">
+						<title>Manage Categories</title>
+						<sort_order>0</sort_order>
+						<!--<action>bannerslider/adminhtml_bannerslider</action>-->
+						<action>bestsellerproducts/adminhtml_bestsellerproducts</action>
+					</items>
+				</children>
+			</bestsellerproducts>
+		</menu>
+		<acl>
+			<resources>
+				<all>
+					<title>Allow Everything</title>
+				</all>
+				<admin>
+					<children>
+						<Mconnectsolutiions_Bestsellerproducts>
+							<title>Best Selling Products Module</title>
+							<sort_order>10</sort_order>
+						</Mconnectsolutiions_Bestsellerproducts>
+						<system>
+							<children>
+								<config>
+									<children>
+										<bestsellerproducts translate="title" module="bestsellerproducts"> 
+											<title>Best Seller Settings</title>
+											<sort_order>50</sort_order>
+										</bestsellerproducts>
+							</children>							
+								</config>
+							</children>
+						</system>
+					</children>
+				</admin>
+			</resources>
+		</acl>
+</config>

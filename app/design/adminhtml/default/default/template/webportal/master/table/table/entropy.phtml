@@ -1,0 +1,182 @@
+<?php
+    $HTMLFormID = $this->getHTMLFormID();
+    $tableVO = $this->getTableVO();
+    $tableTypeOptions = $this->getTableTypeOptions();
+    $statusOptions  = $this->getStatusOptions();
+    $getYesNoOptions  = $this->getYesNoOptions();
+    
+    if($tableVO == null){
+    	$tableVO = new Margshri_WebPortal_VO_Master_Table_TableVO();
+    }
+?>
+
+<div class="entry-edit">
+	<div class="entry-edit-head">
+		<h4 class="icon-head head-edit-form fieldset-legend">Web Table</h4>
+		<div class="form-buttons"></div>
+	</div>
+
+	<div class="fieldset " id="base_fieldset">
+		<div class="hor-scroll">
+			<table cellspacing="0" class="form-list">
+				<tbody>
+					<tr>
+						<td class="label">
+							<label for="Value">Name<span class="required">*</span></label>
+						</td>
+						<td class="value">
+							<input type="text" name="Value" id="Value" 
+							value="<?php echo $tableVO->getValue() ?>" 
+							class="required-entry input-text" />
+						</td>
+					</tr>
+					
+					<tr>
+						<td class="label">
+							<label for="Code">Code<span class="required">*</span></label>
+						</td>
+						<td class="value">
+							<input type="text" name="Code" id="Code" 
+							value="<?php echo $tableVO->getCode() ?>" 
+							class="required-entry input-text" />
+						</td>
+					</tr>
+					
+
+					<tr>
+						<td class="label">
+							<label for="Discription">Discription</label>
+						</td>
+						<td class="value">
+							<textarea rows="5" cols="10" id="Discription" name="Discription" ><?php echo $tableVO->getDiscription() ?></textarea>
+						</td>
+					</tr>
+
+					<tr>
+						<td class="label">
+							<label for="TableTypeID">Table Type<span class="required">*</span></label>
+						</td>
+						<td class="value">
+							<select name="TableTypeID" id="TableTypeID" class="validate-select">
+								<option value="">--Select--</option>
+								<?php foreach ($tableTypeOptions as $key=>$value): ?>
+									<option value="<?php echo $key ?>" <?php echo ($tableVO->getTableTypeID() == $key) ? 'Selected="Selected"' : '' ?> ><?php echo $value ?></option>	
+								<?php endforeach; ?>
+							</select>
+						</td>
+					</tr>
+					
+					<tr>
+						<td class="label">
+							<label for="FileName">File Name</label>
+						</td>
+						<td class="value">
+							<input type="text" name="FileName" id="FileName" 
+							value="<?php echo $tableVO->getFileName() ?>" 
+							class="required-entry input-text" />	
+						</td>
+					</tr>
+					
+					<tr>
+						<td class="label">
+							<label for="IsFileName">Is File Name<span class="required">*</span></label>
+						</td>
+						<td class="value">
+							<select name="IsFileName" id="IsFileName" class="validate-select">
+								<option value="">--Select--</option>
+								<?php foreach ($getYesNoOptions as $key=>$value): ?>
+									<option value="<?php echo $key ?>" <?php echo ($tableVO->getIsFileName() == $key) ? 'Selected="Selected"' : '' ?> ><?php echo $value ?></option>	
+								<?php endforeach; ?>
+							</select>
+						</td>
+					</tr>
+					
+					
+					<tr>
+						<td class="label">
+							<label for="UseInSearch">Use In Search<span class="required">*</span></label>
+						</td>
+						<td class="value">
+							<select name="UseInSearch" id="UseInSearch" class="validate-select">
+								<option value="">--Select--</option>
+								<?php foreach ($getYesNoOptions as $key=>$value): ?>
+									<option value="<?php echo $key ?>" <?php echo ($tableVO->getUseInSearch() == $key) ? 'Selected="Selected"' : '' ?> ><?php echo $value ?></option>	
+								<?php endforeach; ?>
+							</select>
+						</td>
+					</tr>
+					
+					
+					<tr>
+						<td class="label">
+							<label for="UseInCLP">Use In CLP<span class="required">*</span></label>
+						</td>
+						<td class="value">
+							<select name="UseInCLP" id="UseInCLP" class="validate-select">
+								<option value="">--Select--</option>
+								<?php foreach ($getYesNoOptions as $key=>$value): ?>
+									<option value="<?php echo $key ?>" <?php echo ($tableVO->getUseInCLP() == $key) ? 'Selected="Selected"' : '' ?> ><?php echo $value ?></option>	
+								<?php endforeach; ?>
+							</select>
+						</td>
+					</tr>
+					
+					<tr>
+						<td class="label">
+							<label for="MinCLPPoint">Min CLP Point</label>
+						</td>
+						<td class="value">
+							<input type="text" name="MinCLPPoint" id="MinCLPPoint" 
+							value="<?php echo $tableVO->getMinCLPPoint() ?>" 
+							class="input-text validate-number" />
+						</td>
+					</tr>
+					
+					
+					<tr>
+						<td class="label">
+							<label for="MaxCLPPoint">Max CLP Point</label>
+						</td>
+						<td class="value">
+							<input type="text" name="MaxCLPPoint" id="MaxCLPPoint" 
+							value="<?php echo $tableVO->getMaxCLPPoint() ?>" 
+							class="input-text validate-number" />
+						</td>
+					</tr>
+					
+					
+					
+					<tr>
+						<td class="label">
+							<label for="StatusID">Status<span class="required">*</span></label>
+						</td>
+						<td class="value">
+							<select name="StatusID" id="StatusID" class="validate-select">
+								<option value="">--Select--</option>
+								<?php foreach ($statusOptions as $key=>$value): ?>
+									<option value="<?php echo $key ?>" <?php echo ($tableVO->getStatusID() == $key) ? 'Selected="Selected"' : '' ?> ><?php echo $value ?></option>	
+								<?php endforeach; ?>
+							</select>
+							
+							<input type="hidden" id="ID" name="ID" value="<?php echo ($tableVO->getID() > 0) ? $tableVO->getID() : 0 ?>" />
+						</td>
+					</tr>
+					
+				</tbody>
+			</table>
+				
+				<!--      
+				<?php $count = 0; ?>
+				<?php foreach ($this->getTableOptions1() as $key=>$row): ?>
+				<?php $count++; ?>
+				&#60;<?php echo $row['Code']?> translate="title" module="admin" &#62; <br /> 
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;		&#60;title&#62;<?php echo ucwords( str_replace('apctweb', '',$row['Code'])) ?>&#60;/title&#62; <br />
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;		&#60;sort_order&#62;0<?php echo $count ?>&#60;/sort_order&#62; <br />
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;		&#60;action&#62;webportal/Backend_Center_Content_Type8_Type8/<?php echo $row['Code'] ?>&#60;/action&#62; <br />
+								&#60;/<?php echo $row['Code']?>&#62; <br /><br /><br />
+				<?php endforeach;?>
+				-->
+				
+		</div>
+	</div>
+</div>

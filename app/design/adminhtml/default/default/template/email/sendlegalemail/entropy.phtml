@@ -1,0 +1,90 @@
+<?php
+
+?>
+
+<div class="entry-edit">
+	<div class="entry-edit-head">
+		<h4 class="icon-head head-edit-form fieldset-legend">Send Legal Email</h4>
+		<div class="form-buttons"></div>
+	</div>
+	
+	<div class="fieldset " id="CustomerDetail">
+		<div class="hor-scroll">
+			 
+				<table class="form-list">
+					<tbody>
+						
+						<tr>
+							<td class="label">
+								<label>Sender Email <span class="required">*</span></label>
+							</td>
+							<td class="value">
+								<select id="EmailConfigID" name="EmailConfigID"  class="validate-select" >
+								    <option value="">--Select--</option>
+			 						<?php foreach ($this->getEmailSenderOptions() as $key=>$value): ?>
+			 							<option value="<?php echo $key ?>" <?php echo ($key == 2) ? 'selected="selected"' : '' ?>><?php echo $value ?></option>
+			 						<?php endforeach; ?>
+								</select>
+							</td>
+						</tr>
+						
+						<tr>
+							<td class="label">
+								<label>Email Template<span class="required">*</span></label>
+							</td>
+							<td class="value">
+								<select id="EmailTemplateID" name="EmailTemplateID" class="validate-select">
+									<option value="">--Select--</option>
+									<?php foreach ($this->getEmailTemplateOptions() as $key=>$value): ?>
+			 								<option value="<?php echo $key ?>"><?php echo $value ?></option>
+			 						<?php endforeach; ?>
+			 					</select>
+			 				</td>
+			
+						</tr>
+						
+						
+						<tr>
+							<td class="label">
+								<label>PNR Number<span class="required">*</span></label>
+							</td>
+							<td class="value">
+								<input type="text" id="PNRNumber" name="PNRNumber" class="required-entry validate-digits input-text" maxlength="10" min="10" max="10"/>
+							</td>
+						</tr>
+					
+					
+						<tr>
+							<td class="label">
+								<label>Collectible Amount<span class="required">*</span></label>
+							</td>
+							<td class="value">
+								<input type="text" id="CollectibleAmount" name="CollectibleAmount" class="required-entry validate-number input-text" />
+							</td>
+						</tr>
+						
+						<tr>
+							<td class="label">
+								<label>Payment Link<span class="required">*</span></label>
+							</td>
+							<td class="value">
+								<input type="text" id="PaymentLink" name="PaymentLink" class="required-entry input-text" />
+							</td>
+						</tr>
+						
+						
+						<tr>
+							<td class="label">
+								<label>Customer Email<span class="required">*</span></label>
+							</td>
+							<td class="value">
+								<input type="text" id="ReceiverEmail" name="ReceiverEmail" class="required-entry validate-email input-text" />
+							</td>
+						</tr>
+						
+					</tbody>	 
+				</table>
+			 
+		</div>
+	</div>
+</div>

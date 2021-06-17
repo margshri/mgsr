@@ -1,0 +1,106 @@
+<?php
+	$HTMLFormID = $this->getHTMLFormID();
+?>
+<div class="content-header">
+    <table cellspacing="0">
+        <tr>
+
+            <td style="width:50%;"><h3 class="icon-head head-permissions-role"><?php echo ($this->getUnRegisterUserID() != null ) ? $this->__('Edit') : $this->__('Add') ?></h3></td>
+            <td class="form-buttons">
+                <?php echo $this->getBackButtonHtml() ?>
+                <?php echo $this->getResetButtonHtml() ?>
+                <?php echo $this->getSaveButtonHtml() ?>
+            </td>
+        </tr>
+    </table>
+</div>
+<form action="<?php echo $this->getUrl('*/*/save') ?>" method="post" id="<?php echo $HTMLFormID;?>">
+    <?php echo $this->getBlockHtml('formkey')?>
+    <?php echo $this->getEntropy(); ?>
+</form>
+
+
+<script type="text/javascript">
+function systemConfigVO(){
+	this.ConfigID = null;
+	this.ConfigName = null;
+	this.ConfigKey = null;
+	this.ConfigValue = null;
+}
+var newSystemConfigDTO = new systemConfigVO();
+</script>
+
+
+<script type="text/javascript">
+
+var formObj = new varienForm('<?php echo $HTMLFormID; ?>');
+var formJS  = {
+        	
+			submit : function(){
+        		if(  !formJS.saveValidation() ) return ;
+					formJS.saveAjax();
+			},
+
+            saveValidation : function(){
+				var errorMsg = '';
+             	if( !(formObj.validator && formObj.validator.validate())  ){
+	    	    	return false;
+    	    	}
+
+             	newSystemConfigDTO.ConfigID = ($('ConfigID').value).strip();
+             	newSystemConfigDTO.ConfigName = ($('ConfigName').value).strip();
+             	newSystemConfigDTO.ConfigKey = ($('ConfigKey').value).strip();
+             	newSystemConfigDTO.ConfigValue = ($('ConfigValue').value).strip();
+             	
+             	
+
+             	if(newSystemConfigDTO.ConfigName == '' || newSystemConfigDTO.ConfigName == null){
+					errorMsg += 'Please Enter Config Name .\n';
+				}
+
+             	if(newSystemConfigDTO.ConfigKey == '' || newSystemConfigDTO.ConfigKey == null){
+					errorMsg += 'Please Enter Config Key.\n';
+				}
+
+             	if(newSystemConfigDTO.ConfigValue == '' || newSystemConfigDTO.ConfigValue == null){
+					errorMsg += 'Please Enter Config Value.\n';
+				}
+
+	            if(errorMsg != ''){
+	            	alert(errorMsg);
+					return false;
+				}
+				
+				// DISABLE SAVE BUTTON FOR PREVENT DUPLICATE ENTRY
+				$('SystemConfigSaveButtonID').style.disabled = true;
+				return true;	            
+            },					
+ 
+
+        	saveAjax: function(){
+            	var URL = "<?php echo $this->getUrl('*/*/save')?>" ;
+			    var parameters= {"SystemConfigDataObj": JSON.stringify(newSystemConfigDTO,null) };
+			    var callBackMethod ="formJS.responseSave";
+			    var callBackArgs =null;
+			    ajaxRequest.execute(URL, parameters, callBackMethod , callBackArgs );
+			    return false;
+	     	},
+
+	     	
+  	     	responseSave : function(response,args) {
+  	     		// ENABLE SAVE BUTTON 
+				$('SystemConfigSaveButtonID').style.disabled = true;
+				var msg = new Array();
+            	if(response.SuccessMessage !=null){
+				 	window.location.href = "<?php echo $this->getUrl('*/*/index')?>";
+				 	return;
+				}else if(response.ErrorMessage !=null){
+					msg[0] = response.ErrorMessage;
+					MESSAGEHANDLER.errorMessagePublish(msg, $('messages'));
+	    			return false;
+	 			}
+     	 	}
+								
+};
+ 
+</script>

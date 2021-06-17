@@ -1,0 +1,49 @@
+<?php
+    $_htmlId  = $this->getHtmlId(); 
+?>
+        <div class="entry-edit">
+            <div class="entry-edit-head">
+ 					<h4 class="icon-head head-edit-form fieldset-legend">Product Upload</h4>
+                <div class="form-buttons"></div>
+            </div>
+   
+            <div class="fieldset " id="base_fieldset">
+                <div class="hor-scroll">
+                 
+                    <table cellspacing="0" class="form-list">
+                            <tbody>
+                                <tr>
+                                        <td class="label">
+                                                <label for="OfficeCode">Upload File (Type xls, xlsx)<span class="required">*</span></label>
+                                        </td>
+                                        <td class="value">
+                                        			<input type="file" name="file" id="file" value="<?php //echo $this->getInfoData('TypeCode') ?>" title="Type Code" class=" required-entry input-text" style="width: 110px ! important;text-align:left"  /> 
+													<!-- <input name="typeCode" id="typeCode" value="<?php //echo $this->getInfoData('TypeCode') ?>" title="Type Code" class=" required-entry input-text" style="width: 110px ! important;text-align:left" type="text"    />--> 
+                                         </td>
+                                  </tr>
+                                  
+                                  
+                               <tr>
+                                        <td class="label">
+                                                <label for="OfficeName">Upload Images<span class="required">*</span></label>
+                                        </td>
+                                        <td class="value">
+                                        			<input type="file" multiple="multiple" name="fileImage[]" id="fileImage[]" value="<?php //echo $this->getInfoData('TypeName') ?>" title="Type Code" class=" required-entry input-text" style="width: 110px ! important;text-align:left"  /> 
+													<!--<input name="typeName" id="typeName" value="<?php echo 'shakya' //$this->getInfoData('TypeName') ?>" title="Type Code" class=" required-entry input-text" style="width: 110px ! important;text-align:left" type="text"    /> -->
+                                         </td>
+                                  </tr>
+                            
+                            
+                                  <tr>
+                                        <td colspan="2" class="hidden">
+                                                <input id="officeTypeId" name="officeTypeId" value="1<?php //echo $this->getInfoData('OfficeTypeId') ==""? 0 :  $this->getInfoData('OfficeTypeId') ;?>" type="hidden"/>
+                                         </td>
+                                </tr>
+                            </tbody>  
+                    </table>
+                 
+                </div>
+            </div>
+
+    </div>
+ 

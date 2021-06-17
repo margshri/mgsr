@@ -1,0 +1,61 @@
+<?php
+/* @var $systemConfigVO Dakiya_VO_Master_System_SystemConfig_DakiyaSystemConfigVO */ 
+$dakiyaSystemConfigVO = $this->getDakiyaSystemConfigVO();
+if($dakiyaSystemConfigVO == null){
+	$dakiyaSystemConfigVO = new Dakiya_VO_Master_System_SystemConfig_DakiyaSystemConfigVO();
+}
+?>
+
+<div class="entry-edit">
+
+	<div class="entry-edit-head">
+		<h4 class="icon-head head-edit-form fieldset-legend">Dakiya System Config</h4>
+		<div class="form-buttons"></div>
+	</div>
+
+	<div class="fieldset ">
+		<div class="hor-scroll">
+			
+			<table class="form-list">
+				<tbody>
+				
+					<tr>
+						<td class="label">
+							<label for="ConfigName">Config Name<span class="required">*</span></label>
+						</td>
+						<td class="value">
+							<input id="ConfigName" name="ConfigName" value="<?php echo $dakiyaSystemConfigVO->getConfigName() ?>" 
+							class="required-entry input-text" type="text" />
+						</td>
+					</tr>
+				
+					<tr>
+						<td class="label">
+							<label for="ConfigKey">Config Key<span class="required">*</span></label>
+						</td>
+						<td class="value">
+							<input id="ConfigKey" name="ConfigKey" value="<?php echo $dakiyaSystemConfigVO->getConfigKey() ?>" 
+							class="required-entry input-text" type="text" <?php echo ($dakiyaSystemConfigVO->getConfigID() != null ) ? 'readonly= "readonly" ' : '' ?> />
+						</td>
+					</tr>
+				
+					<tr>
+						<td class="label">
+							<label for="ConfigValue">Config Value<span class="required">*</span></label>
+						</td>
+						<td class="value">
+							<input id="ConfigValue" name="ConfigValue" value="<?php echo $dakiyaSystemConfigVO->getConfigValue() ?>" 
+							class="required-entry input-text" type="text" />
+							<input id="ConfigID" name="ConfigID" value="<?php echo ($dakiyaSystemConfigVO->getConfigID() != null ) ? $dakiyaSystemConfigVO->getConfigID() : 0 ?>" type="hidden" />
+						</td>
+					</tr>
+					
+					 
+					
+				</tbody>
+			</table>
+						 
+		</div>
+	</div>
+
+</div>

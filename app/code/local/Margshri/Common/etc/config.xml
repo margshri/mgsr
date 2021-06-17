@@ -1,0 +1,424 @@
+<?xml version="1.0"?>
+<config>
+	<modules>
+		<Margshri_Common>
+			<version>1.0.0.0</version>
+		</Margshri_Common>
+	</modules>
+
+	<global>
+		<models>
+			<common>
+				<class>Margshri_Common_Model</class>
+				<resourceModel>common_mysql4</resourceModel>
+			</common>
+
+			<common_mysql4>
+				<class>Margshri_Common_Model_MySql4</class>
+				<entities>
+				
+					
+					<mgsrstatus>
+						<table>mgsr_status</table>
+					</mgsrstatus>
+					
+					
+					<adminuser>
+						<table>admin_user</table>
+					</adminuser>
+					
+				    
+					<apctcustomeraddresstype>
+						<table>apct_customer_address_type</table>
+					</apctcustomeraddresstype>
+
+					<apctcustomeraddress>
+						<table>apct_customer_address</table>
+					</apctcustomeraddress>
+
+					<apctlogvisitor>
+						<table>log_visitor</table>
+					</apctlogvisitor>
+					
+					<apctwebvisitorcounter>
+						<table>apct_web_visitor_counter</table>
+					</apctwebvisitorcounter>
+					
+					<apctcustomer>
+						<table>apct_customer</table>
+					</apctcustomer>
+					
+					<mgsrgender>
+						<table>mgsr_gender</table>
+					</mgsrgender>
+					
+					<apctcustomerstatus>
+						<table>apct_customer_status</table>
+					</apctcustomerstatus>
+					
+					<mgsrprogramme>
+						<table>mgsr_programme</table>
+					</mgsrprogramme>
+					
+					<mgsrprogrammetype>
+						<table>mgsr_programme_type</table>
+					</mgsrprogrammetype>
+					
+					<mgsrprogrammestatus>
+						<table>mgsr_programme_status</table>
+					</mgsrprogrammestatus>
+					
+					<mgsrnameprefix>
+						<table>mgsr_name_prefix</table>
+					</mgsrnameprefix>
+					
+					<mgsruser>
+						<table>mgsr_user</table>
+					</mgsruser>
+					
+					<mgsrdonation>
+						<table>mgsr_donation</table>
+					</mgsrdonation>
+					
+					<mgsrdonationtype>
+						<table>mgsr_donation_type</table>
+					</mgsrdonationtype>
+					
+					<mgsrdonationstatus>
+						<table>mgsr_donation_status</table>
+					</mgsrdonationstatus>
+					
+					<mgsrreceiptbook>
+						<table>mgsr_receipt_book</table>
+					</mgsrreceiptbook>
+					
+					<mgsrarealist>
+						<table>mgsr_area_list</table>
+					</mgsrarealist>
+					
+					<mgsrcitylist>
+						<table>mgsr_city_list</table>
+					</mgsrcitylist>
+					
+					<mgsrdistrictlist>
+						<table>mgsr_district_list</table>
+					</mgsrdistrictlist>
+					
+					<mgsrmember>
+						<table>mgsr_member</table>
+					</mgsrmember>
+					
+					<mgsrdesignation>
+						<table>mgsr_designation</table>
+					</mgsrdesignation>
+					
+					<mgsrsociety>
+						<table>mgsr_society</table>
+					</mgsrsociety>
+					
+					<mgsrbloodgroup>
+						<table>mgsr_blood_group</table>
+					</mgsrbloodgroup>
+					
+				</entities>
+			</common_mysql4>
+		</models>
+
+		<resources>
+			<admin_setup>
+				<setup>
+					<module>Margshri_Common</module>
+				</setup>
+			</admin_setup>
+		</resources>
+
+		<blocks>
+			<common>
+				<class>Margshri_Common_Block</class>
+			</common>
+		</blocks>
+
+		<helpers>
+			<common>
+				<class>Margshri_Common_Helper</class>
+			</common>
+		</helpers>
+
+
+	</global>
+
+	<frontend>
+		<routers>
+			<common>
+				<use>standard</use>
+				<args>
+					<module>Margshri_Common</module>
+					<frontName>common</frontName>
+				</args>
+			</common>
+		</routers>
+
+		<layout>
+			<updates>
+				<common module="Margshri_Common">
+					<file>common.xml</file>
+				</common>
+			</updates>
+		</layout>
+	</frontend>
+
+
+	<admin>
+		<routers>
+			<common>
+				<use>admin</use>
+				<args>
+					<module>Margshri_Common</module>
+					<frontName>common</frontName>
+				</args>
+			</common>
+		</routers>
+
+		<layout>
+			<updates>
+				<common module="Margshri_Common">
+					<file>common.xml</file>
+				</common>
+			</updates>
+		</layout>
+
+	</admin>
+
+
+	<adminhtml>
+		<menu>
+			<user translate="title" module="admin">
+				<title>User</title>
+				<sort_order>11</sort_order>
+				<action>common/Backend_User_User/index</action>
+			</user>
+			
+			<smss translate="title" module="admin">
+				<title>SMSS</title>
+				<sort_order>12</sort_order>
+				<children>
+					<donor translate="title" module="admin">
+						<title>Donor</title>
+						<sort_order>01</sort_order>
+						<action>common/Backend_Donor_Donor/index</action>
+					</donor>
+					
+					<member translate="title" module="admin">
+						<title>Member</title>
+						<sort_order>02</sort_order>
+						<action>common/Backend_Member_Member/index</action>
+					</member>
+					
+					<book translate="title" module="admin">
+						<title>Book</title>
+						<sort_order>03</sort_order>
+						<children>
+							<receiptbook translate="title" module="admin">
+								<title>Receipt Book</title>
+								<sort_order>01</sort_order>
+								<action>common/Backend_Book_ReceiptBook/index</action>
+							</receiptbook>
+						</children>
+					</book>
+					
+					<programme translate="title" module="admin">
+						<title>Programme</title>
+						<sort_order>04</sort_order>
+						<action>common/Backend_Programme_Programme/index</action>
+					</programme>
+								
+					<society translate="title" module="admin">
+						<title>Society</title>
+						<sort_order>05</sort_order>
+						<action>common/Backend_Society_Society/index</action>
+					</society>				
+				</children>	
+			</smss>
+
+			<customcustomer translate="title" module="admin">
+				<title>Custom Customer</title>
+				<sort_order>20</sort_order>
+				<children>
+					<managecustomer translate="title" module="admin">
+						<title>Manage Customer</title>
+						<sort_order>01</sort_order>
+						<action>common/Backend_Customer_ManageCustomer_ManageCustomer/index</action>
+					</managecustomer>
+					
+					<managevisitor translate="title" module="admin">
+						<title>Manage Visitor</title>
+						<sort_order>01</sort_order>
+						<children>
+							<actualvisitor translate="title" module="admin">
+								<title>A-Visitor</title>
+								<sort_order>01</sort_order>
+								<action>common/Backend_Customer_ManageVisitor_ActualVisitor/index</action>
+							</actualvisitor>
+							
+							<customvisitor translate="title" module="admin">
+								<title>C-Visitor</title>
+								<sort_order>02</sort_order>
+								<action>common/Backend_Customer_ManageVisitor_CustomVisitor/index</action>
+							</customvisitor>
+						</children>			
+					</managevisitor>	
+				</children>
+			</customcustomer>
+ 
+		</menu>
+
+		<acl>
+			<resources>
+				<admin>
+					<children>
+					
+						<user translate="title" module="admin">
+							<title>User</title>
+							<sort_order>11</sort_order>
+							<children>
+								<add translate="title" module="admin">
+									<title>Add</title>
+									<sort_order>01</sort_order>
+								</add>
+								
+								<edit translate="title" module="admin">
+									<title>Edot</title>
+									<sort_order>02</sort_order>
+								</edit>
+							</children>
+						</user>
+					
+					
+						<smss translate="title" module="admin">
+							<title>SMSS</title>
+							<sort_order>12</sort_order>
+							<children>
+								<donor translate="title" module="admin">
+									<title>Donor</title>
+									<sort_order>01</sort_order>
+									<add translate="title" module="admin">
+										<title>Add</title>
+										<sort_order>01</sort_order>
+									</add>
+									
+									<edit translate="title" module="admin">
+										<title>Edit</title>
+										<sort_order>02</sort_order>
+									</edit>
+								</donor>
+								
+								<member translate="title" module="admin">
+									<title>Member</title>
+									<sort_order>02</sort_order>
+									<add translate="title" module="admin">
+										<title>Add</title>
+										<sort_order>01</sort_order>
+									</add>
+									
+									<edit translate="title" module="admin">
+										<title>Edit</title>
+										<sort_order>02</sort_order>
+									</edit>
+								</member>
+								
+								<book translate="title" module="admin">
+									<title>Book</title>
+									<sort_order>03</sort_order>
+									<children>
+										<receiptbook translate="title" module="admin">
+											<title>Receipt Book</title>
+											<sort_order>01</sort_order>
+										</receiptbook>
+									</children>
+								</book>	
+									
+								<programme translate="title" module="admin">
+									<title>Programme</title>
+									<sort_order>04</sort_order>
+									<children>
+										<add translate="title" module="admin">
+											<title>Add</title>
+											<sort_order>01</sort_order>
+										</add>
+										
+										<edit translate="title" module="admin">
+											<title>Edit</title>
+											<sort_order>02</sort_order>
+										</edit>
+									</children>	
+								</programme>
+								
+								<society translate="title" module="admin">
+									<title>Society</title>
+									<sort_order>05</sort_order>
+									<children>
+										<add translate="title" module="admin">
+											<title>Add</title>
+											<sort_order>01</sort_order>
+										</add>
+										
+										<edit translate="title" module="admin">
+											<title>Edit</title>
+											<sort_order>02</sort_order>
+										</edit>
+									</children>	
+								</society>
+									
+							</children>	
+						</smss>
+					
+					
+						<customcustomer translate="title" module="admin">
+							<title>Custom Customer</title>
+							<sort_order>20</sort_order>
+							<children>
+								<managecustomer translate="title" module="admin">
+									<title>Manage Customer</title>
+									<sort_order>01</sort_order>
+									<children>
+										<edit translate="title" module="admin">
+											<title>Edit</title>
+											<sort_order>01</sort_order>
+										</edit>
+									</children>
+								</managecustomer>
+								
+								<managevisitor translate="title" module="admin">
+									<title>Manage Visitor</title>
+									<sort_order>02</sort_order>
+									<children>
+										<actualvisitor translate="title" module="admin">
+											<title>A-Visitor</title>
+											<sort_order>01</sort_order>
+										</actualvisitor>
+										
+										<customvisitor translate="title" module="admin">
+											<title>C-Visitor</title>
+											<sort_order>02</sort_order>
+										</customvisitor>
+									</children>			
+								</managevisitor>	
+							</children>
+						</customcustomer>
+					 
+					</children>
+				</admin>
+			</resources>
+		</acl>
+
+		<layout>
+			<updates>
+				<common module="Margshri_Common">
+					<file>common.xml</file>
+				</common>
+			</updates>
+		</layout>
+
+
+	</adminhtml>
+</config>

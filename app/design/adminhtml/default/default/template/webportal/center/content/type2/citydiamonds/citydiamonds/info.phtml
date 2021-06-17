@@ -1,0 +1,78 @@
+<?php
+$HTMLFormID = $this->getHTMLFormID();
+?>
+<div class="content-header">
+    <table cellspacing="0">
+        <tr>
+            
+            <td style="width:50%;"><h3 class="icon-head head-permissions-role"><?php echo ($this->getID() != null ) ? ($this->__('Edit') ) : $this->__('Add') ?></h3></td>
+            <td class="form-buttons">
+                <?php echo $this->getBackButtonHtml() ?>
+                <?php echo $this->getResetButtonHtml() ?>
+                <?php echo $this->getSaveButtonHtml() ?>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<form action="<?php echo $this->getUrl('*/*/save') ?>" method="post" id="<?php echo $HTMLFormID ?>">
+    <?php  echo $this->getBlockHtml('formkey')?>
+    <?php  echo $this->getEntropy()?>
+</form>
+
+<script type="text/javascript">
+
+function CityDiamondsVO(){
+	this.ID = null;
+	this.CustomerID = null;
+	this.StatusID=null;
+}
+var newCityDiamondsDTO = new CityDiamondsVO();
+
+var formObj = new varienForm('<?php echo $HTMLFormID; ?>');
+var formJS={
+
+		submit : function(){
+    		if(!formJS.saveValidation()) return ;
+    			formJS.saveAjax();
+		},
+
+		saveValidation : function(){
+
+			if(!(formObj.validator && formObj.validator.validate())){
+    	    	return false;
+	    	}
+	    	
+         	// SET VOs 
+            newCityDiamondsDTO.ID = ($('ID').value).strip();
+            newCityDiamondsDTO.CustomerID = ($('CustomerID').value).strip();
+            newCityDiamondsDTO.StatusID = ($('StatusID').value).strip();
+         	
+			return true;	
+		},	
+
+        saveAjax: function(){
+        	var URL = "<?php echo $this->getUrl('*/*/save')?>" ;
+		    var parameters= {"CityDiamondsDataObj": JSON.stringify(newCityDiamondsDTO,null) };
+		    var callBackMethod ="formJS.responseSave";
+		    var callBackArgs =null;
+		    ajaxRequest.execute(	URL, parameters, callBackMethod , callBackArgs );
+		    return false;
+     	},
+     	
+	    responseSave : function(response,args) {
+        	if(response.SuccessMessage !=null){
+			 	window.location.href = "<?php echo $this->getUrl('*/*/index')?>" ;
+			 	return;
+			}else if(response.ErrorMessage !=null){
+				alert(response.ErrorMessage);
+    			return false;
+ 			}
+ 	 	},
+		
+		  
+}; 
+
+ 
+
+</script>

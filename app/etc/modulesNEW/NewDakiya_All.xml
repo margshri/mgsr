@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+		<NewDakiya>
+	            <active>true</active>
+	            <codePool>local</codePool>
+	    </NewDakiya>	
+    </modules>
+</config>        

@@ -1,0 +1,542 @@
+<?php
+$HTMLFormID = $this->getHTMLFormID();
+?>
+
+<div class="block block-list block-categories" >
+    <div id="block-categories" class="block-center-title active">
+        <strong><span id="CustomPageTitle">Registration Form</span></strong>
+        <p class="back-link"><a href="<?php echo $this->escapeUrl($this->getBackUrl()) ?>"><small>&laquo; </small><?php echo $this->__('Back') ?></a></p> 
+    </div>
+</div>
+
+</form>
+
+<div style="text-align: center; margin-bottom: 10px !important;">
+	<a href="<?php echo Mage::getUrl('medicalcamp/Registration_Registration/index') ?>"> 
+		<img alt="middleImage" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . 'web_portal/frontend/advertisement/middle/ChamberOfCommerce/img_1.jpg' ?>" width="592px" height="150px">
+	</a>
+</div>
+
+<form action="<?php echo $this->getUrl('medicalcamp/Registration_Registration/save') ?>" method="post" id="<?php echo $HTMLFormID ?>" enctype="multipart/form-data" >
+	
+	<div class="fieldset" style="margin-bottom: 0px !important;">
+        <?php echo $this->getBlockHtml('formkey')?>
+        
+        <table>
+        	<tr>
+        		<td>
+			        <ul class="form-list">
+			            <li>
+			                <label for="Name" class="required"><em>*</em>Student Name</label>
+			                <div class="input-box">
+			                      <input name="Name" value="" id="Name" class="input-text required-entry" type="text">
+			                </div>
+			            </li>
+			            
+			            <li>
+			                <label for="FatherName" class="required"><em>*</em>Father Name</label>
+			                <div class="input-box">
+			                      <input name="FatherName" value="" id="FatherName" class="input-text required-entry" type="text">
+			                </div>
+			            </li>
+			            
+			            <li>
+			                <label for="Caste" class="required"><em>*</em>Caste</label>
+			                <div class="input-box">
+			                      <input name="Caste" value="" id="Caste" class="input-text required-entry" type="text">
+			                </div>
+			            </li>
+			            
+			            <li>
+			                <label for="Age" class="required"><em>*</em>Age</label>
+			                <div class="input-box">
+			                      <input name="Age" value="" id="Age" class="input-text required-entry validate-digits" type="text" maxlength="2">
+			                </div>
+			            </li>
+			            
+			            <li>
+			            	<label for="Gender" class="required"><em>*</em>Gender</label>
+			                <div class="input-box">
+			                	  <select name="Gender" id="Gender" class="validate-select" onchange="return medicalFormJS.showRationCardImageBox(this)">
+			                		<option value="" >--Select--</option>
+			                		<option value="Male">Male</option>
+			                		<option value="FeMale">FeMale</option>  
+			                	  </select>
+			                </div>
+			            </li>
+			            
+			            <li>
+			            	<label for="Address" class="required"><em>*</em>Address</label>
+			                <div class="input-box">
+			                	<textarea rows="2" cols="20" name="Address" id="Address" class="input-text required-entry" style="width: 252px !important; height: 50px;" ></textarea>
+			                </div>
+			            </li>
+			            
+			            <li>
+			            	<label for="Email" class="required"><em>*</em>Mobile Number</label>
+			                <div class="input-box">
+			                      <input name="MobileNumber" value="" id="MobileNumber" class="input-text required-entry validate-digits" type="text" maxlength="10">
+			                      <span>10 digit only (without +91 or 0)</span>
+			                </div>
+			            </li>
+			            
+			            
+			            <li>
+			                <label for="Email">Email</label>
+			                <div class="input-box">
+			                      <input name="Email" value="" id="Email" class="input-text validate-email" type="text">
+			                </div>
+			            </li>
+			             
+			            
+			            <li>
+			            	<label for="Email" class="required"><em>*</em>Qualification</label>
+			                <div class="input-box">
+			                      <input name="Qualification" value="" id="Qualification" class="input-text required-entry" type="text">
+			                </div>
+			            </li>
+			            
+			            <li>
+			            	<label for="Percentage" class="required"><em>*</em>Percentage</label>
+			                <div class="input-box">
+			                      <input name="Percentage" value="" id="Percentage" class="input-text required-entry validate-digits" type="text" maxlength="3" >
+			                      <span>without % symble</span>
+			                </div>
+			            </li>
+			            
+			            <li>
+			            	<label for="CurrentSchool">Current School/College</label>
+			                <div class="input-box">
+			                	  <input name="CurrentSchool" value="" id="CurrentSchool" class="input-text" type="text">
+			                </div>
+			            </li>
+			            
+			            
+			            <li>
+			            	<label for="DesireCourse" class="required"><em>*</em>Desire Class/Streem</label>
+			                <div class="input-box">
+			                	  <select name="DesireCourse" id="DesireCourse" class="validate-select" onchange="return medicalFormJS.setDesireSchool(this)">
+			                	  </select>
+			                </div>
+			            </li>
+			            
+			            
+			            <li>
+			            	<label for="DesireSchool" class="required"><em>*</em>Desire School/College</label>
+			                <div class="input-box">
+			                	  <select name="DesireSchool" id="DesireSchool" class="validate-select">
+			                	  </select>
+			                </div>
+			            </li>
+			            
+			            <li>
+			            	<label for="FamilyBusiness" class="required"><em>*</em>Family Business</label>
+			                <div class="input-box">
+			                	  <input name="FamilyBusiness" value="" id="FamilyBusiness" class="input-text required-entry" type="text">
+			                </div>
+			            </li>
+			            
+			            <li>
+			            	<label for="YearlyIncome" class="required"><em>*</em>Family Yearly Income</label>
+			                <div class="input-box">
+			                	  <input name="YearlyIncome" value="" id="YearlyIncome" class="input-text required-entry validate-digits" type="text">
+			                </div>
+			            </li> 
+			            
+			            <li>
+			            	<label for="BPLAPL" class="required"><em>*</em>B.P.L. / A.P.L</label>
+			                <div class="input-box">
+			                	  <select name="BPLAPL" id="BPLAPL" class="validate-select">
+			                		<option value="">--Select--</option>
+			                		<option value="BPL">BPL</option>
+			                		<option value="APL">APL</option>
+			                	  </select>
+			                </div>
+			            </li>
+			            
+			            <li>
+			            	<label for="AddharCardNumber">Addhar Card Number</label>
+			                <div class="input-box">
+			                	  <input name="AddharCardNumber" value="" id="AddharCardNumber" class="input-text" type="text">
+			                </div>
+			            </li>
+			            
+			            
+			            
+			           
+			            <li>
+			                <input name="TermsAndCondition" value="" id="TermsAndCondition" type="checkbox"> 
+			                &nbsp;&nbsp;&nbsp;&nbsp;<span>Accept All Terms And Condition</span>
+			            </li>
+			        </ul>
+			     </td>
+			     
+			     <td style="width: 100px !important;"></td>
+			     
+			     <td>
+			     
+			     	<ul class="form-list">
+			            
+			            <li>
+			                <label for="ImageURL" class="required"><em>*</em>Student Image</label>
+            				<table>
+            					<tr>
+            						<td>
+		            				 	<div style="border: 1px solid; border-color: #AAA #C8C8C8 #C8C8C8 #AAA;" class="customer-image">
+											<img id="ImagePreview" alt="" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . 'web_portal/frontend/chamberofcommerce/defaultProfileImage.png'  ?>"  style="border-style: hidden;" class="customer-image" />
+											<input type="file" id="ImageFile" name="ImageFile" onchange="return medicalFormJS.getImageFilePath()" style="display: none;" />
+											<input type="hidden" id="ImageURL" name="ImageURL" value="" />
+										</div>		
+		                			</td>
+            					</tr>
+            					
+            					<tr style="height: 5px;"></tr>
+            					
+            					<tr>
+            						<td style="text-align: center;">
+            							<button type="button" class="button" id="Browse" name="Browse" onclick="return medicalFormJS.browseImageFile()" >
+            								<span>
+            									<span>Browse</span>	
+            								</span>
+            							</button>
+            						</td>
+            					</tr>	
+            				</table>	
+            			</li>
+            			
+            			
+            			<li id="RationCardLI" style="display: none;">
+			                <label for="RationCardURL" class="required"><em>*</em>Ration Card Image</label>
+            				<table>
+            					<tr>
+            						<td>
+		            				 	<div style="border: 1px solid; border-color: #AAA #C8C8C8 #C8C8C8 #AAA;" class="customer-image">
+											<img id="RationCardPreview" alt="" src=""  style="border-style: hidden;" class="customer-image" />
+											<input type="file" id="RationCardFile" name="RationCardFile" onchange="return medicalFormJS.getRationCardFilePath()" style="display: none;" />
+											<input type="hidden" id="RationCardURL" name="RationCardURL" value="" />
+										</div>		
+		                			</td>
+            					</tr>
+            					
+            					<tr style="height: 5px;"></tr>
+            					
+            					<tr>
+            						<td style="text-align: center;">
+            							<button type="button" class="button" id="RationCardBrowse" name="RationCardBrowse" onclick="return medicalFormJS.browseRationCardFile()" >
+            								<span>
+            									<span>Browse</span>	
+            								</span>
+            							</button>
+            						</td>
+            					</tr>	
+            				</table>	
+            			</li>
+            			
+            			<li>
+			                <label for="QualificationURL" class="required"><em>*</em>Qualification Certificate Image</label>
+            				<table>
+            					<tr>
+            						<td>
+		            				 	<div style="border: 1px solid; border-color: #AAA #C8C8C8 #C8C8C8 #AAA;" class="customer-image">
+											<img id="QualificationPreview" alt="" src=""  style="border-style: hidden;" class="customer-image" />
+											<input type="file" id="QualificationFile" name="QualificationFile" onchange="return medicalFormJS.getQualificationFilePath()" style="display: none;" />
+											<input type="hidden" id="QualificationURL" name="QualificationURL" value="" />
+										</div>		
+		                			</td>
+            					</tr>
+            					
+            					<tr style="height: 5px;"></tr>
+            					
+            					<tr>
+            						<td style="text-align: center;">
+            							<button type="button" class="button" id="QualificationBrowse" name="QualificationBrowse" onclick="return medicalFormJS.browseQualificationFile()" >
+            								<span>
+            									<span>Browse</span>	
+            								</span>
+            							</button>
+            						</td>
+            					</tr>	
+            				</table>	
+            			</li>
+            			
+            			
+            			<li>
+			                <label for="AddharCardURL">Addhar Card Image</label>
+            				<table>
+            					<tr>
+            						<td>
+		            				 	<div style="border: 1px solid; border-color: #AAA #C8C8C8 #C8C8C8 #AAA;" class="customer-image">
+											<img id="AddharCardPreview" alt="" src=""  style="border-style: hidden;" class="customer-image" />
+											<input type="file" id="AddharCardFile" name="AddharCardFile" onchange="return medicalFormJS.getAddharCardFilePath()" style="display: none;" />
+											<input type="hidden" id="AddharCardURL" name="AddharCardURL" value="" />
+										</div>		
+		                			</td>
+            					</tr>
+            					
+            					<tr style="height: 5px;"></tr>
+            					
+            					<tr>
+            						<td style="text-align: center;">
+            							<button type="button" class="button" id="AddharCardBrowse" name="AddharCardBrowse" onclick="return medicalFormJS.browseAddharCardFile()" >
+            								<span>
+            									<span>Browse</span>	
+            								</span>
+            							</button>
+            							
+            							<input type="hidden" id="DesireCourseName" name="DesireCourseName" value="" />
+            							<input type="hidden" id="DesireSchoolName" name="DesireSchoolName" value="" />
+            							<input type="hidden" id="ID" name="ID" value="0" />
+            							
+            							
+            							<input type="hidden" id="IsStudentImgURL" name="IsStudentImgURL" value="" />
+            							<input type="hidden" id="IsRationCardURL" name="IsRationCardURL" value="" />
+            							<input type="hidden" id="IsQualificationURL" name="IsQualificationURL" value="" />
+            							
+            						</td>
+            					</tr>	
+            				</table>	
+            			</li>
+            			
+            		</ul>		
+            	</td>
+              </tr>   
+        
+       </table>
+    </div> 	
+	
+	<div class="buttons-set" style="margin-top: 0px !important; border-top: none !important; border-bottom: 1px solid #E4E4E4 !important; ">
+    	<button type="button" title="<?php echo $this->__('Save') ?>" class="button" onclick="return medicalFormJS.submit() "><span><span><?php echo $this->__('Save') ?></span></span></button>
+    </div>
+    
+</form>
+<form>
+
+ 
+
+<script type="text/javascript">
+//<![CDATA[
+    var CourseObj = new Object();       
+    CourseObj[1]="MBA";CourseObj[2]="B.A.";CourseObj[3]="B.COM.";CourseObj[4]="B.Sc.";CourseObj[5]="B.Sc. (Bio.)";CourseObj[6]="B.D.S.";CourseObj[7]="Diploma In Architecture";CourseObj[8]="Diploma In Computer Science";CourseObj[9]="Diploma in Electronics";CourseObj[10]="Diploma In Information Technology";CourseObj[11]="Dr Physiotherapy";CourseObj[12]="Engineering";CourseObj[13]="Engineering (L. E.)";CourseObj[14]="Fashion Designing";CourseObj[15]="LL.B.";CourseObj[16]="M.A.";CourseObj[17]="M.A. (Geography)";CourseObj[18]="M.C.A.";CourseObj[19]="M.Com.";CourseObj[20]="M.Sc.";CourseObj[21]="I.T.I.";CourseObj[22]="Bank Clerk";CourseObj[23]="Bank P.O.";CourseObj[24]="S.S.C.";CourseObj[25]="R.A.S.";CourseObj[26]="Police";CourseObj[27]="Auto Mechanical";CourseObj[28]="Two Wheeler Repairing";CourseObj[29]="Graphic Designing";CourseObj[30]="Web Designing";CourseObj[31]="Wedding Designing";CourseObj[32]="Software Making";CourseObj[33]="Editing Work";CourseObj[34]="HTML, DOS, JAVA, C, C++, SQL, DBMS, Etc.";CourseObj[35]="Copa, Electrician, Fitter";CourseObj[36]="Beauty Parlour Training";CourseObj[37]="IAS";CourseObj[38]="Patwari";CourseObj[39]="Tally";CourseObj[40]="Busy";CourseObj[41]="Basic";CourseObj[42]="Suiting and Shirting";CourseObj[43]="Tuition Coaching (Class 5th to 7th)";CourseObj[44]="Tuition Coaching (Class 8th to 10th)";CourseObj[45]="Nursery";CourseObj[46]="L.K.G.";CourseObj[47]="U.K.G.";CourseObj[48]="Class 1";CourseObj[49]="Class 2";CourseObj[50]="Class 3";CourseObj[51]="Class 4";CourseObj[52]="Class 5";CourseObj[53]="Class 6";CourseObj[54]="Class 7";CourseObj[55]="Class 8";CourseObj[56]="Class 9";CourseObj[57]="Class 10";CourseObj[58]="Class 11";CourseObj[59]="Class 12";       
+           
+    var SchoolObj = { '1' : { 'SchoolName' : 'Tantia University, Sri Ganganagar College', 'CourseIds' : '1,2,3,4,11,12,13,15' },
+    		'2' : { 'SchoolName' : 'MGS Dental College', 'CourseIds' : '6' },
+    		'3' : { 'SchoolName' : 'Shri Aatm Vallabh Jain Girls College, Sri Ganganagar', 'CourseIds' : '1,2,3,4,18,20' },
+    		'4' : { 'SchoolName' : 'Shri Arorvansh Shikshan Sansthan College', 'CourseIds' : '2,3,4' },
+    		'5' : { 'SchoolName' : 'Shree Devi Women Polytechnic College, Hanumangarh Junction', 'CourseIds' : '7,8,9,10,14' },
+    		'6' : { 'SchoolName' : 'Guru Harkrishan Public School English', 'CourseIds' : '45,46,47,48,49,50,51,52,53,54,55,56,57,58,59' },
+    		'7' : { 'SchoolName' : 'Sanskrit Vidyalaya English', 'CourseIds' : '48,49,50,51,52,53,54,55' },
+    		'8' : { 'SchoolName' : 'St. Kabir Convent School English', 'CourseIds' : '48,49,50,51,52,53,54,55' },
+    		'9' : { 'SchoolName' : 'Blue Bird Public School English', 'CourseIds' : '48,49,50,51,52,53,54,55,56,57' },
+    		'10' : { 'SchoolName' : 'Sri Sanatan Dharam School Bada Mandir Hindi', 'CourseIds' : '48,49,50,51,52,53,54,55,56,57' },
+    		'11' : { 'SchoolName' : 'Aarti Montessori Academy School English', 'CourseIds' : '48,49,50,51,52,53,54,55' },
+    		'12' : { 'SchoolName' : 'Saraswati Shiksha Sadan, RIICO School English', 'CourseIds' : '2,5,17,48,49,50,51,52,53,54,55,56,57,58,59' },
+    		'13' : { 'SchoolName' : 'Saraswati Shiksha Sadan, RIICO School English', 'CourseIds' : '48,49,50,51,52,53,54,55,56,57,58,59' },
+    		'14' : { 'SchoolName' : 'Spangle Public School English', 'CourseIds' : '48,49,50,51,52,53,54,55,56,57,58,59' },
+    		'15' : { 'SchoolName' : 'Lav Kush Public School English', 'CourseIds' : '48,49,50,51,52,53,54,55,56,57,58,59' },
+    		'16' : { 'SchoolName' : 'MAS Public School, C C Head School Hindi', 'CourseIds' : '48,49,50,51,52,53,54,55,56,57,58,59' },
+    		'17' : { 'SchoolName' : 'BDIS, Padampur School English', 'CourseIds' : '48,49,50,51,52,53,54,55' },
+    		'18' : { 'SchoolName' : 'Ganganagar Public School English', 'CourseIds' : '48,49,50,51,52,53,54,55,56,57' },
+    		'19' : { 'SchoolName' : 'Khalsa CollegeCollege', 'CourseIds' : '1,2,3,4,16,19,20' },
+    		'20' : { 'SchoolName' : 'Khalsa School Hindi', 'CourseIds' : '48,49,50,51,52,53,54,55,56,57,58,59' },
+    		'21' : { 'SchoolName' : 'M M Saraswati College, Gasingpur', 'CourseIds' : '2' },
+    		'22' : { 'SchoolName' : 'Sherwood Public School, Suratgarh English', 'CourseIds' : '48,49,50,51,52,53,54,55,56,57,58,59' },
+    		'23' : { 'SchoolName' : 'Sadbhavna Public School Hindi', 'CourseIds' : '48,49,50,51,52,53,54,55,56,57' },
+    		'24' : { 'SchoolName' : 'Suratgarh PG College', 'CourseIds' : '2,3' },
+    		'25' : { 'SchoolName' : 'S S Adarsh Public School, Padampur English', 'CourseIds' : '48,49,50,51,52,53,54,55,56,57' },
+    		'26' : { 'SchoolName' : 'S S Adarsh Public School, Padampur Hindi', 'CourseIds' : '48,49,50,51,52,53,54,55,56,57' },
+    		'27' : { 'SchoolName' : 'Adarsh Madhyamik Vidyalaya School Hindi', 'CourseIds' : '48,49,50,51,52,53,54,55,56,57' },
+    		'28' : { 'SchoolName' : 'Shaheed E Azam Bhagat Singh Law College, Mirzewala Road', 'CourseIds' : '15' },
+    		'29' : { 'SchoolName' : 'Rockwell Public School English', 'CourseIds' : '48,49,50,51,52' },
+    		'30' : { 'SchoolName' : 'Gyan Niketan Public School English', 'CourseIds' : '48,49,50,51,52,53,54,55' },
+    		'31' : { 'SchoolName' : 'Sanjeevani Mahavidyalaya, 11PS College', 'CourseIds' : '2' },
+    		'32' : { 'SchoolName' : 'Arihant ITI College', 'CourseIds' : '21' },
+    		'33' : { 'SchoolName' : 'Sankalp Coaching Center', 'CourseIds' : '22,23,24' },
+    		'34' : { 'SchoolName' : 'Gurukripa Coaching Center', 'CourseIds' : '22,23,24,25,26' },
+    		'35' : { 'SchoolName' : 'Hemant Computer Center', 'CourseIds' : '27,28' },
+    		'36' : { 'SchoolName' : 'Complete ITI Education College', 'CourseIds' : '29,30,31,32,33,34' },
+    		'37' : { 'SchoolName' : 'Preet Mahila Vikas Samiti Coaching Center', 'CourseIds' : '42,43,44' },
+    		'38' : { 'SchoolName' : 'Jain ITI College', 'CourseIds' : '35' },
+    		'39' : { 'SchoolName' : 'VIP Beauty Parlour Training Center', 'CourseIds' : '36' },
+    		'40' : { 'SchoolName' : 'Gurukul Computer Coaching Center', 'CourseIds' : '39,40,41' },
+    		'41' : { 'SchoolName' : 'Hemant Coaching Coaching Center', 'CourseIds' : '22,23,24' },
+    		'42' : { 'SchoolName' : 'Lakshmi Career Institute ', 'CourseIds' : '24,37,38' },
+    		'43' : { 'SchoolName' : 'Khalsa Law College', 'CourseIds' : '15' } };       
+           
+    var formObj = new VarienForm('<?php echo $HTMLFormID; ?>', true);
+
+    var medicalFormJS={
+
+    		browseImageFile: function(){
+    			$('ImageFile').click();
+    		},
+
+    		getImageFilePath: function(){
+    		    var image = $("ImageFile").files[0];
+    		    var imageName = image.name; 
+    		    $("ImagePreview").src = window.URL.createObjectURL(image);
+    		    var parts  = imageName.split('.');
+    		    var length = parts.length; 
+    		    var ext    = parts[length-1];
+    		    $('IsStudentImgURL').value = $("ImagePreview").src; 
+    		},
+
+
+    		browseRationCardFile: function(){
+    			$('RationCardFile').click();
+    		},
+
+    		getRationCardFilePath: function(){
+    		    var image = $("RationCardFile").files[0];
+    		    var imageName = image.name; 
+    		    $("RationCardPreview").src = window.URL.createObjectURL(image);
+    		    var parts  = imageName.split('.');
+    		    var length = parts.length; 
+    		    var ext    = parts[length-1];
+    		    $('IsRationCardURL').value = $("RationCardPreview").src;
+    		    
+    		},
+    		
+
+    		browseQualificationFile: function(){
+    			$('QualificationFile').click();
+    		},
+
+    		getQualificationFilePath: function(){
+    		    var image = $("QualificationFile").files[0];
+    		    var imageName = image.name; 
+    		    $("QualificationPreview").src = window.URL.createObjectURL(image);
+    		    var parts  = imageName.split('.');
+    		    var length = parts.length; 
+    		    var ext    = parts[length-1];
+    		    $('IsQualificationURL').value = $("QualificationPreview").src;
+    		},
+    		
+    		
+
+    		browseAddharCardFile: function(){
+    			$('AddharCardFile').click();
+    		},
+
+    		getAddharCardFilePath: function(){
+    		    var image = $("AddharCardFile").files[0];
+    		    var imageName = image.name; 
+    		    $("AddharCardPreview").src = window.URL.createObjectURL(image);
+    		    var parts  = imageName.split('.');
+    		    var length = parts.length; 
+    		    var ext    = parts[length-1];
+    		},
+
+
+
+    		
+
+    		
+    		submit : function(){
+        		if(!medicalFormJS.saveValidation()) return ;
+        			$('<?php echo $HTMLFormID ?>').submit();
+    		},
+
+    		saveValidation : function(){
+
+    			
+    			if(!(formObj.validator && formObj.validator.validate())){
+        	    	return false;
+    	    	}
+    	    	
+    	    	
+				if($('DesireCourse').value != '' && $('DesireCourse') != null){
+	             	$('DesireCourseName').value = $('DesireCourse').options[$('DesireCourse').selectedIndex].text;
+	            }
+
+				if($('DesireSchool').value != '' && $('DesireSchool') != null){
+	             	$('DesireSchoolName').value = $('DesireSchool').options[$('DesireSchool').selectedIndex].text;
+				}
+				
+				if(!$('TermsAndCondition').checked){
+	             	alert('Please Accept Term And Conditions !');
+	             	return false;
+				}
+
+						             	
+				if($('IsStudentImgURL').value == null || $('IsStudentImgURL').value == ''){
+					alert('Please Select Student Image !');
+					return false;
+				}
+
+				if($('IsQualificationURL').value == null || $('IsQualificationURL').value == ''){
+					alert('Please Select Qualification Certificate Image !');
+					return false;
+				}
+
+				if($('Gender').value == 'Male'){
+					if($('IsRationCardURL').value == null || $('IsRationCardURL').value == ''){
+						alert('Please Select Ration Card Image !');
+						return false;
+					}
+				}
+				
+             	
+             	//return false;	
+    	    	return true;
+    		},
+
+			setDesireCourse : function(){
+    			var DesireCourseHTML = '<option value="">--Select--</option>';
+    			for(var key in CourseObj){
+    				DesireCourseHTML += '<option value="'+key+'">'+CourseObj[key]+'</option>';
+        		}
+        		$('DesireCourse').innerHTML = DesireCourseHTML; 
+    		},
+
+    		setDesireSchool : function(obj){
+				if(obj.value == null || obj.value == ''){
+					//alert('Please Select Desire Course First !');
+					return false;
+            	}
+            	
+    			var DesireSchoolHTML = '<option value="">--Select--</option>';
+    			for(var key in SchoolObj){
+        			var CourseIDsString = SchoolObj[key]['CourseIds'];
+        			var CourseIDsArray = CourseIDsString.split(",");
+
+        			
+					//var newCourseIDArray = new Object();
+					
+					var flag = false;
+					for(var index=0; index<=CourseIDsArray.length; index++){
+						//newCourseIDArray[CourseIDsArray[index]] = CourseIDsArray[index];
+						//var val = CourseIDsArray[index].strip();
+						
+						if(obj.value == CourseIDsArray[index] ){
+							flag = true;
+						} 
+					}
+
+        			//alert(obj.value);
+        			//show_props(newCourseIDArray);
+        			//if(newCourseIDArray.hasOwnProperty(obj.value)){
+        			
+        			
+        			if(flag){
+						//alert('hai');
+
+    					DesireSchoolHTML += '<option value="'+key+'">'+SchoolObj[key]['SchoolName']+'</option>';
+        			}	
+        		}
+        		$('DesireSchool').innerHTML = DesireSchoolHTML; 
+    		},
+
+    		showRationCardImageBox : function(obj){
+    			if(obj.value == 'Male'){
+    				$('RationCardLI').style.display = 'block';
+        		}else{
+        			$('RationCardLI').style.display = 'none';
+            	}
+        	}
+    		
+    		
+    		
+    };
+    medicalFormJS.setDesireCourse();    	
+//]]>
+</script>

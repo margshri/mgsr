@@ -1,0 +1,484 @@
+<?php
+	
+    $HTMLFormID = $this->getHTMLFormID();
+    $title      = $this->getPageTitle();
+    $recordID   = $this->getRecordID();
+    $tableCode  = $this->getTableCode();
+    $previousControllerName = $this->getPreviousControllerName();
+    $serviceOptions = $this->getServiceOptions();
+    $subPageVOs = $this->getSubPageVOs();
+    $statusOptions  = $this->getStatusOptions();
+    
+    $post1Options  = $this->getPost1Options();
+    $post2Options  = $this->getPost2Options();
+    
+?>    
+
+
+<div class="entry-edit">
+	<div class="entry-edit-head">
+		<h4 class="icon-head head-edit-form fieldset-legend"><?php echo $title ?></h4>
+		<div class="form-buttons"></div>
+	</div>
+
+	<div class="fieldset " id="base_fieldset">
+		<div class="hor-scroll">
+		  <table style="">
+		  	<tr>
+		  		<td>
+		  			<table class="form-list">
+						<tbody>
+							
+							<?php /* @var $subPageVO Margshri_WebPortal_VO_Center_SubPage_SubPageVO */ ?>
+							<?php foreach ($subPageVOs as $key=>$subPageArray): ?>
+								
+								<?php if($key == Margshri_WebPortal_VO_Master_SubPage_AttributeTypeVO::$HEADER): ?>
+										<?php foreach ($subPageArray as $subPageVO): ?>
+													<?php $code = $subPageVO->getAttributeCode() ?>
+													<?php $label = $subPageVO->getAttributeName() ?>
+													<?php $prefix = $subPageVO->getRecordID().'_'.$subPageVO->getEntityAttributeID() ?>
+													
+													<?php if($subPageVO->getAttributeDataTypeID() == Margshri_WebPortal_VO_Master_SubPage_AttributeDataTypeVO::$IMAGE_TYPE): ?>
+															<tr>
+														  		<td>
+														  			<table>
+																		<tr>
+																			<td class="label">
+																				<label for="<?php echo $code ?>"><?php echo $label ?></label>
+																			</td>
+																			
+																			<td class="value" style="text-align: right;">
+																				<div style="border: 1px solid; border-color: #AAA #C8C8C8 #C8C8C8 #AAA; width: 300px; height: 162px;">
+																					<img alt="<?php echo $code ?>" name="<?php echo $prefix.'_Img' ?>" id="<?php echo $prefix.'_Img' ?>" src="<?php echo ($subPageVO->getValue() != null && $subPageVO->getValue() != '' )  ?  Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . $subPageVO->getValue() : '' ?>"  width="300px" height="162px" style="border-style: hidden;"/>
+																				</div>
+																				<button type="button" id="<?php echo $prefix.'_Button' ?>" name="<?php echo $prefix.'_Button' ?>" onclick="return formJS.browseImageFile(event)" >Browse</button>																					
+																				<input type="file" id="<?php echo $prefix.'_File' ?>" name="<?php echo $prefix.'_File' ?>" onchange="return formJS.getFilePath(event)" style="display: none;" />	
+																				<input type="hidden" name="<?php echo $prefix.'_ID' ?>" id="<?php echo $prefix.'_ID' ?>"  value="<?php echo ($subPageVO->getID() != null) ? $subPageVO->getID() : 0  ?>">
+																				<input type="hidden" name="<?php echo $prefix.'_AttributeTypeID' ?>" id="<?php echo $prefix.'_AttributeTypeID' ?>"  value="<?php echo $subPageVO->getAttributeTypeID() ?>">
+																				<input type="hidden" name="<?php echo $prefix.'_AttributeDataTypeID' ?>" id="<?php echo $prefix.'_AttributeDataTypeID' ?>"  value="<?php echo $subPageVO->getAttributeDataTypeID() ?>"> 
+																			</td>
+																			
+																			<td class="label">
+																				<label for="<?php echo $code . '_StatusID'?>" style="margin-left: 120px;">Header Status</label>
+																			</td>
+																			<td class="value">
+																				<select name="<?php echo $prefix.'_StatusID' ?>" id="<?php echo $prefix.'_StatusID' ?>" >
+																					<option value="">--Select--</option>
+																					<?php foreach ($statusOptions as $key=>$value): ?>
+																						<option value="<?php echo $key ?>" <?php echo ($subPageVO->getStatusID() == $key ) ? 'Selected="Selected"' : '' ?>  ><?php echo $value ?></option>	
+																					<?php endforeach; ?>
+																				</select>
+																			</td>
+																		</tr>
+																	</table>
+																</td>
+															</tr>			
+													<?php endif; ?>		
+										<?php endforeach;?>
+								<?php endif; ?>
+							<?php endforeach; ?>		
+								
+								
+							<?php foreach ($subPageVOs as $key=>$subPageArray): ?>	
+								<?php if($key == Margshri_WebPortal_VO_Master_SubPage_AttributeTypeVO::$BUILDING): ?>
+										<?php foreach ($subPageArray as $subPageVO): ?>
+													<?php $code = $subPageVO->getAttributeCode() ?>
+													<?php $label = $subPageVO->getAttributeName() ?>
+													<?php $prefix = $subPageVO->getRecordID().'_'.$subPageVO->getEntityAttributeID() ?>
+													
+													<?php if($subPageVO->getAttributeDataTypeID() == Margshri_WebPortal_VO_Master_SubPage_AttributeDataTypeVO::$IMAGE_TYPE): ?>
+													<tr>
+														<td>
+															<table class="form-list">	
+																<tr>
+																	<td class="label">
+																		<label for="<?php echo $code ?>"><?php echo $label ?></label>
+																	</td>
+																	
+																	<td class="value" style="text-align: right;">
+																		<div style="border: 1px solid; border-color: #AAA #C8C8C8 #C8C8C8 #AAA; width: 300px; height: 162px;">
+																			<img alt="<?php echo $code ?>" name="<?php echo $prefix.'_Img' ?>" id="<?php echo $prefix.'_Img' ?>" src="<?php echo ($subPageVO->getValue() != null && $subPageVO->getValue() != '' )  ?  Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . $subPageVO->getValue() : '' ?>"  width="300px" height="162px" style="border-style: hidden;"/>
+																		</div>
+																		<button type="button" id="<?php echo $prefix.'_Button' ?>" name="<?php echo $prefix.'_Button' ?>" onclick="return formJS.browseImageFile(event)" >Browse</button>
+																		<input type="file" id="<?php echo $prefix.'_File' ?>" name="<?php echo $prefix.'_File' ?>" onchange="return formJS.getFilePath(event)" style="display: none;" />	
+																		<input type="hidden" name="<?php echo $prefix.'_ID' ?>" id="<?php echo $prefix.'_ID' ?>"  value="<?php echo ($subPageVO->getID() != null) ? $subPageVO->getID() : 0  ?>">
+																		<input type="hidden" name="<?php echo $prefix.'_AttributeTypeID' ?>" id="<?php echo $prefix.'_AttributeTypeID' ?>"  value="<?php echo $subPageVO->getAttributeTypeID() ?>">
+																		<input type="hidden" name="<?php echo $prefix.'_AttributeDataTypeID' ?>" id="<?php echo $prefix.'_AttributeDataTypeID' ?>"  value="<?php echo $subPageVO->getAttributeDataTypeID() ?>"> 
+																	</td>
+																
+																	<td class="label">
+																		<label for="<?php echo $code . '_StatusID'?>" style="margin-left: 120px;">Building Status</label>
+																	</td>
+																	<td class="value">
+																		<select name="<?php echo $prefix.'_StatusID' ?>" id="<?php echo $prefix.'_StatusID' ?>" disabled="disabled">
+																			<option value="">--Select--</option>
+																			<?php foreach ($statusOptions as $key=>$value): ?>
+																				  
+																				<option value="<?php echo $key ?>" <?php echo ($subPageVO->getStatusID() == $key) ? 'Selected="Selected"' : '' ?> ><?php echo $value ?></option>
+																				
+																			<?php endforeach; ?>
+																		</select>
+																	</td>
+																</tr>
+															</table>
+														</td>
+													</tr>
+												<?php endif; ?>		
+										<?php endforeach;?>
+								<?php endif; ?>
+							<?php endforeach; ?>		
+								
+								
+							<?php foreach ($subPageVOs as $key=>$subPageArray): ?>
+								
+								<?php if($key == Margshri_WebPortal_VO_Master_SubPage_AttributeTypeVO::$PERSON): ?>
+								
+								
+										<?php foreach ($subPageArray as $subPageVO): ?>
+												
+										
+										
+													<?php $code = $subPageVO->getAttributeCode() ?>
+													<?php $label = $subPageVO->getAttributeName() ?>
+													<?php $prefix = $subPageVO->getRecordID().'_'.$subPageVO->getEntityAttributeID() ?>
+													
+													<?php if($subPageVO->getAttributeDataTypeID() == Margshri_WebPortal_VO_Master_SubPage_AttributeDataTypeVO::$IMAGE_TYPE): ?>
+													<tr>
+														<td>
+															<table class="form-list">		
+																<tr>
+																	<td class="label">
+																		<label for="<?php echo $code ?>"><?php echo $label ?></label>
+																	</td>
+																	
+																	<td class="value">
+																		<div style="border: 1px solid; border-color: #AAA #C8C8C8 #C8C8C8 #AAA; width: 300px; height: 162px;">
+																			<img alt="<?php echo $code ?>" name="<?php echo $prefix.'_Img' ?>" id="<?php echo $prefix.'_Img' ?>" src="<?php echo ($subPageVO->getValue() != null && $subPageVO->getValue() != '' )  ?  Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . $subPageVO->getValue() : '' ?>"  width="300px" height="162px" style="border-style: hidden;"/>
+																		</div>
+																		<div style="border: 1px solid; border-color: #AAA #C8C8C8 #C8C8C8 #AAA; width: 300px; height: 50px;">
+																			<div style="width: 200px; float: left;">
+																				<input type="text" name="<?php echo $prefix.'_MobileNumber' ?>" id="<?php echo $prefix.'_MobileNumber' ?>" style="width:185px;" placeholder="Enter Mobile Number" maxlength="10"> &nbsp; Ex. without +91 and 0
+																			</div>
+																			<div style="width: 72px; float: right;">
+																				<button type="button" id="<?php echo $prefix.'_Button' ?>" name="<?php echo $prefix.'_Button' ?>" onclick="return formJS.getCustomerDetail(event)" >Get Detail</button>	
+																			</div>
+																		</div>
+																		<input type="text" name="<?php echo $prefix.'_Value' ?>" id="<?php echo $prefix.'_Value' ?>" value="<?php echo $subPageVO->getValue() ?>" style="display: none;" />	
+																		<input type="hidden" name="<?php echo $prefix.'_ID' ?>" id="<?php echo $prefix.'_ID' ?>"  value="<?php echo ($subPageVO->getID() != null) ? $subPageVO->getID() : 0  ?>">
+																		<input type="hidden" name="<?php echo $prefix.'_AttributeTypeID' ?>" id="<?php echo $prefix.'_AttributeTypeID' ?>"  value="<?php echo $subPageVO->getAttributeTypeID() ?>">
+																		<input type="hidden" name="<?php echo $prefix.'_AttributeDataTypeID' ?>" id="<?php echo $prefix.'_AttributeDataTypeID' ?>"  value="<?php echo $subPageVO->getAttributeDataTypeID() ?>">
+																		
+																		<input type="hidden" name="<?php echo $prefix.'_PersonName' ?>" id="<?php echo $prefix.'_PersonName' ?>"  value="<?php echo $subPageVO->getPersonName() ?>"> 
+																	</td>
+																
+																
+																	<td colspan="2">
+																		<table>
+																			<tr>
+																				<td class="label">
+																					<label for="<?php echo $code . '_Post1ID'?>" style="margin-left: 120px;">Post</label>
+																				</td>
+																				<td class="value">
+																					<select name="<?php echo $prefix.'_Post1ID' ?>" id="<?php echo $prefix.'_Post1ID' ?>">
+																						<option value="">--Select--</option>
+																						<?php foreach ($post1Options as $key=>$value): ?>
+																							<option value="<?php echo $key ?>" <?php echo ($subPageVO->getPost1ID() == $key) ? 'Selected="Selected"' : '' ?> ><?php echo $value ?></option>	
+																						<?php endforeach; ?>
+																					</select>
+																				</td>		
+																			</tr>
+																			
+																			<tr>
+																				<td class="label">
+																					<label for="<?php echo $code . '_Post2ID'?>" style="margin-left: 120px;">Role</label>
+																				</td>
+																				<td class="value">
+																					<select name="<?php echo $prefix.'_Post2ID' ?>" id="<?php echo $prefix.'_Post2ID' ?>">
+																						<option value="">--Select--</option>
+																						<?php foreach ($post2Options as $key=>$value): ?>
+																							<option value="<?php echo $key ?>" <?php echo ($subPageVO->getPost2ID() == $key) ? 'Selected="Selected"' : '' ?> ><?php echo $value ?></option>	
+																						<?php endforeach; ?>
+																					</select>
+																				</td>		
+																			</tr>
+																			
+																			<tr>
+																				<td class="label">
+																				    <?php $personlabelArray = explode(" ", $label ) ?>
+																				    <?php $personlabel = $personlabelArray[0] ?>
+																					<label for="<?php echo $code . '_StatusID'?>" style="margin-left: 120px;"><?php echo $personlabel . ' Status'; ?> <span class="required"></span></label>
+																				</td>
+																				
+																				<!-- class="validate-select" -->
+																				<td class="value">
+																					<select name="<?php echo $prefix.'_StatusID' ?>" id="<?php echo $prefix.'_StatusID' ?>" >
+																						<option value="">--Select--</option>
+																						<?php foreach ($statusOptions as $key=>$value): ?>
+																							<option value="<?php echo $key ?>" <?php echo ($subPageVO->getStatusID() == $key) ? 'Selected="Selected"' : '' ?> ><?php echo $value ?></option>	
+																						<?php endforeach; ?>
+																					</select>
+																				</td>		
+																			</tr>
+																		</table>
+																	</td>
+																
+																	
+																</tr>
+															</table>
+														</td>
+													</tr>	
+												<?php endif; ?>		
+										<?php endforeach;?>
+								<?php endif; ?>
+							<?php endforeach; ?>	
+								
+							<?php foreach ($subPageVOs as $key=>$subPageArray): ?>		
+								<?php if($key == Margshri_WebPortal_VO_Master_SubPage_AttributeTypeVO::$SERVICE): ?>
+									<?php foreach ($subPageArray as $subPageVO): ?>
+										<?php $code = $subPageVO->getAttributeCode() ?>
+										<?php $label = $subPageVO->getAttributeName() ?>
+										<?php $prefix = $subPageVO->getRecordID().'_'.$subPageVO->getEntityAttributeID() ?>
+										
+										<?php if($subPageVO->getAttributeDataTypeID() == Margshri_WebPortal_VO_Master_SubPage_AttributeDataTypeVO::$DROP_DOWN_LIST_TYPE): ?>	
+												<tr>
+													<td>
+														<table class="form-list">	
+															<tr>
+																<td class="label">
+																	<label for="<?php echo $code ?>"><?php echo $label ?></label>
+																</td>
+																<td class="value">
+																	
+																</td>
+																<td class="value">
+																	
+																	<select name="<?php echo $prefix.'_Value' ?>" id="<?php echo $prefix.'_Value' ?>">
+																		<option value="">--Select--</option>
+																		<?php foreach ($serviceOptions as $key=>$value): ?>
+																			<option value="<?php echo $key ?>" <?php echo ($subPageVO->getValue() == $key) ? 'Selected="Selected"' : '' ?> ><?php echo $value ?></option>	
+																		<?php endforeach; ?>
+																	</select>	
+																		
+																	<input type="hidden" name="<?php echo $prefix.'_ID' ?>" id="<?php echo $prefix.'_ID' ?>"  value="<?php echo ($subPageVO->getID() != null) ? $subPageVO->getID() : 0  ?>">
+																	<input type="hidden" name="<?php echo $prefix.'_AttributeTypeID' ?>" id="<?php echo $prefix.'_AttributeTypeID' ?>"  value="<?php echo $subPageVO->getAttributeTypeID() ?>">
+																	<input type="hidden" name="<?php echo $prefix.'_AttributeDataTypeID' ?>" id="<?php echo $prefix.'_AttributeDataTypeID' ?>"  value="<?php echo $subPageVO->getAttributeDataTypeID() ?>"> 
+																</td>
+															
+																<td class="label">
+																		<label for="<?php echo $code . '_StatusID'?>" style="margin-left: 137px;">Service Status<span class="required"></span></label>
+																</td>
+																<td class="value">
+																	<select name="<?php echo $prefix.'_StatusID' ?>" id="<?php echo $prefix.'_StatusID' ?>" >
+																		<option value="">--Select--</option>
+																		<?php foreach ($statusOptions as $key=>$value): ?>
+																			<option value="<?php echo $key ?>" <?php echo ($subPageVO->getStatusID() == $key) ? 'Selected="Selected"' : '' ?> ><?php echo $value ?></option>	
+																		<?php endforeach; ?>
+																	</select>
+																</td>
+															</tr>
+														</table>
+													</td>
+												</tr>	
+										<?php endif; ?>		
+									<?php endforeach;?>
+								<?php endif; ?>		
+							<?php endforeach; ?>	
+							
+							<?php foreach ($subPageVOs as $key=>$subPageArray): ?>		
+								<?php if($key == Margshri_WebPortal_VO_Master_SubPage_AttributeTypeVO::$FACILITIES): ?>
+									<?php foreach ($subPageArray as $subPageVO): ?>
+										<?php $code = $subPageVO->getAttributeCode() ?>
+										<?php $label = $subPageVO->getAttributeName() ?>
+										<?php $prefix = $subPageVO->getRecordID().'_'.$subPageVO->getEntityAttributeID() ?>
+										
+										<?php if($subPageVO->getAttributeDataTypeID() == Margshri_WebPortal_VO_Master_SubPage_AttributeDataTypeVO::$TEXT_TYPE): ?>	
+												<tr>
+													<td>
+														<table class="form-list">	
+															<tr>
+																<td class="label">
+																	<label for="<?php echo $code ?>"><?php echo $label ?></label>
+																</td>
+																<td class="value">
+																	
+																</td>
+																<td class="value">
+																	<textarea rows="" cols="" name="<?php echo $prefix.'_Value' ?>" id="<?php echo $prefix.'_Value' ?>" style="width: 276px; height: 50px;" ><?php echo $subPageVO->getValue() ?></textarea>
+																	<input type="hidden" name="<?php echo $prefix.'_ID' ?>" id="<?php echo $prefix.'_ID' ?>"  value="<?php echo ($subPageVO->getID() != null) ? $subPageVO->getID() : 0  ?>">
+																	<input type="hidden" name="<?php echo $prefix.'_AttributeTypeID' ?>" id="<?php echo $prefix.'_AttributeTypeID' ?>"  value="<?php echo $subPageVO->getAttributeTypeID() ?>">
+																	<input type="hidden" name="<?php echo $prefix.'_AttributeDataTypeID' ?>" id="<?php echo $prefix.'_AttributeDataTypeID' ?>"  value="<?php echo $subPageVO->getAttributeDataTypeID() ?>"> 
+																</td>
+																
+																<td class="label">
+																		<label for="<?php echo $code . '_StatusID'?>" style="margin-left: 137px;">Facilities Status</label>
+																</td>
+																<td class="value">
+																	<select name="<?php echo $prefix.'_StatusID' ?>" id="<?php echo $prefix.'_StatusID' ?>">
+																		<option value="">--Select--</option>
+																		<?php foreach ($statusOptions as $key=>$value): ?>
+																			<option value="<?php echo $key ?>" <?php echo ($subPageVO->getStatusID() == $key) ? 'Selected="Selected"' : '' ?> ><?php echo $value ?></option>	
+																		<?php endforeach; ?>
+																	</select>
+																</td>
+															</tr>
+													</table>
+												</td>
+											</tr>	
+										<?php endif; ?>		
+									<?php endforeach;?>
+								<?php endif; ?>	
+							<?php endforeach; ?>
+							
+							<?php foreach ($subPageVOs as $key=>$subPageArray): ?>			
+								<?php if($key == Margshri_WebPortal_VO_Master_SubPage_AttributeTypeVO::$FOOTER): ?>
+									<?php foreach ($subPageArray as $subPageVO): ?>
+										<?php $code = $subPageVO->getAttributeCode() ?>
+										<?php $label = $subPageVO->getAttributeName() ?>
+										<?php $prefix = $subPageVO->getRecordID().'_'.$subPageVO->getEntityAttributeID() ?>
+										
+										<?php if($subPageVO->getAttributeDataTypeID() == Margshri_WebPortal_VO_Master_SubPage_AttributeDataTypeVO::$IMAGE_TYPE): ?>	
+												<tr>
+													<td>
+														<table class="form-list">
+															<tr>
+																<td class="label">
+																	<label for="<?php echo $code ?>"><?php echo $label ?></label>
+																</td>
+																
+																<td class="value" style="text-align: right;">
+																	<div style="border: 1px solid; border-color: #AAA #C8C8C8 #C8C8C8 #AAA; width: 300px; height: 162px;">
+																		<img alt="<?php echo $code ?>" name="<?php echo $prefix.'_Img' ?>" id="<?php echo $prefix.'_Img' ?>" src="<?php echo ($subPageVO->getValue() != null && $subPageVO->getValue() != '' )  ?  Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . $subPageVO->getValue() : '' ?>"  width="300px" height="162px" style="border-style: hidden;"/>
+																	</div>
+																	<button type="button" id="<?php echo $prefix.'_Button' ?>" name="<?php echo $prefix.'_Button' ?>" onclick="return formJS.browseImageFile(event)" >Browse</button>
+																	<input type="file" id="<?php echo $prefix.'_File' ?>" name="<?php echo $prefix.'_File' ?>" onchange="return formJS.getFilePath(event)" style="display: none;" />	
+																	<input type="hidden" name="<?php echo $prefix.'_ID' ?>" id="<?php echo $prefix.'_ID' ?>"  value="<?php echo ($subPageVO->getID() != null) ? $subPageVO->getID() : 0  ?>">
+																	<input type="hidden" name="<?php echo $prefix.'_AttributeTypeID' ?>" id="<?php echo $prefix.'_AttributeTypeID' ?>"  value="<?php echo $subPageVO->getAttributeTypeID() ?>">
+																	<input type="hidden" name="<?php echo $prefix.'_AttributeDataTypeID' ?>" id="<?php echo $prefix.'_AttributeDataTypeID' ?>"  value="<?php echo $subPageVO->getAttributeDataTypeID() ?>"> 
+																</td>
+																
+																
+																<td class="label">
+																		<label for="<?php echo $code . '_StatusID'?>" style="margin-left: 120px;">Footer Status</label>
+																</td>
+																<td class="value">
+																	<select name="<?php echo $prefix.'_StatusID' ?>" id="<?php echo $prefix.'_StatusID' ?>">
+																		<option value="">--Select--</option>
+																		<?php foreach ($statusOptions as $key=>$value): ?>
+																			<option value="<?php echo $key ?>" <?php echo ($subPageVO->getStatusID() == $key) ? 'Selected="Selected"' : '' ?> ><?php echo $value ?></option>	
+																		<?php endforeach; ?>
+																	</select>
+																</td>
+															</tr>
+														</table>
+													</td>
+												</tr>
+										
+										<?php elseif($subPageVO->getAttributeDataTypeID() == Margshri_WebPortal_VO_Master_SubPage_AttributeDataTypeVO::$TEXT_TYPE): ?>	
+												<tr>
+													<td>
+														<table class="form-list">	
+															<tr>
+																<td class="label">
+																	<label for="<?php echo $code ?>"><?php echo $label ?></label>
+																</td>
+																<td class="value">
+																	
+																</td>
+																<td class="value">
+																	<input type="text" name="<?php echo $prefix.'_Value' ?>" id="<?php echo $prefix.'_Value' ?>" style="width: 276px; height: 20px;" value = "<?php echo $subPageVO->getValue() ?>" />
+																	<input type="hidden" name="<?php echo $prefix.'_ID' ?>" id="<?php echo $prefix.'_ID' ?>"  value="<?php echo ($subPageVO->getID() != null) ? $subPageVO->getID() : 0  ?>">
+																	<input type="hidden" name="<?php echo $prefix.'_AttributeTypeID' ?>" id="<?php echo $prefix.'_AttributeTypeID' ?>"  value="<?php echo $subPageVO->getAttributeTypeID() ?>">
+																	<input type="hidden" name="<?php echo $prefix.'_AttributeDataTypeID' ?>" id="<?php echo $prefix.'_AttributeDataTypeID' ?>"  value="<?php echo $subPageVO->getAttributeDataTypeID() ?>"> 
+																</td>
+																
+																<td class="label">
+																		<label for="<?php echo $code . '_StatusID'?>" style="margin-left: 137px;">Footer Caption Status</label>
+																</td>
+																<td class="value">
+																	<select name="<?php echo $prefix.'_StatusID' ?>" id="<?php echo $prefix.'_StatusID' ?>">
+																		<option value="">--Select--</option>
+																		<?php foreach ($statusOptions as $key=>$value): ?>
+																			<option value="<?php echo $key ?>" <?php echo ($subPageVO->getStatusID() == $key) ? 'Selected="Selected"' : '' ?> ><?php echo $value ?></option>	
+																		<?php endforeach; ?>
+																	</select>
+																</td>
+															</tr>
+													</table>
+												</td>
+											</tr>	
+												
+										<?php endif; ?>		
+									<?php endforeach;?>
+								<?php endif; ?>	
+							<?php endforeach; ?>
+							
+							
+							
+							<?php /* @var $subPageVO Margshri_WebPortal_VO_Center_SubPage_SubPageVO */ ?>
+							<?php foreach ($subPageVOs as $key=>$subPageArray): ?>
+								
+								<?php if($key == Margshri_WebPortal_VO_Master_SubPage_AttributeTypeVO::$MIDDLE): ?>
+										<?php foreach ($subPageArray as $subPageVO): ?>
+													<?php $code = $subPageVO->getAttributeCode() ?>
+													<?php $label = $subPageVO->getAttributeName() ?>
+													<?php $prefix = $subPageVO->getRecordID().'_'.$subPageVO->getEntityAttributeID() ?>
+													
+													<?php if($subPageVO->getAttributeDataTypeID() == Margshri_WebPortal_VO_Master_SubPage_AttributeDataTypeVO::$VIDEO_TYPE): ?>
+															<tr>
+																<td>
+																	<table class="form-list">	
+																		<tr>
+																			<td class="label">
+																				<label for="<?php echo $code ?>"><?php echo $label ?></label>
+																			</td>
+																			<td class="value">
+																				
+																			</td>
+																			<td class="value">
+																				<input type="text" name="<?php echo $prefix.'_Value' ?>" id="<?php echo $prefix.'_Value' ?>" style="width: 276px; height: 20px;" value="<?php echo $subPageVO->getValue() ?>" >
+																				<input type="hidden" name="<?php echo $prefix.'_ID' ?>" id="<?php echo $prefix.'_ID' ?>"  value="<?php echo ($subPageVO->getID() != null) ? $subPageVO->getID() : 0  ?>">
+																				<input type="hidden" name="<?php echo $prefix.'_AttributeTypeID' ?>" id="<?php echo $prefix.'_AttributeTypeID' ?>"  value="<?php echo $subPageVO->getAttributeTypeID() ?>">
+																				<input type="hidden" name="<?php echo $prefix.'_AttributeDataTypeID' ?>" id="<?php echo $prefix.'_AttributeDataTypeID' ?>"  value="<?php echo $subPageVO->getAttributeDataTypeID() ?>"> 
+																			</td>
+																			
+																			<td class="label">
+																					<label for="<?php echo $code . '_StatusID'?>" style="margin-left: 137px;">Video Status</label>
+																			</td>
+																			<td class="value">
+																				<select name="<?php echo $prefix.'_StatusID' ?>" id="<?php echo $prefix.'_StatusID' ?>">
+																					<option value="">--Select--</option>
+																					<?php foreach ($statusOptions as $key=>$value): ?>
+																						<option value="<?php echo $key ?>" <?php echo ($subPageVO->getStatusID() == $key) ? 'Selected="Selected"' : '' ?> ><?php echo $value ?></option>	
+																					<?php endforeach; ?>
+																				</select>
+																			</td>
+																		</tr>
+																</table>
+															</td>
+														</tr>				
+													<?php endif; ?>		
+										<?php endforeach;?>
+								<?php endif; ?>
+							<?php endforeach; ?>
+							
+							
+							
+							<tr>
+								<td class="label">
+								</td>
+								<td class="value">
+									<input type="hidden" name="RecordID" id="RecordID"  value="<?php echo $recordID ?>">
+									<input type="hidden" name="TableCode" id="TableCode"  value="<?php echo $tableCode  ?>">
+									<input type="hidden" name="PreviousControllerName" id="PreviousControllerName"  value="<?php echo $previousControllerName  ?>">
+								</td>
+							</tr>
+							
+						</tbody>
+					</table>  		
+		  		</td>
+		  	</tr>
+		  </table>
+			
+		</div>
+	</div>
+</div>

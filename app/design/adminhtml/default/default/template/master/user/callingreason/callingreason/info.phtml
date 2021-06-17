@@ -1,0 +1,129 @@
+<?php
+$HTMLFormID = $this->getHTMLFormID();
+?>
+
+<div class="content-header">
+    <table cellspacing="0">
+        <tr>
+
+            <td style="width:50%;"><h3 class="icon-head head-permissions-role"><?php echo ($this->getReasonID() != null ) ? $this->__('Edit') : $this->__('Add') ?></h3></td>
+            <td class="form-buttons">
+                <?php echo $this->getBackButtonHtml() ?>
+                <?php echo $this->getResetButtonHtml() ?>
+                <?php echo $this->getSaveButtonHtml() ?>
+            </td>
+        </tr>
+    </table>
+</div>
+<form action="<?php echo $this->getUrl('*/*/save') ?>" method="post" id="<?php echo $HTMLFormID;?>">
+    <?php echo $this->getBlockHtml('formkey')?>
+    <?php echo $this->getEntropy(); ?>
+</form>
+<?php echo $this->getWYSIWYGHTML() ?>
+
+<script type="text/javascript">
+function callingReasonVO(){
+	this.ReasonID = null;
+	this.ReasonName = null;
+	this.RoleIDs = null;
+	this.StatusID = null;
+}
+var newCallingReasonDTO = new callingReasonVO();
+</script>
+
+
+<script type="text/javascript">
+
+var formObj = new varienForm('<?php echo $HTMLFormID; ?>');
+var formJS  = {
+        	
+			submit : function(){
+        		if(  !formJS.saveValidation() ) return ;
+					formJS.saveAjax();
+			},
+
+            saveValidation : function(){
+				var errorMsg = '';
+             	if( !(formObj.validator && formObj.validator.validate())  ){
+	    	    	return false;
+    	    	}
+            
+           		newCallingReasonDTO.ReasonID = ($('ReasonID').value).strip();
+           		newCallingReasonDTO.ReasonName = ($('ReasonName').value).strip();
+           		newCallingReasonDTO.StatusID = ($('StatusID').value).strip();
+
+           		var roleIDsObj = $('RoleIDs');
+           		var roleIDs = '';
+
+
+				
+
+           		
+           		var totalChild = roleIDsObj.getElementsByTagName('input').length;
+           		var totalCheckedChild = 0;
+           		for(rowID=0; rowID<totalChild; rowID++){
+           			if(roleIDsObj.children[rowID].checked){
+           				totalCheckedChild++;
+           			}	
+               	}
+				
+           		for(rowID=0; rowID<totalChild; rowID++){
+           			
+					if(roleIDsObj.children[rowID].checked){
+						if(totalCheckedChild == 1){
+							roleIDs = roleIDsObj.childNodes[rowID].value.strip();
+						}else if(rowID == (totalChild-1)){
+							roleIDs = roleIDs + roleIDsObj.childNodes[rowID].value.strip();
+						}else{
+							roleIDs = roleIDs + roleIDsObj.childNodes[rowID].value.strip() + '~';
+						}
+					}
+				}
+
+           		newCallingReasonDTO.RoleIDs = roleIDs;
+				
+             	
+             	if(newCallingReasonDTO.ReasonName == '' || newCallingReasonDTO.ReasonName == null){
+					errorMsg += 'Please Enter Reason Name .\n';
+				}
+ 
+             	if(newCallingReasonDTO.StatusID == '' || newCallingReasonDTO.StatusID == null){
+					errorMsg += 'Please Select Status .\n';
+				}
+
+	            if(errorMsg != ''){
+	            	alert(errorMsg);
+					return false;
+				}
+				
+				// DISABLE SAVE BUTTON FOR PREVENT DUPLICATE ENTRY
+				$('CallingReasonSaveButtonID').style.disabled = true;
+				return true;	            
+            },					
+ 
+
+        	saveAjax: function(){
+            	var URL = "<?php echo $this->getUrl('*/*/save')?>" ;
+			    var parameters= {"CallingReasonDataObj": JSON.stringify(newCallingReasonDTO,null) };
+			    var callBackMethod ="formJS.responseSave";
+			    var callBackArgs =null;
+			    ajaxRequest.execute(URL, parameters, callBackMethod , callBackArgs );
+			    return false;
+	     	},
+
+	     	
+  	     	responseSave : function(response,args) {
+  	     		// ENABLE SAVE BUTTON 
+				$('CallingReasonSaveButtonID').style.disabled = true;
+				var msg = new Array();
+            	if(response.SuccessMessage !=null){
+				 	window.location.href = "<?php echo $this->getUrl('*/*/index')?>";
+				 	return;
+				}else if(response.ErrorMessage !=null){
+					msg[0] = response.ErrorMessage;
+					MESSAGEHANDLER.errorMessagePublish(msg, $('messages'));
+	    			return false;
+	 			}
+     	 	}
+};
+</script>

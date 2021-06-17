@@ -1,0 +1,140 @@
+<?php
+	$HTMLFormID = $this->getHTMLFormID();
+?>
+<div class="content-header">
+    <table cellspacing="0">
+        <tr>
+
+            <td style="width:50%;"><h3 class="icon-head head-permissions-role"><?php echo $this->__('Send SMS') ?></h3></td>
+            <td class="form-buttons">
+                <?php echo $this->getBackButtonHtml() ?>
+                <?php echo $this->getResetButtonHtml() ?>
+                <?php echo $this->getSaveButtonHtml() ?>
+            </td>
+        </tr>
+    </table>
+</div>
+<form action="<?php echo $this->getUrl('*/SMS_SendSMS/sendSMS') ?>" method="post" id="<?php echo $HTMLFormID;?>">
+    <?php echo $this->getBlockHtml('formkey')?>
+    <?php echo $this->getEntropy(); ?>
+</form>
+
+<script type="text/javascript">
+
+function sendSMSVO(){
+	this.SMSTemplateID = null;
+	this.SMSConfigID = null;
+	this.ReceiverMobileNO = null;
+	this.SMSContent = null;
+}
+var newSendSMSDTO = new sendSMSVO();
+
+
+var newSendSMSDTO = new sendSMSVO();
+var formObj = new varienForm('<?php echo $HTMLFormID; ?>');
+var formJS  = {
+
+		submit : function(){
+    		if(  !formJS.saveValidation() ) return ;
+				formJS.saveAjax();
+		},
+
+		saveValidation : function(){
+			var errorMsg = '';
+         	if( !(formObj.validator && formObj.validator.validate())  ){
+    	    	return false;
+	    	}
+
+         	newSendSMSDTO.SMSTemplateID = $('SMSTemplateID').value.strip();
+			newSendSMSDTO.SMSConfigID = $('SMSConfigID').value.strip();
+			newSendSMSDTO.ReceiverMobileNO = ($('ReceiverMobileNO').value.strip()).replace(/ /g,'');
+			newSendSMSDTO.SMSContent = $('SMSContent').value.strip();
+			
+			if( (newSendSMSDTO.SMSTemplateID == null || newSendSMSDTO.SMSTemplateID == '') && 
+					(newSendSMSDTO.SMSContent == null || newSendSMSDTO.SMSContent == '') ){
+				errorMsg += "=> Please Select SMS Template OR Enter SMS Content ! \n";
+			}
+			
+			if(newSendSMSDTO.SMSConfigID == null || newSendSMSDTO.SMSConfigID == ''){
+				errorMsg += "=> Please Select SMS Sender ! \n";
+			}
+
+			if(newSendSMSDTO.ReceiverMobileNO == null || newSendSMSDTO.ReceiverMobileNO == ''){
+				errorMsg += "=> Please Enter Customer Mobile Number ! \n";
+			}else{
+				var mobileNumberString = newSendSMSDTO.ReceiverMobileNO;
+				var mobileNumberArray  = mobileNumberString.split(',');
+				var mobileNumberObject = new Object();
+				for(count=0; count<mobileNumberArray.length; count++){
+					var mobileNumber = mobileNumberArray[count];
+					
+					if(mobileNumber == null || mobileNumber == ''){
+						errorMsg += "=> Please Remove comma(,) from end ! \n";
+					}else if(mobileNumber.length != 10){ 
+						errorMsg += "=> Invalid Mobile Number=> "+mobileNumber+" ! \n";
+					}else if(!(Validate.isMobileNOValid(mobileNumber)) ){
+						errorMsg += "=> Invalid Mobile Number=> "+mobileNumber+" ! \n";
+					}
+
+					if(mobileNumberObject.hasOwnProperty(mobileNumber)){
+						errorMsg += "=> Duplicate Mobile Number=> "+mobileNumber+" ! \n";
+						continue;
+					}
+					mobileNumberObject[mobileNumber] = mobileNumber;
+				}
+			}	
+			
+			if(errorMsg != ''){
+            	alert(errorMsg);
+				return false;
+			}
+
+			return true;
+			
+		},
+
+
+		saveAjax: function(){
+        	var URL = "<?php echo $this->getUrl('*/SMS_SendSMS/sendSMS')?>" ;
+		    var parameters= {"SendSMSDataObj": JSON.stringify(newSendSMSDTO,null) };
+		    var callBackMethod ="formJS.responseSave";
+		    var callBackArgs =null;
+
+		    if(confirm("Are you sure you want to send sms to selected listing(s)?") == true){
+			   ajaxRequest.execute(URL, parameters, callBackMethod , callBackArgs );
+		    }else{
+			   return false;
+			}
+		},
+
+     	
+	    responseSave : function(response,args) {
+		   	var msg = new Array();
+        	if(response.SuccessMessage !=null){
+			 	msg[0] = response.SuccessMessage;
+			 	MESSAGEHANDLER.successMessagePublish(msg, $('messages'));
+			 	return;
+			}else if(response.ErrorMessage !=null){
+				msg[0] = response.ErrorMessage;
+				MESSAGEHANDLER.errorMessagePublish(msg, $('messages'));
+    			return false;
+ 			}
+ 	 	},
+
+ 	 	disableSMSContent : function() {
+	     	var IsSMSTemplateUsedObj = $("IsSMSTemplateUsed");
+        	if(IsSMSTemplateUsedObj.checked){
+        		UI.elementDisabled($("SMSTemplateID"), false);
+        		UI.elementDisabled($("SMSContent"), true);
+            }else{
+            	UI.elementDisabled($("SMSContent"), false);
+            	UI.elementDisabled($("SMSTemplateID"), true);
+            }
+            return false;
+ 	 	}
+ 	 	
+		
+		 
+};
+ 
+</script>

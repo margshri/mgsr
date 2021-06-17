@@ -1,0 +1,186 @@
+<?php
+    $HTMLFormID = $this->getHTMLFormID();
+    /* @var $ownerVO Margshri_Transport_VO_Master_Vahicale_OwnerVO */
+    $ownerVO = $this->getOwnerVO();    
+?>
+
+<div class="content-header">
+    <table cellspacing="0">
+        <tr>
+            <td style="width:50%;"><h3 class="icon-head head-permissions-role"><?php echo ($this->getOwnerID() != null ) ? ($this->__('Edit Owner') ) : $this->__('Add Owner') ?></h3></td>
+            <td class="form-buttons">
+                <?php echo $this->getBackButtonHtml() ?>
+                <?php echo $this->getResetButtonHtml() ?>
+                <?php echo $this->getSaveButtonHtml() ?>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<form action="<?php echo $this->getUrl('*/*/save') ?>" method="post" id="<?php echo $HTMLFormID ?>">
+    <?php  echo $this->getBlockHtml('formkey')?>
+    
+    <div class="entry-edit">
+    	<div class="entry-edit-head">
+    		<h4 class="icon-head head-edit-form fieldset-legend">Owner Detail</h4>
+    		<div class="form-buttons"></div>
+    	</div>
+    
+    	<div class="fieldset " id="base_fieldset">
+    		<div class="hor-scroll">
+    		   
+      			<table class="form-list">
+    				<tbody>
+    					
+    					<tr>
+    						<td class="label">
+    							<label for="OwnerName">Owner Name</label>
+    						</td>
+    						<td class="value">
+    							<input type="text" name="Name" id="Name" value="<?php echo $ownerVO->getName() ?>" class="input-text required-entry" />
+    						</td>
+    					</tr>
+    					
+    					
+    					<tr>
+    						<td class="label">
+    							<label for="MobileNo">Mobile Number</label>
+    						</td>
+    						<td class="value">
+    							<input type="text" name="MobileNo" id="MobileNo"
+    							value="<?php echo $ownerVO->getMobileNo() ?>" 
+    							class="input-text validate-digits required-entry" />
+    						</td>
+    					</tr>
+    					
+    					
+    					<tr>
+    						<td class="label">
+    							<label for="PANNo">PAN Number</label>
+    						</td>
+    						<td class="value">
+    							<input type="text" name="PANNo" id="PANNo"
+    							value="<?php echo $ownerVO->getPANNo() ?>" 
+    							class="input-text " />
+    						</td>
+    					</tr>
+    					
+    					<tr>
+    						<td class="label">
+    							<label for="AadharNo">Aadhar Number</label>
+    						</td>
+    						<td class="value">
+    							<input type="text" name="AadharNo" id="AadharNo"
+    							value="<?php echo $ownerVO->getAadharNo() ?>" 
+    							class="input-text validate-digits" />
+    						</td>
+    					</tr>
+    					
+    					
+    					<tr>
+    						<td class="label">
+    							<label for="Address">Address</label>
+    						</td>
+    						
+							<td class="value">
+								<textarea rows="3" cols="10" name="Address" id="Address" style="height: 40px;" ><?php echo $ownerVO->getAddress() ?></textarea>
+							</td>
+	   						
+    					</tr>
+    					
+
+    					<tr>
+    						<td class="label">
+    							<label for="StatusID">Status</label>
+    						</td>
+    						<td class="value">
+    							<select name="StatusID" id="StatusID">
+    								<option value="">--Select--</option>
+    								<?php foreach ($this->getStatusOptions() as $statusID=>$statusName): ?>
+    									<option value="<?php echo $statusID ?>" <?php echo ($ownerVO->getStatusID() == $statusID) ? 'Selected = "Selected"' : '' ?> ><?php echo $statusName ?></option>
+    								<?php endforeach; ?>
+    							</select>
+    						</td>
+    					</tr>
+
+    					
+    				</tbody>
+    			</table>		
+    		  		 
+    			
+    		</div>
+    	</div>
+    </div>
+    
+    <input type="hidden" id="ID" name="ID" value="<?php echo ($ownerVO->getID() != null && $ownerVO->getID() != "") ? $ownerVO->getID() : 0 ?>" />
+</form>
+
+<script type="text/javascript">
+
+function ownerVO(){
+	this.ID = null;
+	this.Name = null;
+	this.MobileNo = null;
+	this.Address = null;
+	this.PANNo = null;
+	this.AadharNo = null;
+	this.StatusID = null;
+}
+var newOwnerDTO = new ownerVO();
+
+var ownerFormObj = new varienForm('<?php echo $HTMLFormID; ?>');
+var ownerFormJS={
+
+		submit : function(){
+    		if(!ownerFormJS.saveValidation()) return ;
+    		ownerFormJS.saveAjax();
+		},
+
+		saveValidation : function(){
+			var errorMsg = '';
+			
+         	if(!(ownerFormObj.validator && ownerFormObj.validator.validate())){
+    	    	return false;
+	    	}
+         	
+         	// SET VOs
+         	newOwnerDTO.ID = ($('ID').value).strip();
+         	newOwnerDTO.Name = ($('Name').value).strip();
+         	newOwnerDTO.MobileNo = ($('MobileNo').value).strip();
+         	newOwnerDTO.Address = ($('Address').value).strip();
+         	newOwnerDTO.PANNo = ($('PANNo').value).strip();
+         	newOwnerDTO.AadharNo = ($('AadharNo').value).strip();
+         	newOwnerDTO.StatusID = ($('StatusID').value).strip();
+         	
+            	
+         	if(errorMsg != ''){
+            	alert(errorMsg);
+				return false;
+			}
+
+         	return true;
+		},	
+
+        saveAjax: function(){
+        	var URL = "<?php echo $this->getUrl('*/*/save')?>" ;
+		    var parameters= {"OwnerDataObj": JSON.stringify(newOwnerDTO,null) };
+		    var callBackMethod ="ownerFormJS.responseSave";
+		    var callBackArgs =null;
+		    ajaxRequest.execute(	URL, parameters, callBackMethod , callBackArgs );
+		    return false;
+     	},
+
+	    responseSave : function(response,args) {
+	    	if(response.SuccessMessage !=null){
+	    		window.location.href = "<?php echo $this->getUrl('*/*/index')?>";
+			 	return;
+			}else if(response.ErrorMessage !=null){
+				alert(response.ErrorMessage);
+				return false;
+ 			}
+ 	 	}
+			
+}; 
+ 
+
+</script>    	 

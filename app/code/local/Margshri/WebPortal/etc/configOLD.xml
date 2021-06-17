@@ -1,0 +1,4058 @@
+<?xml version="1.0"?>
+<config>
+	<modules>
+		<Margshri_WebPortal>
+			<version>1.0.0.0</version>
+		</Margshri_WebPortal>
+	</modules>
+
+	<global>
+		<models>
+			<webportal>
+				<class>Margshri_WebPortal_Model</class>
+				<resourceModel>webportal_mysql4</resourceModel>
+			</webportal>
+
+			<webportal_mysql4>
+				<class>Margshri_WebPortal_Model_MySql4</class>
+				<entities>
+
+				    <adminuser>
+						<table>admin_user</table>
+					</adminuser>
+				    
+				    <apctwebsystemconfig>
+						<table>apct_web_system_config</table>
+					</apctwebsystemconfig>
+				    
+				    <apctwebunion>
+						<table>apct_web_union</table>
+					</apctwebunion>
+					
+					
+					<apctwebclppointstype>
+						<table>apct_web_clp_points_type</table>
+					</apctwebclppointstype>
+					
+					
+					<apctwebclppointsmode>
+						<table>apct_web_clp_points_mode</table>
+					</apctwebclppointsmode>
+					
+					
+					<apctwebclppointstran>
+						<table>apct_web_clp_points_tran</table>
+					</apctwebclppointstran>
+					
+					<apctwebclpconfig>
+						<table>apct_web_clp_config</table>
+					</apctwebclpconfig>
+					
+					<apctwebclppoints>
+						<table>apct_web_clp_points</table>
+					</apctwebclppoints>
+					
+					<apctwebentity>
+						<table>apct_web_entity</table>
+					</apctwebentity>
+				    
+				    
+				    <apctwebbid>
+						<table>apct_web_bid</table>
+					</apctwebbid>
+					
+					<apctwebbidstatus>
+						<table>apct_web_bid_status</table>
+					</apctwebbidstatus>
+					
+					<apctwebbidtran>
+						<table>apct_web_bid_tran</table>
+					</apctwebbidtran>
+					
+					<apctwebbidtype>
+						<table>apct_web_bid_type</table>
+					</apctwebbidtype>
+					
+					<apctwebbidproducts>
+						<table>apct_web_bid_products</table>
+					</apctwebbidproducts>
+					
+				    
+				    <catalogproductentity>
+						<table>catalog_product_entity</table>
+					</catalogproductentity>
+				    
+				    
+				    <catalogproductentityvarchar>
+						<table>catalog_product_entity_varchar</table>
+					</catalogproductentityvarchar>
+				    
+				    
+					<customerentity>
+						<table>customer_entity</table>
+					</customerentity>
+
+					<customerentityvarchar>
+						<table>customer_entity_varchar</table>
+					</customerentityvarchar>
+					
+					<customerentityint>
+						<table>customer_entity_int</table>
+					</customerentityint>
+					
+
+					<customerentitydatetime>
+						<table>customer_entity_datetime</table>
+					</customerentitydatetime>
+					
+					<customerentitytext>
+						<table>customer_entity_text</table>
+					</customerentitytext>
+
+					
+					<customeraddressentity>
+						<table>customer_address_entity</table>
+					</customeraddressentity>
+
+					<customeraddressentityvarchar>
+						<table>customer_address_entity_varchar</table>
+					</customeraddressentityvarchar>
+
+					<customeraddressentitytext>
+						<table>customer_address_entity_text</table>
+					</customeraddressentitytext>
+
+					<customeraddressentityint>
+						<table>customer_address_entity_int</table>
+					</customeraddressentityint>
+					
+					
+										
+					
+
+					<apctwebsubpageentity>
+						<table>apct_web_subpage_entity</table>
+					</apctwebsubpageentity>
+					
+					<apctwebsubpageattributetype>
+						<table>apct_web_subpage_attribute_type</table>
+					</apctwebsubpageattributetype>
+					
+					<apctwebsubpageattributedatatype>
+						<table>apct_web_subpage_attribute_data_type</table>
+					</apctwebsubpageattributedatatype>
+					
+					<apctwebsubpageattribute>
+						<table>apct_web_subpage_attribute</table>
+					</apctwebsubpageattribute>
+					
+					<apctwebsubpageservice>
+						<table>apct_web_subpage_service</table>
+					</apctwebsubpageservice>
+					 
+					<apctwebsubpageentityattribute>
+						<table>apct_web_subpage_entity_attribute</table>
+					</apctwebsubpageentityattribute>
+					
+					<apctwebsubpage>
+						<table>apct_web_subpage</table>
+					</apctwebsubpage>
+					
+					<apctwebsubpagetype>
+						<table>apct_web_subpage_type</table>
+					</apctwebsubpagetype>
+
+					<apctwebsubpagepost1>
+						<table>apct_web_subpage_post1</table>
+					</apctwebsubpagepost1>
+
+					<apctwebsubpagepost2>
+						<table>apct_web_subpage_post2</table>
+					</apctwebsubpagepost2>
+					
+					<apcttablename>
+						<table>apct_table_name</table>
+					</apcttablename>
+
+					<apctwebtabletype>
+						<table>apct_web_table_type</table>
+					</apctwebtabletype>
+
+					<apctwebtable>
+						<table>apct_web_table</table>
+					</apctwebtable>
+
+					<apctwebdynamiccolumn>
+						<table>apct_web_dynamic_column</table>
+					</apctwebdynamiccolumn>
+
+					<apctstatus>
+						<table>apct_status</table>
+					</apctstatus>
+
+					<apctcountrylist>
+						<table>apct_country_list</table>
+					</apctcountrylist>
+
+					<apctstatelist>
+						<table>apct_state_list</table>
+					</apctstatelist>
+
+					<apctdistrictlist>
+						<table>apct_district_list</table>
+					</apctdistrictlist>
+
+					<apctcitylist>
+						<table>apct_city_list</table>
+					</apctcitylist>
+
+					<apctwebadvertisement>
+						<table>apct_web_advertisement</table>
+					</apctwebadvertisement>
+					
+					<apctwebhaircut>
+						<table>apct_web_hair_cut</table>
+					</apctwebhaircut>
+					
+					<apctwebattachakki>
+						<table>apct_web_atta_chakki</table>
+					</apctwebattachakki>
+					
+					<apctwebnamkeenbhandar>
+						<table>apct_web_namkeen_bhandar</table>
+					</apctwebnamkeenbhandar>
+					
+					<apctwebtea>
+						<table>apct_web_tea</table>
+					</apctwebtea>
+					
+					<apctwebmattressfoamhouse>
+						<table>apct_web_mattress_foam_house</table>
+					</apctwebmattressfoamhouse>
+					
+					<acptwebmarriagebeuro>
+						<table>acpt_web_marriage_beuro</table>
+					</acptwebmarriagebeuro>
+					
+										
+					<apctwebadvertisementtype>
+						<table>apct_web_advertisement_type</table>
+					</apctwebadvertisementtype>
+										
+					
+					
+					
+					<apctwebgovtdepartmenttype>
+						<table>apct_web_govt_department_type</table>
+					</apctwebgovtdepartmenttype>
+					
+					<apctwebgovtdepartment>
+						<table>apct_web_govt_department</table>
+					</apctwebgovtdepartment>
+
+					<apctwebgovtsites>
+						<table>apct_web_govt_sites</table>
+					</apctwebgovtsites>
+					
+					<apctwebofficetype>
+						<table>apct_web_office_type</table>
+					</apctwebofficetype>
+					
+					<apctweboffice>
+						<table>apct_web_office</table>
+					</apctweboffice>
+					
+					<apctwebuseroffice>
+						<table>apct_web_user_office</table>
+					</apctwebuseroffice>
+
+
+
+
+
+					<apctwebdj>
+						<table>apct_web_dj</table>
+					</apctwebdj>
+					
+					<apctwebdrycleaner>
+						<table>apct_web_dry_cleaner</table>
+					</apctwebdrycleaner>
+					
+					<apctwebmusicalinstruments>
+						<table>apct_web_musical_instruments</table>
+					</apctwebmusicalinstruments>
+					
+					<apctwebclothing>
+						<table>apct_web_clothing</table>
+					</apctwebclothing>
+					
+					<apctweblacegotastore>
+						<table>apct_web_lace_gota_store</table>
+					</apctweblacegotastore>
+					
+					<apctwebphotostatlamination>
+						<table>apct_web_photostat_lamination</table>
+					</apctwebphotostatlamination>
+
+
+
+					<apctwebagriculture>
+						<table>apct_web_agriculture</table>
+					</apctwebagriculture>
+					
+					<apctwebagriculturetype>
+						<table>apct_web_agriculture_type</table>
+					</apctwebagriculturetype>
+					
+					
+
+					<apctwebacademyinstitute>
+						<table>apct_web_academy_institute</table>
+					</apctwebacademyinstitute>
+					
+					<apctwebacademyinstitutetype>
+						<table>apct_web_academy_institute_type</table>
+					</apctwebacademyinstitutetype>
+					
+					
+					<apctwebadventure>
+						<table>apct_web_adventure</table>
+					</apctwebadventure>
+					<apctwebassociation>
+						<table>apct_web_association</table>
+					</apctwebassociation>
+					<apctwebautomobile>
+						<table>apct_web_automobile</table>
+					</apctwebautomobile>
+
+					<apctwebartandcrafts>
+						<table>apct_web_art_and_crafts</table>
+					</apctwebartandcrafts>
+
+	
+
+					<apctwebbank>
+						<table>apct_web_bank</table>
+					</apctwebbank>
+
+					<apctwebbankbranch>
+						<table>apct_web_bank_branch</table>
+					</apctwebbankbranch>
+
+					<apctwebbankatm>
+						<table>apct_web_bank_atm</table>
+					</apctwebbankatm>
+
+
+
+					<apctwebbar>
+						<table>apct_web_bar</table>
+					</apctwebbar>
+					<apctwebbartonbandar>
+						<table>apct_web_barton_bandar</table>
+					</apctwebbartonbandar>
+					<apctwebboutique>
+						<table>apct_web_boutique</table>
+					</apctwebboutique>
+					<apctwebbricks>
+						<table>apct_web_bricks</table>
+					</apctwebbricks>
+					<apctwebbuildingmaterial>
+						<table>apct_web_buildingmaterial</table>
+					</apctwebbuildingmaterial>
+					<apctwebcinema>
+						<table>apct_web_cinema</table>
+					</apctwebcinema>
+					<apctwebclub>
+						<table>apct_web_club</table>
+					</apctwebclub>
+					<apctwebcollege>
+						<table>apct_web_college</table>
+					</apctwebcollege>
+					<apctwebcompany>
+						<table>apct_web_company</table>
+					</apctwebcompany>
+					<apctwebcomputerworld>
+						<table>apct_web_computer_world</table>
+					</apctwebcomputerworld>
+					<apctwebcontactus>
+						<table>apct_web_contactus</table>
+					</apctwebcontactus>
+					<apctwebcrockery>
+						<table>apct_web_crockery</table>
+					</apctwebcrockery>
+					<apctwebcyclestore>
+						<table>apct_web_cycle_store</table>
+					</apctwebcyclestore>
+					
+					<apctwebdatesheet>
+						<table>apct_web_datesheet</table>
+					</apctwebdatesheet>
+					
+					<apctwebdhaba>
+						<table>apct_web_dhaba</table>
+					</apctwebdhaba>
+					<apctwebdhanmandi>
+						<table>apct_web_dhanmandi</table>
+					</apctwebdhanmandi>
+					<apctwebdharamkanta>
+						<table>apct_web_dharamkanta</table>
+					</apctwebdharamkanta>
+					<apctwebdharmshala>
+						<table>apct_web_dharmshala</table>
+					</apctwebdharmshala>
+					<apctwebdishtv>
+						<table>apct_web_dishtv</table>
+					</apctwebdishtv>
+					<apctwebdomestic>
+						<table>apct_web_domestic</table>
+					</apctwebdomestic>
+					<apctwebelectronic>
+						<table>apct_web_electronic</table>
+					</apctwebelectronic>
+					<apctwebelectronicmedia>
+						<table>apct_web_electronic_media</table>
+					</apctwebelectronicmedia>
+					<apctwebevent>
+						<table>apct_web_event</table>
+					</apctwebevent>
+					
+					<apctwebachivement>
+						<table>apct_web_achivement</table>
+					</apctwebachivement>
+					
+					
+					<apctwebfactory>
+						<table>apct_web_factory</table>
+					</apctwebfactory>
+					<apctwebfashionzone>
+						<table>apct_web_fashionzone</table>
+					</apctwebfashionzone>
+					
+					<apctwebfinance>
+						<table>apct_web_finance</table>
+					</apctwebfinance>
+					
+					<apctwebfinancetype>
+						<table>apct_web_finance_type</table>
+					</apctwebfinancetype>
+					
+					
+					<apctwebfootwear>
+						<table>apct_web_footwear</table>
+					</apctwebfootwear>
+					<apctwebfoundations>
+						<table>apct_web_foundations</table>
+					</apctwebfoundations>
+					<apctwebfurniture>
+						<table>apct_web_furniture</table>
+					</apctwebfurniture>
+					<apctwebgame>
+						<table>apct_web_game</table>
+					</apctwebgame>
+					<apctwebgarment>
+						<table>apct_web_garment</table>
+					</apctwebgarment>
+					<apctwebgeneralawareness>
+						<table>apct_web_general_awareness</table>
+					</apctwebgeneralawareness>
+					<apctwebgeneralstore>
+						<table>apct_web_general_store</table>
+					</apctwebgeneralstore>
+					<apctwebgiftshop>
+						<table>apct_web_gift_shop</table>
+					</apctwebgiftshop>
+					<apctwebglassstore>
+						<table>apct_web_glass_store</table>
+					</apctwebglassstore>
+					
+					<apctwebgodplace>
+						<table>apct_web_god_place</table>
+					</apctwebgodplace>
+					
+					<apctwebgodplacetype>
+						<table>apct_web_god_place_type</table>
+					</apctwebgodplacetype>
+					
+					
+					<apctwebguesthouse>
+						<table>apct_web_guesthouse</table>
+					</apctwebguesthouse>
+					<apctwebhandloom>
+						<table>apct_web_handloom</table>
+					</apctwebhandloom>
+					<apctwebhealthcaregoods>
+						<table>apct_web_healthcare_goods</table>
+					</apctwebhealthcaregoods>
+					<apctwebhelpline>
+						<table>apct_web_helpline</table>
+					</apctwebhelpline>
+					<apctwebhosieryshop>
+						<table>apct_web_hosiery_shop</table>
+					</apctwebhosieryshop>
+					<apctwebhospitaltype>
+						<table>apct_web_hospital_type</table>
+					</apctwebhospitaltype>
+					<apctwebhospital>
+						<table>apct_web_hospital</table>
+					</apctwebhospital>
+					<apctwebhostel>
+						<table>apct_web_hostel</table>
+					</apctwebhostel>
+					<apctwebhotel>
+						<table>apct_web_hotel</table>
+					</apctwebhotel>
+					<apctwebicecreambakery>
+						<table>apct_web_icecream_bakery</table>
+					</apctwebicecreambakery>
+					<apctwebindustries>
+						<table>apct_web_industries</table>
+					</apctwebindustries>
+					<apctwebironstore>
+						<table>apct_web_ironstore</table>
+					</apctwebironstore>
+					<apctwebjewellery>
+						<table>apct_web_jewellery</table>
+					</apctwebjewellery>
+					<apctwebkanganstore>
+						<table>apct_web_kangan_store</table>
+					</apctwebkanganstore>
+					<apctwebkreshimandi>
+						<table>apct_web_kreshimandi</table>
+					</apctwebkreshimandi>
+					<apctwebloan>
+						<table>apct_web_loan</table>
+					</apctwebloan>
+					
+					<apctwebloantype>
+						<table>apct_web_loan_type</table>
+					</apctwebloantype>
+										
+					
+					<apctwebmarble>
+						<table>apct_web_marble</table>
+					</apctwebmarble>
+					<apctwebmarriageplace>
+						<table>apct_web_marriage_place</table>
+					</apctwebmarriageplace>
+					<apctwebmedicalstore>
+						<table>apct_web_medical_store</table>
+					</apctwebmedicalstore>
+					<apctwebmilkman>
+						<table>apct_web_milkman</table>
+					</apctwebmilkman>
+					
+					<apctwebmobileservice>
+						<table>apct_web_mobileservice</table>
+					</apctwebmobileservice>
+					
+					<apctwebmobileservicetype>
+						<table>apct_web_mobileservice_type</table>
+					</apctwebmobileservicetype>
+					
+					<apctwebnews>
+						<table>apct_web_news</table>
+					</apctwebnews>
+					
+					<apctwebnewspaper>
+						<table>apct_web_newspaper</table>
+					</apctwebnewspaper>
+					
+					<apctwebnewspapertype>
+						<table>apct_web_newspaper_type</table>
+					</apctwebnewspapertype>
+					
+					<apctwebnewspaperagency>
+						<table>apct_web_newspaper_agency</table>
+					</apctwebnewspaperagency>
+					
+					
+					
+					<apctwebngo>
+						<table>apct_web_ngo</table>
+					</apctwebngo>
+					<apctweboptical>
+						<table>apct_web_optical</table>
+					</apctweboptical>
+					<apctweborganization>
+						<table>apct_web_organization</table>
+					</apctweborganization>
+					<apctwebotheraccessiores>
+						<table>apct_web_other_accessiores</table>
+					</apctwebotheraccessiores>
+					<apctwebpainthouse>
+						<table>apct_web_painthouse</table>
+					</apctwebpainthouse>
+					<apctwebpannierhouse>
+						<table>apct_web_pannierhouse</table>
+					</apctwebpannierhouse>
+					<apctwebpansari>
+						<table>apct_web_pansari</table>
+					</apctwebpansari>
+					<apctwebparks>
+						<table>apct_web_parks</table>
+					</apctwebparks>
+					<apctwebpeoplelookingjob>
+						<table>apct_web_people_looking_job</table>
+					</apctwebpeoplelookingjob>
+					<apctwebpersonalphonebook>
+						<table>apct_web_personal_phone_book</table>
+					</apctwebpersonalphonebook>
+					<apctwebphonebook>
+						<table>apct_web_phone_book</table>
+					</apctwebphonebook>
+					<apctwebpicnicspots>
+						<table>apct_web_picnic_spots</table>
+					</apctwebpicnicspots>
+					<apctwebpicturehouse>
+						<table>apct_web_picture_house</table>
+					</apctwebpicturehouse>
+					<apctwebplayzone>
+						<table>apct_web_playzone</table>
+					</apctwebplayzone>
+					<apctwebplywoodshop>
+						<table>apct_web_plywood_shop</table>
+					</apctwebplywoodshop>
+					<apctwebprintinghouse>
+						<table>apct_web_printing_house</table>
+					</apctwebprintinghouse>
+
+					<apctwebcitydiamonds>
+						<table>apct_web_city_diamonds</table>
+					</apctwebcitydiamonds>
+					
+					<apctwebblooddonor>
+						<table>apct_web_blood_donor</table>
+					</apctwebblooddonor>
+					
+					<apctwebprofessional>
+						<table>apct_web_professional</table>
+					</apctwebprofessional>
+										
+					<apctwebprofession>
+						<table>apct_web_profession</table>
+					</apctwebprofession>
+					
+					<apctwebprovisionstore>
+						<table>apct_web_provisionstore</table>
+					</apctwebprovisionstore>
+					
+					<apctwebpurifier>
+						<table>apct_web_purifier</table>
+					</apctwebpurifier>
+					
+					<apctwebpetrolpump>
+						<table>apct_web_petrol_pump</table>
+					</apctwebpetrolpump>
+					
+
+					<apctwebrecruitmenttype>
+						<table>apct_web_recruitment_type</table>
+					</apctwebrecruitmenttype>
+
+
+					<apctwebrecruitment>
+						<table>apct_web_recruitment</table>
+					</apctwebrecruitment>
+
+					<apctwebrestaurants>
+						<table>apct_web_restaurants</table>
+					</apctwebrestaurants>
+					
+					
+					<apctwebresult>
+						<table>apct_web_result</table>
+					</apctwebresult>
+
+					
+					
+					
+					<apctwebgspublicsectorunits>
+						<table>apct_web_gs_publicsectorunits</table>
+					</apctwebgspublicsectorunits>
+					
+					<apctwebgsstategovtdepartment>
+						<table>apct_web_gs_stategovtdepartment</table>
+					</apctwebgsstategovtdepartment>
+										
+					<apctwebgsinformationtechnologysector>
+						<table>apct_web_gs_informationtechnologysector</table>
+					</apctwebgsinformationtechnologysector>
+					
+					<apctwebgsrajasthanstateportal>
+						<table>apct_web_gs_rajasthanstateportal</table>
+					</apctwebgsrajasthanstateportal>
+										
+					<apctwebgsdistrictsites>
+						<table>apct_web_gs_districtsites</table>
+					</apctwebgsdistrictsites>
+					
+					<apctwebgscentralgovtdepartment>
+						<table>apct_web_gs_centralgovtdepartment</table>
+					</apctwebgscentralgovtdepartment>
+										
+					<apctwebgseducationalinstitutions>
+						<table>apct_web_gs_educationalinstitutions</table>
+					</apctwebgseducationalinstitutions>
+					
+					
+										
+					
+										
+					<apctwebrailways>
+						<table>apct_web_railways</table>
+					</apctwebrailways>
+
+					<apctwebroadways>
+						<table>apct_web_roadways</table>
+					</apctwebroadways>
+																				
+					
+					<apctwebsand>
+						<table>apct_web_sand</table>
+					</apctwebsand>
+					<apctwebsanitary>
+						<table>apct_web_sanitary</table>
+					</apctwebsanitary>
+					<apctwebsaree>
+						<table>apct_web_saree</table>
+					</apctwebsaree>
+					<apctwebschool>
+						<table>apct_web_school</table>
+					</apctwebschool>
+					<apctwebschooltype>
+						<table>apct_web_school_type</table>
+					</apctwebschooltype>
+					<apctwebservicecenter>
+						<table>apct_web_servicecenter</table>
+					</apctwebservicecenter>
+					<apctwebshoppingmolls>
+						<table>apct_web_shopping_molls</table>
+					</apctwebshoppingmolls>
+					<apctwebsilaicenter>
+						<table>apct_web_silai_center</table>
+					</apctwebsilaicenter>
+					<apctwebsociety>
+						<table>apct_web_society</table>
+					</apctwebsociety>
+					<apctwebsoftware>
+						<table>apct_web_software</table>
+					</apctwebsoftware>
+					<apctwebsongs>
+						<table>apct_web_songs</table>
+					</apctwebsongs>
+					<apctwebsports>
+						<table>apct_web_sports</table>
+					</apctwebsports>
+					<apctwebstationary>
+						<table>apct_web_stationary</table>
+					</apctwebstationary>
+					<apctwebsteelwork>
+						<table>apct_web_steel_work</table>
+					</apctwebsteelwork>
+					<apctwebstudio>
+						<table>apct_web_studio</table>
+					</apctwebstudio>
+					
+					<apctwebsweetshop>
+						<table>apct_web_sweetshop</table>
+					</apctwebsweetshop>
+					<apctwebswimmingpools>
+						<table>apct_web_swimmingpools</table>
+					</apctwebswimmingpools>
+					<apctwebtaxi>
+						<table>apct_web_taxi</table>
+					</apctwebtaxi>
+					<apctwebtelecomshop>
+						<table>apct_web_telecomshop</table>
+					</apctwebtelecomshop>
+					<apctwebtiffincenter>
+						<table>apct_web_tiffin_center</table>
+					</apctwebtiffincenter>
+					<apctwebtimbermart>
+						<table>apct_web_timber_mart</table>
+					</apctwebtimbermart>
+					
+					<apctwebtravel>
+						<table>apct_web_travel</table>
+					</apctwebtravel>
+
+					<apctwebtransports>
+						<table>apct_web_transports</table>
+					</apctwebtransports>
+										
+					
+					
+					<apctwebtrunkshop>
+						<table>apct_web_trunk_shop</table>
+					</apctwebtrunkshop>
+					<apctwebtrusts>
+						<table>apct_web_trusts</table>
+					</apctwebtrusts>
+					<apctwebtvchannel>
+						<table>apct_web_tvchannel</table>
+					</apctwebtvchannel>
+					
+					<apctwebuniversity>
+						<table>apct_web_university</table>
+					</apctwebuniversity>
+
+					<apctwebuniversitytype>
+						<table>apct_web_university_type</table>
+					</apctwebuniversitytype>
+					
+					<apctweblaboratory>
+						<table>apct_web_laboratory</table>
+					</apctweblaboratory>
+
+					<apctweblaboratorytype>
+						<table>apct_web_laboratory_type</table>
+					</apctweblaboratorytype>
+										
+					
+					<apctwebscientific>
+						<table>apct_web_scientific</table>
+					</apctwebscientific>
+
+					<apctwebscientifictype>
+						<table>apct_web_scientific_type</table>
+					</apctwebscientifictype>
+					
+					 
+					<apctwebsurgical>
+						<table>apct_web_surgical</table>
+					</apctwebsurgical>
+
+					<apctwebsurgicaltype>
+						<table>apct_web_surgical_type</table>
+					</apctwebsurgicaltype>
+										
+										
+					<apctwebvehicals>
+						<table>apct_web_vehicals</table>
+					</apctwebvehicals>
+					
+					<apctwebvehicalstype>
+						<table>apct_web_vehicals_type</table>
+					</apctwebvehicalstype>
+					
+					<apctwebviewerstatus>
+						<table>apct_web_viewer_status</table>
+					</apctwebviewerstatus>
+					
+					<apctwebviewer>
+						<table>apct_web_viewer</table>
+					</apctwebviewer>
+					
+					<apctwebwatch>
+						<table>apct_web_watch</table>
+					</apctwebwatch>
+					<apctwebwatercamper>
+						<table>apct_web_watercamper</table>
+					</apctwebwatercamper>
+
+					<apctwebbeautyparlours>
+						<table>apct_web_beauty_parlours</table>
+					</apctwebbeautyparlours>
+
+					<apctwebbloodbank>
+						<table>apct_web_blood_bank</table>
+					</apctwebbloodbank>
+
+					<apctwebdrivingschool>
+						<table>apct_web_driving_school</table>
+					</apctwebdrivingschool>
+
+					<apctwebcementmason>
+						<table>apct_web_cement_mason</table>
+					</apctwebcementmason>
+
+					<apctwebcomputerhardwarenetworking>
+						<table>apct_web_computer_hardware_networking</table>
+					</apctwebcomputerhardwarenetworking>
+
+					<apctwebelectrician>
+						<table>apct_web_electrician</table>
+					</apctwebelectrician>
+
+
+
+
+
+					<apctwebmotormechanic>
+						<table>apct_web_motor_mechanic</table>
+					</apctwebmotormechanic>
+
+					<apctwebpropertyadviser>
+						<table>apct_web_property_adviser</table>
+					</apctwebpropertyadviser>
+					
+					<apctwebscrapstore>
+						<table>apct_web_scrap_store</table>
+					</apctwebscrapstore>
+
+					<apctwebsilaicenter>
+						<table>apct_web_silai_center</table>
+					</apctwebsilaicenter>
+
+					<apctwebtypecolleges>
+						<table>apct_web_type_colleges</table>
+					</apctwebtypecolleges>
+
+					<apctwebplumber>
+						<table>apct_web_plumber</table>
+					</apctwebplumber>
+
+					<apctwebpainter>
+						<table>apct_web_painter</table>
+					</apctwebpainter>
+
+					<apctwebtailor>
+						<table>apct_web_tailor</table>
+					</apctwebtailor>
+
+					<apctwebcarpenter>
+						<table>apct_web_carpenter</table>
+					</apctwebcarpenter>
+					
+					<apctwebtenthousecaterers>
+						<table>apct_web_tent_house_caterers</table>
+					</apctwebtenthousecaterers>
+
+					<apctwebcouriers>
+						<table>apct_web_couriers</table>
+					</apctwebcouriers>
+
+					<apctwebemitra>
+						<table>apct_web_emitra</table>
+					</apctwebemitra>
+
+					<apctwebflorist>
+						<table>apct_web_florist</table>
+					</apctwebflorist>
+
+					<apctwebemergency>
+						<table>apct_web_emergency</table>
+					</apctwebemergency>
+
+
+
+
+
+
+					<apctwebtattoosworld>
+						<table>apct_web_tattoos_world</table>
+					</apctwebtattoosworld>
+
+					<apctwebbaheestore>
+						<table>apct_web_bahee_store</table>
+					</apctwebbaheestore>
+
+					<apctwebluggage>
+						<table>apct_web_luggage</table>
+					</apctwebluggage>
+
+					<apctwebhandicrafts>
+						<table>apct_web_handicrafts</table>
+					</apctwebhandicrafts>
+
+					<apctwebgaslighthouse>
+						<table>apct_web_gas_light_house</table>
+					</apctwebgaslighthouse>
+
+					<apctwebfancydressesstore>
+						<table>apct_web_fancy_dresses_store</table>
+					</apctwebfancydressesstore>
+
+					<apctwebfruithouse>
+						<table>apct_web_fruit_house</table>
+					</apctwebfruithouse>
+
+					<apctwebmusiccenter>
+						<table>apct_web_music_center</table>
+					</apctwebmusiccenter>
+
+					<apctwebarmystore>
+						<table>apct_web_army_store</table>
+					</apctwebarmystore>
+
+					<apctwebgemsstore>
+						<table>apct_web_gems_store</table>
+					</apctwebgemsstore>
+
+					<apctwebmatchingstore>
+						<table>apct_web_matching_store</table>
+					</apctwebmatchingstore>
+
+					<apctwebdanceacademy>
+						<table>apct_web_dance_academy</table>
+					</apctwebdanceacademy>
+
+					<apctwebdisposal>
+						<table>apct_web_disposal</table>
+					</apctwebdisposal>
+
+					<apctwebbambooproducts>
+						<table>apct_web_bamboo_products</table>
+					</apctwebbambooproducts>
+
+					<apctwebteastall>
+						<table>apct_web_tea_stall</table>
+					</apctwebteastall>
+
+					<apctwebshutteringstore>
+						<table>apct_web_shuttering_store</table>
+					</apctwebshutteringstore>
+
+					<apctwebfourwheelerworkshop>
+						<table>apct_web_four_wheeler_workshop</table>
+					</apctwebfourwheelerworkshop>
+
+					<apctwebtwowheelerworkshop>
+						<table>apct_web_two_wheeler_workshop</table>
+					</apctwebtwowheelerworkshop>
+
+					<apctwebrajaigaddabharaicenter>
+						<table>apct_web_rajai_gadda_bharai_center</table>
+					</apctwebrajaigaddabharaicenter>
+
+
+					<apctwebfirm>
+						<table>apct_web_firm</table>
+					</apctwebfirm>
+					
+					<apctwebpriority>
+						<table>apct_web_priority</table>
+					</apctwebpriority>
+					
+					<apctwebpaymentmethod>
+						<table>apct_web_payment_method</table>
+					</apctwebpaymentmethod>
+					
+					
+					<apctwebstudentregistration>
+						<table>student_registration</table>
+					</apctwebstudentregistration>
+					
+					
+					<apctwebbloodgroup>
+						<table>apct_web_blood_group</table>
+					</apctwebbloodgroup>
+					
+				</entities>
+			</webportal_mysql4>
+		</models>
+
+		<resources>
+			<admin_setup>
+				<setup>
+					<module>Margshri_WebPortal</module>
+				</setup>
+			</admin_setup>
+		</resources>
+
+
+		<blocks>
+			<webportal>
+				<class>Margshri_WebPortal_Block</class>
+			</webportal>
+		</blocks>
+
+		<helpers>
+			<webportal>
+				<class>Margshri_WebPortal_Helper</class>
+			</webportal>
+		</helpers>
+
+
+	</global>
+
+	<frontend>
+		<routers>
+			<webportal>
+				<use>standard</use>
+				<args>
+					<module>Margshri_WebPortal</module>
+					<frontName>webportal</frontName>
+				</args>
+			</webportal>
+		</routers>
+
+		<layout>
+			<updates>
+				<webportal module="Margshri_WebPortal">
+					<file>web_portal.xml</file>
+				</webportal>
+			</updates>
+		</layout>
+	</frontend>
+
+
+	<admin>
+		<routers>
+			<webportal>
+				<use>admin</use>
+				<args>
+					<module>Margshri_WebPortal</module>
+					<frontName>webportal</frontName>
+				</args>
+			</webportal>
+		</routers>
+
+		<layout>
+			<updates>
+				<webportal module="Margshri_WebPortal">
+					<file>web_portal.xml</file>
+				</webportal>
+			</updates>
+		</layout>
+
+	</admin>
+
+
+	<adminhtml>
+		<menu>
+
+			<master translate="title" module="admin">
+				<title>Master</title>
+				<sort_order>20</sort_order>
+				<children>
+					<table translate="title" module="admin">
+						<title>Table</title>
+						<sort_order>01</sort_order>
+						<children>
+							<apctwebtable translate="title" module="admin">
+								<title>Web Table</title>
+								<sort_order>01</sort_order>
+								<action>webportal/Backend_Master_Table_Table/index</action>
+							</apctwebtable>
+
+							<apctwebtabletype translate="title" module="admin">
+								<title>Web Table Type</title>
+								<sort_order>02</sort_order>
+								<action>webportal/Backend_Master_Table_TableType/index</action>
+							</apctwebtabletype>
+						</children>
+					</table>
+					
+					<office translate="title" module="admin">
+						<title>Office</title>
+						<sort_order>11</sort_order>
+						<children>
+							<apctwebofficetype translate="title" module="admin">
+								<title>Office Type</title>
+								<sort_order>01</sort_order>
+								<action>webportal/Backend_Master_Office_OfficeType/index</action>
+							</apctwebofficetype>
+
+							<apctweboffice translate="title" module="admin">
+								<title>Office</title>
+								<sort_order>11</sort_order>
+								<action>webportal/Backend_Master_Office_Office/index</action>
+							</apctweboffice>
+							
+							<apctwebuseroffice translate="title" module="admin">
+								<title>User Office</title>
+								<sort_order>21</sort_order>
+								<action>webportal/Backend_Master_Office_UserOffice/index</action>
+							</apctwebuseroffice>
+														
+						</children>
+					</office>
+					
+					
+					<subpage translate="title" module="admin">
+						<title>Sub Page</title>
+						<sort_order>21</sort_order>
+						<children>
+							<entity translate="title" module="admin">
+								<title>Entity</title>
+								<sort_order>01</sort_order>
+								<action>webportal/Backend_Master_SubPage_Entity/index</action>
+							</entity>
+
+							<attribute translate="title" module="admin">
+								<title>Attribute</title>
+								<sort_order>11</sort_order>
+								<action>webportal/Backend_Master_SubPage_Attribute/index</action>
+							</attribute>
+							
+							<entityattribute translate="title" module="admin">
+								<title>Mapping Entity Attribute</title>
+								<sort_order>21</sort_order>
+								<action>webportal/Backend_Master_SubPage_EntityAttribute/index</action>
+							</entityattribute>
+							
+							<service translate="title" module="admin">
+								<title>Service</title>
+								<sort_order>31</sort_order>
+								<action>webportal/Backend_Master_SubPage_Service/index</action>
+							</service>
+														
+						</children>
+					</subpage>
+
+
+					<bidding translate="title" module="admin">
+						<title>Bidding</title>
+						<sort_order>22</sort_order>
+						<children>
+							<createbid translate="title" module="admin">
+								<title>Create Bid</title>
+								<sort_order>01</sort_order>
+								<action>webportal/Backend_Master_Bidding_CreateBid/index</action>
+							</createbid>
+							
+							
+							<productmapping translate="title" module="admin">
+								<title>Product Mapping</title>
+								<sort_order>02</sort_order>
+								<action>webportal/Backend_Master_Bidding_ProductMapping/index</action>
+							</productmapping>
+						</children>
+					</bidding>
+					
+					
+					<system translate="title" module="admin">
+						<title>System</title>
+						<sort_order>23</sort_order>
+						<children>
+							<systemconfig translate="title" module="admin">
+								<title>System Config</title>
+								<sort_order>01</sort_order>
+								<action>webportal/Backend_Master_System_SystemConfig/index</action>
+							</systemconfig>
+						</children>
+					</system>
+															
+				</children>
+			</master>
+			
+			
+			<registration translate="title" module="admin">
+				<title>Registration</title>
+				<sort_order>20</sort_order>
+				<action>webportal/Backend_Registration_Registration_Registration/index</action>
+			</registration>
+			
+			
+			<bidding translate="title" module="admin">
+				<title>Bidding</title>
+				<sort_order>20</sort_order>
+				<children>
+					<bidtran translate="title" module="admin">
+						<title>Bid Tran</title>
+						<sort_order>01</sort_order>
+						<action>webportal/Backend_Bidding_BidTran/index</action>
+					</bidtran>
+					
+					
+					<bidwinner translate="title" module="admin">
+						<title>Bid Winner</title>
+						<sort_order>02</sort_order>
+						<action>webportal/Backend_Bidding_BidWinner/index</action>
+					</bidwinner>
+				</children>
+			</bidding>
+			
+			<clp translate="title" module="admin">
+				<title>CLP</title>
+				<sort_order>20</sort_order>
+				<children>
+					<clppoints translate="title" module="admin">
+						<title>CLP Points</title>
+						<sort_order>01</sort_order>
+						<action>webportal/Backend_CLP_CLPPoints_CLPPoints/index</action>
+					</clppoints>
+					
+					<clppointstran translate="title" module="admin">
+						<title>CLP Points Transaction</title>
+						<sort_order>02</sort_order>
+						<action>webportal/Backend_CLP_CLPPoints_CLPPointsTran/index</action>
+					</clppointstran>
+					
+				</children>	
+			</clp>
+			
+
+			<managedate translate="title" module="admin">
+				<title>Manage Data</title>
+				<sort_order>20</sort_order>
+				<children>
+					<centercontent translate="title" module="admin">
+						<title>Center/Content</title>
+						<sort_order>01</sort_order>
+						<children>
+							<type1 translate="title" module="admin">
+								<title>Type 1</title>
+								<sort_order>01</sort_order>
+								<children>
+									<bankbranch translate="title" module="admin">
+										<title>Bank Branch</title>
+										<sort_order>01</sort_order>
+										<action>webportal/Backend_Center_Content_Type1_Bank_Branch/index</action>
+									</bankbranch>
+									<bankatm translate="title" module="admin">
+										<title>Bank ATM</title>
+										<sort_order>02</sort_order>
+										<action>webportal/Backend_Center_Content_Type1_Bank_ATM/index</action>
+									</bankatm>
+								</children>
+							</type1>
+							
+							
+							<type2 translate="title" module="admin">
+								<title>Type 2</title>
+								<sort_order>21</sort_order>
+								<children>
+									<professional translate="title" module="admin">
+										<title>Professional</title>
+										<sort_order>01</sort_order>
+										<action>webportal/Backend_Center_Content_Type2_Professional_Professional/index</action>
+									</professional>
+									
+									<citydiamonds translate="title" module="admin">
+										<title>City Diamonds</title>
+										<sort_order>02</sort_order>
+										<action>webportal/Backend_Center_Content_Type2_CityDiamonds_CityDiamonds/index</action>
+									</citydiamonds>
+									
+									<blooddonor translate="title" module="admin">
+										<title>Blood Donor</title>
+										<sort_order>03</sort_order>
+										<action>webportal/Backend_Center_Content_Type2_BloodDonor_BloodDonor/index</action>
+									</blooddonor>
+									
+								</children>
+							</type2>
+														
+							<type5 translate="title" module="admin">
+								<title>Type 5</title>
+								<sort_order>51</sort_order>
+								<children>
+									<viewer translate="title" module="admin">
+										<title>Viewer</title>
+										<sort_order>01</sort_order>
+										<action>webportal/Backend_Center_Content_Type5_Viewer_Viewer/index</action>
+									</viewer>
+								</children>
+							</type5>
+
+							<type6 translate="title" module="admin">
+								<title>Type 6</title>
+								<sort_order>61</sort_order>
+								<children>
+								    <apctwebcontactus translate="title"
+										module="admin">
+										<title>Contact Us</title>
+										<sort_order>01</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebcontactus</action>
+									</apctwebcontactus>
+								</children>
+							</type6>
+							
+														
+							<type7 translate="title" module="admin">
+								<title>Type 7</title>
+								<sort_order>71</sort_order>
+								<children>
+									<event translate="title" module="admin">
+										<title>Events</title>
+										<sort_order>01</sort_order>
+										<action>webportal/Backend_Center_Content_Type7_Event_Event/index</action>
+									</event>
+									
+									<achivement translate="title" module="admin">
+										<title>Achivement</title>
+										<sort_order>01</sort_order>
+										<action>webportal/Backend_Center_Content_Type7_Achivement_Achivement/index</action>
+									</achivement>
+									
+
+									<news translate="title" module="admin">
+										<title>News</title>
+										<sort_order>01</sort_order>
+										<action>webportal/Backend_Center_Content_Type7_News_News/index</action>
+									</news>
+								</children>
+							</type7>
+
+
+							<type8_1 translate="title" module="admin">
+								<title>Type 8/1</title>
+								<sort_order>81</sort_order>
+								<children>
+
+									<apctwebadventure translate="title" module="admin">
+										<title>Adventure</title>
+										<sort_order>04</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebadventure</action>
+									</apctwebadventure>
+
+									<apctwebassociation translate="title"
+										module="admin">
+										<title>Association</title>
+										<sort_order>06</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebassociation</action>
+									</apctwebassociation>
+
+
+									<apctwebattachakki translate="title" module="admin">
+										<title>Atta Chakki</title>
+										<sort_order>07</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebattachakki</action>
+									</apctwebattachakki>
+
+
+									<apctwebartandcrafts translate="title" module="admin">
+										<title>Art And Crafts</title>
+										<sort_order>08</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebartandcrafts</action>
+									</apctwebartandcrafts>
+
+									<apctwebautomobile translate="title" module="admin">
+										<title>Auto Mobile</title>
+										<sort_order>09</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebautomobile</action>
+									</apctwebautomobile>
+
+									<apctwebbambooproducts translate="title" module="admin">
+										<title>Bamboo Products</title>
+										<sort_order>010</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebbambooproducts</action>
+									</apctwebbambooproducts>
+
+									<apctwebbar translate="title" module="admin">
+										<title>Bar</title>
+										<sort_order>010</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebbar</action>
+									</apctwebbar>
+
+
+									<apctwebbartonbandar translate="title"
+										module="admin">
+										<title>Barton Bandar</title>
+										<sort_order>011</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebbartonbandar</action>
+									</apctwebbartonbandar>
+
+
+									<apctwebbeautyparlours translate="title"
+										module="admin">
+										<title>Beauty Parlours</title>
+										<sort_order>012</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebbeautyparlours</action>
+									</apctwebbeautyparlours>
+
+
+									<apctwebbloodbank translate="title" module="admin">
+										<title>Blood Bank</title>
+										<sort_order>013</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebbloodbank</action>
+									</apctwebbloodbank>
+
+
+									<apctwebboutique translate="title" module="admin">
+										<title>Boutique</title>
+										<sort_order>014</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebboutique</action>
+									</apctwebboutique>
+
+
+									<apctwebbricks translate="title" module="admin">
+										<title>Bricks</title>
+										<sort_order>015</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebbricks</action>
+									</apctwebbricks>
+
+
+									<apctwebbuildingmaterial translate="title"
+										module="admin">
+										<title>Building Material</title>
+										<sort_order>016</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebbuildingmaterial</action>
+									</apctwebbuildingmaterial>
+
+
+									<apctwebcarpenter translate="title" module="admin">
+										<title>Carpenter</title>
+										<sort_order>017</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebcarpenter</action>
+									</apctwebcarpenter>
+
+
+									 
+
+
+									<apctwebcementmason translate="title"
+										module="admin">
+										<title>Cement Mason</title>
+										<sort_order>019</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebcementmason</action>
+									</apctwebcementmason>
+
+
+									<apctwebcinema translate="title" module="admin">
+										<title>Cinema</title>
+										<sort_order>021</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebcinema</action>
+									</apctwebcinema>
+								</children>
+							</type8_1>
+
+
+							<type8_2 translate="title" module="admin">
+								<title>Type 8/2</title>
+								<sort_order>82</sort_order>
+								<children>
+
+
+									<apctwebclub translate="title" module="admin">
+										<title>Club</title>
+										<sort_order>022</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebclub</action>
+									</apctwebclub>
+									
+									<apctwebclothing translate="title" module="admin">
+										<title>Clothing</title>
+										<sort_order>022</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebclothing</action>
+									</apctwebclothing>
+
+
+									<apctwebcollege translate="title" module="admin">
+										<title>College</title>
+										<sort_order>023</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebcollege</action>
+									</apctwebcollege>
+
+
+									<apctwebcompany translate="title" module="admin">
+										<title>Company</title>
+										<sort_order>024</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebcompany</action>
+									</apctwebcompany>
+
+
+									<apctwebcomputerhardwarenetworking
+										translate="title" module="admin">
+										<title>Computer Hardware Networking</title>
+										<sort_order>025</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebcomputerhardwarenetworking</action>
+									</apctwebcomputerhardwarenetworking>
+
+
+									<apctwebcomputerworld translate="title"
+										module="admin">
+										<title>Computer World</title>
+										<sort_order>026</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebcomputerworld</action>
+									</apctwebcomputerworld>
+									
+
+									<apctwebcouriers translate="title" module="admin">
+										<title>Couriers</title>
+										<sort_order>028</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebcouriers</action>
+									</apctwebcouriers>
+
+
+									<apctwebcrockery translate="title" module="admin">
+										<title>Crockery</title>
+										<sort_order>029</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebcrockery</action>
+									</apctwebcrockery>
+
+
+									<apctwebcyclestore translate="title" module="admin">
+										<title>Cycle Store</title>
+										<sort_order>030</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebcyclestore</action>
+									</apctwebcyclestore>
+									
+									
+									<apctwebdhaba translate="title" module="admin">
+										<title>Dhaba</title>
+										<sort_order>032</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebdhaba</action>
+									</apctwebdhaba>
+
+
+									<apctwebdharamkanta translate="title"
+										module="admin">
+										<title>Dharamkanta</title>
+										<sort_order>033</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebdharamkanta</action>
+									</apctwebdharamkanta>
+
+
+									<apctwebdharmshala translate="title" module="admin">
+										<title>Dharmshala</title>
+										<sort_order>034</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebdharmshala</action>
+									</apctwebdharmshala>
+
+
+									<apctwebdishtv translate="title" module="admin">
+										<title>Dish TV</title>
+										<sort_order>035</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebdishtv</action>
+									</apctwebdishtv>
+
+									<apctwebdj translate="title" module="admin">
+										<title>DJ</title>
+										<sort_order>036</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebdj</action>
+									</apctwebdj>
+
+
+									<apctwebdrivingschool translate="title"
+										module="admin">
+										<title>Driving School</title>
+										<sort_order>037</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebdrivingschool</action>
+									</apctwebdrivingschool>
+									
+									<apctwebdrycleaner translate="title" module="admin">
+										<title>Dry Cleaner</title>
+										<sort_order>037</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebdrycleaner</action>
+									</apctwebdrycleaner>
+
+
+									<apctwebelectrician translate="title"
+										module="admin">
+										<title>Electrician</title>
+										<sort_order>038</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebelectrician</action>
+									</apctwebelectrician>
+
+
+									<apctwebelectronic translate="title" module="admin">
+										<title>Electronic</title>
+										<sort_order>039</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebelectronic</action>
+									</apctwebelectronic>
+									
+									
+									<apctwebelectronicmedia translate="title" module="admin">
+										<title>Electronic Media</title>
+										<sort_order>039</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebelectronicmedia</action>
+									</apctwebelectronicmedia>
+									
+
+									
+
+									<apctwebemergency translate="title" module="admin">
+										<title>Emergency</title>
+										<sort_order>040</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebemergency</action>
+									</apctwebemergency>
+
+
+									<apctwebemitra translate="title" module="admin">
+										<title>Emitra</title>
+										<sort_order>041</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebemitra</action>
+									</apctwebemitra>
+								</children>
+							</type8_2>
+
+							<type8_3 translate="title" module="admin">
+								<title>Type 8/3</title>
+								<sort_order>83</sort_order>
+								<children>
+
+									<apctwebfactory translate="title" module="admin">
+										<title>Factory</title>
+										<sort_order>042</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebfactory</action>
+									</apctwebfactory>
+
+
+									<apctwebflorist translate="title" module="admin">
+										<title>Florist</title>
+										<sort_order>044</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebflorist</action>
+									</apctwebflorist>
+
+
+									<apctwebfootwear translate="title" module="admin">
+										<title>Footwear</title>
+										<sort_order>045</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebfootwear</action>
+									</apctwebfootwear>
+
+
+									<apctwebfoundations translate="title"
+										module="admin">
+										<title>Foundations</title>
+										<sort_order>046</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebfoundations</action>
+									</apctwebfoundations>
+
+
+									<apctwebfurniture translate="title" module="admin">
+										<title>Furniture</title>
+										<sort_order>047</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebfurniture</action>
+									</apctwebfurniture>
+
+
+									<apctwebgame translate="title" module="admin">
+										<title>Game</title>
+										<sort_order>048</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebgame</action>
+									</apctwebgame>
+
+
+									<apctwebgarment translate="title" module="admin">
+										<title>Garment</title>
+										<sort_order>049</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebgarment</action>
+									</apctwebgarment>
+
+
+									<apctwebgeneralstore translate="title"
+										module="admin">
+										<title>General Store</title>
+										<sort_order>051</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebgeneralstore</action>
+									</apctwebgeneralstore>
+
+
+									<apctwebgiftshop translate="title" module="admin">
+										<title>Gift Shop</title>
+										<sort_order>052</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebgiftshop</action>
+									</apctwebgiftshop>
+
+
+									<apctwebglassstore translate="title" module="admin">
+										<title>Glass Store</title>
+										<sort_order>053</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebglassstore</action>
+									</apctwebglassstore>
+
+
+									<apctwebguesthouse translate="title" module="admin">
+										<title>Guest House</title>
+										<sort_order>054</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebguesthouse</action>
+									</apctwebguesthouse>
+
+									<apctwebhealthcaregoods translate="title" module="admin">
+										<title>Health Care Goods</title>
+										<sort_order>055</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebhealthcaregoods</action>
+									</apctwebhealthcaregoods>
+									
+									<apctwebhaircut translate="title" module="admin">
+										<title>Hair Cut</title>
+										<sort_order>056</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebhaircut</action>
+									</apctwebhaircut>
+									
+																		
+									<apctwebhandloom translate="title" module="admin">
+										<title>Handloom</title>
+										<sort_order>057</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebhandloom</action>
+									</apctwebhandloom>
+
+
+									<apctwebhosieryshop translate="title"
+										module="admin">
+										<title>Hosiery Shop</title>
+										<sort_order>058</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebhosieryshop</action>
+									</apctwebhosieryshop>
+
+									<apctwebhostel translate="title" module="admin">
+										<title>Hostel</title>
+										<sort_order>060</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebhostel</action>
+									</apctwebhostel>
+
+
+									<apctwebhotel translate="title" module="admin">
+										<title>Hotel</title>
+										<sort_order>061</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebhotel</action>
+									</apctwebhotel>
+								</children>
+							</type8_3>
+
+							<type8_4 translate="title" module="admin">
+								<title>Type 8/4</title>
+								<sort_order>84</sort_order>
+								<children>
+
+									<apctwebicecreambakery translate="title"
+										module="admin">
+										<title>Ice Cream Bakery</title>
+										<sort_order>062</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebicecreambakery</action>
+									</apctwebicecreambakery>
+
+
+									<apctwebindustries translate="title" module="admin">
+										<title>Industries</title>
+										<sort_order>063</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebindustries</action>
+									</apctwebindustries>
+
+									<apctwebironstore translate="title" module="admin">
+										<title>Iron Store</title>
+										<sort_order>065</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebironstore</action>
+									</apctwebironstore>
+
+
+									<apctwebjewellery translate="title" module="admin">
+										<title>Jewellery</title>
+										<sort_order>066</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebjewellery</action>
+									</apctwebjewellery>
+
+
+									<apctwebkanganstore translate="title"
+										module="admin">
+										<title>Kangan Store</title>
+										<sort_order>067</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebkanganstore</action>
+									</apctwebkanganstore>
+
+
+									<apctwebkreshimandi translate="title"
+										module="admin">
+										<title>Kreshi Mandi</title>
+										<sort_order>068</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebkreshimandi</action>
+									</apctwebkreshimandi>
+
+
+									<apctweblacegotastore translate="title"
+										module="admin">
+										<title>Lace Gota Store</title>
+										<sort_order>069</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctweblacegotastore</action>
+									</apctweblacegotastore>
+
+
+									<apctwebmarble translate="title" module="admin">
+										<title>Marble</title>
+										<sort_order>071</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebmarble</action>
+									</apctwebmarble>
+
+									<acptwebmarriagebeuro translate="title"
+										module="admin">
+										<title>Marriage Beuro</title>
+										<sort_order>072</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/acptwebmarriagebeuro</action>
+									</acptwebmarriagebeuro>
+
+
+									<apctwebmarriageplace translate="title"
+										module="admin">
+										<title>Marriage Place</title>
+										<sort_order>072</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebmarriageplace</action>
+									</apctwebmarriageplace>
+
+
+									<apctwebmedicalstore translate="title"
+										module="admin">
+										<title>Medical Store</title>
+										<sort_order>073</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebmedicalstore</action>
+									</apctwebmedicalstore>
+
+
+									<apctwebmilkman translate="title" module="admin">
+										<title>Milkman</title>
+										<sort_order>074</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebmilkman</action>
+									</apctwebmilkman>
+
+
+									<apctwebmotormechanic translate="title"
+										module="admin">
+										<title>Motor Mechanic</title>
+										<sort_order>076</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebmotormechanic</action>
+									</apctwebmotormechanic>
+
+									<apctwebmusicalinstruments translate="title"
+										module="admin">
+										<title>Musical Instruments</title>
+										<sort_order>077</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebmusicalinstruments</action>
+									</apctwebmusicalinstruments>
+									
+									
+									<apctwebmattressfoamhouse translate="title"
+										module="admin">
+										<title>Mattress Foam House</title>
+										<sort_order>077</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebmattressfoamhouse</action>
+									</apctwebmattressfoamhouse>
+									
+									<apctwebnewspaperagency translate="title" module="admin">
+										<title>News Paper Agency</title>
+										<sort_order>78</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebnewspaperagency</action>
+									</apctwebnewspaperagency>
+									
+									<apctwebngo translate="title" module="admin">
+										<title>NGO</title>
+										<sort_order>077</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebngo</action>
+									</apctwebngo>
+
+									<apctwebnamkeenbhandar translate="title" module="admin">
+										<title>Namkeen Bhandar</title>
+										<sort_order>077</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebnamkeenbhandar</action>
+									</apctwebnamkeenbhandar>
+
+									<apctweboptical translate="title" module="admin">
+										<title>Optical</title>
+										<sort_order>078</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctweboptical</action>
+									</apctweboptical>
+
+
+									<apctweborganization translate="title"
+										module="admin">
+										<title>Organization</title>
+										<sort_order>079</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctweborganization</action>
+									</apctweborganization>
+
+
+									<apctwebpainter translate="title" module="admin">
+										<title>Painter</title>
+										<sort_order>080</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebpainter</action>
+									</apctwebpainter>
+
+
+									<apctwebpainthouse translate="title" module="admin">
+										<title>Paint House</title>
+										<sort_order>081</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebpainthouse</action>
+									</apctwebpainthouse>
+								</children>
+							</type8_4>
+
+							<type8_5 translate="title" module="admin">
+								<title>Type 8/5</title>
+								<sort_order>85</sort_order>
+								<children>
+
+									<apctwebpannierhouse translate="title"
+										module="admin">
+										<title>Pannier House</title>
+										<sort_order>082</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebpannierhouse</action>
+									</apctwebpannierhouse>
+
+
+									<apctwebpansari translate="title" module="admin">
+										<title>Pansari</title>
+										<sort_order>083</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebpansari</action>
+									</apctwebpansari>
+
+
+									<apctwebparks translate="title" module="admin">
+										<title>Parks</title>
+										<sort_order>084</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebparks</action>
+									</apctwebparks>
+
+
+									<apctwebphotostatlamination translate="title" module="admin">
+										<title>Photo Stat Lamination</title>
+										<sort_order>085</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebphotostatlamination</action>
+									</apctwebphotostatlamination>
+
+
+									<apctwebpicnicspots translate="title"
+										module="admin">
+										<title>Picnic Spots</title>
+										<sort_order>086</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebpicnicspots</action>
+									</apctwebpicnicspots>
+
+
+									<apctwebpicturehouse translate="title"
+										module="admin">
+										<title>Picture House</title>
+										<sort_order>087</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebpicturehouse</action>
+									</apctwebpicturehouse>
+
+
+									<apctwebplayzone translate="title" module="admin">
+										<title>Play Zone</title>
+										<sort_order>088</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebplayzone</action>
+									</apctwebplayzone>
+
+
+									<apctwebplumber translate="title" module="admin">
+										<title>Plumber</title>
+										<sort_order>089</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebplumber</action>
+									</apctwebplumber>
+
+
+									<apctwebplywoodshop translate="title"
+										module="admin">
+										<title>Plywood Shop</title>
+										<sort_order>090</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebplywoodshop</action>
+									</apctwebplywoodshop>
+
+
+									
+
+									<apctwebprintinghouse translate="title"
+										module="admin">
+										<title>Printing House</title>
+										<sort_order>091</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebprintinghouse</action>
+									</apctwebprintinghouse>
+
+									<apctwebpropertyadviser translate="title"
+										module="admin">
+										<title>Property Adviser</title>
+										<sort_order>092</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebpropertyadviser</action>
+									</apctwebpropertyadviser>
+									
+									<apctwebscrapstore translate="title"
+										module="admin">
+										<title>Scrap Store</title>
+										<sort_order>092</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebscrapstore</action>
+									</apctwebscrapstore>
+
+
+									<apctwebprovisionstore translate="title"
+										module="admin">
+										<title>Provision Store</title>
+										<sort_order>093</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebprovisionstore</action>
+									</apctwebprovisionstore>
+
+
+									<apctwebpurifier translate="title" module="admin">
+										<title>Purifier</title>
+										<sort_order>094</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebpurifier</action>
+									</apctwebpurifier>
+									
+									<apctwebpetrolpump translate="title" module="admin">
+										<title>Petrol Pump</title>
+										<sort_order>095</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebpetrolpump</action>
+									</apctwebpetrolpump>
+																		
+									
+
+									<apctwebrestaurants translate="title"
+										module="admin">
+										<title>Restaurants</title>
+										<sort_order>097</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebrestaurants</action>
+									</apctwebrestaurants>
+
+									<apctwebsand translate="title" module="admin">
+										<title>Sand</title>
+										<sort_order>099</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebsand</action>
+									</apctwebsand>
+
+
+									<apctwebsanitary translate="title" module="admin">
+										<title>Sanitary</title>
+										<sort_order>0100</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebsanitary</action>
+									</apctwebsanitary>
+
+
+									<apctwebsaree translate="title" module="admin">
+										<title>Saree</title>
+										<sort_order>0101</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebsaree</action>
+									</apctwebsaree>
+								</children>
+							</type8_5>
+
+							<type8_6 translate="title" module="admin">
+								<title>Type 8/6</title>
+								<sort_order>86</sort_order>
+								<children>
+									
+									<apctwebshoppingmolls translate="title"
+										module="admin">
+										<title>Shopping Molls</title>
+										<sort_order>0103</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebshoppingmolls</action>
+									</apctwebshoppingmolls>
+
+
+									<apctwebsilaicenter translate="title"
+										module="admin">
+										<title>Silai Center</title>
+										<sort_order>0104</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebsilaicenter</action>
+									</apctwebsilaicenter>
+
+
+									<apctwebsociety translate="title" module="admin">
+										<title>Society</title>
+										<sort_order>0105</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebsociety</action>
+									</apctwebsociety>
+
+
+									
+
+
+									<apctwebsports translate="title" module="admin">
+										<title>Sports</title>
+										<sort_order>0108</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebsports</action>
+									</apctwebsports>
+
+
+									<apctwebstationary translate="title" module="admin">
+										<title>Stationary</title>
+										<sort_order>0109</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebstationary</action>
+									</apctwebstationary>
+
+
+									<apctwebsteelwork translate="title" module="admin">
+										<title>Steel Work</title>
+										<sort_order>0110</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebsteelwork</action>
+									</apctwebsteelwork>
+
+
+									<apctwebstudio translate="title" module="admin">
+										<title>Studio</title>
+										<sort_order>0111</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebstudio</action>
+									</apctwebstudio>
+
+									<apctwebsurgical translate="title" module="admin">
+										<title>Surgical</title>
+										<sort_order>0111</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebsurgical</action>
+									</apctwebsurgical>
+
+
+									<apctwebsweetshop translate="title" module="admin">
+										<title>Sweet Shop</title>
+										<sort_order>0112</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebsweetshop</action>
+									</apctwebsweetshop>
+
+
+									<apctwebswimmingpools translate="title"
+										module="admin">
+										<title>Swimming Pools</title>
+										<sort_order>0113</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebswimmingpools</action>
+									</apctwebswimmingpools>
+
+
+									<apctwebtailor translate="title" module="admin">
+										<title>Tailor</title>
+										<sort_order>0114</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebtailor</action>
+									</apctwebtailor>
+
+
+									<apctwebtaxi translate="title" module="admin">
+										<title>Taxi</title>
+										<sort_order>0115</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebtaxi</action>
+									</apctwebtaxi>
+									
+									<apctwebtea translate="title"
+										module="admin">
+										<title>Tea</title>
+										<sort_order>0116</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebtea</action>
+									</apctwebtea>
+
+									<apctwebtelecomshop translate="title"
+										module="admin">
+										<title>Telecom Shop</title>
+										<sort_order>0118</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebtelecomshop</action>
+									</apctwebtelecomshop>
+
+
+									<apctwebtenthousecaterers translate="title"
+										module="admin">
+										<title>Tent House And Caterers</title>
+										<sort_order>0119</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebtenthousecaterers</action>
+									</apctwebtenthousecaterers>
+
+
+									<apctwebtiffincenter translate="title"
+										module="admin">
+										<title>Tiffin Center</title>
+										<sort_order>0120</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebtiffincenter</action>
+									</apctwebtiffincenter>
+
+
+									<apctwebtimbermart translate="title" module="admin">
+										<title>Timber Mart</title>
+										<sort_order>0121</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebtimbermart</action>
+									</apctwebtimbermart>
+								</children>
+							</type8_6>
+
+							<type8_7 translate="title" module="admin">
+								<title>Type 8/7</title>
+								<sort_order>87</sort_order>
+								<children>
+
+									<apctwebtransports translate="title" module="admin">
+										<title>Transports</title>
+										<sort_order>0122</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebtransports</action>
+									</apctwebtransports>
+
+
+									<apctwebtravel translate="title" module="admin">
+										<title>Travel</title>
+										<sort_order>0123</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebtravel</action>
+									</apctwebtravel>
+
+
+									<apctwebtrunkshop translate="title" module="admin">
+										<title>Trunk Shop</title>
+										<sort_order>0124</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebtrunkshop</action>
+									</apctwebtrunkshop>
+
+
+									<apctwebtrusts translate="title" module="admin">
+										<title>Trusts</title>
+										<sort_order>0125</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebtrusts</action>
+									</apctwebtrusts>
+
+
+									<apctwebtypecolleges translate="title"
+										module="admin">
+										<title>Type Colleges</title>
+										<sort_order>0126</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebtypecolleges</action>
+									</apctwebtypecolleges>
+
+
+									<apctwebunion translate="title" module="admin">
+										<title>Union</title>
+										<sort_order>0127</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebunion</action>
+									</apctwebunion>
+
+									<apctwebwatch translate="title" module="admin">
+										<title>Watch</title>
+										<sort_order>0131</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebwatch</action>
+									</apctwebwatch>
+
+
+									<apctwebwatercamper translate="title"
+										module="admin">
+										<title>Water Camper</title>
+										<sort_order>0132</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebwatercamper</action>
+									</apctwebwatercamper>
+								</children>
+							</type8_7>
+
+
+							<type8_8 translate="title" module="admin">
+								<title>Type 8/8</title>
+								<sort_order>88</sort_order>
+								<children>
+
+									<apctwebtattoosworld translate="title" module="admin">
+										<title>Tattoos World</title>
+										<sort_order>0122</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebtattoosworld</action>
+									</apctwebtattoosworld>
+
+
+									<apctwebbaheestore translate="title" module="admin">
+										<title>Bahee Store</title>
+										<sort_order>0123</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebbaheestore</action>
+									</apctwebbaheestore>
+
+
+									<apctwebluggage translate="title" module="admin">
+										<title>	Luggage And Bags</title>
+										<sort_order>0124</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebluggage</action>
+									</apctwebluggage>
+
+
+									<apctwebhandicrafts translate="title" module="admin">
+										<title>Handicrafts</title>
+										<sort_order>0125</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebhandicrafts</action>
+									</apctwebhandicrafts>
+
+
+									<apctwebfancydressesstore translate="title"
+										module="admin">
+										<title>Fancy Dresses Store</title>
+										<sort_order>0126</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebfancydressesstore</action>
+									</apctwebfancydressesstore>
+
+
+									<apctwebgaslighthouse translate="title" module="admin">
+										<title>Gas And Light House</title>
+										<sort_order>0127</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebgaslighthouse</action>
+									</apctwebgaslighthouse>
+
+									<apctwebfruithouse translate="title" module="admin">
+										<title>Fruit House</title>
+										<sort_order>0131</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebfruithouse</action>
+									</apctwebfruithouse>
+
+
+									<apctwebmusiccenter translate="title"
+										module="admin">
+										<title>Music Center</title>
+										<sort_order>0132</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebmusiccenter</action>
+									</apctwebmusiccenter>
+
+
+
+									<apctwebarmystore translate="title" module="admin">
+										<title>Army Store</title>
+										<sort_order>0125</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebarmystore</action>
+									</apctwebarmystore>
+
+
+									<apctwebgemsstore translate="title"
+										module="admin">
+										<title>Gems Store</title>
+										<sort_order>0126</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebgemsstore</action>
+									</apctwebgemsstore>
+
+
+									<apctwebmatchingstore translate="title" module="admin">
+										<title>Matching Store</title>
+										<sort_order>0127</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebmatchingstore</action>
+									</apctwebmatchingstore>
+
+									<apctwebdanceacademy translate="title" module="admin">
+										<title>Dance Academy</title>
+										<sort_order>0131</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebdanceacademy</action>
+									</apctwebdanceacademy>
+
+
+									<apctwebdisposal translate="title"
+										module="admin">
+										<title>Disposal And Packing Material</title>
+										<sort_order>0132</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebdisposal</action>
+									</apctwebdisposal>
+								</children>
+							</type8_8>
+
+
+							<type8_9 translate="title" module="admin">
+								<title>Type 8/9</title>
+								<sort_order>89</sort_order>
+								<children>
+
+									<apctwebteastall translate="title" module="admin">
+										<title>Tea Stall</title>
+										<sort_order>0122</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebteastall</action>
+									</apctwebteastall>
+
+									<apctwebshutteringstore translate="title" module="admin">
+										<title>Shuttering Store</title>
+										<sort_order>0123</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebshutteringstore</action>
+									</apctwebshutteringstore>
+
+									<apctwebfourwheelerworkshop translate="title" module="admin">
+										<title>Four Wheeler Workshop</title>
+										<sort_order>0125</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebfourwheelerworkshop</action>
+									</apctwebfourwheelerworkshop>
+									 
+
+									<apctwebtwowheelerworkshop translate="title" module="admin">
+										<title>Two Wheeler Workshop</title>
+										<sort_order>0126</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebtwowheelerworkshop</action>
+									</apctwebtwowheelerworkshop>
+
+
+									<apctwebrajaigaddabharaicenter translate="title" module="admin">
+										<title>Rajai Gadda Bharai Center</title>
+										<sort_order>0127</sort_order>
+										<action>webportal/Backend_Center_Content_Type8_Type8/apctwebrajaigaddabharaicenter</action>
+									</apctwebrajaigaddabharaicenter>
+
+								</children>
+							</type8_9>
+
+
+							<type10 translate="title" module="admin">
+								<title>Type 10</title>
+								<sort_order>101</sort_order>
+								<children>
+								
+									<apctwebagriculture translate="title" module="admin">
+										<title>Agriculture</title>
+										<sort_order>09</sort_order>
+										<action>webportal/Backend_Center_Content_Type10_Type10/apctwebagriculture</action>
+									</apctwebagriculture>
+								    
+								    <apctwebacademyinstitute translate="title" module="admin">
+										<title>Academy Institute</title>
+										<sort_order>10</sort_order>
+										<action>webportal/Backend_Center_Content_Type10_Type10/apctwebacademyinstitute</action>
+									</apctwebacademyinstitute>
+									
+									<apctwebfinance translate="title" module="admin">
+										<title>Finance</title>
+										<sort_order>20</sort_order>
+										<action>webportal/Backend_Center_Content_Type10_Type10/apctwebfinance</action>
+									</apctwebfinance>
+
+									<apctwebgodplace translate="title" module="admin">
+										<title>God Place</title>
+										<sort_order>30</sort_order>
+										<action>webportal/Backend_Center_Content_Type10_Type10/apctwebgodplace</action>
+									</apctwebgodplace>
+										
+									<apctwebgovtdepartment translate="title" module="admin">
+										<title>Govt Department</title>
+										<sort_order>40</sort_order>
+										<action>webportal/Backend_Center_Content_Type10_Type10/apctwebgovtdepartment</action>
+									</apctwebgovtdepartment>
+																										
+									<apctwebhospital translate="title" module="admin">
+										<title>Hospital</title>
+										<sort_order>50</sort_order>
+										<action>webportal/Backend_Center_Content_Type10_Hospital_Hospital/index</action>
+									</apctwebhospital>
+								    				
+									<apctweblaboratory translate="title" module="admin">
+										<title>Laboratory</title>
+										<sort_order>55</sort_order>
+										<action>webportal/Backend_Center_Content_Type10_Type10/apctweblaboratory</action>
+									</apctweblaboratory>
+																		
+									
+													    
+									<apctwebloan translate="title" module="admin">
+										<title>Loan</title>
+										<sort_order>60</sort_order>
+										<action>webportal/Backend_Center_Content_Type10_Type10/apctwebloan</action>
+									</apctwebloan>
+
+									<apctwebmobileservice translate="title" module="admin">
+										<title>Mobile Service</title>
+										<sort_order>70</sort_order>
+										<action>webportal/Backend_Center_Content_Type10_Type10/apctwebmobileservice</action>
+									</apctwebmobileservice>
+									
+																											
+									<apctwebnewspaper translate="title" module="admin">
+										<title>News Paper</title>
+										<sort_order>80</sort_order>
+										<action>webportal/Backend_Center_Content_Type10_Type10/apctwebnewspaper</action>
+									</apctwebnewspaper>
+																	    
+									<apctwebrecruitment translate="title" module="admin">
+										<title>Recruitment</title>
+										<sort_order>90</sort_order>
+										<action>webportal/Backend_Center_Content_Type10_Recruitment_Recruitment/index</action>
+									</apctwebrecruitment>
+									
+									<apctwebschool translate="title" module="admin">
+										<title>School</title>
+										<sort_order>100</sort_order>
+										<action>webportal/Backend_Center_Content_Type10_Type10/apctwebschool</action>
+									</apctwebschool>
+
+									<apctwebscientific translate="title" module="admin">
+										<title>Scientific</title>
+										<sort_order>103</sort_order>
+										<action>webportal/Backend_Center_Content_Type10_Type10/apctwebscientific</action>
+									</apctwebscientific>									
+									
+									
+									<apctwebuniversity translate="title" module="admin">
+										<title>University</title>
+										<sort_order>110</sort_order>
+										<action>webportal/Backend_Center_Content_Type10_Type10/apctwebuniversity</action>
+									</apctwebuniversity>
+
+									<apctwebvehicals translate="title" module="admin">
+										<title>Vehicals</title>
+										<sort_order>120</sort_order>
+										<action>webportal/Backend_Center_Content_Type10_Type10/apctwebvehicals</action>
+									</apctwebvehicals>									
+									
+									
+								</children>
+							</type10>
+							
+							
+							<type11 translate="title" module="admin">
+								<title>Type 11</title>
+								<sort_order>201</sort_order>
+								<children>
+									 <apctwebrailways translate="title" module="admin">
+										<title>Railways</title>
+										<sort_order>10</sort_order>
+										<action>webportal/Backend_Center_Content_Type11_Type11/apctwebrailways</action>
+									</apctwebrailways>
+									
+									<apctwebroadways translate="title" module="admin">
+										<title>Roadways</title>
+										<sort_order>20</sort_order>
+										<action>webportal/Backend_Center_Content_Type11_Type11/apctwebroadways</action>
+									</apctwebroadways>
+									
+									<apctwebresult translate="title" module="admin">
+										<title>Result</title>
+										<sort_order>30</sort_order>
+										<action>webportal/Backend_Center_Content_Type11_Type11/apctwebresult</action>
+									</apctwebresult>
+									
+									<apctwebsoftware translate="title" module="admin">
+										<title>Software</title>
+										<sort_order>40</sort_order>
+										<action>webportal/Backend_Center_Content_Type11_Type11/apctwebsoftware</action>
+									</apctwebsoftware>
+
+									<apctwebsongs translate="title" module="admin">
+										<title>Songs</title>
+										<sort_order>45</sort_order>
+										<action>webportal/Backend_Center_Content_Type11_Type11/apctwebsongs</action>
+									</apctwebsongs>
+									
+									<!--  
+									<apctwebgovtsites translate="title" module="admin">
+										<title>Govt Sites</title>
+										<sort_order>50</sort_order>
+										<action>webportal/Backend_Center_Content_Type11_Type11/apctwebgovtsites</action>
+									</apctwebgovtsites>
+									-->
+										
+									
+									<apctwebgspublicsectorunits translate="title" module="admin">
+										<title>Public Sector Units</title>
+										<sort_order>60</sort_order>
+										<action>webportal/Backend_Center_Content_Type11_Type11/apctwebgspublicsectorunits</action>
+									</apctwebgspublicsectorunits>
+																		
+									
+									<apctwebgsstategovtdepartment translate="title" module="admin">
+										<title>State Govt Department</title>
+										<sort_order>70</sort_order>
+										<action>webportal/Backend_Center_Content_Type11_Type11/apctwebgsstategovtdepartment</action>
+									</apctwebgsstategovtdepartment>
+									
+									
+									<apctwebgsinformationtechnologysector translate="title" module="admin">
+										<title>Information Technology Sector</title>
+										<sort_order>80</sort_order>
+										<action>webportal/Backend_Center_Content_Type11_Type11/apctwebgsinformationtechnologysector</action>
+									</apctwebgsinformationtechnologysector>
+						 
+					
+									<apctwebgsrajasthanstateportal translate="title" module="admin">
+										<title>Rajasthan State Portal</title>
+										<sort_order>90</sort_order>
+										<action>webportal/Backend_Center_Content_Type11_Type11/apctwebgsrajasthanstateportal</action>
+									</apctwebgsrajasthanstateportal>
+										
+					
+									<apctwebgsdistrictsites translate="title" module="admin">
+										<title>District Sites</title>
+										<sort_order>100</sort_order>
+										<action>webportal/Backend_Center_Content_Type11_Type11/apctwebgsdistrictsites</action>
+									</apctwebgsdistrictsites>
+					 
+										
+					 				<apctwebgscentralgovtdepartment translate="title" module="admin">
+										<title>Central Govt Department</title>
+										<sort_order>110</sort_order>
+										<action>webportal/Backend_Center_Content_Type11_Type11/apctwebgscentralgovtdepartment</action>
+									</apctwebgscentralgovtdepartment>
+					
+									
+					 				<apctwebgseducationalinstitutions translate="title" module="admin">
+										<title>Educational Institutions</title>
+										<sort_order>120</sort_order>
+										<action>webportal/Backend_Center_Content_Type11_Type11/apctwebgseducationalinstitutions</action>
+									</apctwebgseducationalinstitutions>
+										
+					
+									
+									
+									
+									
+									
+									
+									
+									
+								</children>
+							</type11>
+
+						</children>
+					</centercontent>
+
+					<firm translate="title" module="admin">
+						<title>Firm</title>
+						<sort_order>02</sort_order>
+						<action>webportal/Backend_Firm_Firm/index</action>
+					</firm>
+
+					<fileupload translate="title" module="admin">
+						<title>File Upload</title>
+						<sort_order>03</sort_order>
+						<children>
+							<imageupload translate="title" module="admin">
+								<title>Image Upload</title>
+								<sort_order>01</sort_order>
+								<children>
+								    <advertisement translate="title" module="admin">
+										<title>Advertisement</title>
+										<sort_order>01</sort_order>
+										<action>webportal/Backend_FileUpload_ImageUpload_Advertisement/index</action>
+									</advertisement>
+								</children>	
+							</imageupload>
+						</children>
+					</fileupload>
+
+					
+				</children>
+			</managedate>
+
+
+		</menu>
+
+		<acl>
+			<resources>
+				<admin>
+					<children>
+						<master translate="title" module="admin">
+							<title>Master</title>
+							<sort_order>20</sort_order>
+							<children>
+								<table translate="title" module="admin">
+									<title>Table</title>
+									<sort_order>01</sort_order>
+									<children>
+										<apctwebtable translate="title" module="admin">
+											<title>Web Table</title>
+											<sort_order>01</sort_order>
+										</apctwebtable>
+
+										<apctwebtabletype translate="title" module="admin">
+											<title>Web Table Type</title>
+											<sort_order>02</sort_order>
+										</apctwebtabletype>
+									</children>
+								</table>
+								
+								
+								<office translate="title" module="admin">
+									<title>Office</title>
+									<sort_order>11</sort_order>
+									<children>
+										<apctwebofficetype translate="title" module="admin">
+											<title>Office Type</title>
+											<sort_order>01</sort_order>
+										</apctwebofficetype>
+			
+										<apctweboffice translate="title" module="admin">
+											<title>Office</title>
+											<sort_order>11</sort_order>
+										</apctweboffice>
+										
+										<apctwebuseroffice translate="title" module="admin">
+											<title>User Office</title>
+											<sort_order>21</sort_order>
+										</apctwebuseroffice>
+																	
+									</children>
+								</office>
+								
+								<subpage translate="title" module="admin">
+									<title>Sub Page</title>
+									<sort_order>21</sort_order>
+									<children>
+										<entity translate="title" module="admin">
+											<title>Entity</title>
+											<sort_order>01</sort_order>
+										</entity>
+			
+										<attribute translate="title" module="admin">
+											<title>Attribute</title>
+											<sort_order>11</sort_order>
+										</attribute>
+										
+										<entityattribute translate="title" module="admin">
+											<title>Mapping Entity Attribute</title>
+											<sort_order>21</sort_order>
+										</entityattribute>
+										
+										<service translate="title" module="admin">
+											<title>Service</title>
+											<sort_order>31</sort_order>
+										</service>
+																	
+									</children>
+								</subpage>
+								
+								
+								<bidding translate="title" module="admin">
+									<title>Bidding</title>
+									<sort_order>22</sort_order>
+									<children>
+										<createbid translate="title" module="admin">
+											<title>Create Bid</title>
+											<sort_order>01</sort_order>
+										</createbid>
+										
+										<productmapping translate="title" module="admin">
+											<title>Product Mapping</title>
+											<sort_order>02</sort_order>
+										</productmapping>
+									</children>
+								</bidding>
+					
+					
+								<system translate="title" module="admin">
+									<title>System</title>
+									<sort_order>23</sort_order>
+									<children>
+										<systemconfig translate="title" module="admin">
+											<title>System Config</title>
+											<sort_order>01</sort_order>
+										</systemconfig>
+									</children>
+								</system>
+													
+							</children>
+						</master>
+
+						<registration translate="title" module="admin">
+							<title>Registration</title>
+							<sort_order>20</sort_order>
+						</registration>
+						
+						
+						<bidding translate="title" module="admin">
+							<title>Bidding</title>
+							<sort_order>20</sort_order>
+							<children>
+								<bidtran translate="title" module="admin">
+									<title>Bid Tran</title>
+									<sort_order>01</sort_order>
+								</bidtran>
+								
+								<bidwinner translate="title" module="admin">
+									<title>Bid Winner</title>
+									<sort_order>02</sort_order>
+								</bidwinner>
+							</children>
+						</bidding>
+						
+						
+						<clp translate="title" module="admin">
+							<title>CLP</title>
+							<sort_order>20</sort_order>
+							<children>
+								<clppoints translate="title" module="admin">
+									<title>CLP Points</title>
+									<sort_order>01</sort_order>
+								</clppoints>
+								
+								<clppointstran translate="title" module="admin">
+									<title>CLP Points Transaction</title>
+									<sort_order>02</sort_order>
+								</clppointstran>
+							</children>		
+						</clp>
+						
+						
+
+						<managedate translate="title" module="admin">
+							<title>Manage Data</title>
+							<sort_order>20</sort_order>
+							<children>
+								<centercontent translate="title" module="admin">
+									<title>Center/Content</title>
+									<sort_order>01</sort_order>
+									<children>
+										<type1 translate="title" module="admin">
+											<title>Type 1</title>
+											<sort_order>01</sort_order>
+											<children>
+												<bankbranch translate="title" module="admin">
+													<title>Bank Branch</title>
+													<sort_order>01</sort_order>
+												</bankbranch>
+												<bankatm translate="title" module="admin">
+													<title>Bank ATM</title>
+													<sort_order>02</sort_order>
+												</bankatm>
+											</children>
+										</type1>
+
+										<type2 translate="title" module="admin">
+											<title>Type 2</title>
+											<sort_order>21</sort_order>
+											<children>
+												<professional translate="title" module="admin">
+													<title>Professional</title>
+													<sort_order>01</sort_order>
+												</professional>
+												
+												<citydiamonds translate="title" module="admin">
+													<title>City Diamonds</title>
+													<sort_order>02</sort_order>
+												</citydiamonds>
+												
+												<blooddonor translate="title" module="admin">
+													<title>Blood Donor</title>
+													<sort_order>03</sort_order>
+												</blooddonor>
+											</children>
+										</type2>
+										
+										<type5 translate="title" module="admin">
+											<title>Type 5</title>
+											<sort_order>51</sort_order>
+											<children>
+												<viewer translate="title" module="admin">
+													<title>Viewer</title>
+													<sort_order>01</sort_order>
+												</viewer>
+											</children>
+										</type5>
+																				
+										<type6 translate="title" module="admin">
+											<title>Type 6</title>
+											<sort_order>61</sort_order>
+											<children>
+											    <apctwebcontactus translate="title"
+													module="admin">
+													<title>Contact Us</title>
+													<sort_order>01</sort_order>
+												</apctwebcontactus>
+											</children>
+										</type6>
+											
+										<type7 translate="title" module="admin">
+											<title>Type 7</title>
+											<sort_order>71</sort_order>
+											<children>
+												<event translate="title" module="admin">
+													<title>Events</title>
+													<sort_order>01</sort_order>
+												</event>
+												
+												<achivement translate="title" module="admin">
+													<title>Achivement</title>
+													<sort_order>02</sort_order>
+												</achivement>
+
+												<news translate="title" module="admin">
+													<title>News</title>
+													<sort_order>03</sort_order>
+												</news>
+											</children>
+										</type7>
+
+
+
+										<type8_1 translate="title" module="admin">
+											<title>Type 8/1</title>
+											<sort_order>81</sort_order>
+											<children>
+
+												<apctwebadventure translate="title" module="admin">
+													<title>Adventure</title>
+													<sort_order>04</sort_order>
+												</apctwebadventure>
+
+
+												<apctwebassociation translate="title"
+													module="admin">
+													<title>Association</title>
+													<sort_order>06</sort_order>
+												</apctwebassociation>
+												
+												
+												<apctwebattachakki translate="title"
+													module="admin">
+													<title>Atta Chakki</title>
+													<sort_order>07</sort_order>
+												</apctwebattachakki>
+
+
+												<apctwebartandcrafts translate="title"
+													module="admin">
+													<title>Art And Crafts</title>
+													<sort_order>08</sort_order>
+												</apctwebartandcrafts>
+
+
+												<apctwebautomobile translate="title"
+													module="admin">
+													<title>Automobile</title>
+													<sort_order>09</sort_order>
+												</apctwebautomobile>
+
+												<apctwebbambooproducts translate="title" module="admin">
+													<title>Bamboo Products</title>
+													<sort_order>010</sort_order>
+												</apctwebbambooproducts>
+
+
+												<apctwebbar translate="title" module="admin">
+													<title>Bar</title>
+													<sort_order>010</sort_order>
+												</apctwebbar>
+
+
+												<apctwebbartonbandar translate="title"
+													module="admin">
+													<title>Bartonbandar</title>
+													<sort_order>011</sort_order>
+												</apctwebbartonbandar>
+
+
+												<apctwebbeautyparlours translate="title"
+													module="admin">
+													<title>Beautyparlours</title>
+													<sort_order>012</sort_order>
+												</apctwebbeautyparlours>
+
+
+												<apctwebbloodbank translate="title" module="admin">
+													<title>Bloodbank</title>
+													<sort_order>013</sort_order>
+												</apctwebbloodbank>
+
+
+												<apctwebboutique translate="title" module="admin">
+													<title>Boutique</title>
+													<sort_order>014</sort_order>
+												</apctwebboutique>
+
+
+												<apctwebbricks translate="title" module="admin">
+													<title>Bricks</title>
+													<sort_order>015</sort_order>
+												</apctwebbricks>
+
+
+												<apctwebbuildingmaterial translate="title"
+													module="admin">
+													<title>Buildingmaterial</title>
+													<sort_order>016</sort_order>
+												</apctwebbuildingmaterial>
+
+
+												<apctwebcarpenter translate="title" module="admin">
+													<title>Carpenter</title>
+													<sort_order>017</sort_order>
+												</apctwebcarpenter>
+												
+
+
+												 
+
+
+												<apctwebcementmason translate="title"
+													module="admin">
+													<title>Cementmason</title>
+													<sort_order>019</sort_order>
+												</apctwebcementmason>
+
+
+												
+
+
+												<apctwebcinema translate="title" module="admin">
+													<title>Cinema</title>
+													<sort_order>021</sort_order>
+												</apctwebcinema>
+											</children>
+										</type8_1>
+
+
+										<type8_2 translate="title" module="admin">
+											<title>Type 8/2</title>
+											<sort_order>82</sort_order>
+											<children>
+
+
+												<apctwebclub translate="title" module="admin">
+													<title>Club</title>
+													<sort_order>022</sort_order>
+												</apctwebclub>
+
+												<apctwebclothing translate="title" module="admin">
+													<title>Clothing</title>
+													<sort_order>022</sort_order>
+												</apctwebclothing>
+
+												<apctwebcollege translate="title" module="admin">
+													<title>College</title>
+													<sort_order>023</sort_order>
+												</apctwebcollege>
+
+
+												<apctwebcompany translate="title" module="admin">
+													<title>Company</title>
+													<sort_order>024</sort_order>
+												</apctwebcompany>
+
+
+												<apctwebcomputerhardwarenetworking
+													translate="title" module="admin">
+													<title>Computerhardwarenetworking</title>
+													<sort_order>025</sort_order>
+												</apctwebcomputerhardwarenetworking>
+
+
+												<apctwebcomputerworld translate="title"
+													module="admin">
+													<title>Computerworld</title>
+													<sort_order>026</sort_order>
+												</apctwebcomputerworld>
+
+												
+
+												<apctwebcouriers translate="title" module="admin">
+													<title>Couriers</title>
+													<sort_order>028</sort_order>
+												</apctwebcouriers>
+
+
+												<apctwebcrockery translate="title" module="admin">
+													<title>Crockery</title>
+													<sort_order>029</sort_order>
+												</apctwebcrockery>
+
+
+												<apctwebcyclestore translate="title"
+													module="admin">
+													<title>Cyclestore</title>
+													<sort_order>030</sort_order>
+												</apctwebcyclestore>
+																								
+
+												<apctwebdhaba translate="title" module="admin">
+													<title>Dhaba</title>
+													<sort_order>032</sort_order>
+												</apctwebdhaba>
+
+
+												<apctwebdharamkanta translate="title"
+													module="admin">
+													<title>Dharamkanta</title>
+													<sort_order>033</sort_order>
+												</apctwebdharamkanta>
+
+
+												<apctwebdharmshala translate="title"
+													module="admin">
+													<title>Dharmshala</title>
+													<sort_order>034</sort_order>
+												</apctwebdharmshala>
+
+
+												<apctwebdishtv translate="title" module="admin">
+													<title>Dishtv</title>
+													<sort_order>035</sort_order>
+												</apctwebdishtv>
+
+												<apctwebdj translate="title" module="admin">
+													<title>DJ</title>
+													<sort_order>036</sort_order>
+												</apctwebdj>
+
+												<apctwebdrivingschool translate="title"
+													module="admin">
+													<title>Drivingschool</title>
+													<sort_order>037</sort_order>
+												</apctwebdrivingschool>
+
+												<apctwebdrycleaner translate="title" module="admin">
+													<title>Dry Cleaner</title>
+													<sort_order>037</sort_order>
+												</apctwebdrycleaner>
+
+												<apctwebelectrician translate="title"
+													module="admin">
+													<title>Electrician</title>
+													<sort_order>038</sort_order>
+												</apctwebelectrician>
+
+
+												<apctwebelectronic translate="title"
+													module="admin">
+													<title>Electronic</title>
+													<sort_order>039</sort_order>
+												</apctwebelectronic>
+
+												<apctwebelectronicmedia translate="title"
+													module="admin">
+													<title>Electronic Media</title>
+													<sort_order>039</sort_order>
+												</apctwebelectronicmedia>
+												
+												
+												<apctwebemergency translate="title" module="admin">
+													<title>Emergency</title>
+													<sort_order>040</sort_order>
+												</apctwebemergency>
+
+
+												<apctwebemitra translate="title" module="admin">
+													<title>Emitra</title>
+													<sort_order>041</sort_order>
+												</apctwebemitra>
+											</children>
+										</type8_2>
+
+										<type8_3 translate="title" module="admin">
+											<title>Type 8/3</title>
+											<sort_order>83</sort_order>
+											<children>
+
+												<apctwebfactory translate="title" module="admin">
+													<title>Factory</title>
+													<sort_order>042</sort_order>
+												</apctwebfactory>
+
+												<apctwebflorist translate="title" module="admin">
+													<title>Florist</title>
+													<sort_order>044</sort_order>
+												</apctwebflorist>
+
+
+												<apctwebfootwear translate="title" module="admin">
+													<title>Footwear</title>
+													<sort_order>045</sort_order>
+												</apctwebfootwear>
+
+
+												<apctwebfoundations translate="title"
+													module="admin">
+													<title>Foundations</title>
+													<sort_order>046</sort_order>
+												</apctwebfoundations>
+
+
+												<apctwebfurniture translate="title" module="admin">
+													<title>Furniture</title>
+													<sort_order>047</sort_order>
+												</apctwebfurniture>
+
+
+												<apctwebgame translate="title" module="admin">
+													<title>Game</title>
+													<sort_order>048</sort_order>
+												</apctwebgame>
+
+
+												<apctwebgarment translate="title" module="admin">
+													<title>Garment</title>
+													<sort_order>049</sort_order>
+												</apctwebgarment>
+
+
+												<apctwebgeneralstore translate="title"
+													module="admin">
+													<title>Generalstore</title>
+													<sort_order>051</sort_order>
+												</apctwebgeneralstore>
+
+
+												<apctwebgiftshop translate="title" module="admin">
+													<title>Giftshop</title>
+													<sort_order>052</sort_order>
+												</apctwebgiftshop>
+
+
+												<apctwebglassstore translate="title"
+													module="admin">
+													<title>Glassstore</title>
+													<sort_order>053</sort_order>
+												</apctwebglassstore>
+
+
+												<apctwebguesthouse translate="title" module="admin">
+													<title>Guesthouse</title>
+													<sort_order>054</sort_order>
+												</apctwebguesthouse>
+												
+												<apctwebhealthcaregoods translate="title" module="admin">
+													<title>Health Care Goods</title>
+													<sort_order>055</sort_order>
+												</apctwebhealthcaregoods>
+												
+												<apctwebhaircut translate="title" module="admin">
+													<title>Hair Cut</title>
+													<sort_order>056</sort_order>
+												</apctwebhaircut>
+												
+												<apctwebhandloom translate="title" module="admin">
+													<title>Handloom</title>
+													<sort_order>057</sort_order>
+												</apctwebhandloom>
+
+
+												<apctwebhosieryshop translate="title"
+													module="admin">
+													<title>Hosieryshop</title>
+													<sort_order>058</sort_order>
+												</apctwebhosieryshop>
+
+												<apctwebhostel translate="title" module="admin">
+													<title>Hostel</title>
+													<sort_order>060</sort_order>
+												</apctwebhostel>
+
+
+												<apctwebhotel translate="title" module="admin">
+													<title>Hotel</title>
+													<sort_order>061</sort_order>
+												</apctwebhotel>
+											</children>
+										</type8_3>
+
+										<type8_4 translate="title" module="admin">
+											<title>Type 8/4</title>
+											<sort_order>84</sort_order>
+											<children>
+
+												<apctwebicecreambakery translate="title"
+													module="admin">
+													<title>Icecreambakery</title>
+													<sort_order>062</sort_order>
+												</apctwebicecreambakery>
+
+
+												<apctwebindustries translate="title"
+													module="admin">
+													<title>Industries</title>
+													<sort_order>063</sort_order>
+												</apctwebindustries>
+
+
+												
+
+
+												<apctwebironstore translate="title" module="admin">
+													<title>Ironstore</title>
+													<sort_order>065</sort_order>
+												</apctwebironstore>
+
+
+												<apctwebjewellery translate="title" module="admin">
+													<title>Jewellery</title>
+													<sort_order>066</sort_order>
+												</apctwebjewellery>
+
+
+												<apctwebkanganstore translate="title"
+													module="admin">
+													<title>Kanganstore</title>
+													<sort_order>067</sort_order>
+												</apctwebkanganstore>
+
+
+												<apctwebkreshimandi translate="title"
+													module="admin">
+													<title>Kreshimandi</title>
+													<sort_order>068</sort_order>
+												</apctwebkreshimandi>
+
+
+												<apctweblacegotastore translate="title"
+													module="admin">
+													<title>Lace Gota Store</title>
+													<sort_order>069</sort_order>
+												</apctweblacegotastore>
+
+												<apctwebmarble translate="title" module="admin">
+													<title>Marble</title>
+													<sort_order>071</sort_order>
+												</apctwebmarble>
+
+												<acptwebmarriagebeuro translate="title"
+													module="admin">
+													<title>Marriage Beuro</title>
+													<sort_order>072</sort_order>
+												</acptwebmarriagebeuro>
+
+
+
+												<apctwebmarriageplace translate="title"
+													module="admin">
+													<title>Marriageplace</title>
+													<sort_order>072</sort_order>
+												</apctwebmarriageplace>
+
+
+												<apctwebmedicalstore translate="title"
+													module="admin">
+													<title>Medicalstore</title>
+													<sort_order>073</sort_order>
+												</apctwebmedicalstore>
+
+
+												<apctwebmilkman translate="title" module="admin">
+													<title>Milkman</title>
+													<sort_order>074</sort_order>
+												</apctwebmilkman>
+
+												<apctwebmotormechanic translate="title"
+													module="admin">
+													<title>Motormechanic</title>
+													<sort_order>076</sort_order>
+												</apctwebmotormechanic>
+
+												<apctwebmusicalinstruments translate="title"
+													module="admin">
+													<title>Musical Instruments</title>
+													<sort_order>077</sort_order>
+												</apctwebmusicalinstruments>
+												
+												<apctwebmattressfoamhouse translate="title"
+													module="admin">
+													<title>Mattress Foam House</title>
+													<sort_order>077</sort_order>
+												</apctwebmattressfoamhouse>
+
+												<apctwebnewspaperagency translate="title" module="admin">
+													<title>News Paper Agency</title>
+													<sort_order>78</sort_order>
+												</apctwebnewspaperagency>
+
+												<apctwebngo translate="title" module="admin">
+													<title>Ngo</title>
+													<sort_order>077</sort_order>
+												</apctwebngo>
+												
+												
+												<apctwebnamkeenbhandar translate="title" module="admin">
+													<title>Namkeen Bhandar</title>
+													<sort_order>077</sort_order>
+												</apctwebnamkeenbhandar>
+												
+
+
+												<apctweboptical translate="title" module="admin">
+													<title>Optical</title>
+													<sort_order>078</sort_order>
+												</apctweboptical>
+
+
+												<apctweborganization translate="title"
+													module="admin">
+													<title>Organization</title>
+													<sort_order>079</sort_order>
+												</apctweborganization>
+
+
+												<apctwebpainter translate="title" module="admin">
+													<title>Painter</title>
+													<sort_order>080</sort_order>
+												</apctwebpainter>
+
+
+												<apctwebpainthouse translate="title"
+													module="admin">
+													<title>Painthouse</title>
+													<sort_order>081</sort_order>
+												</apctwebpainthouse>
+											</children>
+										</type8_4>
+
+										<type8_5 translate="title" module="admin">
+											<title>Type 8/5</title>
+											<sort_order>85</sort_order>
+											<children>
+
+												<apctwebpannierhouse translate="title"
+													module="admin">
+													<title>Pannierhouse</title>
+													<sort_order>082</sort_order>
+												</apctwebpannierhouse>
+
+
+												<apctwebpansari translate="title" module="admin">
+													<title>Pansari</title>
+													<sort_order>083</sort_order>
+												</apctwebpansari>
+
+
+												<apctwebparks translate="title" module="admin">
+													<title>Parks</title>
+													<sort_order>084</sort_order>
+												</apctwebparks>
+
+												<apctwebphotostatlamination translate="title" module="admin">
+													<title>Photo Stat Lamination</title>
+													<sort_order>085</sort_order>
+												</apctwebphotostatlamination>	
+												
+
+												<apctwebpicnicspots translate="title"
+													module="admin">
+													<title>Picnicspots</title>
+													<sort_order>086</sort_order>
+												</apctwebpicnicspots>
+
+
+												<apctwebpicturehouse translate="title"
+													module="admin">
+													<title>Picturehouse</title>
+													<sort_order>087</sort_order>
+												</apctwebpicturehouse>
+
+
+												<apctwebplayzone translate="title" module="admin">
+													<title>Playzone</title>
+													<sort_order>088</sort_order>
+												</apctwebplayzone>
+
+
+												<apctwebplumber translate="title" module="admin">
+													<title>Plumber</title>
+													<sort_order>089</sort_order>
+												</apctwebplumber>
+
+
+												<apctwebplywoodshop translate="title"
+													module="admin">
+													<title>Plywoodshop</title>
+													<sort_order>090</sort_order>
+												</apctwebplywoodshop>
+
+
+												
+
+												<apctwebprintinghouse translate="title"
+													module="admin">
+													<title>Printinghouse</title>
+													<sort_order>091</sort_order>
+												</apctwebprintinghouse>
+
+												<apctwebpropertyadviser translate="title"
+													module="admin">
+													<title>Propertyadviser</title>
+													<sort_order>092</sort_order>
+												</apctwebpropertyadviser>
+												
+												<apctwebscrapstore translate="title"
+													module="admin">
+													<title>Scrap Store</title>
+													<sort_order>092</sort_order>
+												</apctwebscrapstore>
+
+
+												<apctwebprovisionstore translate="title"
+													module="admin">
+													<title>Provisionstore</title>
+													<sort_order>093</sort_order>
+												</apctwebprovisionstore>
+
+
+												<apctwebpurifier translate="title" module="admin">
+													<title>Purifier</title>
+													<sort_order>094</sort_order>
+												</apctwebpurifier>
+												
+												<apctwebpetrolpump translate="title" module="admin">
+													<title>Petrol Pump</title>
+													<sort_order>095</sort_order>
+												</apctwebpetrolpump>
+												
+												<apctwebrestaurants translate="title"
+													module="admin">
+													<title>Restaurants</title>
+													<sort_order>097</sort_order>
+												</apctwebrestaurants>
+
+												<apctwebsand translate="title" module="admin">
+													<title>Sand</title>
+													<sort_order>099</sort_order>
+												</apctwebsand>
+
+
+												<apctwebsanitary translate="title" module="admin">
+													<title>Sanitary</title>
+													<sort_order>0100</sort_order>
+												</apctwebsanitary>
+
+
+												<apctwebsaree translate="title" module="admin">
+													<title>Saree</title>
+													<sort_order>0101</sort_order>
+												</apctwebsaree>
+											</children>
+										</type8_5>
+
+										<type8_6 translate="title" module="admin">
+											<title>Type 8/6</title>
+											<sort_order>86</sort_order>
+											<children>
+												
+												<apctwebshoppingmolls translate="title"
+													module="admin">
+													<title>Shoppingmolls</title>
+													<sort_order>0103</sort_order>
+												</apctwebshoppingmolls>
+
+
+												<apctwebsilaicenter translate="title"
+													module="admin">
+													<title>Silaicenter</title>
+													<sort_order>0104</sort_order>
+												</apctwebsilaicenter>
+
+
+												<apctwebsociety translate="title" module="admin">
+													<title>Society</title>
+													<sort_order>0105</sort_order>
+												</apctwebsociety>
+
+
+												
+
+
+												<apctwebsports translate="title" module="admin">
+													<title>Sports</title>
+													<sort_order>0108</sort_order>
+												</apctwebsports>
+
+
+												<apctwebstationary translate="title"
+													module="admin">
+													<title>Stationary</title>
+													<sort_order>0109</sort_order>
+												</apctwebstationary>
+
+
+												<apctwebsteelwork translate="title" module="admin">
+													<title>Steelwork</title>
+													<sort_order>0110</sort_order>
+												</apctwebsteelwork>
+
+
+												<apctwebstudio translate="title" module="admin">
+													<title>Studio</title>
+													<sort_order>0111</sort_order>
+												</apctwebstudio>
+
+												<apctwebsurgical translate="title" module="admin">
+													<title>Surgical</title>
+													<sort_order>0111</sort_order>
+												</apctwebsurgical>
+
+												<apctwebsweetshop translate="title" module="admin">
+													<title>Sweetshop</title>
+													<sort_order>0112</sort_order>
+												</apctwebsweetshop>
+
+
+												<apctwebswimmingpools translate="title"
+													module="admin">
+													<title>Swimmingpools</title>
+													<sort_order>0113</sort_order>
+												</apctwebswimmingpools>
+
+
+												<apctwebtailor translate="title" module="admin">
+													<title>Tailor</title>
+													<sort_order>0114</sort_order>
+												</apctwebtailor>
+
+
+												<apctwebtaxi translate="title" module="admin">
+													<title>Taxi</title>
+													<sort_order>0115</sort_order>
+												</apctwebtaxi>
+
+												<apctwebtea translate="title" module="admin">
+													<title>Tea</title>
+													<sort_order>0116</sort_order>
+												</apctwebtea>
+												
+
+												<apctwebtelecomshop translate="title"
+													module="admin">
+													<title>Telecomshop</title>
+													<sort_order>0118</sort_order>
+												</apctwebtelecomshop>
+
+
+												<apctwebtenthousecaterers
+													translate="title" module="admin">
+													<title>Tent House And Caterers</title>
+													<sort_order>0119</sort_order>
+												</apctwebtenthousecaterers>
+
+
+												<apctwebtiffincenter translate="title"
+													module="admin">
+													<title>Tiffin Center</title>
+													<sort_order>0120</sort_order>
+												</apctwebtiffincenter>
+
+
+												<apctwebtimbermart translate="title"
+													module="admin">
+													<title>Timbermart</title>
+													<sort_order>0121</sort_order>
+												</apctwebtimbermart>
+											</children>
+										</type8_6>
+
+										<type8_7 translate="title" module="admin">
+											<title>Type 8/7</title>
+											<sort_order>87</sort_order>
+											<children>
+
+												<apctwebtransports translate="title"
+													module="admin">
+													<title>Transports</title>
+													<sort_order>0122</sort_order>
+												</apctwebtransports>
+
+												
+
+												<apctwebtravel translate="title" module="admin">
+													<title>Travel</title>
+													<sort_order>0123</sort_order>
+												</apctwebtravel>
+
+
+												<apctwebtrunkshop translate="title" module="admin">
+													<title>Trunkshop</title>
+													<sort_order>0124</sort_order>
+												</apctwebtrunkshop>
+
+
+												<apctwebtrusts translate="title" module="admin">
+													<title>Trusts</title>
+													<sort_order>0125</sort_order>
+												</apctwebtrusts>
+
+
+												<apctwebtypecolleges translate="title"
+													module="admin">
+													<title>Typecolleges</title>
+													<sort_order>0126</sort_order>
+												</apctwebtypecolleges>
+
+
+												<apctwebunion translate="title" module="admin">
+													<title>Union</title>
+													<sort_order>0127</sort_order>
+												</apctwebunion>
+
+												<apctwebwatch translate="title" module="admin">
+													<title>Watch</title>
+													<sort_order>0131</sort_order>
+												</apctwebwatch>
+
+
+												<apctwebwatercamper translate="title"
+													module="admin">
+													<title>Watercamper</title>
+													<sort_order>0132</sort_order>
+												</apctwebwatercamper>
+											</children>
+										</type8_7>
+
+
+										<type8_8 translate="title" module="admin">
+											<title>Type 8/8</title>
+											<sort_order>88</sort_order>
+											<children>
+
+												<apctwebtattoosworld translate="title" module="admin">
+													<title>Tattoos World</title>
+													<sort_order>0122</sort_order>
+												</apctwebtattoosworld>
+
+
+												<apctwebbaheestore translate="title" module="admin">
+													<title>Bahee Store</title>
+													<sort_order>0123</sort_order>
+												</apctwebbaheestore>
+
+
+												<apctwebluggage translate="title" module="admin">
+													<title>	Luggage And Bags</title>
+													<sort_order>0124</sort_order>
+												</apctwebluggage>
+
+
+												<apctwebhandicrafts translate="title" module="admin">
+													<title>Handicrafts</title>
+													<sort_order>0125</sort_order>
+												</apctwebhandicrafts>
+
+
+												<apctwebfancydressesstore translate="title"
+													module="admin">
+													<title>Fancy Dresses Store</title>
+													<sort_order>0126</sort_order>
+												</apctwebfancydressesstore>
+
+
+												<apctwebgaslighthouse translate="title" module="admin">
+													<title>Gas And Light House</title>
+													<sort_order>0127</sort_order>
+												</apctwebgaslighthouse>
+
+												<apctwebfruithouse translate="title" module="admin">
+													<title>Fruit House</title>
+													<sort_order>0131</sort_order>
+												</apctwebfruithouse>
+
+
+												<apctwebmusiccenter translate="title"
+													module="admin">
+													<title>Music Center</title>
+													<sort_order>0132</sort_order>
+												</apctwebmusiccenter>
+
+
+
+												<apctwebarmystore translate="title" module="admin">
+													<title>Army Store</title>
+													<sort_order>0125</sort_order>
+												</apctwebarmystore>
+
+
+												<apctwebgemsstore translate="title"
+													module="admin">
+													<title>Gems Store</title>
+													<sort_order>0126</sort_order>
+												</apctwebgemsstore>
+
+
+												<apctwebmatchingstore translate="title" module="admin">
+													<title>Matching Store</title>
+													<sort_order>0127</sort_order>
+												</apctwebmatchingstore>
+
+												<apctwebdanceacademy translate="title" module="admin">
+													<title>Dance Academy</title>
+													<sort_order>0131</sort_order>
+												</apctwebdanceacademy>
+
+
+												<apctwebdisposal translate="title"
+													module="admin">
+													<title>Disposal And Packing Material</title>
+													<sort_order>0132</sort_order>
+												</apctwebdisposal>
+											</children>
+										</type8_8>
+
+
+										<type8_9 translate="title" module="admin">
+											<title>Type 8/9</title>
+											<sort_order>89</sort_order>
+											<children>
+
+												<apctwebteastall translate="title" module="admin">
+													<title>Tea Stall</title>
+													<sort_order>0122</sort_order>
+												</apctwebteastall>
+
+												<apctwebshutteringstore translate="title" module="admin">
+													<title>Shuttering Store</title>
+													<sort_order>0123</sort_order>
+												</apctwebshutteringstore>
+
+												<apctwebfourwheelerworkshop translate="title" module="admin">
+													<title>Four Wheeler Workshop</title>
+													<sort_order>0125</sort_order>
+												</apctwebfourwheelerworkshop>
+												 
+
+												<apctwebtwowheelerworkshop translate="title" module="admin">
+													<title>Two Wheeler Workshop</title>
+													<sort_order>0126</sort_order>
+												</apctwebtwowheelerworkshop>
+
+
+												<apctwebrajaigaddabharaicenter translate="title" module="admin">
+													<title>Rajai Gadda Bharai Center</title>
+													<sort_order>0127</sort_order>
+												</apctwebrajaigaddabharaicenter>
+
+											</children>
+										</type8_9>
+
+
+
+										<type10 translate="title" module="admin">
+											<title>Type 10</title>
+											<sort_order>101</sort_order>
+											<children>
+											
+												<apctwebagriculture translate="title" module="admin">
+													<title>Agriculture</title>
+													<sort_order>09</sort_order>
+												</apctwebagriculture>
+													
+											    <apctwebacademyinstitute translate="title" module="admin">
+													<title>Academy Institute</title>
+													<sort_order>10</sort_order>
+												</apctwebacademyinstitute>
+												
+												<apctwebfinance translate="title" module="admin">
+													<title>Finance</title>
+													<sort_order>20</sort_order>
+												</apctwebfinance>
+			
+												<apctwebgodplace translate="title" module="admin">
+													<title>God Place</title>
+													<sort_order>30</sort_order>
+												</apctwebgodplace>
+													
+												<apctwebgovtdepartment translate="title" module="admin">
+													<title>Govt Department</title>
+													<sort_order>40</sort_order>
+												</apctwebgovtdepartment>
+																													
+												<apctwebhospital translate="title" module="admin">
+													<title>Hospital</title>
+													<sort_order>50</sort_order>
+												</apctwebhospital>
+											    					
+												<apctweblaboratory translate="title" module="admin">
+													<title>Laboratory</title>
+													<sort_order>55</sort_order>
+												</apctweblaboratory>
+												
+															    
+												<apctwebloan translate="title" module="admin">
+													<title>Loan</title>
+													<sort_order>60</sort_order>
+												</apctwebloan>
+			
+												<apctwebmobileservice translate="title" module="admin">
+													<title>Mobile Service</title>
+													<sort_order>70</sort_order>
+												</apctwebmobileservice>
+																														
+												<apctwebnewspaper translate="title" module="admin">
+													<title>News Paper</title>
+													<sort_order>80</sort_order>
+												</apctwebnewspaper>
+																				    
+												<apctwebrecruitment translate="title" module="admin">
+													<title>Recruitment</title>
+													<sort_order>90</sort_order>
+												</apctwebrecruitment>
+												
+												<apctwebschool translate="title" module="admin">
+													<title>School</title>
+													<sort_order>100</sort_order>
+												</apctwebschool>
+												
+												<apctwebscientific translate="title" module="admin">
+													<title>Scientific</title>
+													<sort_order>103</sort_order>
+												</apctwebscientific>									
+												
+												
+												<apctwebuniversity translate="title" module="admin">
+													<title>University</title>
+													<sort_order>110</sort_order>
+												</apctwebuniversity>
+			
+												<apctwebvehicals translate="title" module="admin">
+													<title>Vehicals</title>
+													<sort_order>120</sort_order>
+												</apctwebvehicals>	
+																																																					
+											</children>
+										</type10>
+
+										
+										<type11 translate="title" module="admin">
+											<title>Type 11</title>
+											<sort_order>201</sort_order>
+											<children>
+												 <apctwebrailways translate="title" module="admin">
+													<title>Railways</title>
+													<sort_order>10</sort_order>
+												</apctwebrailways>
+												
+												<apctwebroadways translate="title" module="admin">
+													<title>Roadways</title>
+													<sort_order>20</sort_order>
+												</apctwebroadways>
+												
+												
+												<apctwebresult translate="title" module="admin">
+													<title>Result</title>
+													<sort_order>30</sort_order>
+												</apctwebresult>
+												
+												<apctwebsoftware translate="title" module="admin">
+													<title>Software</title>
+													<sort_order>40</sort_order>
+												</apctwebsoftware>
+												
+												
+												<apctwebsongs translate="title" module="admin">
+													<title>Songs</title>
+													<sort_order>45</sort_order>
+												</apctwebsongs>
+												
+												<!--  
+												<apctwebgovtsites translate="title" module="admin">
+													<title>Govt Sites</title>
+													<sort_order>50</sort_order>
+												</apctwebgovtsites>
+												-->
+												
+												<apctwebgspublicsectorunits translate="title" module="admin">
+													<title>Public Sector Units</title>
+													<sort_order>60</sort_order>
+												</apctwebgspublicsectorunits>
+																					
+												
+												<apctwebgsstategovtdepartment translate="title" module="admin">
+													<title>State Govt Department</title>
+													<sort_order>70</sort_order>
+												</apctwebgsstategovtdepartment>
+												
+												
+												<apctwebgsinformationtechnologysector translate="title" module="admin">
+													<title>Information Technology Sector</title>
+													<sort_order>80</sort_order>
+												</apctwebgsinformationtechnologysector>
+									 
+								
+												<apctwebgsrajasthanstateportal translate="title" module="admin">
+													<title>Rajasthan State Portal</title>
+													<sort_order>90</sort_order>
+												</apctwebgsrajasthanstateportal>
+													
+								
+												<apctwebgsdistrictsites translate="title" module="admin">
+													<title>District Sites</title>
+													<sort_order>100</sort_order>
+												</apctwebgsdistrictsites>
+								 
+													
+								 				<apctwebgscentralgovtdepartment translate="title" module="admin">
+													<title>Central Govt Department</title>
+													<sort_order>110</sort_order>
+												</apctwebgscentralgovtdepartment>
+								
+												
+								 				<apctwebgseducationalinstitutions translate="title" module="admin">
+													<title>Educational Institutions </title>
+													<sort_order>120</sort_order>
+												</apctwebgseducationalinstitutions>
+													
+											</children>
+										</type11>
+										
+
+									</children>
+								</centercontent>
+
+								<firm translate="title" module="admin">
+									<title>Firm</title>
+									<sort_order>02</sort_order>
+								</firm>
+
+								<fileupload translate="title" module="admin">
+									<title>File Upload</title>
+									<sort_order>03</sort_order>
+									<children>
+										<imageupload translate="title" module="admin">
+											<title>Image Upload</title>
+											<sort_order>01</sort_order>
+											<children>
+											    <advertisement translate="title" module="admin">
+													<title>Advertisement</title>
+													<sort_order>01</sort_order>
+												</advertisement>	
+											</children>	
+										</imageupload>
+									</children>
+								</fileupload>
+								
+							</children>
+						</managedate>
+					</children>
+				</admin>
+			</resources>
+		</acl>
+
+		<layout>
+			<updates>
+				<margshri module="Margshri">
+					<file>web_portal.xml</file>
+				</margshri>
+			</updates>
+		</layout>
+
+
+	</adminhtml>
+</config>

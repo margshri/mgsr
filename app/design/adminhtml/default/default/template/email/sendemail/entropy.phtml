@@ -1,0 +1,63 @@
+<?php
+
+?>
+
+<div class="entry-edit">
+	<div class="entry-edit-head">
+		<h4 class="icon-head head-edit-form fieldset-legend">Send Email</h4>
+		<div class="form-buttons"></div>
+	</div>
+	
+	<div class="fieldset " id="CustomerDetail">
+		<div class="hor-scroll">
+			 
+				<table class="form-list">
+					<tbody>
+						<tr>
+							<td class="label">
+								<label>Email Template<span class="required">*</span></label>
+							</td>
+							<td class="value">
+								<select id="EmailTemplateID" name="EmailTemplateID" class="validate-select">
+									<option value="">--Select--</option>
+									<?php foreach ($this->getEmailTemplateOptions() as $key=>$value): ?>
+			 								<option value="<?php echo $key ?>"><?php echo $value ?></option>
+			 						<?php endforeach; ?>
+			 					</select>
+			 				</td>
+			
+						</tr>
+			
+						<tr>
+							<td class="label">
+								<label>Sender Email <span class="required">*</span></label>
+							</td>
+							<td class="value">
+								<select id="EmailConfigID" name="EmailConfigID"  class="validate-select">
+								    <option value="">--Select--</option>
+			 						<?php foreach ($this->getEmailSenderOptions() as $key=>$value): ?>
+			 							<option value="<?php echo $key ?>"><?php echo $value ?></option>
+			 						<?php endforeach; ?>
+								</select>
+							</td>
+						</tr>
+						
+						
+						<tr>
+							<td class="label">
+								<label>User Email <span class="required">*</span><br />(comma separated)</label>
+							</td>
+							<td class="value">
+								<textarea rows="" cols="" id="ReceiverEmail" name="ReceiverEmail" ><?php //echo $this->getUserEmailIDs() ?></textarea>
+							</td>
+						</tr>
+						
+					</tbody>	 
+				</table>
+			 
+		</div>
+	</div>
+</div>
+ 
+
+

@@ -1,0 +1,105 @@
+<?php
+$currentAdmitCardFilter = $this->getCurrentAdmitCardFilter();
+$HTMLFormID = $this->getHTMLFormID();
+?>
+  
+<div class="block block-list block-categories" >
+    <div id="block-categories" class="block-center-title active">
+        <strong><span id="CustomPageTitle">Admit Card </span></strong>
+        <p class="back-link"><a href="<?php echo $this->escapeUrl($this->getBackUrl()) ?>"><small>&laquo; </small><?php echo $this->__('Back') ?></a></p> 
+    </div>
+</div>
+
+<script type="text/javascript">
+<!--
+var error = '<?php echo $currentAdmitCardFilter['Error'] ?>';
+//-->
+</script>
+
+</form>
+
+
+<div style="text-align: center; margin-bottom: 10px !important;">
+	<a href="<?php echo Mage::getUrl('medicalcamp/Registration_Registration/index') ?>"> 
+		<img alt="middleImage" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . 'web_portal/frontend/advertisement/middle/ChamberOfCommerce/img_5.jpg' ?>" width="592px" height="150px">
+	</a>
+</div>
+ 
+<!--  style="display: none;" -->
+<div id="ErrorMessageDiv">
+	<ul class="messages"><li class="error-msg"><ul><li><span id="ErrorMessage"></span></li></ul></li></ul>
+</div>
+
+
+<form action="<?php echo $this->getUrl('medicalcamp/Registration_Registration/admitCardFilter') ?>" method="post" id="<?php echo $HTMLFormID ?>" >
+	
+	<div class="fieldset" style="margin-bottom: 0px !important;">
+        <?php echo $this->getBlockHtml('formkey')?>
+        
+        <table>
+        	<tr>
+        		<td>
+			        <ul class="form-list">
+			            <li>
+			                <label for="AddharCardNumber" class="required"><em>*</em>Registration Number</label>
+			                <div class="input-box">
+			                      <input name="AddharCardNumber" id="AddharCardNumber" class="input-text required-entry" type="text" value="" />
+			                </div>
+			            </li>
+			        </ul>
+			   </td>
+           </tr>   
+       </table>
+    </div> 	
+	
+	<div class="buttons-set" style="margin-top: 0px !important; border-top: none !important; border-bottom: 1px solid #E4E4E4 !important; ">
+    	<button type="button" title="<?php echo $this->__('Save') ?>" id="AdminCardFilterButton" name="AdminCardFilterButton" class="button" onclick="return studentFormJS.submit() "><span><span><?php echo $this->__('Submit') ?></span></span></button>
+    </div>
+    
+</form>
+
+<form>
+
+ 
+
+<script type="text/javascript">
+//<![CDATA[
+           
+    var studentFormObj= new VarienForm('<?php echo $HTMLFormID ?>', true);
+
+    var studentFormJS = {
+    		
+    		submit : function(){
+        		if(!studentFormJS.saveValidation()){
+            		return ;
+        		}	 
+        		$('<?php echo $HTMLFormID ?>').submit();
+    		},
+
+    		saveValidation : function(){
+    			
+    			if(!(studentFormObj.validator && studentFormObj.validator.validate())){
+        	    	return false;
+    	    	}
+				
+						             	
+				if($('AddharCardNumber').value == null || $('AddharCardNumber').value == ''){
+					alert('Please Enter Registration Number !');
+					return false;
+				}
+				
+    	    	return true;
+    		}
+    		
+    };
+
+    if(error != ''){
+		$("ErrorMessage").innerHTML = error;
+		$("ErrorMessageDiv").style.display = "block"; 
+    }else{
+    	$("ErrorMessage").innerHTML = "";
+    	$("ErrorMessageDiv").style.display = "none";
+    }
+    	
+//]]>
+</script>

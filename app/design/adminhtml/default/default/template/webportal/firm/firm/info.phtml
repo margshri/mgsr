@@ -1,0 +1,116 @@
+<?php
+$HTMLFormID = $this->getHTMLFormID();
+?>
+<div class="content-header">
+    <table cellspacing="0">
+        <tr>
+            
+            <td style="width:50%;"><h3 class="icon-head head-permissions-role"><?php echo ($this->getFirmID() != null ) ? ($this->__('Edit Member') ) : $this->__('Add Member') ?></h3></td>
+            <td class="form-buttons">
+                <?php echo $this->getBackButtonHtml() ?>
+                <?php echo $this->getResetButtonHtml() ?>
+                <?php echo $this->getSaveButtonHtml() ?>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<form action="<?php echo $this->getUrl('*/*/save') ?>" method="post" id="<?php echo $HTMLFormID ?>">
+    <?php  echo $this->getBlockHtml('formkey')?>
+    <?php  echo $this->getEntropy()?>
+</form>
+
+<script type="text/javascript">
+var IS_FORM_SUBMIT = 0;
+function firmVO(){
+	this.ID = null;
+	this.Value = null;
+	this.ContactPersonName = null;
+	this.StatusID=null;
+	this.MobileNumber1=null;
+	this.MobileNumber2=null;
+	this.Address = null;
+	this.CountryID = null;
+	this.StateID = null;
+	this.DistrictID=null;
+	this.CityID=null;
+	this.Area=null;
+}
+var newFirmDTO = new firmVO();
+
+var formObj = new varienForm('<?php echo $HTMLFormID; ?>');
+var formJS={
+
+		submit : function(){
+    		if(!formJS.saveValidation()) return ;
+				formJS.saveAjax();
+		},
+
+		saveValidation : function(){
+			var errorMsg = '';
+			
+         	if(!(formObj.validator && formObj.validator.validate())){
+    	    	return false;
+	    	}
+         	
+         	// SET VOs 
+         	newFirmDTO.ID = ($('ID').value).strip();
+         	newFirmDTO.Value = ($('Value').value).strip();
+         	newFirmDTO.ContactPersonName = ($('ContactPersonName').value).strip();
+         	newFirmDTO.StatusID = 1;
+         	newFirmDTO.MobileNumber1 = ($('MobileNumber1').value).strip();
+         	newFirmDTO.MobileNumber2 = ($('MobileNumber2').value).strip();
+         	newFirmDTO.Address = ($('Address').value).strip();
+         	newFirmDTO.CountryID = 1;
+         	newFirmDTO.StateID = 29;
+         	newFirmDTO.DistrictID = 31;
+         	newFirmDTO.CityID = ($('CityID').value).strip();
+			newFirmDTO.Area = ($('Area').value).strip();
+
+            if(newFirmDTO.MobileNumber1 != null && newFirmDTO.MobileNumber1 != '' && 
+                    newFirmDTO.MobileNumber2 != null && newFirmDTO.MobileNumber2 != ''){
+				if(newFirmDTO.MobileNumber1 == newFirmDTO.MobileNumber2){
+					$('MobileNumber2').value = "";
+					$('MobileNumber2').focus();
+					errorMsg += "Both Mobile Number Can`t Be Same ! \n";
+				}
+            }
+         	
+         	if(errorMsg != ''){
+            	alert(errorMsg);
+				return false;
+			}
+         	
+			if(IS_FORM_SUBMIT == 0){
+				IS_FORM_SUBMIT = 1;
+				return true;
+			}else{
+				return false;
+			}
+				
+		},	
+
+        saveAjax: function(){
+        	var URL = "<?php echo $this->getUrl('*/*/save')?>" ;
+		    var parameters= {"FirmDataObj": JSON.stringify(newFirmDTO,null) };
+		    var callBackMethod ="formJS.responseSave";
+		    var callBackArgs =null;
+		    ajaxRequest.execute(	URL, parameters, callBackMethod , callBackArgs );
+		    return false;
+     	},
+
+	    responseSave : function(response,args) {
+	    	//IS_FORM_SUBMIT=0;
+	    	if(response.SuccessMessage !=null){
+	    		window.location.href = "<?php echo $this->getUrl('*/*/index')?>";
+			 	return;
+			}else if(response.ErrorMessage !=null){
+				alert(response.ErrorMessage);
+				return false;
+ 			}
+ 	 	}
+			
+}; 
+ 
+
+</script>

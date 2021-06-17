@@ -1,0 +1,463 @@
+<?php
+    $HTMLFormID = $this->getHTMLFormID();
+    
+    /* @var $commonVO Margshri_Transport_VO_Master_Vahicale_CommonVO */
+    $commonVO = $this->getCommonVO();
+    
+    /* @var $vahicaleVO Margshri_Transport_VO_Master_Vahicale_VahicaleVO */
+    $vahicaleVO = $commonVO->getVahicaleVO();    
+    $ownerVO = $commonVO->getOwnerVO();
+    $driverVO = $commonVO->getDriverVO();
+    
+    // $cityOptions = $this->getCityOptions();
+?>
+
+<div class="content-header">
+    <table cellspacing="0">
+        <tr>
+            <td style="width:50%;"><h3 class="icon-head head-permissions-role"><?php echo ($this->getCommonID() != null ) ? ($this->__('Edit Entry') ) : $this->__('Add Entry') ?></h3></td>
+            <td class="form-buttons">
+                <?php echo $this->getBackButtonHtml() ?>
+                <?php echo $this->getResetButtonHtml() ?>
+                <?php echo $this->getSaveButtonHtml() ?>
+            </td>
+        </tr>
+    </table>
+</div>
+ 
+
+<form action="<?php echo $this->getUrl('*/*/save') ?>" method="post" id="<?php echo $HTMLFormID ?>">
+    <?php  echo $this->getBlockHtml('formkey')?>
+    
+    
+    <div class="entry-edit">
+    	<div class="entry-edit-head">
+    		<h4 class="icon-head head-edit-form fieldset-legend">Truck Detail</h4>
+    		<div class="form-buttons"></div>
+    	</div>
+    
+    	<div class="fieldset " id="base_fieldset">
+    		<div class="hor-scroll">
+    		   
+      			<table class="form-list">
+    				<tbody>
+    					
+    					<tr>
+    						<td class="label">
+    							<label for="VahicaleNumber">Truck Number<span class="required">*</span></label>
+    						</td>
+    						<td class="value">
+    							<input type="text" name="VahicaleNumber" id="VahicaleNumber" 
+    							value="<?php echo $vahicaleVO->getVahicaleNumber() ?>" class="input-text required-entry" />
+    						</td>
+    					</tr>
+    					
+    					
+    					<tr>
+    						<td class="label">
+    							<label for="TypeID">Vahicale Type<span class="required">*</span></label>
+    						</td>
+    						<td class="value">
+    							<select name="TypeID" id="TypeID" class="validate-select">
+    								<option value="">--Select--</option>
+    								<?php foreach ($this->getVahicaleTypeOptions() as $typeID=>$typeName): ?>
+    									<option value="<?php echo $typeID ?>" <?php echo ($vahicaleVO->getTypeID() == $typeID) ? 'Selected = "Selected"' : '' ?> ><?php echo $typeName ?></option>
+    								<?php endforeach; ?>
+    							</select>
+    						</td>
+    					</tr>
+    					
+    					
+    					<tr>
+    						<td class="label">
+    							<label for="ChasisNumber">Chasis Number</label>
+    						</td>
+    						<td class="value">
+    							<input type="text" name="ChasisNumber" id="ChasisNumber"
+    							value="<?php echo $vahicaleVO->getChasisNumber() ?>" class="input-text " /> 
+    						</td>
+    					</tr>
+    					
+    					<tr>
+    						<td class="label">
+    							<label for="EngineNumber">EngineNumber</label>
+    						</td>
+    						<td class="value">
+    							<input type="text" name="EngineNumber" id="EngineNumber"
+    							value="<?php echo $vahicaleVO->getEngineNumber() ?>" class="input-text " /> 
+    						</td>
+    					</tr>
+    					
+    					<tr>
+    						<td class="label">
+    							<label for="WeightCapacity">Weight Capacity</label>
+    						</td>
+    						<td class="value">
+    							<input type="text" name="WeightCapacity" id="WeightCapacity"
+    							value="<?php echo $vahicaleVO->getWeightCapacity() ?>" class="input-text validate-digits" /> 
+    						</td>
+    					</tr>
+    					
+    					 
+                    
+                    	
+                    
+                    	<!--  
+    					 <tr>
+    						<td class="label">
+    							<label for="StatusID">Status</label>
+    						</td>
+    						<td class="value">
+    							<select name="StatusID" id="StatusID">
+    								<option value="">--Select--</option>
+    								<?php // foreach ($this->getStatusOptions() as $statusID=>$statusName): ?>
+    									<option value="<?php // echo $statusID ?>" <?php // echo ($vahicaleVO->getStatusID() == $statusID) ? 'Selected = "Selected"' : '' ?> ><?php // echo $statusName ?></option>
+    								<?php // endforeach; ?>
+    							</select>
+    						</td>
+    					</tr>
+    					-->
+    				
+    					
+    					
+    				</tbody>
+    			</table>		
+    			
+    		</div>
+    	</div>
+    </div>
+    
+    <div class="entry-edit">
+    	<div class="entry-edit-head">
+    		<h4 class="icon-head head-edit-form fieldset-legend">Owner Detail</h4>
+    		<div class="form-buttons"></div>
+    	</div>
+    
+    	<div class="fieldset " id="base_fieldset">
+    		<div class="hor-scroll">
+    		   
+      			<table class="form-list">
+    				<tbody>
+    					
+    					<tr>
+    						<td class="label">
+    							<label for="OwnerName">Owner Name</label>
+    						</td>
+    						<td class="value">
+    							<input type="text" name="OwnerName" id="OwnerName" value="<?php echo $ownerVO->getName() ?>" class="input-text " />
+    						</td>
+    					</tr>
+    					
+    					
+    					<tr>
+    						<td class="label">
+    							<label for="OwnerMobileNo">Mobile Number</label>
+    						</td>
+    						<td class="value">
+    							<input type="text" name="OwnerMobileNo" id="OwnerMobileNo" maxlength="10"
+    							value="<?php echo $ownerVO->getMobileNo() ?>" 
+    							class="input-text validate-digits " />
+    						</td>
+    					</tr>
+    					
+    					
+    					<tr>
+    						<td class="label">
+    							<label for="OwnerPANNo">PAN Number</label>
+    						</td>
+    						<td class="value">
+    							<input type="text" name="OwnerPANNo" id="OwnerPANNo"
+    							value="<?php echo $ownerVO->getPANNo() ?>" 
+    							class="input-text " />
+    						</td>
+    					</tr>
+    					
+    					<tr>
+    						<td class="label">
+    							<label for="OwnerAadharNo">Aadhar Number</label>
+    						</td>
+    						<td class="value">
+    							<input type="text" name="OwnerAadharNo" id="OwnerAadharNo"
+    							value="<?php echo $ownerVO->getAadharNo() ?>" 
+    							class="input-text validate-digits" />
+    						</td>
+    					</tr>
+    					
+    					
+    					<tr>
+    						<td class="label">
+    							<label for="OwnerAddress">Address</label>
+    						</td>
+    						
+							<td class="value">
+								<textarea rows="3" cols="10" name="OwnerAddress" id="OwnerAddress" style="height: 40px;" ><?php echo $ownerVO->getAddress() ?></textarea>
+							</td>
+	   						
+    					</tr>
+    					
+						<!--  
+    					<tr>
+    						<td class="label">
+    							<label for="OwnerStatusID">Status</label>
+    						</td>
+    						<td class="value">
+    							<select name="OwnerStatusID" id="OwnerStatusID">
+    								<option value="">--Select--</option>
+    								<?php // foreach ($this->getStatusOptions() as $statusID=>$statusName): ?>
+    									<option value="<?php // echo $statusID ?>" <?php // echo ($ownerVO->getStatusID() == $statusID) ? 'Selected = "Selected"' : '' ?> ><?php // echo $statusName ?></option>
+    								<?php // endforeach; ?>
+    							</select>
+    						</td>
+    					</tr>
+                        -->
+    					
+    				</tbody>
+    			</table>		
+    		  		 
+    			
+    		</div>
+    	</div>
+    </div>
+    
+    <div class="entry-edit">
+    	<div class="entry-edit-head">
+    		<h4 class="icon-head head-edit-form fieldset-legend">Driver Detail</h4>
+    		<div class="form-buttons"></div>
+    	</div>
+    
+    	<div class="fieldset " id="base_fieldset">
+    		<div class="hor-scroll">
+    		   
+      			<table class="form-list">
+    				<tbody>
+    					
+    					<tr>
+    						<td class="label">
+    							<label for="DriverName">Driver Name</label>
+    						</td>
+    						<td class="value">
+    							<input type="text" name="DriverName" id="DriverName" value="<?php echo $driverVO->getName() ?>" class="input-text " />
+    						</td>
+    					</tr>
+    					
+    					
+    					<tr>
+    						<td class="label">
+    							<label for="DriverMobileNo">Mobile Number</label>
+    						</td>
+    						<td class="value">
+    							<input type="text" name="DriverMobileNo" id="DriverMobileNo" maxlength="10"
+    							value="<?php echo $driverVO->getMobileNo() ?>" 
+    							class="input-text validate-digits " />
+    						</td>
+    					</tr>
+    					
+    					
+    					<tr>
+    						<td class="label">
+    							<label for="DriverDLNo">DL Number</label>
+    						</td>
+    						<td class="value">
+    							<input type="text" name="DriverDLNo" id="DriverDLNo"
+    							value="<?php echo $driverVO->getDLNo() ?>" 
+    							class="input-text " />
+    						</td>
+    					</tr>
+    					
+    					<tr>
+    						<td class="label">
+    							<label for="DriverAadharNo">Aadhar Number</label>
+    						</td>
+    						<td class="value">
+    							<input type="text" name="DriverAadharNo" id="DriverAadharNo"
+    							value="<?php echo $driverVO->getAadharNo() ?>" 
+    							class="input-text validate-digits" />
+    						</td>
+    					</tr>
+    					
+    					
+    					<tr>
+    						<td class="label">
+    							<label for="DriverAddress">Address</label>
+    						</td>
+    						
+							<td class="value">
+								<textarea rows="3" cols="10" name="DriverAddress" id="DriverAddress" style="height: 40px;" ><?php echo $driverVO->getAddress() ?></textarea>
+							</td>
+	   						
+    					</tr>
+    					
+						<!--  
+    					<tr>
+    						<td class="label">
+    							<label for="DriverStatusID">Status</label>
+    						</td>
+    						<td class="value">
+    							<select name="DriverStatusID" id="DriverStatusID">
+    								<option value="">--Select--</option>
+    								<?php // foreach ($this->getStatusOptions() as $statusID=>$statusName): ?>
+    									<option value="<?php // echo $statusID ?>" <?php // echo ($driverVO->getStatusID() == $statusID) ? 'Selected = "Selected"' : '' ?> ><?php // echo $statusName ?></option>
+    								<?php // endforeach; ?>
+    							</select>
+    						</td>
+    					</tr>
+                        -->
+    					
+    				</tbody>
+    			</table>		
+    		  		 
+    			
+    		</div>
+    	</div>
+    </div>
+    <input type="hidden" id="CommonID" name="CommonID" value="<?php echo ($commonVO->getID() != null && $commonVO->getID() != "") ? $commonVO->getID() : 0 ?>" /> 
+    <input type="hidden" id="VahicaleID" name="VahicaleID" value="<?php echo ($vahicaleVO->getID() != null && $vahicaleVO->getID() != "") ? $vahicaleVO->getID() : 0 ?>" />
+    <input type="hidden" id="OwnerID" name="OwnerID" value="<?php echo ($ownerVO->getID() != null && $ownerVO->getID() != "") ? $ownerVO->getID() : 0 ?>" />
+    <input type="hidden" id="DriverID" name="DriverID" value="<?php echo ($driverVO->getID() != null && $driverVO->getID() != "") ? $driverVO->getID() : 0 ?>" />
+</form>
+
+ 
+
+
+     
+
+
+<script type="text/javascript">
+
+function commonVO(){
+	this.ID = null;
+	this.VahicaleID = null;
+	this.OwnerID = null;
+	this.DriverID = null;
+	this.StatusID = null;
+
+	this.VahicaleVO = null;
+	this.OwnerVO = null;
+	this.DriverVO = null;
+}
+var newCommonDTO = new commonVO();
+
+function vahicaleVO(){
+	this.ID = null;
+	this.VahicaleNumber = null;
+	this.ChasisNumber = null;
+	this.EngineNumber = null;
+	this.WeightCapacity = null;
+	this.OwnerID = null;
+	this.TypeID = null;
+	this.StatusID = null;
+}
+var newVahicaleDTO = new vahicaleVO();
+
+function ownerVO(){
+	this.ID = null;
+	this.Name = null;
+	this.MobileNo = null;
+	this.Address = null;
+	this.PANNo = null;
+	this.AadharNo = null;
+	this.StatusID = null;
+}
+var newOwnerDTO = new ownerVO();
+
+function driverVO(){
+	this.ID = null;
+	this.Name = null;
+	this.MobileNo = null;
+	this.Address = null;
+	this.DLNo = null;
+	this.AadharNo = null;
+	this.StatusID = null;
+}
+var newDriverDTO = new driverVO();
+
+var commonFormObj = new varienForm('<?php echo $HTMLFormID; ?>');
+var commonFormJS={
+
+		submit : function(){
+    		if(!commonFormJS.saveValidation()) return ;
+    		commonFormJS.saveAjax();
+		},
+
+		saveValidation : function(){
+			var errorMsg = '';
+			
+         	if(!(commonFormObj.validator && commonFormObj.validator.validate())){
+    	    	return false;
+	    	}
+         	
+         	// SET Vahicale VO
+         	newVahicaleDTO.ID = ($('VahicaleID').value).strip();
+         	newVahicaleDTO.VahicaleNumber = ($('VahicaleNumber').value).strip();
+         	newVahicaleDTO.ChasisNumber = ($('ChasisNumber').value).strip();
+         	newVahicaleDTO.EngineNumber = ($('EngineNumber').value).strip();
+         	newVahicaleDTO.WeightCapacity = ($('WeightCapacity').value).strip();
+         	newVahicaleDTO.OwnerID = ($('OwnerID').value).strip();
+         	newVahicaleDTO.TypeID = ($('TypeID').value).strip();
+         	newVahicaleDTO.StatusID = 1; // ($('VahicaleStatusID').value).strip();
+
+
+         	// SET OwnerID VO
+         	newOwnerDTO.ID = ($('OwnerID').value).strip();
+         	newOwnerDTO.Name = ($('OwnerName').value).strip();
+         	newOwnerDTO.MobileNo = ($('OwnerMobileNo').value).strip();
+         	newOwnerDTO.Address = ($('OwnerAddress').value).strip();
+         	newOwnerDTO.PANNo = ($('OwnerPANNo').value).strip();
+         	newOwnerDTO.AadharNo = ($('OwnerAadharNo').value).strip();
+         	newOwnerDTO.StatusID = 1; // ($('OwnerStatusID').value).strip();
+
+	        // SET Driver VO
+         	newDriverDTO.ID = ($('DriverID').value).strip();
+         	newDriverDTO.Name = ($('DriverName').value).strip();
+         	newDriverDTO.MobileNo = ($('DriverMobileNo').value).strip();
+         	newDriverDTO.Address = ($('DriverAddress').value).strip();
+         	newDriverDTO.DLNo = ($('DriverDLNo').value).strip();
+         	newDriverDTO.AadharNo = ($('DriverAadharNo').value).strip();
+         	newDriverDTO.StatusID = 1; // ($('DriverStatusID').value).strip();
+
+
+            // SET Common VO
+         	newCommonDTO.ID = ($('CommonID').value).strip();
+         	newCommonDTO.VahicaleID = ($('VahicaleID').value).strip();
+         	newCommonDTO.OwnerID = ($('OwnerID').value).strip();
+         	newCommonDTO.DriverID = ($('DriverID').value).strip();
+         	newCommonDTO.StatusID = 1;
+
+         	newCommonDTO.VahicaleVO = newVahicaleDTO;
+         	newCommonDTO.OwnerVO = newOwnerDTO;
+         	newCommonDTO.DriverVO = newDriverDTO;
+        
+         	
+
+         	
+         	if(errorMsg != ''){
+            	alert(errorMsg);
+				return false;
+			}
+
+         	return true;
+		},	
+
+        saveAjax: function(){
+        	var URL = "<?php echo $this->getUrl('*/*/save')?>" ;
+		    var parameters= {"CommonDataObj": JSON.stringify(newCommonDTO,null) };
+		    var callBackMethod ="commonFormJS.responseSave";
+		    var callBackArgs =null;
+		    ajaxRequest.execute(	URL, parameters, callBackMethod , callBackArgs );
+		    return false;
+     	},
+
+	    responseSave : function(response,args) {
+	    	if(response.SuccessMessage !=null){
+	    		window.location.href = "<?php echo $this->getUrl('*/*/index')?>";
+			 	return;
+			}else if(response.ErrorMessage !=null){
+				alert(response.ErrorMessage);
+				return false;
+ 			}
+ 	 	}
+			
+}; 
+ 
+
+</script>    	 

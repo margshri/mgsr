@@ -1,0 +1,111 @@
+<?php
+$memberVOs = $this->getMemberVOs();
+$total = sizeof($memberVOs);
+?>
+
+<div class="card bg-light text-dark" style="margin: 50px 0px 10px 0px !important;">
+	<div class="card-body" style="padding:0px !important;">
+		<table class="table" style="margin-bottom: 0px !important;">
+			<tbody>
+				<tr>
+					<td style="border-top:none; width: 20% !important;" class="text-left">
+						<span style="font-size:20px;" onclick="baseFormJS.redirect('<?php echo $this->getUrl('') ?>')">&laquo;</span>
+					</td>
+					
+					<td style="border-top:none; vertical-align: middle;" class="text-center">
+						<span style="font-weight:bold;">
+							Executive Member List
+						</span>
+					</td>
+					
+					  
+					<td style="border-top:none; width: 20% !important;" class="text-right">
+						<?php echo $total; ?>
+					</td>
+					
+					
+				</tr>
+				
+			
+				<tr>
+					<td colspan ="3" style="border-top:none; vertical-align: middle;" class="text-center">
+						<input class="form-control" id="Search" type="text" placeholder="Search..">
+					</td>
+				</tr>
+			</tbody>
+				
+			<tfoot>
+			
+			</tfoot>
+		</table>
+	</div>
+</div>
+
+<div class="card bg-light">
+    <div class="card-body" id="DonorContainer" >
+    
+    <?php if($total > 0):?>
+    
+    
+        <?php $counter = 0; ?>
+        <?php /* @var $memberVO Margshri_Common_VO_Member_Member_MemberVO */ ?>
+        
+        <ul class="list-group" id="MemberList">
+        <?php foreach($memberVOs as $memberVO): ?>
+        
+			<?php $counter++;?>        
+        	<?php /* @var $userVO Margshri_Common_VO_User_User_UserVO */ ?>
+        	<?php $userVO = $memberVO->getUserVO(); ?>
+        	
+        	<?php /* @var $designationVO Margshri_Common_VO_Master_Designation_DesignationVO */ ?>
+        	<?php $designationVO = $memberVO->getDesignationVO(); ?>
+        	
+        	<li class="list-group-item">
+        	
+            	<div class="media  p-3" style="padding:.5rem !important;">
+            	
+                	<div class="mr-3 mt-3 rounded text-center" style="width:60px; margin-top: 0px !important;">
+                    
+                    <?php if($userVO->getUserImageURL() != null && $userVO->getUserImageURL() != "" ): ?>
+                         <img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . $userVO->getUserImageURL() ?>" alt="donor" class="mr-3 mt-3 rounded " style="width:60px; margin-top: 0px !important;">
+                    <?php else: ?>
+                    	 <i class="fa fa-user" style="font-size:60px"></i>	
+                    <?php endif; ?>
+                    <?php if($designationVO->getValue() != null && $designationVO->getValue() != ""): ?>
+                        <p class="text-center" style="margin-bottom: 0px !important; font-size: 7pt !important; font-style: italic;">
+                        	<?php echo $designationVO->getValue() ?>
+                        </p>
+                    <?php  endif; ?>
+                    
+                    </div>
+            
+                    <div class="media-body text-left">
+                      	<?php if($userVO->getName() != null && $userVO->getName() != ""): ?>  
+                        	<p style="margin-bottom: 0px !important;" ><small><b><?php echo ($userVO->getName() != null && $userVO->getName() != "") ? $userVO->getNamePrefix() . ' ' . ucwords(strtolower($userVO->getName())) : '' ?></b></small></p>
+                        <?php endif; ?>
+                        <p style="margin-bottom: 0px !important; font-size: 7pt !important; font-style: italic;"><?php echo ($userVO->getFatherName() != null && $userVO->getFatherName() != "" ) ? 'S/O Mr. ' . ucwords(strtolower($userVO->getFatherName())) : '' ?></p>
+                        
+                        <p style="margin-bottom: 0px !important; font-size: 7pt !important; font-style: italic;">
+                        	<?php echo ($userVO->getMobileNumber1() != null && $userVO->getMobileNumber1() != "" ) ? '<i class="fa fa-phone"></i> ' . $userVO->getMobileNumber1() : "" ?>
+                        </p>
+                        <p style="margin-bottom: 0px !important; font-size: 7pt !important; font-style: italic;"><?php echo '<i class="fa fa-home"></i> ' . $userVO->getAddress() . ", " . $userVO->getArea() . ", " . $userVO->getCityName() ?></p>
+                    </div>
+            	</div>
+                
+        	</li>
+    	<?php endforeach; ?>
+    	</ul>
+    <?php endif; ?>
+    </div>
+</div>
+
+<script>
+$(document).ready(function(){
+  $("#Search").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#MemberList li").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>

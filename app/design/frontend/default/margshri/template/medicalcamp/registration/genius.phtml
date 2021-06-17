@@ -1,0 +1,83 @@
+<?php
+$registrationVOs = $this->getRegistrationVOs();
+$total = sizeof($registrationVOs);
+$classOptions =  $this->getClassOptions();
+?>
+
+<?php echo $this->getHeaderHtml() ?>
+
+<div class="card bg-light text-dark" style="margin-bottom: 10px !important;">
+	<div class="card-body" style="padding:0px !important;">
+		<table class="table" style="margin-bottom: 0px !important;">
+			<tbody>
+				<tr>
+					<td style="border-top:none; width: 20% !important;" class="text-left">
+						<span style="font-weight:bold;"><?php echo $total; ?></span>
+					</td>
+					<td style="border-top:none; vertical-align: middle; " class="text-center">
+						<span style="font-weight:bold;">Genius List</span>
+					</td>
+					<td style="border-top:none; width: 20% !important;" class="text-left"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<div class="card-deck">
+<div class="card">
+<div class="card-body" style="padding:0px !important;">
+
+<?php if($total > 0):?>
+    <?php $counter = 0; ?>
+    <?php foreach($registrationVOs as $registrationVO): ?>
+    <?php /* @var $registrationVO Margshri_MedicalCamp_VO_RegistrationVO */ ?>
+    	<?php $counter++;?>
+    	<div class="media border p-3" style="padding:.5rem !important;">
+        <?php if($registrationVO->getImageURL() != null && $registrationVO->getImageURL() != "" ): ?>
+             <img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . $registrationVO->getImageURL() ?>" alt="genius" class="mr-3 mt-3 rounded-circle text-left" style="width:60px; margin-top: 0px !important;">
+        <?php else: ?>
+             <div class="mr-3 mt-3 rounded-circle text-left" style="width:30px; margin-top: 0px !important;"></div>
+        <?php endif; ?>
+    
+            <div class="media-body text-center">
+                <p><small><b><?php echo ($registrationVO->getName() != null && $registrationVO->getName() != "") ?  ucwords(strtolower($registrationVO->getName())) : '' ?></b></small></p>
+                <!--  
+                <p><small><i><?php // echo ($registrationVO->getGender() == 1) ? 'S/O' : ($registrationVO->getGender() == 2) ? 'D/O' : '' ?></i></small></p>
+                -->
+                <p style="font-size: 7pt !important; font-style: italic;"><?php echo ($registrationVO->getFatherName() != null && $registrationVO->getFatherName() != "" ) ? 'Mr. ' . ucwords(strtolower($registrationVO->getFatherName())) : '' ?></p>
+                
+                <p><small><i><?php echo $registrationVO->getCityName() ?></i></small></p>
+            </div>
+    
+    		<div class="text-right" style="width:60px; margin-top: 0px !important; ">
+    			<?php if(array_key_exists($registrationVO->getClassID(), $classOptions)): ?>
+    				<?php if($registrationVO->getClassID() != 7): ?>
+    						<p style="font-size: 5pt !important; font-style: italic;"><?php echo $classOptions[$registrationVO->getClassID()] ?></p>
+    						<p><small><i><?php echo $registrationVO->getPercentage() ?></i></small></p>
+    				<?php else: ?>		
+    						<p style="font-size: 5pt !important; font-style: italic;"><?php echo $registrationVO->getQualification() ?></p>
+    				<?php endif; ?>
+    			<?php  endif; ?>
+    			
+    		</div>
+    	</div>
+	<?php endforeach; ?>
+<?php endif; ?>
+</div>
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+if (window.history && window.history.pushState) {
+    window.history.pushState('forward', null, './#forward');
+    $(window).on('popstate', function() {
+    	baseFormJS.redirect('<?php echo $this->getUrl("medicalcamp/Registration_Registration/index") ?>');    
+    });
+}
+//-->
+</script>
+
+
+<?php echo $this->getFooterHtml() ?>

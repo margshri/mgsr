@@ -1,0 +1,216 @@
+<?php
+    $_htmlid = $this->getHtmlId();//"officeTerminal";  
+?>
+<div class="entry-edit">
+            <div class="entry-edit-head">
+                    <h4 class="icon-head head-edit-form fieldset-legend">Office Terminal</h4>
+                <div class="form-buttons"></div>
+            </div>
+   
+            <div class="fieldset " id="base_fieldset">
+                <div class="hor-scroll">
+                 
+                    <table>
+                        <tr>
+                            <td colspan="12" class="grid tier">
+                                 <table  id="tiers_table" cellspacing="0">
+                                    <?php $header = $this->getGridHeader();
+                                          $colsName =array_keys($header);
+                                             foreach($header as $key=>$row) { 
+                                            	?>
+                                            	 <col width="<?php echo $row ?>">
+                                    <?php       
+                                             }
+                                    ?>
+                                     <thead>
+	                                    <tr class="headings">
+	                                          <?php  for($i=0; $i<count($colsName);$i++){ 
+	                                          ?>
+	                                                   <th><?php echo $colsName[$i];?></th>
+	                                          <?php 
+	                                                  }
+	                                          ?>
+	                                           
+	                                            <th></th>
+	                                            <!-- class="last" -->
+	                                    </tr>
+	                                  </thead>
+	                                  
+	                                  <tbody id="<?php echo $_htmlid ?>_TerminalContainer">
+	                                  </tbody>
+	                                  
+					                  <tfoot>
+					                       <tr>
+                                                <td colspan="4" class="a-right"><?php echo $this->getAddButtonHtml() ?></td>
+                                           </tr>
+					                  </tfoot>
+					                  
+	                             </table>  
+                             </td>
+                         </tr>                                
+                    </table>
+                 
+                </div>
+            </div>
+</div>
+
+<?php
+        # create PHP array Bank List:
+        $bankList= $this->getBankList();
+        if($bankList =="") return ;
+        $num = count( $bankList);
+                echo "<script language='JavaScript'>\n";
+                echo "var bankList  = new Array( $num );\n";
+        
+                for( $x = 0; $x < count( $bankList  ); $x++ ) {
+                          echo "bankList[$x]=[];\n";
+                          foreach( $bankList[$x] as $key => $val ) {
+                                  echo "bankList[$x]['$key'] = \"$val\";\n";
+                          }
+                }
+                echo "</script>\n";
+?>
+
+<script type="text/javascript">
+
+     function getBankList()
+     {
+         var selBankList = "<select style='width: 150px;' name='bank[terminal_new][{{index}}][bank]'  id= 'terminal_new_row_{{index}}_bank'   >";
+         selBankList += "<option value=0>--Select--</option>";
+        
+         for(var cntr =0 ; cntr< bankList.length ; cntr++)
+             {
+            	  selBankList += "<option value="+ bankList[cntr]['bankId'] +">" + bankList[cntr]['bankName'] +"</option>";
+             } 
+         
+         selBankList += "</select>";
+        
+         return  selBankList;
+     }
+     
+     terminalRowTemplate = '<tr>'
+         + '<td  class="grid tier">'     //class="nobr"
+         +  getBankList()
+         + '</td>'
+         + '<td>'
+         + '<input    class="input-text"  name="bank[terminal_new][{{index}}][mid]"  id="terminal_new_row_{{index}}_mid" maxlength="50"  />'
+         +  '</td>'
+         +  '<td>'
+         +  '<input   class="input-text"  name="bank[terminal_new][{{index}}][tid]"  id="terminal_new_row_{{index}}_tid"  maxlength="35" />' 
+         + '<td class="last"><input type="hidden" name="bank[terminal_new][{{index}}][delete]" class="delete" value="" id="terminal_new_row_{{index}}_delete" />'
+         + '<button  title="Delete Product" type="button" class="scalable delete icon-btn delete-product-option" id="terminal_new_row_{{index}}_delete_button" onclick="return terminal.deleteItem(event);">'
+         + '<span>Delete</span></button></td>'
+         + '</tr>';
+
+ var terminal = {
+        		    template: new Template(terminalRowTemplate, new RegExp('(^|.|\\r|\\n)({{\\s*(\\w+)\\s*}})', "")),
+        		    terminalCount: 0,
+    		    addTerminal : function () {
+	                           var data = {
+        		                	         readOnly: false,
+        		                	         index: this.terminalCount++
+        		                	       };
+
+        		                var tbody = "<?php  echo $_htmlid ?>" + "_TerminalContainer";  
+        		
+        		                Element.insert($(tbody), {
+        		                	   bottom : this.template.evaluate(data)
+        		                });
+
+        		     },
+
+        		   deleteItem: function(event) {
+        		    	    var tr = Event.findElement(event, 'tr');
+	        		        if (tr) {
+	        		            var rowIndex = tr.rowIndex;
+	        		            var parts =  Event.findElement(event, 'button').id.split('_'); //Event.element(event).id.split('_');
+	         		            var tbody = "<?php echo $_htmlid ?>_TerminalContainer" ;
+	        		            $(tbody).deleteRow(rowIndex-1);   
+	        		            
+	        		        }
+	        		         return false;
+        		    } ,
+
+         		    getElementID:  function(elementName, arrEvent){
+        		            return arrEvent[0] + '_' +arrEvent[1] + '_' + arrEvent[2] + '_' + arrEvent[3] + '_' + elementName;
+        		    },
+
+        		    getValueFromID: function(element, arrElement){
+        		            return  $(posProductControl.getElementID( element , arrElement)).innerHTML;
+        		    },
+        		    
+        		  
+        		 
+        		    
+        		    isnumeric : function(input){
+        		            var RE = /^-{0,1}\d*\.{0,1}\d+$/;
+        		            return RE.test(input) ;
+        		    }
+
+  		        
+  };
+
+         
+</script>
+
+
+<?php
+        # create PHP array:
+        $terminal = $this->getTerminal();
+        if($terminal =="") return ;
+        $num = count( $terminal );
+                echo "<script language='JavaScript'>\n";
+                echo "var terminalRS = new Array( $num );\n";
+        
+                for( $x = 0; $x < count( $terminal ); $x++ ) {
+                          echo "terminalRS[$x]=[];\n";
+                          foreach( $terminal[$x] as $key => $val ) {
+                                  echo "terminalRS[$x]['$key'] = \"$val\";\n";
+                          }
+                }
+        
+                echo "</script>\n";
+
+?>
+
+<script type="text/javascript">
+           /* populate office Terminal*/             
+
+            for(var cntr =0 ; cntr < terminalRS.length ; cntr++)
+            {
+            	
+                  parts = ["terminal","new","row" , cntr]      
+                  var bank = terminal.getElementID('bank', parts);   
+                  
+                  var mid = terminal.getElementID('mid', parts);
+                  var tid = terminal.getElementID('tid', parts);
+                   
+                  
+                  terminal.addTerminal();
+
+                  var options = $$('select#'+ bank +' option');
+                  var len = options.length;
+                  
+                  for (var i = 0; i < len; i++) {
+                      if(options[i].value == terminalRS[cntr]['bankId']){
+                    	  options[i].selected = true;
+                      }
+                  }   
+                    
+                   $(mid).value = terminalRS[cntr]['mid'];
+                   $(tid).value = terminalRS[cntr]['tid'];
+            }  
+                
+             
+
+            function show_props(obj, obj_name) {
+                var result = ""
+                for (var i in obj)
+                result += obj_name + "." + i + " = " + obj[i] +"\n ";   
+                alert(result);
+                //document.write(result);
+                //document.write(obj_name + "." + i + " = " + obj[i]+"<br/>");
+            }
+           
+                        
+</script>

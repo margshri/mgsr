@@ -1,0 +1,39 @@
+<?php
+ 	$_htmlId      = $this->getHtmlId();
+    $formId 	  = "edit";	
+?>
+<div class="content-header">
+    <table cellspacing="0">
+        <tr>
+            
+            <td style="width:50%;"><h3 class="icon-head head-permissions-role"><?php //echo ($this->getInfoData('OfficeTypeId') > 0 ) ? ($this->__('Edit') ) : $this->__('Create') ?> Price Upload</h3></td>
+            <td class="form-buttons">
+                <?php echo $this->getBackButtonHtml() ?>
+                <?php echo $this->getResetButtonHtml() ?>
+                <?php echo $this->getSaveButtonHtml() ?>
+            </td>
+        </tr>
+    </table>
+</div>
+
+
+
+<form action="<?php echo $this->getUrl('*/*/upload') ?>" method="post" id="<?php echo $formId; ?>" enctype="multipart/form-data">
+    <?php  echo $this->getBlockHtml('formkey')?>
+    <?php  echo $this->getEntropy()?>
+</form>
+
+<script>
+var formObj = new varienForm('edit');
+	function priceUploadJS()
+	{
+		if(  !(formObj.validator && formObj.validator.validate())  ){
+	   	      return false;
+	      }
+		else
+		{
+			formObj.submit();
+		}
+	}
+
+</script>

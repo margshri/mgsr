@@ -1,0 +1,267 @@
+<?php
+$HTMLFormID = $this->getHTMLFormID();
+?>
+<div class="content-header">
+    <table cellspacing="0">
+        <tr>
+            
+            <td style="width:50%;"><h3 class="icon-head head-permissions-role"><?php echo ($this->getID() != null ) ? ($this->__('Edit') ) : $this->__('Add') ?></h3></td>
+            <td class="form-buttons">
+                <?php echo $this->getBackButtonHtml() ?>
+                <?php echo $this->getResetButtonHtml() ?>
+                <?php echo $this->getSaveButtonHtml() ?>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<form action="<?php echo $this->getUrl('*/*/save') ?>" method="post" id="<?php echo $HTMLFormID ?>" enctype="multipart/form-data">
+    <?php  echo $this->getBlockHtml('formkey')?>
+    <?php  echo $this->getEntropy()?>
+</form>
+
+<script type="text/javascript">
+
+function AchivementVO(){
+	this.ID = null;
+	this.Value = null;
+	this.Code = null;
+	this.UserID = null;
+	this.Order = null;
+	this.WebsiteLink = null;
+	this.IsPaid = null;
+	this.Description = null;
+	this.Image = null;
+	this.AchivementDate = null;
+	this.LaunchDate = null;
+	this.EndDate = null;
+	this.Category1ID = null;
+	this.Category1Value = null;
+	this.Category2ID = null;
+	this.Category2Value = null;
+	this.Category3ID = null;
+	this.Category3Value = null;
+	this.HospitalTypeID = null;
+	this.StatusID=null;
+	this.LandLineNumber=null;
+	this.MobileNumber1=null;
+	this.MobileNumber2=null;
+	this.Email=null;
+	this.PinCode=null;
+	this.Address = null;
+	this.CountryID = null;
+	this.StateID = null;
+	this.DistrictID=null;
+	this.CityID=null;
+	
+}
+var newAchivementDTO = new AchivementVO();
+
+var formObj = new varienForm('<?php echo $HTMLFormID; ?>');
+var formJS={
+
+		submit : function(){
+    		//if(!formJS.saveValidation()) return ;
+    			$('<?php echo $HTMLFormID ?>').submit();
+				//formJS.saveAjax();
+		},
+
+		saveValidation : function(){
+			var errorMsg = '';
+			
+         	if(!(formObj.validator && formObj.validator.validate())){
+    	    	return false;
+	    	}
+	    	
+         	
+         	// SET VOs 
+            newAchivementDTO.ID = ($('ID').value).strip();
+         	newAchivementDTO.Value = ($('Value').value).strip();
+         	newAchivementDTO.Code = null;
+         	newAchivementDTO.UserID = null;
+         	newAchivementDTO.Order = null;
+         	newAchivementDTO.WebsiteLink = ($('WebsiteLink').value).strip();
+         	newAchivementDTO.IsPaid = 0;
+         	newAchivementDTO.Description = ($('Description').value).strip();
+         	newAchivementDTO.Image = ($('Image').value).strip();
+         	newAchivementDTO.AchivementDate = ($('AchivementDate').value).strip();
+         	newAchivementDTO.LaunchDate = ($('LaunchDate').value).strip();
+         	newAchivementDTO.EndDate = ($('EndDate').value).strip();
+         	newAchivementDTO.Category1ID = ($('Category1ID').value).strip();
+         	newAchivementDTO.Category1Value = ($('Category1Value').value).strip();
+         	newAchivementDTO.Category2ID = ($('Category2ID').value).strip();
+         	newAchivementDTO.Category2Value = ($('Category2Value').value).strip();
+         	newAchivementDTO.Category3ID = ($('Category3ID').value).strip();
+         	newAchivementDTO.Category3Value = ($('Category3Value').value).strip();
+         	newAchivementDTO.StatusID = ($('StatusID').value).strip();
+         	newAchivementDTO.LandLineNumber = ($('LandLineNumber').value).strip();
+         	newAchivementDTO.MobileNumber1 = ($('MobileNumber1').value).strip();
+         	newAchivementDTO.MobileNumber2 = ($('MobileNumber2').value).strip();
+         	newAchivementDTO.Email = ($('Email').value).strip();
+         	newAchivementDTO.PinCode = ($('PinCode').value).strip();
+         	newAchivementDTO.Address = ($('Address').value).strip();
+         	newAchivementDTO.CountryID = ($('CountryID').value).strip();
+         	newAchivementDTO.StateID = ($('StateID').value).strip();
+         	newAchivementDTO.DistrictID = ($('DistrictID').value).strip();
+         	newAchivementDTO.CityID = ($('CityID').value).strip();
+
+
+         	if($('Category1Value').style.display != 'none'){
+             	if(newAchivementDTO.Category1Value == '' || newAchivementDTO.Category1Value == null)
+         			errorMsg += "Please Enter First Category Value \n"; 
+            }else{
+            	newAchivementDTO.Category1ID = null;
+            }
+
+         	if($('Category2Value').style.display != 'none'){
+             	 if(newAchivementDTO.Category2Value == '' || newAchivementDTO.Category2Value == null)
+         		errorMsg += "Please Enter Second Category Value \n"; 
+            }else{
+            	newAchivementDTO.Category2ID = null;
+            }
+
+            if($('Category3Value').style.display != 'none'){
+              	 if(newAchivementDTO.Category3Value == '' || newAchivementDTO.Category3Value == null)
+	           		errorMsg += "Please Enter Third Category Value \n"; 
+            }else{
+               	newAchivementDTO.Category3ID = null;
+            }
+            
+         	
+         	if(errorMsg != ''){
+            	alert(errorMsg);
+				return false;
+			}
+
+			return true;	
+		},	
+
+        saveAjax: function(){
+        	var URL = "<?php echo $this->getUrl('*/*/save')?>" ;
+		    var parameters= {"AchivementDataObj": JSON.stringify(newAchivementDTO,null) };
+		    var callBackMethod ="formJS.responseSave";
+		    var callBackArgs =null;
+		    ajaxRequest.execute(	URL, parameters, callBackMethod , callBackArgs );
+		    return false;
+     	},
+
+	    responseSave : function(response,args) {
+        	if(response.SuccessMessage !=null){
+			 	window.location.href = "<?php echo $this->getUrl('*/*/index')?>" ;
+			 	return;
+			}else if(response.ErrorMessage !=null){
+				alert(response.ErrorMessage);
+    			return false;
+ 			}
+ 	 	},
+		
+		setDistrictList: function(stateID){
+			//var stateID = obj.value;
+			var innerHTML = '<option value="">--Select--</option>';
+			for(var key in districtList){
+				if(districtList[key].StateID == stateID){
+					if(key == ACHIVEMENTVO.DistrictID)
+						innerHTML += '<option value="'+key+'" selected = "selected">'+districtList[key].Name+'</option>';
+					else
+						innerHTML += '<option value="'+key+'">'+districtList[key].Name+'</option>';	
+				}
+			}
+			UI.elementDisabled($('DistrictID'), false);
+			$('DistrictID').innerHTML = innerHTML;
+			return; 
+		},
+
+		setCityList: function(districtID){
+			//var districtID = obj.value;
+			var innerHTML = '<option value="">--Select--</option>';
+			for(var key in cityList){
+				if(cityList[key].DistrictID == districtID){
+					if(key == ACHIVEMENTVO.CityID)
+						innerHTML += '<option value="'+key+'" selected = "selected">'+cityList[key].Name+'</option>';
+					else		
+						innerHTML += '<option value="'+key+'">'+cityList[key].Name+'</option>';
+				}
+			}
+			UI.elementDisabled($('CityID'), false);
+			$('CityID').innerHTML = innerHTML;
+			return; 
+		},
+
+		setCategoryBox: function(obj){
+			var categoryID   = obj.value;
+			var categoryName = obj.name;
+			var categoryValueID; 
+
+			switch(categoryName){
+				case 'Category1ID':
+					categoryValueID = 'Category1Value';	
+					break;
+				case 'Category2ID':
+					categoryValueID = 'Category2Value';
+					break;
+				case 'Category3ID':
+					categoryValueID = 'Category3Value';
+					break;		 
+			}
+			
+			if(categoryID != ''){
+				UI.elementVisibility($(categoryValueID),"block");
+			}else{
+				UI.elementVisibility($(categoryValueID),"none");
+				$(categoryValueID).value = '';
+			}			
+			return false;			 
+		},
+		
+		browseImageFile: function(){
+			$('Image').click();
+		},
+
+		getFilePath: function(){
+		    var image = $("Image").files[0];
+		    $("Preview").src = window.URL.createObjectURL(image);
+		},
+		
+		
+		defaultSetting: function(){
+			UI.elementDisabled($('DistrictID'), true);
+			UI.elementDisabled($('CityID'), true);
+
+			UI.elementVisibility($("Category1Value"),"none");
+			UI.elementVisibility($("Category2Value"),"none");
+			UI.elementVisibility($("Category3Value"),"none");
+		}
+			
+}; 
+
+
+// FOR EDIT 
+if(ACHIVEMENTVO != ''){
+
+	if(ACHIVEMENTVO.Category1Value != '' && ACHIVEMENTVO.Category1Value != null){
+		UI.elementVisibility($("Category1Value"),"block");
+	}else{
+		UI.elementVisibility($("Category1Value"),"none");
+	}
+
+	if(ACHIVEMENTVO.Category2Value != '' && ACHIVEMENTVO.Category2Value != null ){
+		UI.elementVisibility($("Category2Value"),"block");
+	}else{
+		UI.elementVisibility($("Category2Value"),"none");
+	}
+
+	if(ACHIVEMENTVO.Category3Value != '' && ACHIVEMENTVO.Category3Value != null){
+		UI.elementVisibility($("Category3Value"),"block");
+	}else{
+		UI.elementVisibility($("Category3Value"),"none");
+	}
+
+	
+	formJS.setDistrictList(ACHIVEMENTVO.StateID);
+	formJS.setCityList(ACHIVEMENTVO.DistrictID);		
+	
+}else{
+	formJS.defaultSetting();
+}
+
+</script>

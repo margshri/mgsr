@@ -1,0 +1,13 @@
+<?php
+class Yes_Master_Model_UserOffice extends Mage_Core_Model_Abstract  {
+    
+
+	/**
+     * Initialize resource model
+     */
+    protected function _construct()
+    {
+    	parent::_construct();
+        $this->_init('yesmaster/userOffice');
+    }
+}

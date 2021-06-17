@@ -1,0 +1,176 @@
+<?php
+    $HTMLFormID = $this->getHTMLFormID();
+    /* @var $societyVO Margshri_Common_VO_Society_Society_SocietyVO */
+    $societyVO = $this->getSocietyVO();    
+    // $adminUserID = Mage::getSingleton('admin/session')->getUser()->getId();    
+?>
+
+<div class="content-header">
+    <table cellspacing="0">
+        <tr>
+            <td style="width:50%;"><h3 class="icon-head head-permissions-role"><?php echo ($this->getSocietyID() != null ) ? ($this->__('Edit Society') ) : $this->__('Add Society') ?></h3></td>
+            <td class="form-buttons">
+                <?php echo $this->getBackButtonHtml() ?>
+                <?php echo $this->getResetButtonHtml() ?>
+                <?php echo $this->getSaveButtonHtml() ?>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<form action="<?php echo $this->getUrl('*/*/save') ?>" method="post" id="<?php echo $HTMLFormID ?>">
+    <?php  echo $this->getBlockHtml('formkey')?>
+    
+    <div class="entry-edit">
+    	<div class="entry-edit-head">
+    		<h4 class="icon-head head-edit-form fieldset-legend">Society Detail</h4>
+    		<div class="form-buttons"></div>
+    	</div>
+    
+    	<div class="fieldset " id="base_fieldset">
+    		<div class="hor-scroll">
+    		   
+      			<table class="form-list">
+    				<tbody>
+    				
+    					<tr>
+    						<td class="label">
+    							<label for="Code">Society Code<span class="required">*</span></label>
+    						</td>
+    						<td class="value">
+    							<input type="text" name="Code" id="Code" value="<?php echo $societyVO->getCode() ?>" class="input-text required-entry" />
+    						</td>
+    					</tr>
+    					
+    					<tr>
+    						<td class="label">
+    							<label for="Name">Society Name<span class="required">*</span></label>
+    						</td>
+    						<td class="value">
+    							<input type="text" name="Name" id="Name" value="<?php echo $societyVO->getName() ?>" class="input-text required-entry" />
+    						</td>
+    					</tr>
+    					
+    					
+    					<tr>
+    						<td class="label">
+    							<label for="RegistrationNo">Registration No</label>
+    						</td>
+    						<td class="value">
+    							<input type="text" name="RegistrationNo" id="RegistrationNo" value="<?php echo $societyVO->getRegistrationNo() ?>" class="input-text" />
+    						</td>
+    						</td>
+    					</tr>
+    					
+    					<tr>
+    						<td class="label">
+    							<label for="Address">Address</label>
+    						</td>
+    						<td class="value">
+    							<input type="text" name="Address" id="Address" value="<?php echo $societyVO->getAddress() ?>" class="input-text" />
+    						</td>
+    						</td>
+    					</tr>
+    					
+    					<tr>
+    						<td class="label">
+    							<label for="AreaID">Area<span class="required">*</span>
+    						</td>
+    						<td class="value">
+    							<select name="AreaID" id="AreaID" class="validate-select">
+    								<option value="">--Select--</option>
+    								<?php foreach ($this->getAreaOptions() as $areaID=>$areaDataObj): ?>
+    										<option value="<?php echo $areaID ?>" <?php echo ($societyVO->getAreaID() == $areaID) ? 'selected="selected"' : '' ?> ><?php echo $areaDataObj['Name'] ?></option>
+    								<?php endforeach; ?>
+    							</select>
+    						</td>
+    					</tr>
+    					
+    					
+    					<tr>
+    						<td class="label">
+    							<label for="StatusID">Society Status<span class="required">*</span>
+    						</td>
+    						<td class="value">
+    							<select name="StatusID" id="StatusID" class="validate-select">
+    								<option value="">--Select--</option>
+    								<?php foreach ($this->getStatusOptions() as $statusID=>$statusName): ?>
+    										<option value="<?php echo $statusID ?>" <?php echo ($societyVO->getStatusID() == $statusID) ? 'selected="selected"' : '' ?> ><?php echo $statusName ?></option>
+    								<?php endforeach; ?>
+    							</select>
+    						</td>
+    					</tr>
+    					
+    				</tbody>
+    			</table>		
+    		  		 
+    			
+    		</div>
+    	</div>
+    </div>
+    
+    <input type="hidden" id="ID" name="ID" value="<?php echo ($societyVO->getID() != null && $societyVO->getID() != "") ? $societyVO->getID() : 0 ?>" />
+</form>
+
+<script type="text/javascript">
+
+function societyVO(){
+	this.ID = null;
+	this.Code = null;
+	this.Name = null;
+	this.RegistrationNo = null;
+	this.Address = null;
+	this.AreaID = null;
+	this.StatusID = null;
+}
+var newSocietyDTO = new societyVO();
+
+var societyFormObj = new varienForm('<?php echo $HTMLFormID; ?>');
+var societyFormJS={
+
+		submit : function(){
+    		if(!societyFormJS.saveValidation()) return ;
+    		societyFormJS.saveAjax();
+		},
+
+		saveValidation : function(){
+			
+         	if(!(societyFormObj.validator && societyFormObj.validator.validate())){
+    	    	return false;
+	    	}
+         	
+         	// SET VOs
+         	newSocietyDTO.ID = ($('ID').value).strip();
+         	newSocietyDTO.Code = ($('Code').value).strip();
+         	newSocietyDTO.Name = ($('Name').value).strip();
+         	newSocietyDTO.RegistrationNo = ($('RegistrationNo').value).strip();
+         	newSocietyDTO.Address = ($('Address').value).strip();
+         	newSocietyDTO.AreaID = ($('AreaID').value).strip();
+         	newSocietyDTO.StatusID = ($('StatusID').value).strip();
+         	 
+         	return true;
+		},	
+
+        saveAjax: function(){
+        	var URL = "<?php echo $this->getUrl('*/*/save')?>" ;
+		    var parameters= {"SocietyDataObj": JSON.stringify(newSocietyDTO,null) };
+		    var callBackMethod ="societyFormJS.responseSave";
+		    var callBackArgs =null;
+		    ajaxRequest.execute(	URL, parameters, callBackMethod , callBackArgs );
+		    return false;
+     	},
+
+	    responseSave : function(response,args) {
+	    	if(response.SuccessMessage !=null){
+	    		window.location.href = "<?php echo $this->getUrl('*/*/index')?>";
+			 	return;
+			}else if(response.ErrorMessage !=null){
+				alert(response.ErrorMessage);
+				return false;
+ 			}
+ 	 	}
+			
+}; 
+ 
+
+</script>    	 

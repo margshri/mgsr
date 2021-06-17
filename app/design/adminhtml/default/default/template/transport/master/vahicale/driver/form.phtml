@@ -1,0 +1,186 @@
+<?php
+    $HTMLFormID = $this->getHTMLFormID();
+    /* @var $driverVO Margshri_Transport_VO_Master_Vahicale_DriverVO */
+    $driverVO = $this->getDriverVO();    
+?>
+
+<div class="content-header">
+    <table cellspacing="0">
+        <tr>
+            <td style="width:50%;"><h3 class="icon-head head-permissions-role"><?php echo ($this->getDriverID() != null ) ? ($this->__('Edit Driver') ) : $this->__('Add Driver') ?></h3></td>
+            <td class="form-buttons">
+                <?php echo $this->getBackButtonHtml() ?>
+                <?php echo $this->getResetButtonHtml() ?>
+                <?php echo $this->getSaveButtonHtml() ?>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<form action="<?php echo $this->getUrl('*/*/save') ?>" method="post" id="<?php echo $HTMLFormID ?>">
+    <?php  echo $this->getBlockHtml('formkey')?>
+    
+    <div class="entry-edit">
+    	<div class="entry-edit-head">
+    		<h4 class="icon-head head-edit-form fieldset-legend">Driver Detail</h4>
+    		<div class="form-buttons"></div>
+    	</div>
+    
+    	<div class="fieldset " id="base_fieldset">
+    		<div class="hor-scroll">
+    		   
+      			<table class="form-list">
+    				<tbody>
+    					
+    					<tr>
+    						<td class="label">
+    							<label for="DriverName">Driver Name</label>
+    						</td>
+    						<td class="value">
+    							<input type="text" name="Name" id="Name" value="<?php echo $driverVO->getName() ?>" class="input-text required-entry" />
+    						</td>
+    					</tr>
+    					
+    					
+    					<tr>
+    						<td class="label">
+    							<label for="MobileNo">Mobile Number</label>
+    						</td>
+    						<td class="value">
+    							<input type="text" name="MobileNo" id="MobileNo"
+    							value="<?php echo $driverVO->getMobileNo() ?>" 
+    							class="input-text validate-digits required-entry" />
+    						</td>
+    					</tr>
+    					
+    					
+    					<tr>
+    						<td class="label">
+    							<label for="DLNo">DL Number</label>
+    						</td>
+    						<td class="value">
+    							<input type="text" name="DLNo" id="DLNo"
+    							value="<?php echo $driverVO->getDLNo() ?>" 
+    							class="input-text " />
+    						</td>
+    					</tr>
+    					
+    					<tr>
+    						<td class="label">
+    							<label for="AadharNo">Aadhar Number</label>
+    						</td>
+    						<td class="value">
+    							<input type="text" name="AadharNo" id="AadharNo"
+    							value="<?php echo $driverVO->getAadharNo() ?>" 
+    							class="input-text validate-digits" />
+    						</td>
+    					</tr>
+    					
+    					
+    					<tr>
+    						<td class="label">
+    							<label for="Address">Address</label>
+    						</td>
+    						
+							<td class="value">
+								<textarea rows="3" cols="10" name="Address" id="Address" style="height: 40px;" ><?php echo $driverVO->getAddress() ?></textarea>
+							</td>
+	   						
+    					</tr>
+    					
+
+    					<tr>
+    						<td class="label">
+    							<label for="StatusID">Status</label>
+    						</td>
+    						<td class="value">
+    							<select name="StatusID" id="StatusID">
+    								<option value="">--Select--</option>
+    								<?php foreach ($this->getStatusOptions() as $statusID=>$statusName): ?>
+    									<option value="<?php echo $statusID ?>" <?php echo ($driverVO->getStatusID() == $statusID) ? 'Selected = "Selected"' : '' ?> ><?php echo $statusName ?></option>
+    								<?php endforeach; ?>
+    							</select>
+    						</td>
+    					</tr>
+
+    					
+    				</tbody>
+    			</table>		
+    		  		 
+    			
+    		</div>
+    	</div>
+    </div>
+    
+    <input type="hidden" id="ID" name="ID" value="<?php echo ($driverVO->getID() != null && $driverVO->getID() != "") ? $driverVO->getID() : 0 ?>" />
+</form>
+
+<script type="text/javascript">
+
+function driverVO(){
+	this.ID = null;
+	this.Name = null;
+	this.MobileNo = null;
+	this.Address = null;
+	this.DLNo = null;
+	this.AadharNo = null;
+	this.StatusID = null;
+}
+var newDriverDTO = new driverVO();
+
+var driverFormObj = new varienForm('<?php echo $HTMLFormID; ?>');
+var driverFormJS={
+
+		submit : function(){
+    		if(!driverFormJS.saveValidation()) return ;
+    		driverFormJS.saveAjax();
+		},
+
+		saveValidation : function(){
+			var errorMsg = '';
+			
+         	if(!(driverFormObj.validator && driverFormObj.validator.validate())){
+    	    	return false;
+	    	}
+         	
+         	// SET VOs
+         	newDriverDTO.ID = ($('ID').value).strip();
+         	newDriverDTO.Name = ($('Name').value).strip();
+         	newDriverDTO.MobileNo = ($('MobileNo').value).strip();
+         	newDriverDTO.Address = ($('Address').value).strip();
+         	newDriverDTO.DLNo = ($('DLNo').value).strip();
+         	newDriverDTO.AadharNo = ($('AadharNo').value).strip();
+         	newDriverDTO.StatusID = ($('StatusID').value).strip();
+         	
+            	
+         	if(errorMsg != ''){
+            	alert(errorMsg);
+				return false;
+			}
+
+         	return true;
+		},	
+
+        saveAjax: function(){
+        	var URL = "<?php echo $this->getUrl('*/*/save')?>" ;
+		    var parameters= {"DriverDataObj": JSON.stringify(newDriverDTO,null) };
+		    var callBackMethod ="driverFormJS.responseSave";
+		    var callBackArgs =null;
+		    ajaxRequest.execute(	URL, parameters, callBackMethod , callBackArgs );
+		    return false;
+     	},
+
+	    responseSave : function(response,args) {
+	    	if(response.SuccessMessage !=null){
+	    		window.location.href = "<?php echo $this->getUrl('*/*/index')?>";
+			 	return;
+			}else if(response.ErrorMessage !=null){
+				alert(response.ErrorMessage);
+				return false;
+ 			}
+ 	 	}
+			
+}; 
+ 
+
+</script>    	 

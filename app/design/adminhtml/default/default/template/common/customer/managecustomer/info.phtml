@@ -1,0 +1,49 @@
+<?php
+$HTMLFormID = $this->getHTMLFormID();
+?>
+<div class="content-header">
+    <table cellspacing="0">
+        <tr>
+            
+            <td style="width:50%;"><h3 class="icon-head head-permissions-role"><?php echo ($this->getID() != null ) ? ($this->__('Edit') ) : $this->__('Add') ?></h3></td>
+            <td class="form-buttons">
+                <?php echo $this->getBackButtonHtml() ?>
+                <?php echo $this->getResetButtonHtml() ?>
+                <?php echo $this->getSaveButtonHtml() ?>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<form action="<?php echo $this->getUrl('*/*/save') ?>" method="post" id="<?php echo $HTMLFormID ?>" enctype="multipart/form-data">
+    <?php  echo $this->getBlockHtml('formkey')?>
+    <?php  echo $this->getEntropy()?>
+</form>
+
+<script type="text/javascript">
+
+var formObj = new varienForm('<?php echo $HTMLFormID; ?>');
+var formJS={
+
+		submit : function(){
+			if(!formJS.saveValidation()) return ;
+    		$('<?php echo $HTMLFormID ?>').submit();
+		},
+
+		saveValidation : function(){
+			if(!(formObj.validator && formObj.validator.validate())){
+    	    	return false;
+	    	}
+	    	return true;
+		},	
+		
+		browseCustomerImageFile: function(){
+			$('CustomerImage').click();
+		},
+
+		getCustomerImagePath: function(){
+		    var customerImage = $("CustomerImage").files[0];
+		    $("CustomerImagePreview").src = window.URL.createObjectURL(customerImage);
+		}
+};
+</script>

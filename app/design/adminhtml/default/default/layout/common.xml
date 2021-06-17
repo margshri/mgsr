@@ -1,0 +1,103 @@
+<?xml version="1.0"?>
+<layout>
+
+	<!-- Start Master -->
+	<!-- Directory -->
+	<common_backend_master_directory_city_index>
+			<reference name="content">
+					<block type="common/Backend_Master_Directory_City_Header" name="Backen_Master_Directory_City_Header" template="common/master/directory/city/header.phtml">
+			 			<block type="common/Backend_Master_Directory_City_Grid" name="Backend_Master_Directory_City_Grid"	as="grid" />
+					</block>
+			</reference>
+	</common_backend_master_directory_city_index>
+	
+	<common_backend_master_directory_area_index>
+			<reference name="content">
+					<block type="common/Backend_Master_Directory_Area_Header" name="Backen_Master_Directory_Area_Header" template="common/master/directory/area/header.phtml">
+			 			<block type="common/Backend_Master_Directory_Area_Grid" name="Backend_Master_Directory_Area_Grid"	as="grid" />
+					</block>
+			</reference>
+	</common_backend_master_directory_area_index>
+	<!-- End Master -->
+
+
+	<!-- User -->
+	<common_backend_user_user_index>
+			<reference name="content">
+					<block type="common/Backend_User_User_Header" name="Backend_User_User_Header" template="common/user/user/header.phtml">
+			 			<block type="common/Backend_User_User_Grid" name="Backend_User_User_Grid"	as="grid" />
+					</block>
+			</reference>
+	</common_backend_user_user_index>
+
+
+	<!-- Donor -->
+	<common_backend_donor_donor_index>
+			<reference name="content">
+					<block type="common/Backend_Donor_Donor_Header" name="Backend_Donor_Donor_Header" template="common/donor/donor/header.phtml">
+			 			<block type="common/Backend_Donor_Donor_Grid" name="Backend_Donor_Donor_Grid"	as="grid" />
+					</block>
+			</reference>
+	</common_backend_donor_donor_index>
+
+	<!-- Member -->
+	<common_backend_member_member_index>
+			<reference name="content">
+					<block type="common/Backend_Member_Member_Header" name="Backend_Member_Member_Header" template="common/member/member/header.phtml">
+			 			<block type="common/Backend_Member_Member_Grid" name="Backend_Member_Member_Grid"	as="grid" />
+					</block>
+			</reference>
+	</common_backend_member_member_index>
+
+	<!-- Programme -->
+	<common_backend_programme_programme_index>
+			<reference name="content">
+					<block type="common/Backend_Programme_Programme_Header" name="Backend_Programme_Programme_Header" template="common/programme/programme/header.phtml">
+			 			<block type="common/Backend_Programme_Programme_Grid" name="Backend_Programme_Programme_Grid"	as="grid" />
+					</block>
+			</reference>
+	</common_backend_programme_programme_index>
+
+	<!-- Society -->
+	<common_backend_society_society_index>
+			<reference name="content">
+					<block type="common/Backend_Society_Society_Header" name="Backend_Society_Society_Header" template="common/society/society/header.phtml">
+			 			<block type="common/Backend_Society_Society_Grid" name="Backend_Society_Society_Grid"	as="grid" />
+					</block>
+			</reference>
+	</common_backend_society_society_index>
+
+   	<!-- Custom Customer -->
+	<common_backend_customer_managecustomer_managecustomer_index>
+			<reference name="content">
+					<block type="common/Backend_Customer_ManageCustomer_Header" name="Backend_Customer_ManageCustomer_Header" template="common/customer/managecustomer/header.phtml">
+			 			<block type="common/Backend_Customer_ManageCustomer_Grid" name="Backend_Customer_ManageCustomer_Grid"	as="grid" />
+					</block>
+			</reference>
+	</common_backend_customer_managecustomer_managecustomer_index>
+	
+	<common_backend_customer_managevisitor_actualvisitor_index>
+			<reference name="content">
+					<block type="common/Backend_Customer_ManageVisitor_ActualVisitor_Header" name="Backend_Customer_ManageVisitor_ActualVisitor_Header" template="common/customer/managevisitor/actualvisitor/header.phtml">
+			 			<block type="common/Backend_Customer_ManageVisitor_ActualVisitor_Grid" name="Backend_Customer_ManageVisitor_ActualVisitor_Grid"	as="grid" />
+					</block>
+			</reference>
+	</common_backend_customer_managevisitor_actualvisitor_index>
+	
+	<common_backend_customer_managevisitor_customvisitor_index>
+			<reference name="content">
+					<block type="common/Backend_Customer_ManageVisitor_CustomVisitor_Header" name="Backend_Customer_ManageVisitor_ActualVisitor_Header" template="common/customer/managevisitor/customvisitor/header.phtml">
+			 			<block type="common/Backend_Customer_ManageVisitor_CustomVisitor_Grid" name="Backend_Customer_ManageVisitor_ActualVisitor_Grid"	as="grid" />
+					</block>
+			</reference>
+	</common_backend_customer_managevisitor_customvisitor_index>
+	
+	<!-- Book -->
+	<common_backend_book_receiptbook_index>
+			<reference name="content">
+					<block type="common/Backend_Book_ReceiptBook_Header" name="Backend_Book_ReceiptBook_Header" template="common/book/receiptbook/header.phtml">
+			 			<block type="common/Backend_Book_ReceiptBook_Grid" name="Backend_Book_ReceiptBook_Grid"	as="grid" />
+					</block>
+			</reference>
+	</common_backend_book_receiptbook_index> 
+</layout>

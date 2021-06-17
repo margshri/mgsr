@@ -1,0 +1,22 @@
+<?php
+$registrationVO = $this->getRegistrationVO();
+if($registrationVO == null){
+    $registrationVO = new Margshri_MedicalCamp_VO_RegistrationVO();
+}
+
+?>
+<?php echo $this->getHeaderHtml() ?>
+
+<div class="card">
+	<div class="card-header">Congratulations! You have successfully submitted your form....</div>
+    <div class="card-body">
+    	Registration Number : <?php echo $registrationVO->getTransactionID() ?>
+    </div>
+    <div class="card-footer">
+		<div class="col-xs-9 col-xs-offset-3">
+            <button type="button" class="btn btn-info" id="FillMoreFormBtn" name="FillMoreFormBtn" value="Submit" onclick="return baseFormJS.redirect('<?php echo $this->getUrl("medicalcamp/Registration_Registration/showNewForm") ?>')" >Fill More Form</button>
+        </div>    
+    </div>
+</div>
+
+<?php echo $this->getFooterHtml() ?>

@@ -1,0 +1,21 @@
+
+<IfModule mod_rewrite.c>
+ Options +FollowSymLinks
+RewriteEngine On
+RewriteBase /mgsr/
+RewriteRule ^api api.php?type=rest [QSA,L]
+RewriteRule ^adminapi  adminapi.php?type=rest [QSA,L]
+RewriteRule ^ezetapwebhook  ezetapwebhook.php?type=rest [QSA,L]
+
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /mgsr/index.php [L]
+
+
+
+
+</IfModule>
+
+
+

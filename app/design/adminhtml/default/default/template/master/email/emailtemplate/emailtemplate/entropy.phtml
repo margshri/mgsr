@@ -1,0 +1,90 @@
+<?php
+/* @var $emailTemplateVO Dakiya_VO_Master_Email_EmailTemplateVO */ 
+$emailTemplateVO = $this->getEmailTemplateVO();
+if($emailTemplateVO == null){
+	$emailTemplateVO = new Dakiya_VO_Master_Email_EmailTemplateVO();
+}
+?>
+
+<div class="entry-edit">
+
+	<div class="entry-edit-head">
+		<h4 class="icon-head head-edit-form fieldset-legend">Email Template</h4>
+		<div class="form-buttons"></div>
+	</div>
+
+	<div class="fieldset ">
+		<div class="hor-scroll">
+			
+			<table class="form-list">
+				<tbody>
+					 
+					<tr>
+						<td class="label">
+							<label for="TemplateName">Template Name<span class="required">*</span></label>
+						</td>
+						<td class="value">
+							<input id="TemplateName" name="TemplateName" value="<?php echo $emailTemplateVO->getTemplateName() ?>" 
+							class="required-entry input-text" type="text" />
+						</td>
+					</tr>
+					
+					<tr>
+						<td class="label">
+							<label for="TemplateCode">Template Code<span class="required">*</span></label>
+						</td>
+						<td class="value">
+							<input id="TemplateCode" name="TemplateCode" value="<?php echo $emailTemplateVO->getTemplateCode() ?>" 
+							class="required-entry input-text" type="text" />
+						</td>
+					</tr>
+				
+					<tr>
+						<td class="label">
+							<label for="Subject">Email Subject<span class="required">*</span></label>
+						</td>
+						<td class="value">
+							<input id="Subject" name="Subject" value="<?php echo $emailTemplateVO->getSubject() ?>" 
+							class="required-entry input-text" type="text" />
+						</td>
+					</tr>
+					
+					<tr>
+						<td class="label">
+							<label for="Status">Status<span class="required">*</span></label>
+						</td>
+						<td class="value">
+							<select id="StatusID" name="StatusID" class = "validate-select" >
+								<option value="">--Select--</option>
+								<?php foreach ($this->getStatusOptions() as $key=> $value): ?>
+	     						<option value="<?php echo $key; ?>"  <?php  echo ( $key == $emailTemplateVO->getStatusID()) ?   'selected="selected"' : '' ?> > <?php echo $value; ?> </option>
+	     						<?php endforeach; ?>
+	     					</select>
+	     					
+	     				</td>
+	     			</tr>
+	     			
+	     			<tr>
+						<td class="label">
+							<label for="Query">Template Query</label>
+						</td>
+						<td class="value">
+							<textarea rows="" cols="" id="Query" name="Query" style="width: 1000px !important; height: 94px !important;" ><?php echo $emailTemplateVO->getQuery() ?></textarea>
+							<input id="TemplateID" name="TemplateID" value="<?php echo ($emailTemplateVO->getTemplateID() != null) ? $emailTemplateVO->getTemplateID() : 0  ?>" type="hidden" />
+						</td>
+					</tr>
+					
+					<tr>
+						<td class="label">
+							<label for="Content">Content</label>
+						</td>
+						<td class="value">
+							<textarea id="Content" name="Content" style="width: 1000px !important; height: 500px !important;"><?php echo $emailTemplateVO->getContent() ?></textarea>	
+	     				</td>
+	     			</tr>
+				</tbody>
+				 
+			</table>
+		</div>
+	</div>
+</div>

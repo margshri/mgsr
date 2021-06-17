@@ -1,0 +1,56 @@
+<?php
+	
+    $HTMLFormID = $this->getHTMLFormID();
+    $cityDiamondsVO    = $this->getCityDiamondsVO();    
+    
+    if($cityDiamondsVO == null){
+    	$cityDiamondsVO = new Margshri_WebPortal_VO_Center_Content_Type2_CityDiamonds_CityDiamondsVO();
+    }
+    
+    $statusOptions  = $this->getStatusOptions();
+?>
+
+<div class="entry-edit">
+	<div class="entry-edit-head">
+		<h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__("City Diamonds") ?></h4>
+		<div class="form-buttons"></div>
+	</div>
+
+	<div class="fieldset " id="base_fieldset">
+		<div class="hor-scroll">
+	   		<table class="form-list">
+				<tbody>
+
+				
+					<tr>
+						<td class="label">
+							<label for="CustomerName">Customer Name</label>
+						</td>
+						<td class="label">
+							<label for="CustomerName"><?php echo $cityDiamondsVO->getFirstName() . " " . $cityDiamondsVO->getLastName() ?></label>
+						</td>
+					</tr>
+					
+					
+					<tr>
+						<td class="label">
+							<label for="StatusID">Status<span class="required">*</span></label>
+						</td>
+						<td class="value">
+							<select name="StatusID" id="StatusID" class="validate-select">
+								<option value="">--Select--</option>
+								<?php foreach ($statusOptions as $key=>$value): ?>
+									<option value="<?php echo $key ?>" <?php echo ($cityDiamondsVO->getStatusID() == $key ) ? 'selected="selected"' : '' ?> ><?php echo $value ?></option>	
+								<?php endforeach; ?>
+							</select>
+							<input type="hidden" id="CustomerID" name="CustomerID" value="<?php echo $cityDiamondsVO->getCustomerID() ?>">
+							<input type="hidden" id="ID" name="ID" value="<?php echo ($cityDiamondsVO->getID() != null) ? $cityDiamondsVO->getID() : 0  ?>">
+						</td>
+					</tr>
+					
+					
+				</tbody>
+			</table>  		
+		</div>
+	</div>
+</div>

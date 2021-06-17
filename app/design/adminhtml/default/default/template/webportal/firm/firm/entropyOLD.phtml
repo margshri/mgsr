@@ -1,0 +1,677 @@
+<?php
+    $HTMLFormID = $this->getHTMLFormID();
+    $firmVO    = $this->getFirmVO();    
+    
+    if($firmVO == null){
+    	$firmVO = new Margshri_WebPortal_VO_Firm_Firm_FirmVO();
+    }
+    
+    $countryOptions = $this->getCountryOptions();
+    $stateOptions   = $this->getStateOptions();
+    $districtOptions= $this->getDistrictOptions();
+    $cityOptions    = $this->getCityOptions();
+    $statusOptions  = $this->getStatusOptions();
+    $dynamicColumnOptions = $this->getDynamicColumnOptions();
+    $tableVOs = $this->getTableVOs();
+    
+    $tableOptions = array();
+    foreach ($tableVOs as $tableVO){
+    	$tableOptions[$tableVO->getCode()] = $tableVO->getCode();  
+    }
+    
+?>
+<script type="text/javascript">
+<!--
+
+//SET STATE 
+var stateList = '';
+var stateOptions = '<?php echo (sizeof($stateOptions) > 0) ?  json_encode($stateOptions) : '' ?>';
+if(stateOptions != ''){
+	stateList = JSON.parse(stateOptions);	
+}
+
+//SET DISTRICT 
+var districtList = '';
+var districtOptions = '<?php echo (sizeof($districtOptions) > 0) ?  json_encode($districtOptions) : '' ?>';
+if(districtOptions != ''){
+	districtList = JSON.parse(districtOptions);	
+}
+
+//SET STATE 
+var cityList = '';
+var cityOptions = '<?php echo (sizeof($cityOptions) > 0) ?  json_encode($cityOptions) : '' ?>';
+if(cityOptions != ''){
+	cityList = JSON.parse(cityOptions);	
+}
+
+//SET STATE 
+var FIRMVO  = '';
+var firmDTO = '<?php echo ($firmVO->getID() != null) ? json_encode($firmVO->getDataArray()) : '' ?>';
+if(firmDTO != ''){
+	FIRMVO = JSON.parse(firmDTO);
+}
+
+
+//SET TABLE VOs 
+var tableList  = '';
+var tableOptions = '<?php echo (sizeof($tableOptions) > 0) ? json_encode($tableOptions) : '' ?>';
+if(tableOptions != ''){
+	tableList = JSON.parse(tableOptions);
+}
+
+//-->
+</script>
+
+
+<div class="entry-edit">
+	<div class="entry-edit-head">
+		<h4 class="icon-head head-edit-form fieldset-legend">Firm Detail</h4>
+		<div class="form-buttons"></div>
+	</div>
+
+	<div class="fieldset " id="base_fieldset">
+		<div class="hor-scroll">
+		  <table>
+		  	<tr>
+		  		<td>
+		  			<table class="form-list">
+						<tbody>
+
+							<tr>
+								<td class="label">
+									<label for="Value">Name<span class="required">*</span></label>
+								</td>
+								<td class="value">
+									<input type="text" name="Value" id="Value" 
+									value="<?php echo $firmVO->getValue() ?>" 
+									class="required-entry input-text" />
+								</td>
+							</tr>
+
+							
+							<tr>
+								<td class="label">
+									<label for="SortName">Sort Name</label>
+								</td>
+								<td class="value">
+									<input type="text" name="SortName" id="SortName" 
+									value="<?php echo $firmVO->getSortName() ?>" 
+									class="input-text" />
+								</td>
+							</tr>
+
+
+							<tr>
+								<td class="label">
+									<label for="ContactPersonName">Contact Person Name</label>
+								</td>
+								<td class="value">
+									<input type="text" name="ContactPersonName" id="ContactPersonName" 
+									value="<?php echo $firmVO->getContactPersonName() ?>" 
+									class="input-text" />
+								</td>
+							</tr>
+
+							
+							<tr>
+								<td class="label">
+									<label for="Address">Address<span class="required">*</span></label>
+								</td>
+								<td class="value">
+									<textarea rows="3" cols="10" name="Address" id="Address" class="required-entry" style="height: 40px;" ><?php echo $firmVO->getAddress() ?></textarea>
+								</td>
+							</tr>
+		
+							<tr>
+								<td class="label">
+									<label for="CountryID">Country<span class="required">*</span></label>
+								</td>
+								<td class="value">
+									<select name="CountryID" id="CountryID" disabled="disabled">
+										<!--  <option>--Select--</option> -->
+										<?php foreach ($countryOptions as $key=>$value): ?>
+											<option value="<?php echo $key ?>" selected="selected"><?php echo $value ?></option>	
+										<?php endforeach; ?>
+									</select>
+								</td>
+							</tr>
+							
+							<tr>
+								<td class="label">
+									<label for="StateID">State<span class="required">*</span></label>
+								</td>
+								<td class="value">
+									<select name="StateID" id="StateID" onchange="formJS.setDistrictList(this.value)" class="validate-select">
+										<option value="">--Select--</option>
+										<?php foreach ($stateOptions as $key=>$value): ?>
+											<option value="<?php echo $key ?>" <?php echo ($firmVO->getStateID() == $key ) ? 'selected="selected"' : '' ?> ><?php echo $value['Name'] ?></option>	
+										<?php endforeach; ?>
+									</select>
+								</td>
+							</tr>
+							
+							<tr>
+								<td class="label">
+									<label for="DistrictID">District<span class="required">*</span></label>
+								</td>
+								<td class="value">
+									<select name="DistrictID" id="DistrictID" onchange="formJS.setCityList(this.value)"  class="validate-select">
+										<option value="">--Select--</option>
+									</select>
+								</td>
+							</tr>
+							
+							<tr>
+								<td class="label">
+									<label for="CityID">City<span class="required">*</span></label>
+								</td>
+								<td class="value">
+									<select name="CityID" id="CityID" class="validate-select">
+										<option value="">--Select--</option>
+									</select>
+								</td>
+							</tr>
+							
+							<tr>
+								<td class="label">
+									<label for="Area">Area</label>
+								</td>
+								<td class="value">
+									<input type="text" name="Area" id="Area" 
+									value="<?php echo $firmVO->getArea() ?>" 
+									class="input-text" />
+								</td>
+							</tr>
+							  
+							<tr>
+								<td class="label">
+									<label for="PinCode">Pin Code</label>
+								</td>
+								<td class="value">
+									<input type="text" name="PinCode" id="PinCode" 
+									value="<?php echo $firmVO->getPinCode() ?>" 
+									class="validate-number input-text" />
+								</td>
+							</tr>
+							
+							
+							<tr>
+								<td class="label">
+									<label for="Category1ID">First Category Name</label>
+								</td>
+								<td class="value">
+									<select name="Category1ID" id="Category1ID" onchange="formJS.setCategoryBox(this)" >
+										<option value="">--Select--</option>
+										<?php foreach ($dynamicColumnOptions as $key=>$value): ?>
+											<option value="<?php echo $key ?>" <?php echo ($firmVO->getCategory1ID() == $key ) ? 'selected="selected"' : '' ?> ><?php echo $value['Value'] ?></option>	
+										<?php endforeach; ?>
+									</select>
+									
+									<input type="text" name="Category1Value" id="Category1Value"  
+									value="<?php echo $firmVO->getCategory1Value() ?>" 
+									class="input-text" style="margin-top: 10px;" />
+								</td>
+							</tr>
+							
+
+							<tr>
+								<td class="label">
+									<label for="Category2ID">Second Category Name</label>
+								</td>
+								<td class="value">
+									<select name="Category2ID" id="Category2ID" onchange="formJS.setCategoryBox(this)" >
+										<option value="">--Select--</option>
+										<?php foreach ($dynamicColumnOptions as $key=>$value): ?>
+											<option value="<?php echo $key ?>" <?php echo ($firmVO->getCategory2ID() == $key ) ? 'selected="selected"' : '' ?> ><?php echo $value['Value'] ?></option>	
+										<?php endforeach; ?>
+									</select>
+									<input type="text" name="Category2Value" id="Category2Value"  
+									value="<?php echo $firmVO->getCategory2Value() ?>" 
+									class="input-text" style="margin-top: 10px;" />
+								</td>
+							</tr>
+							
+							
+							
+							<tr>
+								<td class="label">
+									<label for="Category3ID">Third Category Name</label>
+								</td>
+								<td class="value">
+									<select name="Category3ID" id="Category3ID" onchange="formJS.setCategoryBox(this)" >
+										<option value="">--Select--</option>
+										<?php foreach ($dynamicColumnOptions as $key=>$value): ?>
+											<option value="<?php echo $key ?>" <?php echo ($firmVO->getCategory3ID() == $key ) ? 'selected="selected"' : '' ?> ><?php echo $value['Value'] ?></option>	
+										<?php endforeach; ?>
+									</select>
+									<input type="text" name="Category3Value" id="Category3Value"  
+									value="<?php echo $firmVO->getCategory3Value() ?>" 
+									class="input-text" style="margin-top: 10px;" />
+								</td>
+							</tr>
+							
+							<tr>
+								<td class="label">
+									<label for="UniqueID">UniqueID</label>
+								</td>
+								<td class="value">
+									<input type="text" name="UniqueID" id="UniqueID" 
+									value="<?php echo $firmVO->getUniqueID() ?>" 
+									class="input-text" />
+								</td>
+							</tr>
+							
+							
+							<tr>
+								<td class="label">
+									<label for="Password">Password</label>
+								</td>
+								<td class="value">
+									<input type="text" name="Password" id="Password" 
+									value="<?php echo $firmVO->getPassword() ?>" 
+									class="input-text" />
+								</td>
+							</tr>
+							
+							<tr>
+								<td class="label">
+									<label for="PaymentMethodID">Payment Method</label>
+								</td>
+								<td class="value">
+									<!--
+									<select name="PaymentMethodID" id="PaymentMethodID" >
+										<option value="">--Select--</option>
+										<?php foreach ($this->getPaymentMethodOptions() as $key=>$value): ?>
+											<option value="<?php echo $key ?>" <?php echo ($firmVO->getPaymentMethodID() == $key ) ? 'selected="selected"' : '' ?> ><?php echo $value ?></option>	
+										<?php endforeach; ?>
+									</select>
+									-->
+									<table>
+										<tbody id="PaymentMethodContainer" name="PaymentMethodContainer">
+											<?php $paymentMethodArray = explode("|", $firmVO->getPaymentMethod()) ?> 
+											<?php foreach ($this->getPaymentMethodOptions() as $key=>$value): ?>
+											<tr>
+												<td>
+													<input type="checkbox" value="<? echo $value ?>" <?php echo (in_array($value, $paymentMethodArray)) ? 'checked = "checked"' : '' ?>  /><? echo $value ?>
+												</td>
+											</tr>
+											<?php endforeach; ?>					
+										</tbody>
+									</table>
+	
+								</td>
+							</tr>
+							
+							
+							
+						</tbody>
+					</table>		
+		  		</td>	
+		  	
+		  		<td style="width: 200px;"></td>
+		  	
+		  		<td>
+					<table class="form-list">
+						<tbody>
+
+							<tr>
+								<td class="label">
+									<label for="TinNumber">Registration No.</label>
+								</td>
+								<td class="value">
+									<input type="text" name="TinNumber" id="TinNumber" 
+									value="<?php echo $firmVO->getTinNumber() ?>" 
+									class="input-text" />
+								</td>
+							</tr>
+							
+							
+							<tr>
+								<td class="label">
+									<label for="PANNumber">PAN No.</label>
+								</td>
+								<td class="value">
+									<input type="text" name="PANNumber" id="PANNumber" 
+									value="<?php echo $firmVO->getPANNumber() ?>" 
+									class="input-text" />
+								</td>
+							</tr>
+							
+							<tr>
+								<td class="label">
+									<label for="RtelNumber">Rtel Number</label>
+								</td>
+								<td class="value">
+									<input type="text" name="RtelNumber" id="RtelNumber" 
+									value="<?php echo $firmVO->getRtelNumber() ?>" 
+									class="input-text" />
+								</td>
+							</tr> 
+
+							<tr>
+								<td class="label">
+									<label for="KumLicenceNo">Kum Licence No</label>
+								</td>
+								<td class="value">
+									<input type="text" name="KumLicenceNo" id="KumLicenceNo" 
+									value="<?php echo $firmVO->getKumLicenceNo() ?>" 
+									class="input-text" />
+								</td>
+							</tr>
+							
+							<tr>
+								<td class="label">
+									<label for="ACRegistrationNo">AC Registration No</label>
+								</td>
+								<td class="value">
+									<input type="text" name="ACRegistrationNo" id="ACRegistrationNo" 
+									value="<?php echo $firmVO->getACRegistrationNo() ?>" 
+									class="input-text" />
+								</td>
+							</tr> 
+						
+						
+							<tr>
+								<td class="label">
+									<label for="LandLineNumber">Land Line Number</label>
+								</td>
+								<td class="value">
+									<input type="text" name="LandLineNumber" id="LandLineNumber" 
+									value="<?php echo $firmVO->getLandLineNumber() ?>" 
+									class="validate-phoneLax input-text" />
+								</td>
+							</tr>
+							
+							
+							<tr>
+								<td class="label">
+									<label for="MobileNumber1">Mobile Number 1</label>
+								</td>
+								<td class="value">
+									<input type="text" name="MobileNumber1" id="MobileNumber1" 
+									value="<?php echo $firmVO->getMobileNumber1() ?>" 
+									class="input-text validate-mobileno" />
+								</td>
+							</tr>
+							
+							
+							<tr>
+								<td class="label">
+									<label for="MobileNumber2">Mobile Number 2</label>
+								</td>
+								<td class="value">
+									<input type="text" name="MobileNumber2" id="MobileNumber2" 
+									value="<?php echo $firmVO->getMobileNumber2() ?>" 
+									class="input-text validate-mobileno" />
+								</td>
+							</tr>
+
+
+							<tr>
+								<td class="label">
+									<label for="CustomerCareNumber">Customer Care Number</label>
+								</td>
+								<td class="value">
+									<input type="text" name="CustomerCareNumber" id="CustomerCareNumber" 
+									value="<?php echo $firmVO->getCustomerCareNumber() ?>" 
+									class="input-text" />
+								</td>
+							</tr>
+
+
+							<tr>
+								<td class="label">
+									<label for="EmergencyNumber">Emergency Number</label>
+								</td>
+								<td class="value">
+									<input type="text" name="EmergencyNumber" id="EmergencyNumber" 
+									value="<?php echo $firmVO->getEmergencyNumber() ?>" 
+									class="input-text" />
+								</td>
+							</tr>
+
+							<tr>
+								<td class="label">
+									<label for="TollFree">Toll Free Number</label>
+								</td>
+								<td class="value">
+									<input type="text" name="TollFree" id="TollFree" 
+									value="<?php echo $firmVO->getEmergencyNumber() ?>" 
+									class="input-text" />
+								</td>
+							</tr>
+						
+							<tr>
+								<td class="label">
+									<label for="WebsiteLink">Website Link</label>
+								</td>
+								<td class="value">
+									<input type="text" name="WebsiteLink" id="WebsiteLink" 
+									value="<?php echo $firmVO->getWebsiteLink() ?>" 
+									class="input-text" />
+								</td>
+								
+								<!-- validate-clean-url -->
+							</tr>			
+									
+							<tr>
+								<td class="label">
+									<label for="Email">Email</label>
+								</td>
+								<td class="value">
+									<input type="text" name="Email" id="Email" 
+									value="<?php echo $firmVO->getEmail() ?>" 
+									class="validate-email input-text" />
+								</td>
+							</tr>	
+						
+						
+							<tr>
+								<td class="label">
+									<label for="StatusID">Status<span class="required">*</span></label>
+								</td>
+								<td class="value">
+									<select name="StatusID" id="StatusID" class="validate-select">
+										<option value="">--Select--</option>
+										<?php foreach ($statusOptions as $key=>$value): ?>
+											<option value="<?php echo $key ?>" <?php echo ($firmVO->getStatusID() == $key ) ? 'selected="selected"' : '' ?> ><?php echo $value ?></option>	
+										<?php endforeach; ?>
+									</select>
+									
+									<input type="hidden" id="ID" name="ID" value="<?php echo ($firmVO->getID() != null) ? $firmVO->getID() : 0  ?>">
+								</td>
+							</tr>
+		
+		
+							<tr>
+								<td class="label">
+									<label for="IsPaid">Is Paid (Sub Page)</label>
+								</td>
+								<td class="value">
+									<input type="checkbox" name="IsPaid" id="IsPaid" <?php echo ($firmVO->getIsPaid() == 1) ? "checked = 'checked'" : '' ?>>
+								</td>
+							</tr>
+							
+							
+							<tr>
+								<td class="label">
+									<label for="IsOnlineShopping">Is Online Shopping</label>
+								</td>
+								<td class="value">
+									<input type="checkbox" name="IsOnlineShopping" id="IsOnlineShopping" <?php echo ($firmVO->getIsOnlineShopping() == 1) ? "checked = 'checked'" : '' ?>>
+								</td>
+							</tr>
+
+							<tr>
+								<td class="label">
+									<label for="PriorityID">Priority</label>
+								</td>
+								<td class="value">
+									<select name="PriorityID" id="PriorityID" >
+										<option value="">--Select--</option>
+										<?php foreach ($this->getPriorityOptions() as $key=>$value): ?>
+											<option value="<?php echo $key ?>" <?php echo ($firmVO->getPriorityID() == $key ) ? 'selected="selected"' : '' ?> ><?php echo $value ?></option>	
+										<?php endforeach; ?>
+									</select>
+								</td>
+							</tr>
+							
+							<tr>
+								<td class="label">
+									<label for="SubPageTableCode">SubPage Table Code</label>
+								</td>
+								<td class="value">
+									<input type="text" name="SubPageTableCode" id="SubPageTableCode" 
+									value="<?php echo $firmVO->getSubPageTableCode() ?>" 
+									class="input-text" />
+								</td>
+							</tr>
+
+							<tr>
+								<td class="label">
+									<label for="SubPageURL">SubPage URL</label>
+								</td>
+								<td class="value">
+									<input type="text" name="SubPageURL" id="SubPageURL" 
+									value="<?php echo $firmVO->getSubPageURL() ?>" 
+									class="input-text" />
+								</td>
+							</tr>
+							
+							
+							
+							
+							<tr>
+								<td class="label">
+									<label for="UseInCLP">Use In CLP</label>
+								</td>
+								<td class="value">
+									<input type="checkbox" name="UseInCLP" id="UseInCLP" <?php echo ($firmVO->getUseInCLP() == 1) ? "checked = 'checked'" : '' ?>>
+								</td>
+							</tr>
+							
+							
+							<tr>
+								<td class="label">
+									<label for="MinCLPPoint">Min CLP Point</label>
+								</td>
+								<td class="value">
+									<input type="text" name="MinCLPPoint" id="MinCLPPoint" 
+									value="<?php echo $firmVO->getMinCLPPoint() ?>" 
+									class="input-text" />
+								</td>
+							</tr>
+							
+							
+							<tr>
+								<td class="label">
+									<label for="MaxCLPPoint">Max CLP Point</label>
+								</td>
+								<td class="value">
+									<input type="text" name="MaxCLPPoint" id="MaxCLPPoint" 
+									value="<?php echo $firmVO->getMaxCLPPoint() ?>" 
+									class="input-text" />
+								</td>
+							</tr>
+							
+							
+							
+							<tr>
+								<td class="label">
+									<label for="BusinessHours">Business Hours</label>
+								</td>
+								<td class="value">
+									<input type="text" name="BusinessHours" id="BusinessHours" 
+									value="<?php echo $firmVO->getBusinessHours() ?>" 
+									class="input-text" />
+								</td>
+							</tr> 
+
+							
+
+							<tr>
+								<td class="label">
+									<label for="BusinessDay">Business Day</label>
+								</td>
+								<td class="value">
+
+									<table>
+										<tbody id="BusinessDayContainer" name="BusinessDayContainer">
+											<?php $businessDayArray = explode("|", $firmVO->getBusinessDay()) ?> 
+											<?php foreach ($this->getBusinessDayOptions() as $key=>$value): ?>
+											<tr>
+												<td>
+													<input type="checkbox" value="<? echo $key ?>" <?php echo (in_array($key, $businessDayArray)) ? 'checked = "checked"' : '' ?>  /><? echo $value ?>
+												</td>
+											</tr>
+											<?php endforeach; ?>					
+										</tbody>
+									</table>
+									
+								</td>
+							</tr>
+							
+							
+
+
+						</tbody>
+					</table>  		
+		  		</td>
+		  	</tr>
+		  	
+		  </table>
+			
+		</div>
+	</div>
+</div>	
+	
+<div class="entry-edit">	
+	<div class="entry-edit-head">
+		<h4 class="icon-head head-edit-form fieldset-legend"><?php echo 'Choose File For Multipal Entry' ?></h4>
+		<div class="form-buttons"></div>
+	</div>
+
+
+	<?php $tableCodesArray = array() ?>
+	<?php $tableCodesString= $firmVO->getTableCodes() ?>
+	<?php $tableCodesArray = explode('|', $tableCodesString) ?>
+
+	<div class="fieldset " id="base_fieldset">
+		<div class="hor-scroll">
+			<table>
+				<tr>
+			  		<td colspan="3">	
+			  			<table class="form-list">
+							<tbody>
+								<tr>
+								
+							  		<?php $totalRows = sizeof($tableVOs) ?>
+							  		<?php $totalCount= 0; ?>
+							  		<?php $rowCount = 1; ?>
+							  		<?php /* @var $tableVO Margshri_WebPortal_VO_Master_Table_TableVO */  ?>
+						  			<?php foreach ($tableVOs as $tableVO): ?>
+						  				<?php $totalCount++ ?>
+						  				<?php if($rowCount == 1): ?>
+						  						<td >
+						  				<?php endif; ?>
+						  						<input type="checkbox" name="<?php echo $tableVO->getCode() ?>" id="<?php echo $tableVO->getCode() ?>" 
+						  						value="<?php echo $tableVO->getCode() ?>" <?php echo (in_array($tableVO->getCode(), $tableCodesArray)) ? "checked = 'checked'" : "" ?> /><?php echo $tableVO->getFileName() ?><br />
+						  				<?php if($rowCount == floor($totalRows/5)  || $totalCount == $totalRows): ?>
+						  						</td>
+						  				<?php $rowCount = 1 ?>
+						  				<?php continue; ?>
+						  				<?php endif; ?>
+						  				
+						  				<?php $rowCount++ ?>
+						  				
+						  			<?php endforeach; ?>
+						  				 
+			  					 </tr>
+			  				</tbody>
+			  			</table>
+			  		</td>		 
+			  	</tr>
+		  	</table>	
+		</div>
+	</div>
+</div>	

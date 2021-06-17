@@ -1,0 +1,27 @@
+<?php
+$tempEmailReceiverDetailVO = $this->getTempEmailReceiverDetailVO();
+/* @var $tempEmailReceiverDetailVO Dakiya_VO_Miscellaneous_TempEmailReceiverDetailVO */
+if($tempEmailReceiverDetailVO == null){
+	$tempEmailReceiverDetailVO = new Dakiya_VO_Miscellaneous_TempEmailReceiverDetailVO();
+}
+?>
+
+
+<p>Dear Customer</p>
+<p>This is with reference to the above mentioned subject matter, please be informed that we have made multiple attempts towards delivery and collection of the charges against your railway ticket booking with BookMyTrain.com (an entity of Anduril Technologies Pvt. Ltd.) .</p>
+<p>Please understand that you had accepted the below terms and conditions, while doing the same which clearly indicates that you are liable to pay the charges and accept delivery</p>
+<p>
+	<b><i>"Please note that in case of refusal on part of the customer to pay for the ticket shall amount to its cancellation and the customer shall be liable to pay for the cancellation charges, failure of which shall invite strict action as per law"</i></b>
+</p>
+<p>Please treat this as a gentle reminder towards the payment of cancellation charges amounting to  <b>INR  <?php echo $tempEmailReceiverDetailVO->getAmount() ?></b>  against your railway ticket booking with PNR Nos: <b><?php echo $tempEmailReceiverDetailVO->getPNRNumber() ?></b> .</p>
+<p>You can pay the cancellation charges using the below link.</p>
+<p><b><?php echo $tempEmailReceiverDetailVO->getPayULink() ?></b></p>
+<p>We thank you for your kind cooperation in this regard.</p>
+<p>You may reach us on 0124-4854330; support@bookmytrain.com for any further clarification.</p>
+<p>Kindly ignore in case you have already paid for the mentioned transaction.</p>
+<p>
+<b>Regards</b><br />
+Legal Team<br />
+BookMyTrain.com (entity of Anduril Technologies Pvt. Ltd.)
+</p>
+

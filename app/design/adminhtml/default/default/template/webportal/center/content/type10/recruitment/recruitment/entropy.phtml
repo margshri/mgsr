@@ -1,0 +1,412 @@
+<?php
+	
+    $HTMLFormID = $this->getHTMLFormID();
+    $recruitmentVO    = $this->getRecruitmentVO();    
+    
+    if($recruitmentVO == null){
+    	$recruitmentVO = new Margshri_WebPortal_VO_Center_Content_Type10_Recruitment_RecruitmentVO();
+    }
+    
+    $countryOptions = $this->getCountryOptions();
+    $stateOptions   = $this->getStateOptions();
+    $districtOptions= $this->getDistrictOptions();
+    $cityOptions    = $this->getCityOptions();
+    $statusOptions  = $this->getStatusOptions();
+    $dynamicColumnOptions = $this->getDynamicColumnOptions();
+    $recruitmentTypeOptions  = $this->getRecruitmentTypeOptions();
+    
+    
+    
+?>
+<script type="text/javascript">
+<!--
+
+//SET STATE 
+var stateList = '';
+var stateOptions = '<?php echo (sizeof($stateOptions) > 0) ?  json_encode($stateOptions) : '' ?>';
+if(stateOptions != ''){
+	stateList = JSON.parse(stateOptions);	
+}
+
+//SET DISTRICT 
+var districtList = '';
+var districtOptions = '<?php echo (sizeof($districtOptions) > 0) ?  json_encode($districtOptions) : '' ?>';
+if(districtOptions != ''){
+	districtList = JSON.parse(districtOptions);	
+}
+
+//SET STATE 
+var cityList = '';
+var cityOptions = '<?php echo (sizeof($cityOptions) > 0) ?  json_encode($cityOptions) : '' ?>';
+if(cityOptions != ''){
+	cityList = JSON.parse(cityOptions);	
+}
+
+//SET STATE 
+var RECRUITMENTVO  = '';
+var recruitmentDTO = '<?php echo ($recruitmentVO->getID() != null) ? json_encode($recruitmentVO->getDataArray()) : '' ?>';
+if(recruitmentDTO != ''){
+	RECRUITMENTVO = JSON.parse(recruitmentDTO);
+}
+
+//-->
+</script>
+
+
+<div class="entry-edit">
+	<div class="entry-edit-head">
+		<h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__("Recruitment") ?></h4>
+		<div class="form-buttons"></div>
+	</div>
+
+	<div class="fieldset " id="base_fieldset">
+		<div class="hor-scroll">
+		  <table style="">
+		  	<tr>
+		  		<td>
+		  			<table class="form-list">
+						<tbody>
+							<tr>
+								<td class="label">
+									<label for="Value">Name<span class="required">*</span></label>
+								</td>
+								<td class="value">
+									<input type="text" name="Value" id="Value" 
+									value="<?php echo $recruitmentVO->getValue() ?>" 
+									class="required-entry input-text" />
+								</td>
+							</tr>
+							
+							
+							<tr>
+								<td class="label">
+									<label for="Value">Code<span class="required">*</span></label>
+								</td>
+								<td class="value">
+									<input type="text" name="Code" id="Code" 
+									value="<?php echo $recruitmentVO->getCode() ?>" 
+									class="required-entry input-text" />
+								</td>
+							</tr>
+							
+							
+							
+							<tr>
+								<td class="label">
+									<label for="Address">Address</label>
+								</td>
+								<td class="value">
+									<textarea rows="3" cols="10" name="Address" id="Address"   style="height: 40px;" ><?php echo $recruitmentVO->getAddress() ?></textarea>
+								</td>
+							</tr>
+		
+							<tr>
+								<td class="label">
+									<label for="CountryID">Country</label>
+								</td>
+								<td class="value">
+									<select name="CountryID" id="CountryID" disabled="disabled">
+										<!--  <option>--Select--</option> -->
+										<?php foreach ($countryOptions as $key=>$value): ?>
+											<option value="<?php echo $key ?>" selected="selected"><?php echo $value ?></option>	
+										<?php endforeach; ?>
+									</select>
+								</td>
+							</tr>
+							
+							<tr>
+								<td class="label">
+									<label for="StateID">State</label>
+								</td>
+								<td class="value">
+									<select name="StateID" id="StateID" onchange="formJS.setDistrictList(this.value)" >
+										<option value="">--Select--</option>
+										<?php foreach ($stateOptions as $key=>$value): ?>
+											<option value="<?php echo $key ?>" <?php echo ($recruitmentVO->getStateID() == $key ) ? 'selected="selected"' : '' ?> ><?php echo $value['Name'] ?></option>	
+										<?php endforeach; ?>
+									</select>
+								</td>
+							</tr>
+							
+							<tr>
+								<td class="label">
+									<label for="DistrictID">District</label>
+								</td>
+								<td class="value">
+									<select name="DistrictID" id="DistrictID" onchange="formJS.setCityList(this.value)">
+										<option value="">--Select--</option>
+									</select>
+								</td>
+							</tr>
+							
+							<tr>
+								<td class="label">
+									<label for="CityID">City</label>
+								</td>
+								<td class="value">
+									<select name="CityID" id="CityID">
+										<option value="">--Select--</option>
+									</select>
+								</td>
+							</tr>
+							
+							  
+							<tr>
+								<td class="label">
+									<label for="PinCode">PinCode</label>
+								</td>
+								<td class="value">
+									<input type="text" name="PinCode" id="PinCode" 
+									value="<?php echo $recruitmentVO->getPinCode() ?>" 
+									class="validate-number input-text" />
+								</td>
+							</tr>
+							
+							 
+							<tr>
+								<td class="label">
+									<label for="OpeningDate">Opening Date</label>
+								</td>
+								<td class="value"><input id="OpeningDate"
+									name="OpeningDate" readonly="readonly"
+									value="<?php echo $recruitmentVO->getOpeningDate() ?>"
+									class="input-text" style="width: 175px;"
+									type="text" /> <img
+									src="<?php  echo Mage::getDesign()->getSkinUrl('images/grid-cal.gif') ?>"
+									alt="" class="v-middle" id="OpeningDateIMG"
+									title="Select Date" style=""> 
+									<script type="text/javascript">
+		                                 //<![CDATA[ 
+		                                 Calendar.setup({
+		                                                  inputField: "OpeningDate",
+		                                                  ifFormat: "%Y-%m-%d %H:%M:%S",
+		                                                  showsTime: 12,
+		                                                  button: "OpeningDateIMG",
+		                                                  align: "Bl",
+		                                                  onClose   : function() { this.hide(); return validationControl.dateTime(); },
+		                                                  singleClick : true
+		                                               });
+                                        //]]> 
+                                    </script>
+								</td>	
+							</tr>
+							
+							<tr>
+								<td class="label">
+									<label for="LastDate">Last Date</label>
+								</td>
+								<td class="value"><input id="LastDate"
+									name="LastDate" readonly="readonly"
+									value="<?php echo $recruitmentVO->getLastDate() ?>"
+									class="input-text" style="width: 175px;"
+									type="text" /> <img
+									src="<?php  echo Mage::getDesign()->getSkinUrl('images/grid-cal.gif') ?>"
+									alt="" class="v-middle" id="LastDateIMG"
+									title="Select Date" style=""> 
+									<script type="text/javascript">
+		                                 //<![CDATA[ 
+		                                 Calendar.setup({
+		                                                  inputField: "LastDate",
+		                                                  ifFormat: "%Y-%m-%d %H:%M:%S",
+		                                                  showsTime: 12,
+		                                                  button: "LastDateIMG",
+		                                                  align: "Bl",
+		                                                  onClose   : function() { this.hide(); return validationControl.dateTime(); },
+		                                                  singleClick : true
+		                                               });
+                                        //]]> 
+                                    </script>
+								</td>	
+							</tr>	
+							
+							<tr>
+								<td class="label">
+									<label for="ExamDate">Exam Date</label>
+								</td>
+								<td class="value"><input id="ExamDate"
+									name="EndDate" readonly="readonly"
+									value="<?php echo $recruitmentVO->getExamDate() ?>"
+									class="input-text" style="width: 175px;"
+									type="text" /> <img
+									src="<?php  echo Mage::getDesign()->getSkinUrl('images/grid-cal.gif') ?>"
+									alt="" class="v-middle" id="ExamDateIMG"
+									title="Select Date" style=""> 
+									<script type="text/javascript">
+		                                 //<![CDATA[ 
+		                                 Calendar.setup({
+		                                                  inputField: "ExamDate",
+		                                                  ifFormat: "%Y-%m-%d %H:%M:%S",
+		                                                  showsTime: 12,
+		                                                  button: "ExamDateIMG",
+		                                                  align: "Bl",
+		                                                  onClose   : function() { this.hide(); return validationControl.dateTime(); },
+		                                                  singleClick : true
+		                                               });
+                                        //]]> 
+                                    </script>
+								</td>	
+							</tr>	  
+							
+	
+							
+						</tbody>
+					</table>		
+		  		</td>	
+		  	
+		  		<td style="width: 200px;"></td>
+		  	
+		  		<td>
+					<table class="form-list">
+						<tbody>
+							<!-- Below Column Mismatch According to Requirement -->
+							<tr>
+								<td class="label">
+									<label for="Department">Department Name<span class="required">*</span></label>
+								</td>
+								<td class="value">
+									<input type="text" name="Department" id="Department" 
+									value="<?php echo $recruitmentVO->getDepartment() ?>" 
+									class="required-entry input-text" />
+								</td>
+							</tr>
+							
+							
+							<tr>
+								<td class="label">
+									<label for="PostName">Post Name<span class="required">*</span></label>
+								</td>
+								<td class="value">
+									<input type="text" name="PostName" id="PostName" 
+									value="<?php echo $recruitmentVO->getPostName() ?>" 
+									class="required-entry input-text" />
+								</td>
+							</tr>
+							
+						
+							<tr>
+								<td class="label">
+									<label for="NoOfPost">No Of Post </label>
+								</td>
+								<td class="value">
+									<input type="text" name="NoOfPost" id="NoOfPost" 
+									value="<?php echo $recruitmentVO->getNoOfPost() ?>" 
+									class="input-text" />
+								</td>
+							</tr>
+							
+						
+						
+						
+							<tr>
+								<td class="label">
+									<label for="Qualification">Qualification </label>
+								</td>
+								<td class="value">
+									<input type="text" name="Qualification" id="Qualification" 
+									value="<?php echo $recruitmentVO->getQualification() ?>" 
+									class="input-text" />
+								</td>
+							</tr>
+							
+							
+							
+							
+							
+
+							<tr>
+								<td class="label">
+									<label for="ApplyOnlineLink">Apply Online Link</label>
+								</td>
+								<td class="value">
+									<input type="text" name="ApplyOnlineLink" id="ApplyOnlineLink" 
+									value="<?php echo $recruitmentVO->getApplyOnlineLink() ?>" 
+									class="input-text" />
+								</td>
+							</tr>
+							
+							
+							<tr>
+								<td class="label">
+									<label for="MoreDetailLink">More Detail Link</label>
+								</td>
+								<td class="value">
+									<input type="text" name="MoreDetailLink" id="MoreDetailLink" 
+									value="<?php echo $recruitmentVO->getMoreDetailLink() ?>" 
+									class="input-text" />
+								</td>
+							</tr>
+							
+							 
+						
+							<tr>
+								<td class="label">
+									<label for="RecruitmentTypeID">Recruitment Type<span class="required">*</span></label>
+								</td>
+								<td class="value">
+									<select name="RecruitmentTypeID" id="RecruitmentTypeID" class="validate-select">
+										<option value="">--Select--</option>
+										<?php foreach ($recruitmentTypeOptions as $key=>$value): ?>
+											<option value="<?php echo $key ?>" <?php echo ($recruitmentVO->getRecruitmentTypeID() == $key ) ? 'selected="selected"' : '' ?> ><?php echo $value ?></option>	
+										<?php endforeach; ?>
+									</select>
+								</td>
+							</tr>
+							
+							
+							<tr>
+								<td class="label">
+									<label for="AgeLimit">Age Limit</label>
+								</td>
+								<td class="value">
+									<input type="text" name="AgeLimit" id="AgeLimit" 
+									value="<?php echo $recruitmentVO->getAgeLimit() ?>" 
+									class="input-text" />
+								</td>
+							</tr>
+							
+							
+							<tr>
+								<td class="label">
+									<label for="Fees">Fees</label>
+								</td>
+								<td class="value">
+									<input type="text" name="Fees" id="Fees" 
+									value="<?php echo $recruitmentVO->getFees() ?>" 
+									class="input-text" />
+								</td>
+							</tr>
+							
+							
+							
+						
+						
+							<tr>
+								<td class="label">
+									<label for="StatusID">Status<span class="required">*</span></label>
+								</td>
+								<td class="value">
+									<select name="StatusID" id="StatusID" class="validate-select">
+										<option value="">--Select--</option>
+										<?php foreach ($statusOptions as $key=>$value): ?>
+											<option value="<?php echo $key ?>" <?php echo ($recruitmentVO->getStatusID() == $key ) ? 'selected="selected"' : '' ?> ><?php echo $value ?></option>	
+										<?php endforeach; ?>
+									</select>
+									<input type="hidden" id="ID" name="ID" value="<?php echo ($recruitmentVO->getID() != null) ? $recruitmentVO->getID() : 0  ?>">
+								</td>
+							</tr>
+		
+		
+							
+							
+							
+							
+							
+						</tbody>
+					</table>  		
+		  		</td>
+		  	</tr>
+		  </table>
+			
+		</div>
+	</div>
+</div>

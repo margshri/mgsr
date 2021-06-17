@@ -1,0 +1,13 @@
+<?php
+
+class Mconnectsolutiions_Bestsellerproducts_Model_Styles 
+{
+    public function toOptionArray()
+    {
+        return array(
+            array('value' => '5', 'label'=>Mage::helper('adminhtml')->__('5')),
+            array('value' => '10', 'label'=>Mage::helper('adminhtml')->__('10')),
+            array('value' => '15', 'label'=>Mage::helper('adminhtml')->__('15')),
+        );
+    }
+}

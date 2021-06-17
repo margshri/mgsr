@@ -1,0 +1,84 @@
+<?php ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<?php echo $this->getChildHtml('head') ?>  
+</head>
+
+<body>
+		
+<div id="loader" style="display:none;"></div>
+<div id="overlay" style="display:none;"></div> 
+
+<div class="modal" id="AlertBoxModal" style="display: none;">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+      
+        <div class="modal-header">
+          <h4 class="modal-title" id="AlertBoxModalTitle">Alert</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <!-- Modal body -->
+        <div class="modal-body" id="AlertBoxModalBody"></div>
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+</div>
+
+<?php echo $this->getChildHtml('topHeader') ?>    
+
+<div class="container">
+  <?php echo $this->getChildHtml('header') ?>
+  <?php echo $this->getChildHtml('content') ?>
+  <?php // echo $this->getChildHtml('footer') ?>  
+</div>
+
+<?php // echo $this->getChildHtml('bottomFooter') ?>
+
+<!--
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v6.0&appId=1082418421903726&autoLogAppEvents=1"></script>
+<div class="fb-login-button" data-width="" data-size="large" data-button-type="continue_with" data-layout="default" data-auto-logout-link="false" data-use-continue-as="false"></div>
+-->
+
+<script>
+	var baseFormJS = {
+		redirect:function(URL){
+			$("#overlay").css("display","block");
+			$("#loader").css("display","block");
+			window.location.href = URL;
+		}
+	};
+</script>
+
+<!--  
+<script async defer src="https://connect.facebook.net/en_US/sdk.js"></script>
+  
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '{your-app-id}',
+      cookie     : true,
+      xfbml      : true,
+      version    : '{v6.0}'
+    });
+      
+    FB.AppEvents.logPageView();   
+      
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "https://connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+-->
+
+</body>
+</html>

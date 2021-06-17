@@ -1,0 +1,280 @@
+<?php
+$HTMLFormID = $this->getHTMLFormID();
+?>
+<div class="content-header">
+    <table cellspacing="0">
+        <tr>
+            
+            <td style="width:50%;"><h3 class="icon-head head-permissions-role"><?php echo ($this->getID() != null ) ? ($this->__('Edit') ) : $this->__('Add') ?></h3></td>
+            <td class="form-buttons">
+                <?php echo $this->getBackButtonHtml() ?>
+                <?php echo $this->getResetButtonHtml() ?>
+                <?php echo $this->getSaveButtonHtml() ?>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<form action="<?php echo $this->getUrl('*/*/save') ?>" method="post" id="<?php echo $HTMLFormID ?>">
+    <?php  echo $this->getBlockHtml('formkey')?>
+    <?php  echo $this->getEntropy()?>
+</form>
+
+<script type="text/javascript">
+var IS_FORM_SUBMIT=0;
+function type10VO(){
+	this.ID = null;
+	this.Value = null;
+	this.Code = null;
+	this.UserID = null;
+	this.Order = null;
+	this.WebsiteLink = null;
+	this.IsPaid = null;
+
+	this.TinNumber = null;
+	this.PANNumber = null;
+	this.Category1ID = null;
+	this.Category1Value = null;
+	this.Category2ID = null;
+	this.Category2Value = null;
+	this.Category3ID = null;
+	this.Category3Value = null;
+	this.TypeID = null;
+	this.StatusID=null;
+	this.LandLineNumber=null;
+	this.MobileNumber1=null;
+	this.MobileNumber2=null;
+	this.Email=null;
+	this.PinCode=null;
+	this.Address = null;
+	this.CountryID = null;
+	this.StateID = null;
+	this.DistrictID=null;
+	this.CityID=null;
+	this.TableName=null;
+}
+var newType10DTO = new type10VO();
+
+var formObj = new varienForm('<?php echo $HTMLFormID; ?>');
+var formJS={
+
+		submit : function(){
+    		if(!formJS.saveValidation()) return ;
+				formJS.saveAjax();
+		},
+
+		saveValidation : function(){
+			var errorMsg = '';
+
+         	if(!(formObj.validator && formObj.validator.validate())){
+    	    	return false;
+	    	}
+         	
+         	// SET VOs 
+         	newType10DTO.ID = ($('ID').value).strip();
+         	newType10DTO.Value = ($('Value').value).strip();
+         	newType10DTO.Code = null;
+         	newType10DTO.UserID = null;
+         	newType10DTO.Order = null;
+         	newType10DTO.WebsiteLink = ($('WebsiteLink').value).strip();
+         	if($("IsPaid").checked == true){
+         		newType10DTO.IsPaid = 1;
+        	}else{
+        		newType10DTO.IsPaid = 0;
+        	}
+
+         	newType10DTO.TinNumber = ($('TinNumber').value).strip();
+         	newType10DTO.PANNumber = ($('PANNumber').value).strip();
+         	newType10DTO.Category1ID = ($('Category1ID').value).strip();
+         	newType10DTO.Category1Value = ($('Category1Value').value).strip();
+         	newType10DTO.Category2ID = ($('Category2ID').value).strip();
+         	newType10DTO.Category2Value = ($('Category2Value').value).strip();
+         	newType10DTO.Category3ID = ($('Category3ID').value).strip();
+         	newType10DTO.Category3Value = ($('Category3Value').value).strip();
+         	newType10DTO.TypeID = ($('TypeID').value).strip();
+         	newType10DTO.StatusID = ($('StatusID').value).strip();
+         	newType10DTO.LandLineNumber = ($('LandLineNumber').value).strip();
+         	newType10DTO.MobileNumber1 = ($('MobileNumber1').value).strip();
+         	newType10DTO.MobileNumber2 = ($('MobileNumber2').value).strip();
+         	newType10DTO.Email = ($('Email').value).strip();
+
+         	newType10DTO.PinCode = ($('PinCode').value).strip();
+         	
+         	newType10DTO.Address = ($('Address').value).strip();
+         	newType10DTO.CountryID = ($('CountryID').value).strip();
+         	newType10DTO.StateID = ($('StateID').value).strip();
+         	newType10DTO.DistrictID = ($('DistrictID').value).strip();
+         	newType10DTO.CityID = ($('CityID').value).strip();
+         	newType10DTO.TableName = ($('TableName').value).strip();
+
+         	if($('Category1Value').style.display != 'none'){
+             	if(newType10DTO.Category1Value == '' || newType10DTO.Category1Value == null)
+         			errorMsg += "Please Enter First Category Value \n"; 
+            }else{
+            	newType10DTO.Category1ID = null;
+            }
+
+         	if($('Category2Value').style.display != 'none'){
+             	 if(newType10DTO.Category2Value == '' || newType10DTO.Category2Value == null)
+         		errorMsg += "Please Enter Second Category Value \n"; 
+            }else{
+            	newType10DTO.Category2ID = null;
+            }
+
+            if($('Category3Value').style.display != 'none'){
+              	 if(newType10DTO.Category3Value == '' || newType10DTO.Category3Value == null)
+	           		errorMsg += "Please Enter Third Category Value \n"; 
+            }else{
+               	newType10DTO.Category3ID = null;
+            }
+
+            if(newType10DTO.MobileNumber1 != null && newType10DTO.MobileNumber1 != '' &&
+            		newType10DTO.MobileNumber2 != null && newType10DTO.MobileNumber2 != ''){
+    			if(newType10DTO.MobileNumber1 == newType10DTO.MobileNumber2){
+					$('MobileNumber2').value = "";
+					$('MobileNumber2').focus();
+					errorMsg += "Both Mobile Number Can`t Be Same ! \n";
+				}
+    		}	
+
+			if(newType10DTO.WebsiteLink != null && newType10DTO.WebsiteLink != ''){
+	            var re = new RegExp("^http(s?)\:\/\/[0-9a-zA-Z]([-.\w]*[0-9a-zA-Z])*(:(0-9)*)*(\/?)([a-zA-Z0-9\-\.\?\,\'\/\\\+&amp;%\$#_]*)?$");
+	         	if (!re.test(newType10DTO.WebsiteLink)) { 
+	         		errorMsg = "Invalid Website Link ! \n";
+	         	}
+			}	
+         	
+         	if(errorMsg != ''){
+            	alert(errorMsg);
+				return false;
+			}
+
+         	if(IS_FORM_SUBMIT == 0){
+				IS_FORM_SUBMIT = 1;
+				return true;
+			}else{
+				return false;
+			}
+		},	
+
+        saveAjax: function(){
+        	var URL = "<?php echo $this->getUrl('*/*/save')?>" ;
+		    var parameters= {"Type10DataObj": JSON.stringify(newType10DTO,null) };
+		    var callBackMethod ="formJS.responseSave";
+		    var callBackArgs =null;
+		    ajaxRequest.execute(	URL, parameters, callBackMethod , callBackArgs );
+		    return false;
+     	},
+
+	    responseSave : function(response,args) {
+        	if(response.SuccessMessage !=null){
+			 	window.location.href = REDIRECTURL;
+			 	return;
+			}else if(response.ErrorMessage !=null){
+				IS_FORM_SUBMIT=0;
+				alert(response.ErrorMessage);
+    			return false;
+ 			}
+ 	 	},
+		
+		setDistrictList: function(stateID){
+			//var stateID = obj.value;
+			var innerHTML = '<option value="">--Select--</option>';
+			for(var key in districtList){
+				if(districtList[key].StateID == stateID){
+					if(key == TYPE10VO.DistrictID)
+						innerHTML += '<option value="'+key+'" selected = "selected">'+districtList[key].Name+'</option>';
+					else
+						innerHTML += '<option value="'+key+'">'+districtList[key].Name+'</option>';	
+				}
+			}
+			UI.elementDisabled($('DistrictID'), false);
+			$('DistrictID').innerHTML = innerHTML;
+			return; 
+		},
+
+		setCityList: function(districtID){
+			//var districtID = obj.value;
+			var innerHTML = '<option value="">--Select--</option>';
+			for(var key in cityList){
+				if(cityList[key].DistrictID == districtID){
+					if(key == TYPE10VO.CityID)
+						innerHTML += '<option value="'+key+'" selected = "selected">'+cityList[key].Name+'</option>';
+					else		
+						innerHTML += '<option value="'+key+'">'+cityList[key].Name+'</option>';
+				}
+			}
+			UI.elementDisabled($('CityID'), false);
+			$('CityID').innerHTML = innerHTML;
+			return; 
+		},
+
+		setCategoryBox: function(obj){
+			var categoryID   = obj.value;
+			var categoryName = obj.name;
+			var categoryValueID; 
+
+			switch(categoryName){
+				case 'Category1ID':
+					categoryValueID = 'Category1Value';	
+					break;
+				case 'Category2ID':
+					categoryValueID = 'Category2Value';
+					break;
+				case 'Category3ID':
+					categoryValueID = 'Category3Value';
+					break;		 
+			}
+			
+			if(categoryID != ''){
+				UI.elementVisibility($(categoryValueID),"block");
+			}else{
+				UI.elementVisibility($(categoryValueID),"none");
+				$(categoryValueID).value = '';
+			}			
+			return false;			 
+		},
+		
+
+		defaultSetting: function(){
+			UI.elementDisabled($('DistrictID'), true);
+			UI.elementDisabled($('CityID'), true);
+
+			UI.elementVisibility($("Category1Value"),"none");
+			UI.elementVisibility($("Category2Value"),"none");
+			UI.elementVisibility($("Category3Value"),"none");
+		}
+			
+}; 
+
+
+// FOR EDIT 
+if(TYPE10VO != ''){
+
+	if(TYPE10VO.Category1Value != '' && TYPE10VO.Category1Value != null){
+		UI.elementVisibility($("Category1Value"),"block");
+	}else{
+		UI.elementVisibility($("Category1Value"),"none");
+	}
+
+	if(TYPE10VO.Category2Value != '' && TYPE10VO.Category2Value != null ){
+		UI.elementVisibility($("Category2Value"),"block");
+	}else{
+		UI.elementVisibility($("Category2Value"),"none");
+	}
+
+	if(TYPE10VO.Category3Value != '' && TYPE10VO.Category3Value != null){
+		UI.elementVisibility($("Category3Value"),"block");
+	}else{
+		UI.elementVisibility($("Category3Value"),"none");
+	}
+
+	
+	formJS.setDistrictList(TYPE10VO.StateID);
+	formJS.setCityList(TYPE10VO.DistrictID);		
+	
+}else{
+	formJS.defaultSetting();
+}
+
+</script>

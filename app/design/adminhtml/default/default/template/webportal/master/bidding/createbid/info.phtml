@@ -1,0 +1,101 @@
+<?php
+$HTMLFormID = $this->getHTMLFormID();
+?>
+<div class="content-header">
+    <table cellspacing="0">
+        <tr>
+            
+            <td style="width:50%;"><h3 class="icon-head head-permissions-role"><?php echo ($this->getID() !=null ) ? ($this->__('Edit Bid') ) : $this->__('Add Bid') ?></h3></td>
+            <td class="form-buttons">
+                <?php echo $this->getBackButtonHtml() ?>
+                <?php echo $this->getResetButtonHtml() ?>
+                <?php echo $this->getSaveButtonHtml() ?>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<form action="<?php echo $this->getUrl('*/*/save') ?>" method="post" id="<?php echo $HTMLFormID ?>">
+    <?php  echo $this->getBlockHtml('formkey')?>
+    <?php  echo $this->getEntropy()?>
+</form>
+
+<script type="text/javascript">
+
+function bidVO(){
+	this.ID = null;
+	this.BidName = null;
+	this.BidCode = null;
+	this.BiddingDate = null;
+	this.BiddingTime = null;
+	this.CounterTime = null;
+	this.TypeID = null;
+	this.StatusID=null;
+	
+}
+var newBidDTO = new bidVO();
+
+var formObj = new varienForm('<?php echo $HTMLFormID; ?>');
+var formJS={
+
+		submit : function(){
+    		if(!formJS.saveValidation()) return ;
+				formJS.saveAjax();
+		},
+
+		saveValidation : function(){
+			var errorMsg = '';
+         	if(!(formObj.validator && formObj.validator.validate())){
+    	    	return false;
+	    	}
+
+         	// SET VOs 
+         	newBidDTO.ID = ($('ID').value).strip();
+         	newBidDTO.BidName = ($('BidName').value).strip();
+         	newBidDTO.BidCode = ($('BidCode').value).strip();
+         	newBidDTO.BiddingDate = ($('BiddingDate').value).strip();
+         	newBidDTO.BiddingTime = ($('BiddingTime').value).strip();
+         	newBidDTO.CounterTime = 10; // ($('CounterTime').value).strip();
+         	newBidDTO.TypeID = ($('TypeID').value).strip();;
+         	newBidDTO.StatusID = ($('StatusID').value).strip(); 
+
+
+			if(newBidDTO.CounterTime != null && newBidDTO.CounterTime != ''){
+				if(newBidDTO.CounterTime < 1 || newBidDTO.CounterTime > 60){
+					alert("Please enter 1-60 sec !");
+					return false;
+				}
+			}
+         	
+         	if(errorMsg != ''){
+            	alert(errorMsg);
+				return false;
+			}
+
+			return true;	
+		},	
+
+        saveAjax: function(){
+        	var URL = "<?php echo $this->getUrl('*/*/save')?>" ;
+		    var parameters= {"BidDataObj": JSON.stringify(newBidDTO,null) };
+		    var callBackMethod ="formJS.responseSave";
+		    var callBackArgs =null;
+		    ajaxRequest.execute(	URL, parameters, callBackMethod , callBackArgs );
+		    return false;
+     	},
+
+	    responseSave : function(response,args) {
+        	if(response.SuccessMessage !=null){
+			 	window.location.href = "<?php echo $this->getUrl('*/*/index')?>";
+			 	return;
+			}else if(response.ErrorMessage !=null){
+				alert(response.ErrorMessage);
+    			return false;
+ 			}
+ 	 	}
+		
+		 
+			
+}; 
+
+</script>

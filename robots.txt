@@ -1,0 +1,7 @@
+User-Agent: *
+Disallow: 
+Disallow: /skin
+Disallow: /media
+
+Sitemap: http://www.aapnicity.com/sitemap.xml
+

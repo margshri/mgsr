@@ -1,0 +1,28 @@
+<?php
+$currentPayuResponse = $this->getCurrentPayuResponse();
+?>
+<div class="block block-list block-categories" >
+    <div id="block-categories" class="block-center-title active">
+        <strong><span>Registration Information</span></strong>
+        <p class="back-link"><a href="<?php echo $this->getUrl('medicalcamp/Registration_Registration/index') ?>"><small>&laquo; </small><?php echo $this->__('Back') ?></a></p> 
+    </div>
+</div>
+	
+<div class="fieldset" style="margin-bottom: 0px !important;">
+        <table>
+        	<tr>
+        		<td>
+        			<div style="text-align: center; margin-top: 20px !important; margin-left: 20px !important;">
+        			
+        				<?php if($currentPayuResponse['Status'] == 'Fail'): ?>
+        					<p style="font-size: 12pt; "><?php echo "your payment rs 500 is failed and your registration is failed. "  ?> <a href="<?php echo $this->getUrl('medicalcamp/Registration_Registration/index') ?>">please try again</a> </p>
+        				<?php else: ?>
+        					<p style="font-size: 12pt; "><?php echo "Your payment rs 500 successfully done you have registered now. thank you." ?></p>
+        				<?php endif; ?>		
+        			</div>
+        		</td>
+              </tr>   
+        
+       </table>
+    </div> 	
+ 

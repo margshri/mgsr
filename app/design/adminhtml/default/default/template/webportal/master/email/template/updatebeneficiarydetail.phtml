@@ -1,0 +1,110 @@
+<?php
+/* @var $commonVO Dakiya_VO_Miscellaneous_CommonVO */
+$commonVO = $this->getCommonVO();
+if($commonVO == null){
+	$commonVO = new Dakiya_VO_Miscellaneous_CommonVO();
+}
+?>
+
+<table>
+	<tr>
+		<td>
+		
+			<table border="1">
+				<thead>
+					<tr>
+						<th>PNR No.</th>
+						<th>Booking Date</th>
+						<th>Journey Date</th>
+						<th>Cancelled Date</th>
+						<th>From</th>
+						<th>To</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td><?php echo $commonVO->getPNRNumber() ?></td>
+						<td><?php echo $commonVO->getBookingDate() ?></td>
+						<td><?php echo $commonVO->getJourneyDate() ?></td>
+						<td><?php echo $commonVO->getCancelledDate() ?></td>
+						<td><?php echo $commonVO->getSourceStationName() ?></td>
+						<td><?php echo $commonVO->getDestinationStationName() ?></td>
+					</tr>
+				</tbody>
+			</table>
+		
+		</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td>
+		
+			<table border="1">
+				<thead>
+					<tr>
+						<th>Train Name</th>
+						<th>Class</th>
+						<th>Quota</th>
+						<th>Ticket Fare</th>
+						<th>Refunded Amount</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td><?php echo $commonVO->getTrainName() ?></td>
+						<td><?php echo $commonVO->getClass() ?></td>
+						<td><?php echo $commonVO->getQuota() ?></td>
+						<td><?php echo $commonVO->getNetTicketAmount() ?></td>
+						<td><?php echo $commonVO->getRefundedAmount() ?></td>
+					</tr>
+				</tbody>
+			</table>
+		
+		</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td>
+	 
+			<table border="1">
+				 
+				<thead>
+					<tr>
+						<th>SNO</th>
+						<th>Name</th>
+						<th>Age</th>
+						<th>Sex</th>
+						<th>BookingStatus</th>
+						<th>CurrentStatus</th>
+						<th>Coach</th>
+						<th>Seat</th>
+						<th>Berth</th>
+					
+					</tr>
+				</thead>
+				<tbody>
+					<?php /* @var $ticketPassengerVO Dakiya_VO_IRCTC_Ticket_TicketPassengerVO */ ?> 			  
+					<?php foreach ($commonVO->getTicketPassengerVOs() as $ticketPassengerVO): ?>
+					<tr>
+						<td><?php echo $ticketPassengerVO->getSerialNO() ?></td>
+						<td><?php echo $ticketPassengerVO->getPassengerName() ?></td>
+						<td><?php echo $ticketPassengerVO->getAge() ?></td>
+						<td><?php echo $ticketPassengerVO->getSex() ?></td>
+						<td><?php echo $ticketPassengerVO->getBookingStatus() ?></td>
+						<td><?php echo $ticketPassengerVO->getCurrentStatus() ?></td>
+						<td><?php echo $ticketPassengerVO->getCoach() ?></td>
+						<td><?php echo $ticketPassengerVO->getSeat() ?></td>
+						<td><?php echo $ticketPassengerVO->getBerth() ?></td>
+					</tr>
+					<?php endforeach;?>
+				
+				</tbody>
+			</table>
+		
+		</td>
+	</tr>
+</table>

@@ -1,0 +1,418 @@
+<?xml version="1.0"?>
+<config>
+	<modules>
+		<Dakiya>
+			<version>1.0.0.0</version>
+		</Dakiya>
+	</modules>
+
+
+	<global>
+		<models>
+			<dakiya>
+				<class>Dakiya_Model</class>
+				<resourceModel>dakiya_mysql4</resourceModel>
+			</dakiya>
+
+			<dakiya_mysql4>
+				<class>Dakiya_Model_MySql4</class>
+				<entities>
+				
+					<adminuser>
+						<table>admin_user</table>
+					</adminuser>
+				
+					<systemconfig>
+						<table>systemconfig</table>
+					</systemconfig> 
+					
+					<dakiyastatus>
+						<table>dakiya_status</table>
+					</dakiyastatus>
+					
+					<!-- Start Email Table -->
+					
+					<dakiyaemailconfig>
+						<table>dakiya_email_config</table>
+					</dakiyaemailconfig>
+
+					<dakiyaemailtemplate>
+						<table>dakiya_email_template</table>
+					</dakiyaemailtemplate>
+					
+					<dakiyasentemailstatus>
+						<table>dakiya_sent_email_status</table>
+					</dakiyasentemailstatus>
+					
+					<dakiyasentemail>
+						<table>dakiya_sent_email</table>
+					</dakiyasentemail>
+					
+					<!-- End Email Table -->
+					 
+					
+					<!-- Start SMS Table -->
+					
+					<dakiyasmstemplate>
+						<table>dakiya_sms_template</table>
+					</dakiyasmstemplate>
+					
+					<dakiyasmsconfig>
+						<table>dakiya_sms_config</table>
+					</dakiyasmsconfig>
+					
+					<dakiyasentsmsstatus>
+						<table>dakiya_sent_sms_status</table>
+					</dakiyasentsmsstatus>
+
+					<dakiyasentsms>
+						<table>dakiya_sent_sms</table>
+					</dakiyasentsms>
+					
+					<!-- End SMS Table -->
+					<dakiyaotp>
+						<table>dakiya_otp</table>
+					</dakiyaotp>
+					<!-- Start OTP -->
+					
+					
+					<!-- End OTP -->
+				</entities>
+			</dakiya_mysql4>
+		</models>
+
+		<resources>
+			<dakiya_setup>
+				<setup>
+					<module>Dakiya</module>
+				</setup>
+			</dakiya_setup>
+			
+			<dakiya_write>
+				<connection>
+					<use>dakiya_database</use>
+				</connection>
+			</dakiya_write>
+			
+			<dakiya_read>
+				<connection>
+					<use>dakiya_database</use>
+				</connection>
+			</dakiya_read>
+			<!--
+			
+			<dakiya_database>
+                 <connection>
+                         <host><![CDATA[localhost]]></host>
+                         <username><![CDATA[root]]></username>
+                         <password><![CDATA[matrix]]></password>
+                         <dbname><![CDATA[dakiya]]></dbname>
+                         <model>mysql4</model>
+                         <type>pdo_mysql</type>
+                         <active>1</active>
+                 </connection>
+            </dakiya_database>
+			            
+            
+		  	-->
+				
+		</resources>
+
+		<blocks>
+			<dakiya>
+				<class>Dakiya_Block</class>
+			</dakiya>
+		</blocks>
+
+		<helpers>
+			<dakiya>
+				<class>Dakiya_Helper</class>
+			</dakiya>
+		</helpers>
+	</global>
+
+	<admin>
+		<routers>
+			<dakiya>
+				<use>admin</use>
+				<args>
+					<module>Dakiya</module>
+					<frontName>dakiya</frontName>
+				</args>
+			</dakiya>
+		</routers>
+		
+		<layout>
+			<updates>
+				<common module="Margshri_Common">
+					<file>common.xml</file>
+				</common>
+			</updates>
+		</layout>
+	</admin>
+
+	<adminhtml>
+		<menu>
+
+		    <master>
+				<title>Master</title>
+				<sort_order>10</sort_order>
+				<children>
+					 
+                    
+                    <email translate="title" module="admin">
+						<title>Email</title>
+						<sort_order>10</sort_order>
+                        <children>
+							<emailtemplate translate="title" module="admin">
+								<title>Email Template</title>
+								<sort_order>01</sort_order>
+		                        <action>dakiya/Master_Email_EmailTemplate_EmailTemplate/index</action>
+		                    </emailtemplate>    
+						</children>
+                    </email>
+                    
+                    <sms translate="title" module="admin">
+						<title>SMS</title>
+						<sort_order>15</sort_order>
+                        <children>
+							<smstemplate translate="title" module="admin">
+								<title>SMS Template</title>
+								<sort_order>01</sort_order>
+		                        <action>dakiya/Master_SMS_SMSTemplate_SMSTemplate/index</action>
+		                    </smstemplate>    
+						</children>
+                    </sms>
+                    
+                    
+                        
+				</children>
+			</master>
+
+			<communication>
+				<title>Communication</title>
+				<sort_order>60</sort_order>
+				<children>
+					<email>
+						<title>Email</title>
+						<sort_order>01</sort_order>
+						
+						<children>
+							<sendemail translate="title" module="admin">
+								<title>Send Email</title>
+								<sort_order>01</sort_order>
+		                        <action>dakiya/Email_SendEmail_SendEmail/index</action>
+		                    </sendemail>
+		                    
+		                    <sentemaillist translate="title" module="admin">
+								<title>Sent Email List</title>
+								<sort_order>02</sort_order>
+		                        <action>dakiya/Email_SendEmail_SendEmail/sentEmailList</action>
+		                    </sentemaillist>
+		                    <!--  
+		                    <sendlegalemail translate="title" module="admin">
+								<title>Send Legal Email</title>
+								<sort_order>03</sort_order>
+		                        <action>dakiya/Email_SendEmail_SendLegalEmail/index</action>
+		                    </sendlegalemail>
+		                    -->    
+						</children>
+					</email>
+					
+					<sms>
+						<title>SMS</title>
+						<sort_order>02</sort_order>
+						
+						<children>
+							<sendsms translate="title" module="admin">
+								<title>Send SMS</title>
+								<sort_order>01</sort_order>
+		                        <action>dakiya/SMS_SendSMS/index</action>
+		                    </sendsms>
+		                    
+		                    <sentsmslist translate="title" module="admin">
+								<title>Sent SMS List</title>
+								<sort_order>02</sort_order>
+		                        <action>dakiya/SMS_SendSMS/sentSMSList</action>
+		                    </sentsmslist>    
+		                        
+						</children>
+					</sms>
+				</children>	
+			</communication>
+		
+		</menu>
+
+		<acl>
+			<resources>
+				<admin>
+				
+					<children>
+
+						 
+
+						<master>
+							<title>Master</title>
+							<sort_order>10</sort_order>
+							<children>
+								 
+			                    
+			                    <email translate="title" module="admin">
+									<title>Email</title>
+									<sort_order>10</sort_order>
+			                        <children>
+										<emailtemplate translate="title" module="admin">
+											<title>Email Template</title>
+											<sort_order>01</sort_order>
+											
+											<children>
+												<add translate="title" module="admin">
+													<title>Add</title>
+													<sort_order>01</sort_order>
+							                    </add>
+											
+												<edit translate="title" module="admin">
+													<title>Edit</title>
+													<sort_order>10</sort_order>
+							                    </edit>    
+											</children>
+					                    </emailtemplate>    
+									</children>
+			                    </email>
+			                    
+			                    
+			                    <sms translate="title" module="admin">
+									<title>SMS</title>
+									<sort_order>15</sort_order>
+			                        <children>
+										<smstemplate translate="title" module="admin">
+											<title>SMS Template</title>
+											<sort_order>01</sort_order>
+					                        
+					                        <children>
+												<add translate="title" module="admin">
+													<title>Add</title>
+													<sort_order>01</sort_order>
+							                    </add>
+											
+												<edit translate="title" module="admin">
+													<title>Edit</title>
+													<sort_order>10</sort_order>
+							                    </edit>    
+											</children>
+					                    </smstemplate>    
+									</children>
+			                    </sms>
+			                    
+			                       
+							</children>
+						</master>
+
+						 
+						
+						<communication>
+							<title>Communication</title>
+							<sort_order>60</sort_order>
+							<children>
+								<email>
+									<title>Email</title>
+									<sort_order>01</sort_order>
+									
+									<children>
+										<sendemail translate="title" module="admin">
+											<title>Send Email</title>
+											<sort_order>01</sort_order>
+					                    </sendemail>
+					                    
+					                    <sentemaillist translate="title" module="admin">
+											<title>Sent Email List</title>
+											<sort_order>02</sort_order>
+					                    </sentemaillist>  
+					                    
+					                    <sendlegalemail translate="title" module="admin">
+											<title>Sent Email List</title>
+											<sort_order>03</sort_order>
+					                    </sendlegalemail>
+					                      
+									</children>
+								</email>
+								
+								<sms>
+									<title>SMS</title>
+									<sort_order>02</sort_order>
+									
+									<children>
+										<sendsms translate="title" module="admin">
+											<title>Send SMS</title>
+											<sort_order>01</sort_order>
+					                    </sendsms>
+					                    
+					                    <sentsmslist translate="title" module="admin">
+											<title>Sent SMS List</title>
+											<sort_order>02</sort_order>
+					                    </sentsmslist>    
+					                        
+									</children>
+								</sms>
+							</children>	
+						</communication>
+						
+					</children>
+				</admin>
+			</resources>
+		</acl>
+
+		<layout>
+			<updates>
+				<dakiya module="Dakiya">
+					<file>dakiya.xml</file>
+				</dakiya>
+			</updates>
+		</layout>
+
+	</adminhtml>
+	
+	<crontab>
+        <jobs>
+		<!--        	
+	        <updateshipmentstatus>
+	           <schedule>
+	               <cron_expr>0 */2 * * *</cron_expr>
+	           </schedule>
+	           <run>
+	               <model>dakiya/Shipping_Shipment_ShipmentTracking::shipmentTracking</model>
+	           </run>
+	        </updateshipmentstatus>
+	        
+	        <bluedartshipmentreminder>
+	           <schedule>
+	               <cron_expr>0 8,11,14 * * *</cron_expr>
+	           </schedule>
+	           <run>
+	               <model>dakiya/Job_CronJob_CronJob::sendBluedartShipmentReminder</model>
+	           </run>
+	        </bluedartshipmentreminder>
+	        
+	        <autoassignticket>
+	           <schedule>
+	               <cron_expr>*/10 * * * *</cron_expr>
+	           </schedule>
+	           <run>
+	               <model>dakiya/Job_AssignTicket_AssignTicket::autoAssignTicket</model>
+	           </run>
+	        </autoassignticket>
+	       
+	        <sendcancellationwarningemail>
+	           <schedule>
+	               <cron_expr>0 8,11,14 * * *</cron_expr>
+	           </schedule>
+	           <run>
+	               <model>dakiya/Job_CronJob_CronJob::sendCancellationWarningEmail</model>
+	           </run>
+	        </sendcancellationwarningemail>
+	        -->
+	        
+	    </jobs>
+    </crontab>
+
+</config>

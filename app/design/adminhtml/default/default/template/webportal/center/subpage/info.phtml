@@ -1,0 +1,162 @@
+<?php
+$HTMLFormID = $this->getHTMLFormID();
+?>
+<div class="content-header">
+    <table cellspacing="0">
+        <tr>
+            
+            <td style="width:50%;"><h3 class="icon-head head-permissions-role"><?php echo ($this->getID() != null ) ? ($this->__('Edit Sub Page') ) : $this->__('Add Sub Page') ?></h3></td>
+            <td class="form-buttons">
+                <?php echo $this->getBackButtonHtml() ?>
+                <?php echo $this->getResetButtonHtml() ?>
+                <?php echo $this->getSaveButtonHtml() ?>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<form action="<?php echo $this->getUrl('*/Backend_Center_SubPage_SubPage/save') ?>" method="post" id="<?php echo $HTMLFormID ?>" enctype="multipart/form-data">
+    <?php  echo $this->getBlockHtml('formkey')?>
+    <?php  echo $this->getEntropy()?>
+</form>
+
+<script type="text/javascript">
+
+function subPageVO(){
+	this.MobileNumber = null;
+}
+var newSubPageDTO = new subPageVO();
+
+
+var formObj = new varienForm('<?php echo $HTMLFormID; ?>');
+var formJS={
+
+		prefix : null,
+		mediaURL:'<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) ?>',
+		formID: '<?php echo $HTMLFormID ?>',
+		submit : function(){
+    		if(!formJS.saveValidation()) return ;
+    		$(formJS.formID).submit();
+				//formJS.saveAjax();
+		},
+
+		saveValidation : function(){
+			var errorMsg = '';
+
+         	if(!(formObj.validator && formObj.validator.validate())){
+    	    	return false;
+	    	}
+
+
+			var selectEleObjs = document.forms[formJS.formID].getElementsByTagName("select");
+			var totalSelectEle = selectEleObjs.length;
+
+			for(var count=0; count<totalSelectEle; count++){
+				var selectEleObj = selectEleObjs[count];
+				var id = selectEleObj.id;
+				var parts = id.split('_');
+
+				var recordID = parts[0];
+				var entityAttributeID = parts[1];
+				var elementKey = parts[2]
+         		if(elementKey == 'StatusID' && selectEleObj.value == 1){
+
+         			var parentObj = selectEleObj.parentElement.parentElement;
+					var eleLabel = parentObj.children[0].children[0].innerHTML;
+					var eleLabelParts = eleLabel.split(' ');
+					var eleLabel = eleLabelParts[0];
+             		
+					var imgObj = $(recordID+'_'+entityAttributeID+'_'+'Img');
+					var valueObj = $(recordID+'_'+entityAttributeID+'_'+'Value'); 
+					
+					if(imgObj != 'undefined' && imgObj != null){
+						var img = new Image(); 
+						img.src = imgObj.src; 
+						if (!img.complete) {
+							errorMsg += '=> Please Select '+eleLabel+' Image !  \n';
+						}
+					}
+
+
+					if(valueObj != 'undefined' && valueObj != null){
+						if(valueObj.tagName == 'SELECT' && ( valueObj.value == null || valueObj.value == '')){
+							errorMsg += '=> Please Select '+eleLabel+' !  \n';
+						}
+
+						if(valueObj.tagName == 'TEXTAREA' && ( valueObj.value == null || valueObj.value == '')){
+							errorMsg += '=> Please Enter '+eleLabel+' !  \n';
+						}
+						
+					}
+             	}	
+			}
+			         	
+         	if(errorMsg != ''){
+            	alert(errorMsg);
+				return false;
+			}
+
+			return true;	
+		},
+		
+		browseImageFile: function(event){
+			var id = event.target.id;
+			var parts = id.split("_");
+			var prefix= parts[0]+'_'+parts[1];
+			$(prefix+'_File').click();
+		},
+
+		getFilePath: function(event){
+			var id = event.target.id;
+			var parts = id.split("_");
+			var prefix= parts[0]+'_'+parts[1];
+			$(prefix+'_File').click();
+
+			
+		    var image = $(prefix+'_File').files[0];
+		    $(prefix+'_Img').src = window.URL.createObjectURL(image);
+		},
+
+		getCustomerDetail: function(event){
+			var id = event.target.id;
+			var parts = id.split("_");
+			var prefix= parts[0]+'_'+parts[1];
+			formJS.prefix = prefix;
+			newSubPageDTO.MobileNumber = $(prefix+'_MobileNumber').value;
+
+			if(newSubPageDTO.MobileNumber == null || newSubPageDTO.MobileNumber == ''){
+				alert("Please Enter Mobile Number !");
+				$(prefix+'_MobileNumber').focus();
+				return;
+			}
+		  	formJS.getDetailAjax();
+		},
+		
+		getDetailAjax: function(){
+        	var URL = "<?php echo $this->getUrl('*/*/getCustomerDetail')?>" ;
+		    var parameters= {"SubPageDataObj": JSON.stringify(newSubPageDTO,null) };
+		    var callBackMethod ="formJS.responsGetDetail";
+		    var callBackArgs =null;
+		    ajaxRequest.execute(	URL, parameters, callBackMethod , callBackArgs );
+		    return false;
+     	},
+
+     	responsGetDetail : function(response,args) {
+
+     		if(response.ErrorMessage !=null){
+				alert(response.ErrorMessage);
+    			return false;
+			}else{
+				$(formJS.prefix+'_Value').value = response.Value;
+				$(formJS.prefix+'_PersonName').value = response.PersonName;
+    			$(formJS.prefix+'_Img').src = formJS.mediaURL + response.Value;
+    			return;
+ 			}
+ 	 	}
+		  
+			
+}; 
+
+ 
+
+</script>

@@ -1,0 +1,141 @@
+<?php 
+$commonVO = $this->getCommonVO();
+if($commonVO == null){
+	$commonVO = new Dakiya_VO_Miscellaneous_CommonVO();
+}
+?>
+
+<div id=":2l1" class="ii gt adP adO">
+	<div id=":2l0" class="a3s aXjCH m15acb704a28010d8">
+		<table width="600" border="0" cellspacing="0" cellpadding="0">
+			<tbody>
+				<tr>
+					<td	style="font: bold 14px arial; color: #0099ff; margin: 0; padding: 0">Booking Details:</td>
+					<td><br>
+					<br></td>
+				</tr>
+				<tr>
+					<td height="23" width="25%"
+						style="border-bottom: 1px solid #ccc; font: 12px arial; color: #5a5a5a; padding-left: 3px"><b>PNR
+							No</b></td>
+					<td
+						style="border-bottom: 1px solid #ccc; border-right: 1px solid #ccc; font: 12px arial; color: #5a5a5a; padding-left: 3px"><?php echo $commonVO->getPNRNumber() ?></td>
+					<td height="23" width="25%"
+						style="border-bottom: 1px solid #ccc; font: 12px arial; color: #5a5a5a; padding-left: 3px"><b>Train
+							NO</b></td>
+					<td
+						style="border-bottom: 1px solid #ccc; font: 12px arial; color: #5a5a5a; padding-left: 3px"><?php echo $commonVO->getTrainNo() ?>
+					</td>
+				</tr>
+				<tr>
+					<td height="23" width="25%"
+						style="border-bottom: 1px solid #ccc; font: 12px arial; color: #5a5a5a; padding-left: 3px"><b>Train
+							Name</b></td>
+					<td
+						style="border-bottom: 1px solid #ccc; border-right: 1px solid #ccc; font: 12px arial; color: #5a5a5a; padding-left: 3px"><?php echo $commonVO->getTrainName() ?></td>
+					<td height="23" width="25%"
+						style="border-bottom: 1px solid #ccc; font: 12px arial; color: #5a5a5a; padding-left: 3px"><b>From</b></td>
+					<td
+						style="border-bottom: 1px solid #ccc; font: 12px arial; color: #5a5a5a; padding-left: 3px"><?php echo $commonVO->getSourceStationCode() ?>
+					</td>
+				</tr>
+				<tr>
+					<td height="23" width="25%"
+						style="border-bottom: 1px solid #ccc; font: 12px arial; color: #5a5a5a; padding-left: 3px"><b>
+							To</b></td>
+					<td
+						style="border-bottom: 1px solid #ccc; border-right: 1px solid #ccc; font: 12px arial; color: #5a5a5a; padding-left: 3px"><?php echo $commonVO->getDestinationStationCode() ?>
+					</td>
+					<td height="23" width="25%"
+						style="border-bottom: 1px solid #ccc; font: 12px arial; color: #5a5a5a; padding-left: 3px"><b>Date</b></td>
+					<td
+						style="border-bottom: 1px solid #ccc; font: 12px arial; color: #5a5a5a; padding-left: 3px"><?php echo  date("Y-m-d", strtotime($commonVO->getJourneyDate()));  ?>
+					</td>
+				</tr>
+				<tr>
+					<td height="23" width="25%"
+						style="border-bottom: 1px solid #ccc; font: 12px arial; color: #5a5a5a; padding-left: 3px"><b>Class</b></td>
+					<td
+						style="border-bottom: 1px solid #ccc; border-right: 1px solid #ccc; font: 12px arial; color: #5a5a5a; padding-left: 3px"><?php echo $commonVO->getClass() ?>
+					</td>
+					<td height="23" width="25%"
+						style="border-bottom: 1px solid #ccc; font: 12px arial; color: #5a5a5a; padding-left: 3px"><b>Boarding
+							Point</b></td>
+					<td
+						style="border-bottom: 1px solid #ccc; font: 12px arial; color: #5a5a5a; padding-left: 3px"><?php echo $commonVO->getBoardingStation() ?>
+					</td>
+				</tr>
+				<tr>
+					<td height="23" width="25%"
+						style="border-bottom: 1px solid #ccc; font: 12px arial; color: #5a5a5a; padding-left: 3px"><b>Reservation
+							Upto</b></td>
+					<td
+						style="border-bottom: 1px solid #ccc; border-right: 1px solid #ccc; font: 12px arial; color: #5a5a5a; padding-left: 3px"><?php echo $commonVO->getReserveUptoStation() ?>
+					</td>
+					<td height="23" width="25%"
+						style="border-bottom: 1px solid #ccc; font: 12px arial; color: #5a5a5a; padding-left: 3px"><b>Quota</b></td>
+					<td
+						style="border-bottom: 1px solid #ccc; font: 12px arial; color: #5a5a5a; padding-left: 3px"><?php echo $commonVO->getQuota() ?>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<br>
+		<br>
+		<table width="600" border="0" cellspacing="0" cellpadding="0">
+			<tbody>
+				<tr>
+					<td
+						style="font: bold 14px arial; color: #0099ff; margin: 0; padding: 0">Passenger
+						Details:</td>
+					<td><br>
+					<br></td>
+				</tr>
+				<tr>
+					<td height="23" width="5%"
+						style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; font: 12px arial; color: #5a5a5a; padding-left: 3px">S#</td>
+					<td width="40%"
+						style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; font: 12px arial; color: #5a5a5a; padding-left: 3px">Name</td>
+					<td width="10%"
+						style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; font: 12px arial; color: #5a5a5a; padding-left: 3px">Age</td>
+					<td width="10%"
+						style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; font: 12px arial; color: #5a5a5a; padding-left: 3px">Gender</td>
+					<td width="15%"
+						style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; font: 12px arial; color: #5a5a5a; padding-left: 3px">Seat/Berth</td>
+					<td width="10%"
+						style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; font: 12px arial; color: #5a5a5a; padding-left: 3px">Coach</td>
+					<td width="10%"
+						style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; font: 12px arial; color: #5a5a5a; padding-left: 3px">Status</td>
+				</tr>
+				
+				<?php /* @var $ticketPassengerVO Dakiya_VO_Booking_Ticket_TicketPassengerVO */ ?>
+				<?php foreach ($commonVO->getTicketPassengerVOs() as $ticketPassengerVO):  ?>
+				<tr>
+					<td height="23"
+						style="border-bottom: 1px solid #ccc; font: 12px arial; color: #5a5a5a; padding-left: 3px"><?php echo $ticketPassengerVO->getSerialNO() ?></td>
+					<td
+						style="border-bottom: 1px solid #ccc; font: 12px arial; color: #5a5a5a; padding-left: 3px"><?php echo $ticketPassengerVO->getPassengerName() ?></td>
+					<td
+						style="border-bottom: 1px solid #ccc; font: 12px arial; color: #5a5a5a; padding-left: 3px"><?php echo $ticketPassengerVO->getAge() ?></td>
+					<td
+						style="border-bottom: 1px solid #ccc; font: 12px arial; color: #5a5a5a; padding-left: 3px"><?php echo $ticketPassengerVO->getSex() ?></td>
+					<td
+						style="border-bottom: 1px solid #ccc; font: 12px arial; color: #5a5a5a; padding-left: 3px"><?php echo $ticketPassengerVO->getSeat() ?></td>
+					<td
+						style="border-bottom: 1px solid #ccc; font: 12px arial; color: #5a5a5a; padding-left: 3px"><?php echo $ticketPassengerVO->getCoach() ?></td>
+					<td
+						style="border-bottom: 1px solid #ccc; font: 12px arial; color: #5a5a5a; padding-left: 3px"><?php echo $ticketPassengerVO->getBookingStatus() ?></td>
+				</tr>
+				<?php endforeach; ?> 
+				<tr>
+					<td height="23" colspan="6" align="right"
+						style="border-bottom: 1px solid #ccc; font: 12px arial; color: #5a5a5a; padding-right: 3px">Total
+						Fare</td>
+					<td
+						style="border-bottom: 1px solid #ccc; font: 12px arial; color: #5a5a5a; padding-left: 3px"><?php echo $commonVO->getNetTicketAmount() ?></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div class="yj6qo"></div>
+</div>

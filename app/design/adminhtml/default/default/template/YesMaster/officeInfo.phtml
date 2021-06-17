@@ -1,0 +1,117 @@
+<?php
+    
+?>
+<div class="content-header">
+    <table cellspacing="0">
+        <tr>
+            
+            <td style="width:50%;"><h3 class="icon-head head-permissions-role"><?php echo ($this->getData('office_id') > 0 ) ? ($this->__('Edit Office') . " '{$this->getOfficeInfo('officeName')}'") : $this->__('Add New Office') ?></h3></td>
+            <td class="form-buttons">
+                <?php echo $this->getBackButtonHtml() ?>
+                <?php echo $this->getResetButtonHtml() ?>
+                <?php echo $this->getDeleteButtonHtml() ?>
+                <?php echo $this->getSaveButtonHtml() ?>
+            </td>
+        </tr>
+    </table>
+</div>
+
+
+
+<form action="<?php echo $this->getUrl('*/*/saveOffice') ?>" method="post" id="office_edit_form">
+    <?php  echo $this->getBlockHtml('formkey')?>
+    <?php  echo $this->getOfficeEntropy();?>
+    <?php // echo $this->getOfficeTerminal();?>
+</form>
+<script type="text/javascript">
+    var productForm = new varienForm('office_edit_form');
+    var officeJS = {
+            isProductCodeExist: "" ,
+            submit : function() {
+                                           
+                                 if(  !(productForm.validator && productForm.validator.validate())  ){
+                                          return false;
+                                 }
+                                 
+                                 /*
+                                 if( !officeJS.isnumeric( document.getElementById('invoiceSeed').value ) ) {
+                                     alert("Invoice Seed  is not valid");
+                                     return;
+                                 }
+
+                                 if( document.getElementById('invoiceSeed').value ==0 ) {
+                                     alert("Invoice Seed value could not be 0(zero)");
+                                     return;
+                                 }
+								
+                                 var tbodyId = "<?//=$this->getHtmlId()?>_TerminalContainer" ;
+                                 
+                                 var terminalArr=new Array();
+                                  for(var cntr=0; cntr<$(tbodyId).rows.length ; cntr++)
+                                 {
+                                     var tr =$(tbodyId).rows[cntr];
+                                     var td =tr.children[0].children[0].id;
+                                     var parts = td.split('_');
+                                     var id = parts[3];
+
+                                     if($('terminal_new_row_'+ id +'_bank').value ==0 ){
+                                    	 alert("Bank Not Selected for row number " + (cntr+1));
+                                    	 return ;
+                                     }
+
+                                     if($('terminal_new_row_'+ id +'_mid').value =="" ){
+                                         alert("MID not entered for row number " + (cntr+1));
+                                         return ;
+                                     }
+
+                                     if($('terminal_new_row_'+ id +'_tid').value =="" ){
+                                         alert("TID not entered for row number " + (cntr+1));
+                                         return ;
+                                     }
+                                     var str =    "<" + $('terminal_new_row_'+ id +'_bank').value + "/>" 
+                                                + "<" + $('terminal_new_row_'+ id +'_mid').value + "/>"
+                                                + "<" + $('terminal_new_row_'+ id +'_tid').value + "/>" ;
+                                                
+                                     if( terminalArr.find(str) ){
+                                         alert("Terminal information is duplicate for TID: " +  $('terminal_new_row_'+ id +'_tid').value);
+                                         return ;
+                                     }
+                                      
+                                     
+                                     terminalArr[cntr] = str;       
+                                  }*/
+                                 
+                                              officeJS.save();                                                                   
+            } ,
+
+            save : function() {
+                    productForm.submit();
+            },
+            
+            isnumeric : function(input){
+                    var RE = /^-{0,1}\d*\.{0,1}\d+$/;
+                    return RE.test(input) ;
+            }            
+              
+    };
+
+    /*
+   Array.prototype.find = function(searchStr) {
+    	  var returnArray = array;
+    	  for (var i=0; i<this.length; i++) {
+    	    if (typeof(searchStr) == 'function') {
+    	      if (searchStr.test(this[i])) {
+    	        if (!returnArray) { returnArray = []; }
+    	        returnArray.push(i);
+    	      }
+    	    } else {
+    	      if (this[i]===searchStr) {
+    	        if (!returnArray) { returnArray = []; }
+    	        returnArray.push(i);
+    	      }
+    	    }
+    	  }
+    	  return returnArray;
+    	};    
+    */
+</script>

@@ -1,0 +1,96 @@
+.rhino-btn {
+	/*background:url(images/rhinoslider-sprite.png) 0 0 no-repeat;*/
+	z-index:10;
+	width:40px;
+	height:40px;
+	display:block !important;
+	text-indent:-999%;
+	-webkit-user-select:none;
+	-moz-user-select:none;
+	user-select:none;
+}
+
+.rhino-prev, .rhino-next {  }
+
+.rhino-prev {
+	 background: url("images/prev-arrow.png") no-repeat scroll 13px 9px grey;
+         right: 3px; top:-25px;  margin-right: 43px;
+    
+    
+}
+
+.rhino-next {
+	 background: url("images/next-arrow.png") no-repeat scroll 13px 9px grey;
+         right: 0px; top:-25px; 
+      
+    
+    
+
+}
+
+/*.rhino-prev:hover { background-position:-168px -53px; }
+
+.rhino-next:hover { background-position:-106px -53px; }*/
+
+.rhino-toggle {
+	top:-4px;
+	left:-6px;
+}
+
+.rhino-play { background-position:0 0; }
+
+.rhino-play:hover { background-position:0 -53px; }
+
+.rhino-pause { background-position:-56px 0; }
+
+.rhino-pause:hover { background-position:-56px -53px; }
+
+.rhino-container { position:relative; }
+
+.rhino-caption {
+	position:absolute;
+	background: #000;
+	display:none;
+	left:0;
+	right:0;
+	top:0;
+	color:#fff;
+	padding:10px;
+	text-align:right;
+	-webkit-user-select:none;
+	-moz-user-select:none;
+	user-select:none;
+}
+
+#mcs_slider {
+				width: 100%;/*650px;*/
+				height: 280px;/*250px;*/
+				
+				/*IE bugfix*/
+				padding:0;
+				margin:0;
+				list-style:none;			
+			}
+#mcs_slider_sidebar {
+                width: 100%;/*650px;*/
+                height: 280px;/*250px;*/
+                
+                /*IE bugfix*/
+                padding:0;
+                margin:0;
+		list-style:none;
+            }   
+#mcs_slider_sidebarleft {
+                width: 100%;/*650px;*/
+                height: 280px;/*250px;*/
+                
+                /*IE bugfix*/
+                padding:0;
+                margin:0;
+		list-style:none;
+            }          
+.rhino-container li{margin:0 0px;list-style:none;}
+.rhino-container li div.first{margin:0 5px 0 0 !important}
+.rhino-container li div.last{margin:0 0 0 5px !important}
+.rhino-container li div.gallerySlide{ float:left; width:190px;margin:0 10px;}
+.std ul{ padding-left: 0px;}

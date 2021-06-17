@@ -1,0 +1,127 @@
+<?php
+$HTMLFormID = $this->getHTMLFormID();
+/* @var $emailTemplateVO Dakiya_VO_Master_Email_EmailTemplateVO */ 
+$emailTemplateVO = $this->getEmailTemplateVO();
+if($emailTemplateVO == null){
+	$emailTemplateVO = new Dakiya_VO_Master_Email_EmailTemplateVO();
+}
+?>
+
+<div class="content-header">
+    <table cellspacing="0">
+        <tr>
+
+            <td style="width:50%;"><h3 class="icon-head head-permissions-role"><?php echo ($this->getTemplateID() != null ) ? $this->__('Edit') : $this->__('Add') ?></h3></td>
+            <td class="form-buttons">
+                <?php echo $this->getBackButtonHtml() ?>
+                <?php echo $this->getResetButtonHtml() ?>
+                <?php echo $this->getSaveButtonHtml() ?>
+            </td>
+        </tr>
+    </table>
+</div>
+<form action="<?php echo $this->getUrl('*/*/save') ?>" method="post" id="<?php echo $HTMLFormID;?>">
+    <?php echo $this->getBlockHtml('formkey')?>
+    <?php echo $this->getEntropy(); ?>
+</form>
+<?php //echo $this->getWYSIWYGHTML() ?>
+
+<script type="text/javascript">
+function emailTemplateVO(){
+	this.TemplateID = null;
+	this.TemplateName = null;
+	this.TemplateCode = null;
+	this.Subject = null;
+	this.Content = null;
+	this.Query = null;
+	this.StatusID = null;
+}
+var newEmailTemplateDTO = new emailTemplateVO();
+</script>
+
+
+<script type="text/javascript">
+
+var formObj = new varienForm('<?php echo $HTMLFormID; ?>');
+var formJS  = {
+        	
+			submit : function(){
+        		if(  !formJS.saveValidation() ) return ;
+					formJS.saveAjax();
+			},
+
+            saveValidation : function(){
+				var errorMsg = '';
+             	if( !(formObj.validator && formObj.validator.validate())  ){
+	    	    	return false;
+    	    	}
+
+             	
+            	newEmailTemplateDTO.TemplateID = ($('TemplateID').value).strip();
+            	newEmailTemplateDTO.TemplateName = ($('TemplateName').value).strip();
+            	newEmailTemplateDTO.TemplateCode = ($('TemplateCode').value).strip();
+            	newEmailTemplateDTO.Subject = ($('Subject').value).strip();
+            	newEmailTemplateDTO.StatusID = ($('StatusID').value).strip();
+            	newEmailTemplateDTO.Query = ($('Query').value).strip();
+            	
+            	
+				// AFTER CLICK THIS TOGGLE CONTENT BUTTON VALUE SET TO CONTENT			
+	           	//$('toggleContent').click();
+            	newEmailTemplateDTO.Content = ($('Content').value).strip();
+            	            	
+             	
+             	if(newEmailTemplateDTO.TemplateName == '' || newEmailTemplateDTO.TemplateName == null){
+					errorMsg += 'Please Enter Template Name .\n';
+				}
+
+             	if(newEmailTemplateDTO.TemplateCode == '' || newEmailTemplateDTO.TemplateCode == null){
+					errorMsg += 'Please Enter Template Code .\n';
+				}
+
+             	if(newEmailTemplateDTO.StatusID == '' || newEmailTemplateDTO.StatusID == null){
+					errorMsg += 'Please Select Status .\n';
+				}
+
+             	if(newEmailTemplateDTO.Query == '' || newEmailTemplateDTO.Query == null){
+             		newEmailTemplateDTO.Query = null;
+				}
+
+	            if(errorMsg != ''){
+	            	alert(errorMsg);
+					return false;
+				}
+				
+				// DISABLE SAVE BUTTON FOR PREVENT DUPLICATE ENTRY
+				$('EmailTemplateSaveButtonID').style.disabled = true;
+				return true;	            
+            },					
+ 
+
+        	saveAjax: function(){
+            	var URL = "<?php echo $this->getUrl('*/*/save')?>" ;
+			    var parameters= {"EmailTemplateDataObj": JSON.stringify(newEmailTemplateDTO,null) };
+			    var callBackMethod ="formJS.responseSave";
+			    var callBackArgs =null;
+			    ajaxRequest.execute(URL, parameters, callBackMethod , callBackArgs );
+			    return false;
+	     	},
+
+	     	
+  	     	responseSave : function(response,args) {
+  	     		// ENABLE SAVE BUTTON 
+				$('EmailTemplateSaveButtonID').style.disabled = true;
+				var msg = new Array();
+            	if(response.SuccessMessage !=null){
+				 	window.location.href = "<?php echo $this->getUrl('*/*/index')?>";
+				 	return;
+				}else if(response.ErrorMessage !=null){
+					msg[0] = response.ErrorMessage;
+					MESSAGEHANDLER.errorMessagePublish(msg, $('messages'));
+	    			return false;
+	 			}
+     	 	}
+								
+};
+
+//$('Content').value = '<?php //echo $emailTemplateVO->getContent() ?>';
+</script>

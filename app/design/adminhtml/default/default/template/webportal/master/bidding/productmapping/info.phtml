@@ -1,0 +1,85 @@
+<?php
+$HTMLFormID = $this->getHTMLFormID();
+?>
+<div class="content-header">
+    <table cellspacing="0">
+        <tr>
+            
+            <td style="width:50%;"><h3 class="icon-head head-permissions-role"><?php echo ($this->getID() !=null ) ? ($this->__('Edit Bid Product') ) : $this->__('Add Bid Product') ?></h3></td>
+            <td class="form-buttons">
+                <?php echo $this->getBackButtonHtml() ?>
+                <?php echo $this->getResetButtonHtml() ?>
+                <?php echo $this->getSaveButtonHtml() ?>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<form action="<?php echo $this->getUrl('*/*/save') ?>" method="post" id="<?php echo $HTMLFormID ?>">
+    <?php  echo $this->getBlockHtml('formkey')?>
+    <?php  echo $this->getEntropy()?>
+</form>
+
+<script type="text/javascript">
+
+function bidProductsVO(){
+	this.ID = null;
+	this.BidID = null;
+	this.ProductID = null;
+	this.StatusID=null;
+	
+}
+var newBidProductsDTO = new bidProductsVO();
+
+var formObj = new varienForm('<?php echo $HTMLFormID; ?>');
+var formJS={
+
+		submit : function(){
+    		if(!formJS.saveValidation()) return ;
+				formJS.saveAjax();
+		},
+
+		saveValidation : function(){
+			var errorMsg = '';
+         	if(!(formObj.validator && formObj.validator.validate())){
+    	    	return false;
+	    	}
+
+         	// SET VOs 
+         	newBidProductsDTO.ID = ($('ID').value).strip();
+         	newBidProductsDTO.BidID = ($('BidID').value).strip();
+         	newBidProductsDTO.ProductID = ($('ProductID').value).strip();
+         	newBidProductsDTO.StatusID = ($('StatusID').value).strip(); 
+         	
+         	if(errorMsg != ''){
+            	alert(errorMsg);
+				return false;
+			}
+
+			return true;	
+		},	
+
+        saveAjax: function(){
+        	var URL = "<?php echo $this->getUrl('*/*/save')?>" ;
+		    var parameters= {"BidProductsDataObj": JSON.stringify(newBidProductsDTO,null) };
+		    var callBackMethod ="formJS.responseSave";
+		    var callBackArgs =null;
+		    ajaxRequest.execute(	URL, parameters, callBackMethod , callBackArgs );
+		    return false;
+     	},
+
+	    responseSave : function(response,args) {
+        	if(response.SuccessMessage !=null){
+			 	window.location.href = "<?php echo $this->getUrl('*/*/index')?>";
+			 	return;
+			}else if(response.ErrorMessage !=null){
+				alert(response.ErrorMessage);
+    			return false;
+ 			}
+ 	 	}
+		
+		 
+			
+}; 
+
+</script>

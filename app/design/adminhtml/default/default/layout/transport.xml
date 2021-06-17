@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<layout>
+
+	<!-- Owner -->
+	<transport_backend_master_vahicale_owner_index>
+			<reference name="content">
+					<block type="transport/Backend_Master_Vahicale_Owner_Header" name="Backend_Master_Vahicale_Owner_Header" template="transport/master/vahicale/owner/header.phtml">
+			 			<block type="transport/Backend_Master_Vahicale_Owner_Grid" name="Backend_Master_Vahicale_Owner_Grid" as="grid" />
+					</block>
+			</reference>
+	</transport_backend_master_vahicale_owner_index>
+
+
+	<!-- Vahicale -->
+	<transport_backend_master_vahicale_vahicale_index>
+			<reference name="content">
+					<block type="transport/Backend_Master_Vahicale_Vahicale_Header" name="Backend_Master_Vahicale_Vahicale_Header" template="transport/master/vahicale/vahicale/header.phtml">
+			 			<block type="transport/Backend_Master_Vahicale_Vahicale_Grid" name="Backend_Master_Vahicale_Vahicale_Grid" as="grid" />
+					</block>
+			</reference>
+	</transport_backend_master_vahicale_vahicale_index>
+	
+	<!-- Common -->
+	<transport_backend_master_vahicale_common_index>
+			<reference name="content">
+					<block type="transport/Backend_Master_Vahicale_Common_Header" name="Backend_Master_Vahicale_Vahicale_Header" template="transport/master/vahicale/common/header.phtml">
+			 			<block type="transport/Backend_Master_Vahicale_Common_Grid" name="Backend_Master_Vahicale_Vahicale_Grid" as="grid" />
+					</block>
+			</reference>
+	</transport_backend_master_vahicale_common_index>
+
+	<transport_backend_master_vahicale_vahicale_edit>
+			
+			
+<!-- 			<reference name="head"> -->
+				
+<!-- 				<action method="addCss"><name>transport/plugins/bootstrap/css/bootstrap.min.css</name></action> -->
+				
+				<!--  
+				<action method="addCss"><name>transport/fonts/fontawesome/css/fontawesome-all.min.css</name></action>
+            	<action method="addCss"><name>transport/plugins/animation/css/animate.min.css</name></action>
+            	<action method="addCss"><name>transport/css/style.css</name></action>
+            	-->
+            	
+            	<!-- 
+            	<action method="addItem"><type>skin_js</type><name>transport/js/vendor-all.min.js</name></action>
+            	<action method="addItem"><type>skin_js</type><name>transport/plugins/bootstrap/js/bootstrap.min.js</name></action>
+            	<action method="addItem"><type>skin_js</type><name>transport/js/pcoded.min.js</name></action>
+            	 -->
+            	
+            	
+<!-- 			</reference> -->
+	</transport_backend_master_vahicale_vahicale_edit>
+
+	
+	
+	
+	<!-- Driver -->
+	<transport_backend_master_vahicale_driver_index>
+			<reference name="content">
+					<block type="transport/Backend_Master_Vahicale_Driver_Header" name="Backend_Master_Vahicale_Vahicale_Header" template="transport/master/vahicale/driver/header.phtml">
+			 			<block type="transport/Backend_Master_Vahicale_Driver_Grid" name="Backend_Master_Vahicale_Vahicale_Grid" as="grid" />
+					</block>
+			</reference>
+	</transport_backend_master_vahicale_driver_index>
+	
+	
+	<!-- Consignment Note -->
+	<transport_backend_consignment_consignment_consignmentnote_index>
+			<reference name="content">
+					<block type="transport/Backend_Consignment_Consignment_ConsignmentNote_Header" name="Backend_Consignment_Consignment_ConsignmentNote_Header" template="transport/consignment/consignment/consignmentnote/header.phtml">
+			 			<block type="transport/Backend_Consignment_Consignment_ConsignmentNote_Grid" name="Backend_Consignment_Consignment_ConsignmentNote_Grid" as="grid" />
+					</block>
+			</reference>
+	</transport_backend_consignment_consignment_consignmentnote_index>
+	
+	
+	<transport_backend_consignment_consignment_consignmentnote_print>
+			<remove name="head" />
+			<remove name="header" />
+			<remove name="menu" />
+			<reference name="content">
+					<block type="transport/Backend_Consignment_Consignment_ConsignmentNote_Print" name="Backend_Consignment_Consignment_ConsignmentNote_Print"  />
+			</reference>
+	</transport_backend_consignment_consignment_consignmentnote_print>
+ 
+</layout>

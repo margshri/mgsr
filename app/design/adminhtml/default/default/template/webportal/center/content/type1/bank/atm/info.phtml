@@ -1,0 +1,151 @@
+<?php
+$HTMLFormID = $this->getHTMLFormID();
+?>
+<div class="content-header">
+    <table cellspacing="0">
+        <tr>
+            
+            <td style="width:50%;"><h3 class="icon-head head-permissions-role"><?php echo ($this->getID() != null ) ? ($this->__('Edit Bank ATM') ) : $this->__('Create Bank ATM') ?></h3></td>
+            <td class="form-buttons">
+                <?php echo $this->getBackButtonHtml() ?>
+                <?php echo $this->getResetButtonHtml() ?>
+                <?php echo $this->getSaveButtonHtml() ?>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<form action="<?php echo $this->getUrl('*/*/save') ?>" method="post" id="<?php echo $HTMLFormID ?>">
+    <?php  echo $this->getBlockHtml('formkey')?>
+    <?php  echo $this->getEntropy()?>
+</form>
+
+<script type="text/javascript">
+
+function atmVO(){
+	this.ID = null;
+	this.Value = null;
+	this.Code = null;
+	this.BankID = null;	
+	this.StatusID=null;
+	this.PinCode=null;
+	this.Address = null;
+	this.CountryID = 1;
+	this.StateID = null;
+	this.DistrictID=null;
+	this.CityID=null;
+}
+var newATMDTO = new atmVO();
+
+var formObj = new varienForm('<?php echo $HTMLFormID; ?>');
+var formJS={
+
+		submit : function(){
+    		if(!formJS.saveValidation()) return ;
+				formJS.saveAjax();
+		},
+
+		saveValidation : function(){
+			var errorMsg = '';
+
+			
+         	if(!(formObj.validator && formObj.validator.validate())){
+    	    	return false;
+	    	}
+	    	
+
+         	// SET VOs 
+         	newATMDTO.ID = ($('ID').value).strip();
+         	newATMDTO.Value = ($('Value').value).strip();
+         	newATMDTO.Code = ($('Code').value).strip();
+         	newATMDTO.BankID = ($('BankID').value).strip();
+         	newATMDTO.StatusID = ($('StatusID').value).strip();
+         	newATMDTO.PinCode = ($('PinCode').value).strip();
+         	newATMDTO.Address = ($('Address').value).strip();
+         	newATMDTO.CountryID = ($('CountryID').value).strip();
+         	newATMDTO.StateID = ($('StateID').value).strip();
+         	newATMDTO.DistrictID = ($('DistrictID').value).strip();
+         	newATMDTO.CityID = ($('CityID').value).strip();
+         	
+         	
+         	if(errorMsg != ''){
+            	alert(errorMsg);
+				return false;
+			}
+
+			return true;	
+		},	
+
+        saveAjax: function(){
+        	var URL = "<?php echo $this->getUrl('*/*/save')?>" ;
+		    var parameters= {"ATMDataObj": JSON.stringify(newATMDTO,null) };
+		    var callBackMethod ="formJS.responseSave";
+		    var callBackArgs =null;
+		    ajaxRequest.execute(	URL, parameters, callBackMethod , callBackArgs );
+		    return false;
+     	},
+
+	    responseSave : function(response,args) {
+        	if(response.SuccessMessage !=null){
+			 	window.location.href = "<?php echo $this->getUrl('*/*/index')?>";
+			 	return;
+			}else if(response.ErrorMessage !=null){
+				alert(response.ErrorMessage);
+    			return false;
+ 			}
+ 	 	},
+		
+		setDistrictList: function(stateID){
+			//var stateID = obj.value;
+			var innerHTML = '<option value="">--Select--</option>';
+			for(var key in districtList){
+				if(districtList[key].StateID == stateID){
+					if(key == ATMVO.DistrictID)
+						innerHTML += '<option value="'+key+'" selected = "selected">'+districtList[key].Name+'</option>';
+					else
+						innerHTML += '<option value="'+key+'">'+districtList[key].Name+'</option>';	
+				}
+			}
+			UI.elementDisabled($('DistrictID'), false);
+			$('DistrictID').innerHTML = innerHTML;
+			return; 
+		},
+
+		setCityList: function(districtID){
+			//var districtID = obj.value;
+			var innerHTML = '<option value="">--Select--</option>';
+			for(var key in cityList){
+				if(cityList[key].DistrictID == districtID){
+					if(key == ATMVO.CityID)
+						innerHTML += '<option value="'+key+'" selected = "selected">'+cityList[key].Name+'</option>';
+					else		
+						innerHTML += '<option value="'+key+'">'+cityList[key].Name+'</option>';
+				}
+			}
+			UI.elementDisabled($('CityID'), false);
+			$('CityID').innerHTML = innerHTML;
+			return; 
+		},
+
+		defaultSetting: function(){
+			UI.elementDisabled($('DistrictID'), true);
+			UI.elementDisabled($('CityID'), true);
+		}
+			
+}; 
+
+
+// FOR EDIT 
+
+if(ATMVO != ''){
+	
+	formJS.setDistrictList(ATMVO.StateID);
+	formJS.setCityList(ATMVO.DistrictID);		
+	
+}else{
+	formJS.defaultSetting();
+}
+
+
+
+</script>

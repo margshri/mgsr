@@ -1,0 +1,202 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Margshri_ShoppingWebsite>
+            <version>1.0.0.1</version>
+        </Margshri_ShoppingWebsite>
+    </modules>
+    
+    <global>
+        <models>
+			<margshri>
+				<class>Margshri_Model</class>
+				<resourceModel>margshri_mysql4</resourceModel>
+			</margshri>
+			
+			<margshri_mysql4>
+				<class>Margshri_Model_MySql4</class>
+				<entities>
+				    <adminuser>
+						<table>admin_user</table>
+					</adminuser>
+				</entities>
+			</margshri_mysql4>	    
+        </models>
+        
+        <resources>
+			<admin_setup>
+				<setup>
+					<module>Margshri</module>
+				</setup>
+			</admin_setup>
+		</resources>
+        
+        
+    	<blocks>
+			<margshri>
+				<class>Margshri_Block</class>
+			</margshri>
+		</blocks>
+		
+    	<helpers>
+			<margshri>
+				<class>Margshri_Helper</class>
+			</margshri>
+		</helpers>
+    	
+    	
+	</global>
+    
+    <frontend>
+        <routers>
+            <shoppingwebsite>
+                <use>standard</use>
+                <args>
+                    <module>Margshri_ShoppingWebsite</module>
+                    <frontName>shoppingwebsite</frontName>
+                </args>
+            </shoppingwebsite>
+        </routers>
+  		
+  		<layout>  
+  		  <updates>
+		    <shoppingwebsite module="Margshri">
+		      <file>shopping_website.xml</file>
+		    </shoppingwebsite>
+		  </updates>
+		</layout>
+    </frontend>
+    
+    
+    <admin>
+		<routers>
+			<margshri>
+				<use>admin</use>
+				<args>
+					<module>Margshri</module>
+					<frontName>margshri</frontName>
+				</args>
+			</margshri>
+		</routers>
+	</admin>
+	
+    
+    <adminhtml>
+		<menu>
+		
+		<!--    
+		<directory translate="title" module="admin">
+				<title>Directory</title>
+				<sort_order>01</sort_order>
+				<action>tgta/Admin_Navigation_TopMenu_Directory/index</action>
+		</directory>
+
+		<download translate="title" module="admin">
+				<title>Download</title>
+				<sort_order>02</sort_order>
+				<children>
+					<circular translate="title" module="admin">
+						<title>Circular</title>
+						<sort_order>01</sort_order>
+						<action>tgta/Admin_Navigation_TopMenu_Download/circular</action>
+					</circular>
+				</children>
+				
+				<children>
+					<directory translate="title" module="admin">
+						<title>Directory</title>
+						<sort_order>02</sort_order>
+						<action>tgta/Admin_Navigation_TopMenu_Download/directory</action>
+					</directory>
+				</children>
+				
+		</download>
+		    
+		<news translate="title" module="admin">
+				<title>News</title>
+				<sort_order>03</sort_order>
+				<action>tgta/Admin_Navigation_TopMenu_News/index</action>
+		</news>
+		
+		<gallery translate="title" module="admin">
+				<title>Gallery</title>
+				<sort_order>04</sort_order>
+				<action>tgta/Admin_Navigation_TopMenu_Gallery/index</action>
+		</gallery>
+		
+		
+		  
+			<masters translate="title" module="admin">
+				<title>Masters</title>
+				<children>
+					<vendor translate="title" module="admin">
+						<title>Vendor</title>
+						<sort_order>01</sort_order>
+						<action>swapp/masters_vendor_registration/index</action>
+					</vendor>
+				</children>
+			</masters>
+		-->	
+		</menu>
+		
+		<acl>
+			<resources>
+				<admin>
+					<children>
+					    <directory translate="title" module="admin">
+								<title>Directory</title>
+								<sort_order>01</sort_order>
+						</directory>
+						
+					    <download translate="title" module="admin">
+								<title>Download</title>
+								<sort_order>02</sort_order>
+								<children>
+									<circular translate="title" module="admin">
+										<title>Circular</title>
+										<sort_order>01</sort_order>
+									</circular>
+								</children>
+								
+								<children>
+									<directory translate="title" module="admin">
+										<title>Directory</title>
+										<sort_order>02</sort_order>
+										
+										<children>
+											<actionadd translate="title" module="admin">
+												<title>Add New</title>
+												<sort_order>01</sort_order>
+											</actionadd>
+										</children>
+									</directory>
+								</children>
+								
+						</download>
+					    
+					    <news translate="title" module="admin">
+								<title>News</title>
+								<sort_order>03</sort_order>
+						</news>
+						
+					    <gallery translate="title" module="admin">
+								<title>Gallery</title>
+								<sort_order>04</sort_order>
+						</gallery>
+					    
+					</children>
+				</admin>
+			</resources>			
+		</acl>
+		  
+		<layout>
+			<updates>
+				<margshri module="Margshri">
+					<file>web_portal.xml</file>
+				</margshri>
+			</updates>
+		</layout>
+		
+					
+	</adminhtml>
+</config>

@@ -1,0 +1,142 @@
+<?php
+$registrationVO = null; //$this->getRegistrationVO();
+if($registrationVO == null){
+	$registrationVO = new Margshri_MedicalCamp_VO_RegistrationVO();
+}
+$HTMLFormID = $this->getHTMLFormID();
+?>
+
+<script type="text/javascript">
+
+var registrationDataStr = '<?php echo (sizeof($registrationVO->getBaseDataArray()) > 0) ? json_encode($registrationVO->getBaseDataArray()) : "" ?>';
+var registrationDataObj = null;
+if(registrationDataStr != ''){
+	registrationDataObj = JSON.parse(registrationDataStr); 		
+}
+
+</script>
+
+<style>
+<!--
+.requiredField:after {content:"*";color:red;}  
+-->
+</style>
+
+<div class="card bg-light text-dark" style="margin-bottom: 10px !important;">
+	<div class="card-body" style="padding:0px !important;">
+		<table class="table" style="margin-bottom: 0px !important;">
+			<tbody>
+				<tr>
+					<td style="border-top:none; width: 20% !important;" class="text-left">
+						<!--  
+						  <img class="rounded-circle" width="50px" height="50px" src="<?php //echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . 'web_portal/frontend/bid/backButton.png'  ?>" alt="back button image" onclick="loginFormJS.redirect('<?php echo $this->getUrl("") ?>')" />
+						 --> 
+						 <span style="font-size:20px;" onclick="baseFormJS.redirect('<?php echo $this->getUrl('') ?>')">&laquo;</span> 
+					</td>
+					
+					<td style="border-top:none; vertical-align: middle; " class="text-center">
+						<span style="font-weight:bold;">Blood Donor Search</span>
+					</td>
+					
+					<td style="border-top:none; width: 20% !important;" class="text-left"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+
+
+<form action="<?php echo $this->getUrl('common/Frontend_Donor_Donor/showBloodDonorList') ?>" method="post" id="<?php echo $HTMLFormID ?>" enctype="multipart/form-data" >
+	<?php echo $this->getBlockHtml('formkey')?>
+	
+    <div class="container">
+      <div class="row">
+        
+        <div class="col-sm-6">
+            <div class="card-deck">
+        		<div class="card bg-light text-dark">
+        			<div class="card-body">
+                      
+                      <div class="form-group">          
+                        <label for="Class" class="">Blood Group</label>
+                        <select class="form-control" id="BloodGroupID" name="BloodGroupID" >
+                            <option value="0" >--All--</option>
+                    		<?php foreach ($this->getBloodGroupOptions() as $key=>$value): ?>
+            	        		<option value="<?php echo $key ?>" ><?php echo $value ?></option>
+            	        	<?php endforeach; ?>
+                        </select>
+                      </div>
+                      
+                      
+                      <div class="form-group">          
+                        <label for="Class" class="">SDP (Blood) Eligible</label>
+                        <select class="form-control" id="IsStpEligible" name="IsStpEligible" >
+                            <option value="0" >--All--</option>
+                    		<?php foreach ($this->getYesNoOptions() as $key=>$value): ?>
+            	        		<option value="<?php echo $key ?>" ><?php echo $value ?></option>
+            	        	<?php endforeach; ?>
+                        </select>
+                      </div>
+                       
+                      
+                      <div class="form-group">          
+                        <label for="City" class="">City</label>
+                        <select class="form-control" id="CityID" name="CityID">
+                            <option value="0" >--All--</option>
+                    		<?php foreach ($this->getCityOptions() as $key=>$value): ?>
+            	        		<option value="<?php echo $key ?>" ><?php echo $value ?></option>
+            	        	<?php endforeach; ?>
+                        </select>
+                        
+                        <input type="hidden" name="CountryID" id="CountryID" value="1" />
+                        <input type="hidden" name="StateID" id="StateID" value="29" />
+                        <input type="hidden" name="DistrictID" id="DistrictID" value="31" />
+                      </div>
+                      
+                      <div class="form-group">
+                        <div class="col-xs-9 col-xs-offset-3">
+                            <button type="submit" class="btn btn-info" id="FilterButton" name="FilterButton" value="Submit" onclick="return filterFormJS.submit()" >Submit</button>
+                            <input type="hidden" id="ID" name="ID" value="0" />
+                        </div>
+                      </div>
+              		</div>
+        		</div>
+    		</div>
+        </div>
+      </div>  
+    </div>
+  
+</form>
+
+<script type="text/javascript">
+//<![CDATA[
+
+    var filterFormJS = {
+    		
+    		submit : function(){
+        		if(!filterFormJS.saveValidation()){
+            		return false;
+        		}
+				$("#overlay").css("display","block");
+    			$("#loader").css("display","block");
+    			$('#<?php echo $HTMLFormID ?>').submit();
+    		},
+
+    		saveValidation : function(){
+    	    	return true;
+    		},
+    		
+    		defaultSetting: function(){
+    			if(registrationDataObj != null && registrationDataObj != ""){
+        			$('#AlertBoxModal').modal('show');
+    				$('#AlertBoxModalBody').html(registrationDataObj.ErrorMessage);
+    				$('#AlertBoxModal').on('hidden.bs.modal', function () {});
+    			}
+    		} 
+    		
+    };
+
+    // filterFormJS.defaultSetting();	
+//]]>
+</script>

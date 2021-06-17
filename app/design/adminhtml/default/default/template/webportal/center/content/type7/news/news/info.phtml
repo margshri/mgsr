@@ -1,0 +1,295 @@
+<?php
+$HTMLFormID = $this->getHTMLFormID();
+?>
+<div class="content-header">
+    <table cellspacing="0">
+        <tr>
+            
+            <td style="width:50%;"><h3 class="icon-head head-permissions-role"><?php echo ($this->getID() != null ) ? ($this->__('Edit') ) : $this->__('Add') ?></h3></td>
+            <td class="form-buttons">
+                <?php echo $this->getBackButtonHtml() ?>
+                <?php echo $this->getResetButtonHtml() ?>
+                <?php echo $this->getSaveButtonHtml() ?>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<form action="<?php echo $this->getUrl('*/*/save') ?>" method="post" id="<?php echo $HTMLFormID ?>" enctype="multipart/form-data">
+    <?php  echo $this->getBlockHtml('formkey')?>
+    <?php  echo $this->getEntropy()?>
+</form>
+
+<script type="text/javascript">
+
+function NewsVO(){
+	this.ID = null;
+	this.Value = null;
+	this.Code = null;
+	this.UserID = null;
+	this.Order = null;
+	this.WebsiteLink = null;
+	this.IsPaid = null;
+	this.TinNumber = null;
+	this.PANNumber = null;
+	this.Description = null;
+	this.Description2 = null;
+	this.Image = null;
+	this.PersonImage = null;
+	this.Person2Image = null;
+	this.NewsDate = null;
+	this.LaunchDate = null;
+	this.EndDate = null;
+	this.Category1ID = null;
+	this.Category1Value = null;
+	this.Category2ID = null;
+	this.Category2Value = null;
+	this.Category3ID = null;
+	this.Category3Value = null;
+	this.HospitalTypeID = null;
+	this.StatusID=null;
+	this.LandLineNumber=null;
+	this.MobileNumber1=null;
+	this.MobileNumber2=null;
+	this.Email=null;
+	this.PinCode=null;
+	this.Address = null;
+	this.CountryID = null;
+	this.StateID = null;
+	this.DistrictID=null;
+	this.CityID=null;
+	
+}
+var newNewsDTO = new NewsVO();
+
+var formObj = new varienForm('<?php echo $HTMLFormID; ?>');
+var formJS={
+
+		submit : function(){
+    		//if(!formJS.saveValidation()) return ;
+    			$('<?php echo $HTMLFormID ?>').submit();
+				//formJS.saveAjax();
+		},
+
+		saveValidation : function(){
+			var errorMsg = '';
+			
+         	if(!(formObj.validator && formObj.validator.validate())){
+    	    	return false;
+	    	}
+	    	
+         	
+         	// SET VOs 
+            newNewsDTO.ID = ($('ID').value).strip();
+         	newNewsDTO.Value = ($('Value').value).strip();
+         	newNewsDTO.Code = null;
+         	newNewsDTO.UserID = null;
+         	newNewsDTO.Order = null;
+         	newNewsDTO.WebsiteLink = ($('WebsiteLink').value).strip();
+         	newNewsDTO.IsPaid = 0;
+         	newNewsDTO.TinNumber = ($('TinNumber').value).strip();
+         	newNewsDTO.PANNumber = ($('PANNumber').value).strip();
+         	newNewsDTO.Description = ($('Description').value).strip();
+         	newNewsDTO.Description2 = ($('Description2').value).strip();
+         	newNewsDTO.Image = ($('Image').value).strip();
+         	newNewsDTO.PersonImage = ($('PersonImage').value).strip();
+         	newNewsDTO.Person2Image = ($('Person2Image').value).strip();
+         	newNewsDTO.NewsDate = ($('NewsDate').value).strip();
+         	newNewsDTO.LaunchDate = ($('LaunchDate').value).strip();
+         	newNewsDTO.EndDate = ($('EndDate').value).strip();
+         	newNewsDTO.Category1ID = ($('Category1ID').value).strip();
+         	newNewsDTO.Category1Value = ($('Category1Value').value).strip();
+         	newNewsDTO.Category2ID = ($('Category2ID').value).strip();
+         	newNewsDTO.Category2Value = ($('Category2Value').value).strip();
+         	newNewsDTO.Category3ID = ($('Category3ID').value).strip();
+         	newNewsDTO.Category3Value = ($('Category3Value').value).strip();
+         	newNewsDTO.StatusID = ($('StatusID').value).strip();
+         	newNewsDTO.LandLineNumber = ($('LandLineNumber').value).strip();
+         	newNewsDTO.MobileNumber1 = ($('MobileNumber1').value).strip();
+         	newNewsDTO.MobileNumber2 = ($('MobileNumber2').value).strip();
+         	newNewsDTO.Email = ($('Email').value).strip();
+         	newNewsDTO.PinCode = ($('PinCode').value).strip();
+         	newNewsDTO.Address = ($('Address').value).strip();
+         	newNewsDTO.CountryID = ($('CountryID').value).strip();
+         	newNewsDTO.StateID = ($('StateID').value).strip();
+         	newNewsDTO.DistrictID = ($('DistrictID').value).strip();
+         	newNewsDTO.CityID = ($('CityID').value).strip();
+
+
+         	if($('Category1Value').style.display != 'none'){
+             	if(newNewsDTO.Category1Value == '' || newNewsDTO.Category1Value == null)
+         			errorMsg += "Please Enter First Category Value \n"; 
+            }else{
+            	newNewsDTO.Category1ID = null;
+            }
+
+         	if($('Category2Value').style.display != 'none'){
+             	 if(newNewsDTO.Category2Value == '' || newNewsDTO.Category2Value == null)
+         		errorMsg += "Please Enter Second Category Value \n"; 
+            }else{
+            	newNewsDTO.Category2ID = null;
+            }
+
+            if($('Category3Value').style.display != 'none'){
+              	 if(newNewsDTO.Category3Value == '' || newNewsDTO.Category3Value == null)
+	           		errorMsg += "Please Enter Third Category Value \n"; 
+            }else{
+               	newNewsDTO.Category3ID = null;
+            }
+         	
+         	if(errorMsg != ''){
+            	alert(errorMsg);
+				return false;
+			}
+
+			return true;	
+		},	
+
+        saveAjax: function(){
+        	var URL = "<?php echo $this->getUrl('*/*/save')?>" ;
+		    var parameters= {"NewsDataObj": JSON.stringify(newNewsDTO,null) };
+		    var callBackMethod ="formJS.responseSave";
+		    var callBackArgs =null;
+		    ajaxRequest.execute(	URL, parameters, callBackMethod , callBackArgs );
+		    return false;
+     	},
+
+	    responseSave : function(response,args) {
+        	if(response.SuccessMessage !=null){
+			 	window.location.href = "<?php echo $this->getUrl('*/*/index')?>" ;
+			 	return;
+			}else if(response.ErrorMessage !=null){
+				alert(response.ErrorMessage);
+    			return false;
+ 			}
+ 	 	},
+		
+		setDistrictList: function(stateID){
+			//var stateID = obj.value;
+			var innerHTML = '<option value="">--Select--</option>';
+			for(var key in districtList){
+				if(districtList[key].StateID == stateID){
+					if(key == NEWSVO.DistrictID)
+						innerHTML += '<option value="'+key+'" selected = "selected">'+districtList[key].Name+'</option>';
+					else
+						innerHTML += '<option value="'+key+'">'+districtList[key].Name+'</option>';	
+				}
+			}
+			UI.elementDisabled($('DistrictID'), false);
+			$('DistrictID').innerHTML = innerHTML;
+			$('CityID').innerHTML = '<option value="">--Select--</option>';
+			return; 
+		},
+
+		setCityList: function(districtID){
+			//var districtID = obj.value;
+			var innerHTML = '<option value="">--Select--</option>';
+			for(var key in cityList){
+				if(cityList[key].DistrictID == districtID){
+					if(key == NEWSVO.CityID)
+						innerHTML += '<option value="'+key+'" selected = "selected">'+cityList[key].Name+'</option>';
+					else		
+						innerHTML += '<option value="'+key+'">'+cityList[key].Name+'</option>';
+				}
+			}
+			UI.elementDisabled($('CityID'), false);
+			$('CityID').innerHTML = innerHTML;
+			return; 
+		},
+
+		setCategoryBox: function(obj){
+			var categoryID   = obj.value;
+			var categoryName = obj.name;
+			var categoryValueID; 
+
+			switch(categoryName){
+				case 'Category1ID':
+					categoryValueID = 'Category1Value';	
+					break;
+				case 'Category2ID':
+					categoryValueID = 'Category2Value';
+					break;
+				case 'Category3ID':
+					categoryValueID = 'Category3Value';
+					break;		 
+			}
+			
+			if(categoryID != ''){
+				UI.elementVisibility($(categoryValueID),"block");
+			}else{
+				UI.elementVisibility($(categoryValueID),"none");
+				$(categoryValueID).value = '';
+			}			
+			return false;			 
+		},
+		
+		browseImageFile: function(){
+			$('Image').click();
+		},
+
+		getFilePath: function(){
+		    var image = $("Image").files[0];
+		    $("Preview").src = window.URL.createObjectURL(image);
+		},
+
+		browsePersonImageFile: function(){
+			$('PersonImage').click();
+		},
+
+		getPersonImageFilePath: function(){
+		    var personImage = $("PersonImage").files[0];
+		    $("PersonImagePreview").src = window.URL.createObjectURL(personImage);
+		},
+
+		browsePerson2ImageFile: function(){
+			$('Person2Image').click();
+		},
+
+		getPerson2ImageFilePath: function(){
+		    var person2Image = $("Person2Image").files[0];
+		    $("Person2ImagePreview").src = window.URL.createObjectURL(person2Image);
+		},
+
+		
+		defaultSetting: function(){
+			UI.elementDisabled($('DistrictID'), true);
+			UI.elementDisabled($('CityID'), true);
+
+			UI.elementVisibility($("Category1Value"),"none");
+			UI.elementVisibility($("Category2Value"),"none");
+			UI.elementVisibility($("Category3Value"),"none");
+		}
+			
+}; 
+
+
+// FOR EDIT 
+if(NEWSVO != ''){
+
+	if(NEWSVO.Category1Value != '' && NEWSVO.Category1Value != null){
+		UI.elementVisibility($("Category1Value"),"block");
+	}else{
+		UI.elementVisibility($("Category1Value"),"none");
+	}
+
+	if(NEWSVO.Category2Value != '' && NEWSVO.Category2Value != null ){
+		UI.elementVisibility($("Category2Value"),"block");
+	}else{
+		UI.elementVisibility($("Category2Value"),"none");
+	}
+
+	if(NEWSVO.Category3Value != '' && NEWSVO.Category3Value != null){
+		UI.elementVisibility($("Category3Value"),"block");
+	}else{
+		UI.elementVisibility($("Category3Value"),"none");
+	}
+
+	
+	formJS.setDistrictList(NEWSVO.StateID);
+	formJS.setCityList(NEWSVO.DistrictID);		
+	
+}else{
+	formJS.defaultSetting();
+}
+
+</script>

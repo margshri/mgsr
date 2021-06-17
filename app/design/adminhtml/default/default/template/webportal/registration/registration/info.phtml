@@ -1,0 +1,86 @@
+<?php
+$HTMLFormID = $this->getHTMLFormID();
+?>
+<div class="content-header">
+    <table cellspacing="0">
+        <tr>
+            
+            <td style="width:50%;"><h3 class="icon-head head-permissions-role"><?php echo ($this->getRegistrationID() != null ) ? ($this->__('Edit Registration') ) : $this->__('New Registration') ?></h3></td>
+            <td class="form-buttons">
+                <?php echo $this->getBackButtonHtml() ?>
+                <?php echo $this->getResetButtonHtml() ?>
+                <?php echo $this->getSaveButtonHtml() ?>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<form action="<?php echo $this->getUrl('*/*/save') ?>" method="post" id="<?php echo $HTMLFormID ?>">
+    <?php  echo $this->getBlockHtml('formkey')?>
+    <?php  echo $this->getEntropy()?>
+</form>
+
+<script type="text/javascript">
+
+function registrationVO(){
+	this.ID = null;
+	this.RollNo = null;
+}
+var newRegistrationDTO = new registrationVO();
+
+var registrationFormObj = new varienForm('<?php echo $HTMLFormID; ?>');
+var registrationFormJS={
+
+		submit : function(){
+    		if(!registrationFormJS.saveValidation()) return ;
+				// registrationFormJS.saveAjax();
+			registrationFormObj.submit();
+    	},
+
+		saveValidation : function(){
+			var errorMsg = '';
+			if(!(registrationFormObj.validator && registrationFormObj.validator.validate())){
+    	    	return false;
+	    	}
+         	
+         	// SET VOs
+         	/* 
+         	newRegistrationDTO.ID = ($('ID').value).strip();
+         	newRegistrationDTO.RollNo = ($('RollNo').value).strip();
+
+			if(newRegistrationDTO.RollNo == "" || newRegistrationDTO.RollNo == null){
+				errorMsg += "Please Enter Roll Number";
+			}
+         	*/
+         	
+         	if(errorMsg != ''){
+            	alert(errorMsg);
+				return false;
+			}
+
+			return true;
+		},	
+
+        saveAjax: function(){
+        	var URL = "<?php echo $this->getUrl('*/*/save')?>" ;
+		    var parameters= {"RegistrationDataObj": JSON.stringify(newRegistrationDTO,null) };
+		    var callBackMethod ="registrationFormJS.responseSave";
+		    var callBackArgs =null;
+		    ajaxRequest.execute(URL, parameters, callBackMethod , callBackArgs);
+		    return false;
+     	},
+
+	    responseSave : function(response,args) {
+
+	    	if(response.SuccessMessage !=null){
+	    		window.location.href = "<?php echo $this->getUrl('*/*/index')?>";
+			 	return;
+			}else if(response.ErrorMessage !=null){
+				alert(response.ErrorMessage);
+				return false;
+ 			}
+ 	 	} 
+			
+}; 
+ 
+</script>

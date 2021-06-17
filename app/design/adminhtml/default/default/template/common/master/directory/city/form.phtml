@@ -1,0 +1,161 @@
+<?php
+    $HTMLFormID = $this->getHTMLFormID();
+    /* @var $cityListVO Margshri_Common_VO_Directory_CityList_CityListVO */
+    $cityListVO = $this->getCityListVO();    
+    
+    // $cityOptions = $this->getCityOptions();
+?>
+
+<div class="content-header">
+    <table cellspacing="0">
+        <tr>
+            <td style="width:50%;"><h3 class="icon-head head-permissions-role"><?php echo ($this->getCityID() != null ) ? ($this->__('Edit City') ) : $this->__('Add City') ?></h3></td>
+            <td class="form-buttons">
+                <?php echo $this->getBackButtonHtml() ?>
+                <?php echo $this->getResetButtonHtml() ?>
+                <?php echo $this->getSaveButtonHtml() ?>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<form action="<?php echo $this->getUrl('*/*/save') ?>" method="post" id="<?php echo $HTMLFormID ?>">
+    <?php  echo $this->getBlockHtml('formkey')?>
+    
+    <div class="entry-edit">
+    	<div class="entry-edit-head">
+    		<h4 class="icon-head head-edit-form fieldset-legend">City Detail</h4>
+    		<div class="form-buttons"></div>
+    	</div>
+    
+    	<div class="fieldset " id="base_fieldset">
+    		<div class="hor-scroll">
+    		   
+      			<table class="form-list">
+    				<tbody>
+    					
+    					<tr>
+    						<td class="label">
+    							<label for="CityCode">City Code<span class="required">*</span></label>
+    						</td>
+    						<td class="value">
+    							<input type="text" name="Code" id="Code" value="<?php echo $cityListVO->getCode() ?>" class="input-text required-entry" />
+    						</td>
+    					</tr>
+    					
+    					
+    					<tr>
+    						<td class="label">
+    							<label for="Value">City Name<span class="required">*</span></label>
+    						</td>
+    						<td class="value">
+    							<input type="text" name="Value" id="Value" value="<?php echo $cityListVO->getValue() ?>" class="input-text required-entry" />
+    						</td>
+    					</tr>
+    					
+    					
+    					<tr>
+    						<td class="label">
+    							<label for="DistrictID">District<span class="required">*</span></label>
+    						</td>
+    						<td class="value">
+    							<select name="DistrictID" id="DistrictID" class="validate-select">
+    								<option value="">--Select--</option>
+    								<?php foreach ($this->getDistrictListOptions() as $districtID=>$districtDataObj): ?>
+    									<option value="<?php echo $districtID ?>" <?php echo ($cityListVO->getDistrictID() == $districtID) ? 'Selected = "Selected"' : '' ?> ><?php echo $districtDataObj['Name'] ?></option>
+    								<?php endforeach; ?>
+    							</select>
+    						</td>
+    					</tr>
+    					
+    					
+    					<tr>
+    						<td class="label">
+    							<label for="StatusID">Status<span class="required">*</span></label>
+    						</td>
+    						<td class="value">
+    							<select name="StatusID" id="StatusID" class="validate-select">
+    								<option value="">--Select--</option>
+    								<?php foreach ($this->getSatusOptions() as $statusID=>$statusName): ?>
+    									<option value="<?php echo $statusID ?>" <?php echo ($cityListVO->getStatusID() == $statusID) ? 'selected="selected"' : '' ?> ><?php echo $statusName ?></option>	
+    								<?php endforeach; ?>
+    							</select>
+    						</td>
+    					</tr>
+    					
+    					
+    				</tbody>
+    			</table>		
+    		  		 
+    			
+    		</div>
+    	</div>
+    </div>
+    
+    <input type="hidden" id="ID" name="ID" value="<?php echo ($cityListVO->getID() != null && $cityListVO->getID() != "") ? $cityListVO->getID() : 0 ?>" />
+</form>
+
+<script type="text/javascript">
+
+function cityVO(){
+	this.ID = null;
+	this.Code = null;
+	this.Value = null;
+	this.DistrictID = null;
+	this.StatusID = null;
+}
+var newCityDTO = new cityVO();
+
+var cityFormObj = new varienForm('<?php echo $HTMLFormID; ?>');
+var cityFormJS={
+
+		submit : function(){
+    		if(!cityFormJS.saveValidation()) return ;
+    			cityFormJS.saveAjax();
+		},
+
+		saveValidation : function(){
+			var errorMsg = '';
+			
+         	if(!(cityFormObj.validator && cityFormObj.validator.validate())){
+    	    	return false;
+	    	}
+         	
+         	// SET VOs
+         	newCityDTO.ID = ($('ID').value).strip();
+         	newCityDTO.Code = ($('Code').value).strip();
+         	newCityDTO.Value = ($('Value').value).strip();
+         	newCityDTO.DistrictID = ($('DistrictID').value).strip();
+         	newCityDTO.StatusID = ($('StatusID').value).strip();
+         	
+         	if(errorMsg != ''){
+            	alert(errorMsg);
+				return false;
+			}
+
+         	return true;
+		},	
+
+        saveAjax: function(){
+        	var URL = "<?php echo $this->getUrl('*/*/save')?>" ;
+		    var parameters= {"CityDataObj": JSON.stringify(newCityDTO,null) };
+		    var callBackMethod ="cityFormJS.responseSave";
+		    var callBackArgs =null;
+		    ajaxRequest.execute(	URL, parameters, callBackMethod , callBackArgs );
+		    return false;
+     	},
+
+	    responseSave : function(response,args) {
+	    	if(response.SuccessMessage !=null){
+	    		window.location.href = "<?php echo $this->getUrl('*/*/index')?>";
+			 	return;
+			}else if(response.ErrorMessage !=null){
+				alert(response.ErrorMessage);
+				return false;
+ 			}
+ 	 	}
+			
+}; 
+ 
+
+</script>    	 

@@ -1,0 +1,326 @@
+<?php
+    $HTMLFormID = $this->getHTMLFormID();
+    /* @var $userVO Margshri_Common_VO_User_User_UserVO */
+    $userVO = $this->getUserVO();    
+?>
+
+<div class="content-header">
+    <table cellspacing="0">
+        <tr>
+            <td style="width:50%;"><h3 class="icon-head head-permissions-role"><?php echo ($this->getUserID() != null ) ? ($this->__('Edit User') ) : $this->__('Add User') ?></h3></td>
+            <td class="form-buttons">
+                <?php echo $this->getBackButtonHtml() ?>
+                <?php echo $this->getResetButtonHtml() ?>
+                <?php echo $this->getSaveButtonHtml() ?>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<form action="<?php echo $this->getUrl('*/*/save') ?>" method="post" id="<?php echo $HTMLFormID ?>">
+    <?php  echo $this->getBlockHtml('formkey')?>
+    
+    <div class="entry-edit">
+    	<div class="entry-edit-head">
+    		<h4 class="icon-head head-edit-form fieldset-legend">User Detail</h4>
+    		<div class="form-buttons"></div>
+    	</div>
+    
+    	<div class="fieldset " id="base_fieldset">
+    		<div class="hor-scroll">
+    		   
+      			<table class="form-list">
+    				<tbody>
+    				
+    					<tr>
+    						<td class="label">
+    							<label for="NamePrefixID">Name Prefix</label>
+    						</td>
+    						<td class="value">
+    							<select name="NamePrefixID" id="NamePrefixID">
+    								<option value="">--Select--</option>
+    								<?php  foreach ($this->getNamePrefixOptions() as $prefixID=>$prefixName): ?>
+    									<option value="<?php echo $prefixID ?>" <?php echo ($userVO->getNamePrefixID() == $prefixID) ? 'Selected = "Selected"' : '' ?> ><?php echo $prefixName ?></option>
+    								<?php  endforeach; ?>
+    							</select>
+    						</td>
+    					</tr>
+    
+    					<tr>
+    						<td class="label">
+    							<label for="Name">Name<span class="required">*</span></label>
+    						</td>
+    						<td class="value">
+    							<input type="text" name="Name" id="Name" 
+    							value="<?php echo $userVO->getName() ?>" 
+    							class="required-entry input-text" />
+    						</td>
+    					</tr>
+    					
+    					<tr>
+    						<td class="label">
+    							<label for="FatherName">Father Name</label>
+    						</td>
+    						<td class="value">
+    							<input type="text" name="FatherName" id="FatherName" 
+    							value="<?php echo $userVO->getFatherName() ?>" 
+    							class="input-text" />
+    						</td>
+    					</tr>
+    					
+    					
+    					<tr>
+    						<td class="label">
+    							<label for="GenderID">Gender<span class="required">*</span></label>
+    						</td>
+    						<td class="value">
+    							<select name="GenderID" id="GenderID" class="validate-select">
+    								<option value="">--Select--</option>
+    								<?php  foreach ($this->getGenderOptions() as $genderID=>$genderName): ?>
+    									<option value="<?php echo $genderID ?>" <?php echo ($userVO->getGenderID() == $genderID) ? 'Selected = "Selected"' : '' ?> ><?php echo $genderName ?></option>
+    								<?php  endforeach; ?>
+    							</select>
+    						</td>
+    					</tr>
+    					
+    					
+    					<tr>
+    						<td class="label">
+    							<label for="BloodGroupID">Blood Group</label>
+    						</td>
+    						<td class="value">
+    							<select name="BloodGroupID" id="BloodGroupID" >
+    								<option value="">--Select--</option>
+    								<?php  foreach ($this->getBloodGroupOptions() as $bloodGroupID=>$bloodGroupName): ?>
+    									<option value="<?php echo $bloodGroupID ?>" <?php echo ($userVO->getBloodGroupID() == $bloodGroupID) ? 'Selected = "Selected"' : '' ?> ><?php echo $bloodGroupName ?></option>
+    								<?php  endforeach; ?>
+    							</select>
+    						</td>
+    					</tr>
+    					
+    					
+    					<tr>
+    						<td class="label">
+    							<label for="IsStpEligible">Is Blood (STP) Eligible</label>
+    						</td>
+    						<td class="value">
+    							<select name="IsStpEligible" id="IsStpEligible" >
+    								<option value="">--Select--</option>
+    								<?php  foreach ($this->getYesNoOptions() as $yesNoID=>$yesNoName): ?>
+    									<option value="<?php echo $yesNoID ?>" <?php echo ($userVO->getIsStpEligible() == $yesNoID) ? 'Selected = "Selected"' : '' ?> ><?php echo $yesNoName ?></option>
+    								<?php  endforeach; ?>
+    							</select>
+    						</td>
+    					</tr>
+    					
+    					
+    					<tr>
+    						<td class="label">
+    							<label for="UserImageURL">User Image URL</label>
+    						</td>
+    						<td class="value">
+    							<input type="text" name="UserImageURL" id="UserImageURL" 
+    							value="<?php echo $userVO->getUserImageURL() ?>" 
+    							class="input-text" />
+    						</td>
+    					</tr>
+    
+    
+    					
+    
+    					<tr>
+    						<td class="label">
+    							<label for="MobileNumber1">Mobile Number 1<span class="required">*</span></label>
+    						</td>
+    						<td class="value">
+    							<input type="text" name="MobileNumber1" id="MobileNumber1" maxlength="10"
+    							value="<?php echo $userVO->getMobileNumber1() ?>" 
+    							class="required-entry input-text validate-digits" />
+    						</td>
+    					</tr>
+    					
+    					
+    					<tr>
+    						<td class="label">
+    							<label for="MobileNumber2">Mobile Number 2</label>
+    						</td>
+    						<td class="value">
+    							<input type="text" name="MobileNumber2" id="MobileNumber2" maxlength="10"
+    							value="<?php echo $userVO->getMobileNumber2() ?>" 
+    							class="input-text validate-digits" />
+    						</td>
+    					</tr>
+    					
+    					<tr>
+    						<td class="label">
+    							<label for="Address">Address<span class="required">*</span></label>
+    						</td>
+    						<td class="value">
+    							<textarea rows="3" cols="10" name="Address" id="Address" class="required-entry" style="height: 40px;" ><?php echo $userVO->getAddress() ?></textarea>
+    						</td>
+    					</tr>
+    					
+    					<tr>
+    						<td class="label">
+    							<label for="AreaID">Area<span class="required">*</span></label>
+    						</td>
+    						<td class="value">
+    							<select name="AreaID" id="AreaID" class="validate-select">
+    								<option value="">--Select--</option>
+    								<?php  foreach ($this->getAreaOptions() as $areaID=>$areaDataObj): ?>
+    									<?php  // if ($areaDataObj['DistrictID'] != 31) continue; ?>
+    									<option value="<?php echo $areaID ?>" <?php echo ($userVO->getAreaID() == $areaID) ? 'Selected = "Selected"' : '' ?> ><?php echo $areaDataObj['Name'] ?></option>
+    								<?php  endforeach; ?>
+    							</select>
+    						</td>
+    					</tr>
+    					
+    					
+    					<tr>
+    						<td class="label">
+    							<label for="StatusID">Status<span class="required">*</span></label>
+    						</td>
+    						<td class="value">
+    							<select name="StatusID" id="StatusID" class="validate-select">
+    								<option value="">--Select--</option>
+    								<?php  foreach ($this->getStatusOptions() as $statusID=>$statusName): ?>
+    									<option value="<?php echo $statusID ?>" <?php echo ($userVO->getStatusID() == $statusID) ? 'Selected = "Selected"' : '' ?> ><?php echo $statusName ?></option>
+    								<?php  endforeach; ?>
+    							</select>
+    						</td>
+    					</tr>
+    					
+    					<!--  
+    					<tr>
+    						<td class="label">
+    							<label for="CityID">City<span class="required">*</span></label>
+    						</td>
+    						<td class="value">
+    							<select name="CityID" id="CityID" class="validate-select">
+    								<option value="">--Select--</option>
+    								<?php // foreach ($cityOptions as $cityID=>$cityDataObj): ?>
+    									<?php // if ($cityDataObj['DistrictID'] != 31) continue; ?>
+    									<option value="<?php // echo $cityID ?>" <?php // echo ($firmVO->getCityID() == $cityID) ? 'Selected = "Selected"' : '' ?> ><?php // echo $cityDataObj['Name'] ?></option>
+    								<?php // endforeach; ?>
+    							</select>
+    						</td>
+    					</tr>
+    					
+    					
+    					
+    					-->
+    				</tbody>
+    			</table>		
+    		  		 
+    			
+    		</div>
+    	</div>
+    </div>
+    
+    <input type="hidden" id="ID" name="ID" value="<?php echo ($userVO->getID() != null && $userVO->getID() != "") ? $userVO->getID() : 0 ?>" />
+</form>
+
+<script type="text/javascript">
+
+function userVO(){
+	this.ID = null;
+	this.NamePrefixID = null;
+	this.Name = null;
+	this.FatherName = null;
+	this.GenderID = null;
+	this.BloodGroupID = null;
+	this.IsStpEligible = null;
+	this.UserImageURL = null;
+	this.StatusID=null;
+	this.MobileNumber1=null;
+	this.MobileNumber2=null;
+	this.Address = null;
+	this.CountryID = null;
+	this.StateID = null;
+	this.DistrictID=null;
+	this.CityID=null;
+	this.AreaID=null;
+	
+	
+}
+var newUserDTO = new userVO();
+
+var userFormObj = new varienForm('<?php echo $HTMLFormID; ?>');
+var userFormJS={
+
+		submit : function(){
+    		if(!userFormJS.saveValidation()) return ;
+    			userFormJS.saveAjax();
+		},
+
+		saveValidation : function(){
+			var errorMsg = '';
+			
+         	if(!(userFormObj.validator && userFormObj.validator.validate())){
+    	    	return false;
+	    	}
+         	
+         	// SET VOs 
+         	newUserDTO.ID = ($('ID').value).strip();
+         	newUserDTO.NamePrefixID = ($('NamePrefixID').value).strip();
+         	newUserDTO.Name = ($('Name').value).strip();
+         	newUserDTO.FatherName = ($('FatherName').value).strip();
+         	newUserDTO.GenderID = ($('GenderID').value).strip();
+         	newUserDTO.BloodGroupID = ($('BloodGroupID').value).strip();
+         	newUserDTO.IsStpEligible = ($('IsStpEligible').value).strip();
+         	
+         	newUserDTO.UserImageURL = ($('UserImageURL').value).strip();
+         	newUserDTO.StatusID = ($('StatusID').value).strip();
+         	newUserDTO.MobileNumber1 = ($('MobileNumber1').value).strip();
+         	newUserDTO.MobileNumber2 = ($('MobileNumber2').value).strip();
+         	newUserDTO.Address = ($('Address').value).strip();
+         	newUserDTO.CountryID = 1;
+         	newUserDTO.StateID = 29;
+         	newUserDTO.DistrictID = 31;
+         	newUserDTO.CityID = 1; // ($('CityID').value).strip();
+         	newUserDTO.AreaID = ($('AreaID').value).strip();
+
+         	if(newUserDTO.BloodGroupID == null || newUserDTO.BloodGroupID == ""){
+         		newUserDTO.BloodGroupID = null;
+            }
+         	
+            if(newUserDTO.MobileNumber1 != null && newUserDTO.MobileNumber1 != '' && 
+            		newUserDTO.MobileNumber2 != null && newUserDTO.MobileNumber2 != ''){
+				if(newUserDTO.MobileNumber1 == newUserDTO.MobileNumber2){
+					$('MobileNumber2').value = "";
+					$('MobileNumber2').focus();
+					errorMsg += "Both Mobile Number Can`t Be Same ! \n";
+				}
+            }
+         	
+         	if(errorMsg != ''){
+            	alert(errorMsg);
+				return false;
+			}
+
+         	return true;
+		},	
+
+        saveAjax: function(){
+        	var URL = "<?php echo $this->getUrl('*/*/save')?>" ;
+		    var parameters= {"UserDataObj": JSON.stringify(newUserDTO,null) };
+		    var callBackMethod ="userFormJS.responseSave";
+		    var callBackArgs =null;
+		    ajaxRequest.execute(	URL, parameters, callBackMethod , callBackArgs );
+		    return false;
+     	},
+
+	    responseSave : function(response,args) {
+	    	if(response.SuccessMessage !=null){
+	    		window.location.href = "<?php echo $this->getUrl('*/*/index')?>";
+			 	return;
+			}else if(response.ErrorMessage !=null){
+				alert(response.ErrorMessage);
+				return false;
+ 			}
+ 	 	}
+			
+}; 
+ 
+
+</script>    	 

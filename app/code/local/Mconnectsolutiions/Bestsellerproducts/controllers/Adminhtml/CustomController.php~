@@ -1,0 +1,16 @@
+<?php
+
+class Mconnectsolutiions_Bestsellerproducts_Adminhtml_CustomController extends Mage_Adminhtml_Controller_action
+{
+    public function indexAction()
+    {
+        $this->loadLayout()
+            ->_setActiveMenu('Manage Categories1')
+            ->_title($this->__('Manage Categories1'));
+ 
+        // my stuff
+ 	 'content' => $this->getLayout()->createBlock('yourModuleName/adminhtml_yourModuleName_edit_tab_yourCustomFormNameHere')->toHtml(),
+        $this->renderLayout();
+    }
+
+}

@@ -1,0 +1,107 @@
+<?php
+$HTMLFormID = $this->getHTMLFormID();
+?>
+<div class="content-header">
+    <table cellspacing="0">
+        <tr>
+            
+            <td style="width:50%;"><h3 class="icon-head head-permissions-role"><?php echo ($this->getID() != null ) ? ($this->__('Edit') ) : $this->__('Add') ?></h3></td>
+            <td class="form-buttons">
+                <?php echo $this->getBackButtonHtml() ?>
+                <?php echo $this->getResetButtonHtml() ?>
+                <?php echo $this->getSaveButtonHtml() ?>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<form action="<?php echo $this->getUrl('*/*/save') ?>" method="post" id="<?php echo $HTMLFormID ?>">
+    <?php  echo $this->getBlockHtml('formkey')?>
+    <?php  echo $this->getEntropy()?>
+</form>
+
+<script type="text/javascript">
+
+function type11VO(){
+	this.ID = null;
+	this.Value = null;
+	this.WebsiteLink = null;
+	this.StatusID=null;
+	this.HelpLineNumber=null;
+	this.Email=null;
+	this.TableName=null;
+}
+var newType11DTO = new type11VO();
+
+var formObj = new varienForm('<?php echo $HTMLFormID; ?>');
+var formJS={
+
+		submit : function(){
+    		if(!formJS.saveValidation()) return ;
+				formJS.saveAjax();
+		},
+
+		saveValidation : function(){
+			var errorMsg = '';
+
+         	if(!(formObj.validator && formObj.validator.validate())){
+    	    	return false;
+	    	}
+         	
+         	// SET VOs 
+         	newType11DTO.ID = ($('ID').value).strip();
+         	newType11DTO.Value = ($('Value').value).strip();
+         	newType11DTO.WebsiteLink = ($('WebsiteLink').value).strip();
+         	newType11DTO.StatusID = ($('StatusID').value).strip();
+         	newType11DTO.HelpLineNumber = ($('HelpLineNumber').value).strip();
+         	newType11DTO.Email = ($('Email').value).strip();
+         	newType11DTO.TableName = ($('TableName').value).strip();
+
+			/*
+         	var url = newType11DTO.WebsiteLink;
+         	if(! (url.match(/^(ht|f)tps?:\/\/[a-z0-9-\.]+\.[a-z]{2,4}\/?([^\s<>\#%"\,\{\}\\|\\\^\[\]`]+)?$/) ) ) {
+         		errorMsg = "url error \n";
+            }
+            */
+
+			if(newType11DTO.TableName != "apctwebsongs"){
+         	
+	         	if(newType11DTO.WebsiteLink != null && newType11DTO.WebsiteLink != ''){
+		         	var re = new RegExp("^http(s?)\:\/\/[0-9a-zA-Z]([-.\w]*[0-9a-zA-Z])*(:(0-9)*)*(\/?)([a-zA-Z0-9\-\.\?\,\'\/\\\+&amp;%\$#_]*)?$");
+		         	if (!re.test(newType11DTO.WebsiteLink)) { 
+		         		errorMsg = "Invalid Website Link ! \n";
+		         	}
+				}
+			}		
+		
+         	
+         	if(errorMsg != ''){
+            	alert(errorMsg);
+				return false;
+			}
+
+			return true;	
+		},	
+
+        saveAjax: function(){
+        	var URL = "<?php echo $this->getUrl('*/*/save')?>" ;
+		    var parameters= {"Type11DataObj": JSON.stringify(newType11DTO,null) };
+		    var callBackMethod ="formJS.responseSave";
+		    var callBackArgs =null;
+		    ajaxRequest.execute(	URL, parameters, callBackMethod , callBackArgs );
+		    return false;
+     	},
+
+	    responseSave : function(response,args) {
+        	if(response.SuccessMessage !=null){
+			 	window.location.href = REDIRECTURL;
+			 	return;
+			}else if(response.ErrorMessage !=null){
+				alert(response.ErrorMessage);
+    			return false;
+ 			}
+ 	 	}
+			
+}; 
+
+</script>

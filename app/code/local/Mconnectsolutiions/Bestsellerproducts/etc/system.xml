@@ -1,0 +1,458 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * M-Connect Solutions.
+ *
+ * NOTICE OF LICENSE
+ *
+
+ *
+ * @category   Catalog
+ * @package   Mconnectsolutiions_Bestsellerproducts
+ * @author      M-Connect Solutions (http://www.magentoconnect.us)
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+-->
+<config>
+
+  <tabs>
+        <mconnectsolutiions_bestsellerproducts>
+            <label>M-Connect Solutions</label>
+            <sort_order>100</sort_order>
+        </mconnectsolutiions_bestsellerproducts>
+    </tabs>
+    <sections>
+       <bestsellerproducts translate="label">
+            
+            <label>BestSeller Configuration</label>
+            <tab>mconnectsolutiions_bestsellerproducts</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>40</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <mconnectsolutiionsgeneral translate="label">
+                    <label>General</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>100</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+			 <module_enable_disable translate="label">
+				<label>Enable/Disable</label>
+				<comment>Select Yes for display the slider on frontend</comment>
+				<source_model>adminhtml/system_config_source_yesno</source_model>
+				<frontend_type>select</frontend_type>
+				<sort_order>0</sort_order>
+				<show_in_default>1</show_in_default>
+				<show_in_website>1</show_in_website>
+				<show_in_store>1</show_in_store>
+			</module_enable_disable>
+			 <heading translate="label">
+                            <label>Title</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </heading>
+		
+                        
+                        <number_of_items_per_row translate="label comment">
+                            <label>Display Number of Items</label>
+                            <comment>How many best seller products will be showed in MainBlock?</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </number_of_items_per_row>   
+						
+			 <number_of_items_in_slide_show translate="label">
+                            <label>Display Number of Items Per Row</label>
+                            <comment>*Product per row is dependent on your store desgin!</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </number_of_items_in_slide_show>   
+					
+			<date_picker_from translate="label">
+				   <label>Date From</label>
+				   <frontend_type>text</frontend_type> <!-- Use text instead of "myDateSelection" -->
+				   <frontend_model>bestsellerproducts/adminhtml_system_config_date</frontend_model> <!-- Call a module specific renderer model -->
+				   <sort_order>4</sort_order>
+				   <show_in_default>1</show_in_default>
+				   <show_in_website>1</show_in_website>
+				   <show_in_store>1</show_in_store>
+			</date_picker_from>
+				
+ 		        <date_picker_to translate="label">
+				   <label>Date To</label>
+				   <frontend_type>text</frontend_type> <!-- Use text instead of "myDateSelection" -->
+				   <frontend_model>bestsellerproducts/adminhtml_system_config_date</frontend_model> <!-- Call a module specific renderer model -->
+				   <sort_order>5</sort_order>
+				   <show_in_default>1</show_in_default>
+				   <show_in_website>1</show_in_website>
+				   <show_in_store>1</show_in_store>
+			</date_picker_to>
+			
+
+    
+
+			<main_category translate="label">
+			    <label>Main category</label>
+			    <frontend_type>multiselect</frontend_type>
+			    <source_model>bestsellerproducts/categorymy</source_model>
+			    <sort_order>6</sort_order>
+			    <show_in_default>1</show_in_default>
+			    <show_in_website>1</show_in_website>
+			    <show_in_store>1</show_in_store>
+			</main_category>
+										   
+                    </fields>
+                </mconnectsolutiionsgeneral>
+
+
+		 <mconnectsolutiionsbutton translate="label">
+                    
+                    <label>Actions</label>
+                    <sort_order>101</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    	
+			<fields>
+						<add_to_cart translate="label">
+							<label>Add to Cart</label>	
+							<comment>Select Yes for display the Add to cart button on frontend.</comment>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<frontend_type>select</frontend_type>
+							<sort_order>7</sort_order>
+							<show_in_default>1</show_in_default>
+						    <show_in_website>1</show_in_website>
+						    <show_in_store>1</show_in_store>
+						</add_to_cart> 
+
+						 <active translate="label">
+							<label>Add to Wishlist</label>	
+							<comment>Select Yes for display the Add to Wishlist Link on frontend.</comment>
+							    <frontend_type>select</frontend_type>
+							    <source_model>adminhtml/system_config_source_yesno</source_model>
+							    <sort_order>8</sort_order>
+							    <show_in_default>1</show_in_default>
+							    <show_in_website>1</show_in_website>
+							    <show_in_store>1</show_in_store>
+						 </active>
+
+						<add_to_compare translate="label">
+							<label>Add to Compare</label>	
+							<comment>Select Yes for display the Add to Compare Link on frontend.</comment>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<frontend_type>select</frontend_type>
+							<sort_order>9</sort_order>
+							<show_in_default>1</show_in_default>
+						    <show_in_website>1</show_in_website>
+						    <show_in_store>1</show_in_store>
+						</add_to_compare> 
+
+					<ratings_reviews translate="label">
+					<label>Ratings Reviews</label>					
+					<comment>Select Yes for display the Ratings Reviews on frontend</comment>
+					<source_model>adminhtml/system_config_source_yesno</source_model>
+					<frontend_type>select</frontend_type>
+					<sort_order>10</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					</ratings_reviews>
+                                        
+                                        <products_price translate="label">
+					<label>Product Price</label>					
+					<comment>Select Yes for display the Products Price on frontend</comment>
+					<source_model>adminhtml/system_config_source_yesno</source_model>
+					<frontend_type>select</frontend_type>
+					<sort_order>11</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					</products_price>
+
+
+			</fields>
+                    
+		 </mconnectsolutiionsbutton>
+	
+		<mconnectsolutionsslider translate="label">
+			    <label>Effects</label>
+		            <sort_order>102</sort_order>
+		            <show_in_default>1</show_in_default>
+		            <show_in_website>1</show_in_website>
+		            <show_in_store>1</show_in_store>
+			
+				<fields>
+					<slider_enable_disable translate="label">
+						<label>Enable/Disable</label>
+						<comment>Select Yes for display the slider on frontend</comment>
+						<source_model>adminhtml/system_config_source_yesno</source_model>
+						<frontend_type>select</frontend_type>
+						<sort_order>12</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+					</slider_enable_disable>
+
+					<auto_slider_enable_disable translate="label">
+						<label>Auto Slide</label>
+						<comment>Select Yes for auto slider on frontend</comment>
+						<source_model>bestsellerproducts/Autoplaysilder</source_model>
+						<frontend_type>select</frontend_type>
+						<sort_order>13</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+					</auto_slider_enable_disable>
+
+
+					<time_delay translate="label, comment">
+							<label>Time Display per Image</label>
+							<comment><![CDATA[in second]]></comment>
+							<frontend_type>text</frontend_type>
+							<sort_order>14</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+					</time_delay>
+
+					<list_style translate="label, comment">
+							<label>Type</label>
+							<comment><![CDATA[Choice style for banner]]></comment>
+							<frontend_type>select</frontend_type>
+							<source_model>bestsellerproducts/Styles</source_model>
+							<sort_order>15</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+					</list_style>
+					
+				</fields>
+		</mconnectsolutionsslider>
+        <mconnectsolutionslayoutsetting translate="label">
+            <label>Sidebar Settings</label>
+            <sort_order>103</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+                <fields>
+                    <layout_left_right_enable_disable translate="label">               
+                         <label>Select Sidebar</label>
+                         <comment><![CDATA["Select Left or Right to show the Bestseller products in left or right area."]]></comment> 
+                         <frontend_type>select</frontend_type>
+                         <source_model>bestsellerproducts/Stylessidebar</source_model>
+                         <sort_order>17</sort_order>
+                         <show_in_default>1</show_in_default>
+                         <show_in_website>1</show_in_website>
+                         <show_in_store>1</show_in_store>
+                    </layout_left_right_enable_disable>
+                    <number_of_item_display_in_sidebar>
+                        <label>Display Number of Items</label>
+                        <frontend_type>text</frontend_type>
+                        <sort_order>18</sort_order>
+                        <show_in_default>1</show_in_default>
+                        <show_in_website>1</show_in_website>
+                        <show_in_store>1</show_in_store>
+                    </number_of_item_display_in_sidebar>
+                    <add_to_cart_for_sidebar translate="label">
+                            <label>Add to Cart</label>    
+                            <comment>Select Yes for display the Add to cart button on frontend.</comment>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>19</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                    </add_to_cart_for_sidebar> 
+                    
+                     <products_price_sidebar translate="label">
+                            <label>Product Price</label>    
+                            <comment>Select Yes for display the Products Price on frontend.</comment>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                    </products_price_sidebar>
+                    
+                    <slider_enable_disable_in_sidebar translate="label">
+                        <label>Slider Enable/Disable</label>
+                        <comment>Select Yes for display slider on frontend</comment>
+                        <source_model>adminhtml/system_config_source_yesno</source_model>
+                        <frontend_type>select</frontend_type>
+                        <sort_order>21</sort_order>
+                        <show_in_default>1</show_in_default>
+                        <show_in_website>1</show_in_website>
+                        <show_in_store>1</show_in_store>
+                    </slider_enable_disable_in_sidebar>
+
+                    <time_delay_sidebar translate="label, comment">
+                            <label>Time Display Per Image</label>
+                            <comment><![CDATA[in second (i.e for 5 seconds enter 5000)]]></comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>22</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                    </time_delay_sidebar>
+
+                    <list_style_sidebar translate="label, comment">
+                            <label>Effect</label>
+                            <comment><![CDATA[Choose Effect for Banner]]></comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>bestsellerproducts/Styles</source_model>
+                            <sort_order>23</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                    </list_style_sidebar>
+			
+		<auto_slider_enable_disable_sidebar translate="label">
+			<label>Auto Slide</label>
+			<comment>Select Yes for auto slide on frontend</comment>
+			<source_model>bestsellerproducts/Autoplaysilder</source_model>
+			<frontend_type>select</frontend_type>
+			<sort_order>24</sort_order>
+			<show_in_default>1</show_in_default>
+			<show_in_website>1</show_in_website>
+			<show_in_store>1</show_in_store>
+		</auto_slider_enable_disable_sidebar>
+
+                   
+                        
+                </fields>
+        </mconnectsolutionslayoutsetting>
+        <mconnectsolutionslayoutlogo translate="label">
+            <label>Ribbon Settings (Special Price / New in BestSeller Products)</label>
+            <sort_order>104</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <fields>
+                <logoenabledisable translate="label">
+                    <label>Enable/Disable</label>
+                    <comment>Yes for enable</comment>
+                    <frontend_type>select</frontend_type>
+                    <source_model>adminhtml/system_config_source_yesno</source_model>
+                    <sort_order>27</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                </logoenabledisable>
+                 <ribbon_main_block translate="label">
+                        <label>Diplay In MainBlock</label>
+                        <comment>Select Yes for display the slider on frontend</comment>
+                        <source_model>adminhtml/system_config_source_yesno</source_model>
+                        <frontend_type>select</frontend_type>
+                        <sort_order>28</sort_order>
+                        <show_in_default>1</show_in_default>
+                        <show_in_website>1</show_in_website>
+                        <show_in_store>1</show_in_store>
+                  </ribbon_main_block>
+                     <ribbon_sidebar translate="label">
+                        <label>Diplay In Sidebar</label>
+                        <comment>Select Yes for display the slider on frontend</comment>
+                        <source_model>adminhtml/system_config_source_yesno</source_model>
+                        <frontend_type>select</frontend_type>
+                        <sort_order>29</sort_order>
+                        <show_in_default>1</show_in_default>
+                        <show_in_website>1</show_in_website>
+                        <show_in_store>1</show_in_store>
+                    </ribbon_sidebar>
+                 <best_products_logo translate="label comment">
+                        <label>Icon For New in Best Sellers Products</label>
+                        <comment>Allowed file types: jpeg, gif, png ,jpg.</comment>
+                        <frontend_type>image</frontend_type>
+                        <backend_model>adminhtml/system_config_backend_image</backend_model>
+                        <upload_dir config="system/filesystem/media" scope_info="1">m-connect</upload_dir>
+                        <base_url type="media" scope_info="1">m-connect</base_url>
+                        <sort_order>30</sort_order>
+                        <show_in_default>1</show_in_default>
+                        <show_in_website>1</show_in_website>
+                        <show_in_store>1</show_in_store>
+                 </best_products_logo>
+                 
+                 <best_products_special_price_logo translate="label comment">
+                        <label>Icon For Special Price Products</label>
+                        <comment>Allowed file types: jpeg, gif, png ,jpg.</comment>
+                        <frontend_type>image</frontend_type>
+                        <backend_model>adminhtml/system_config_backend_image</backend_model>
+                        <upload_dir config="system/filesystem/media" scope_info="1">m-connect</upload_dir>
+                        <base_url type="media" scope_info="1">m-connect</base_url>
+                        <sort_order>31</sort_order>
+                        <show_in_default>1</show_in_default>
+                        <show_in_website>1</show_in_website>
+                        <show_in_store>1</show_in_store>
+                 </best_products_special_price_logo>
+                 
+                  <style_for_special_price_logo translate="label comment">
+                       <label>Style For Special Price Products Ribbon in MainBlock</label>
+                        <comment>Ex:float:left;margin:10px</comment>
+                        <frontend_type>text</frontend_type>
+                        <sort_order>32</sort_order>
+                        <show_in_default>1</show_in_default>
+                        <show_in_website>1</show_in_website>
+                        <show_in_store>1</show_in_store>
+                  </style_for_special_price_logo>
+                  
+                  <style_for_special_price_logo_sidebar translate="label comment">
+                       <label>Style For Special Price Products Ribbon in Sidebar</label>
+                        <comment>Ex:float:left;margin:10px</comment>
+                        <frontend_type>text</frontend_type>
+                        <sort_order>33</sort_order>
+                        <show_in_default>1</show_in_default>
+                        <show_in_website>1</show_in_website>
+                        <show_in_store>1</show_in_store>
+                  </style_for_special_price_logo_sidebar>
+                 
+                 <style_for_logo translate="label comment">
+                       <label>Style For MainBlock Products Ribbon</label>
+                        <comment>Ex:float:left;margin:10px</comment>
+                        <frontend_type>text</frontend_type>
+                        <sort_order>34</sort_order>
+                        <show_in_default>1</show_in_default>
+                        <show_in_website>1</show_in_website>
+                        <show_in_store>1</show_in_store>
+                  </style_for_logo>
+                  <style_for_logo_sidebar translate="label comment">
+                       <label>Style For Sidebar Products Ribbon</label>
+                        <comment>Ex:float:left;margin:10px</comment>
+                        <frontend_type>text</frontend_type>
+                        <sort_order>35</sort_order>
+                        <show_in_default>1</show_in_default>
+                        <show_in_website>1</show_in_website>
+                        <show_in_store>1</show_in_store>
+                  </style_for_logo_sidebar>
+                  <number_for_display_loge translate="label comment">
+                       <label>Display New in Best Sellers Products Ribbon For No. of Days</label>
+                        <comment>How Many days u want to display icon</comment>
+                        <frontend_type>text</frontend_type>
+                        <sort_order>36</sort_order>
+                        <show_in_default>1</show_in_default>
+                        <show_in_website>1</show_in_website>
+                        <show_in_store>1</show_in_store>
+                  </number_for_display_loge>
+                
+                
+            </fields>
+            
+            
+        </mconnectsolutionslayoutlogo>
+        
+            </groups>
+       
+        </bestsellerproducts>
+    </sections>
+</config>

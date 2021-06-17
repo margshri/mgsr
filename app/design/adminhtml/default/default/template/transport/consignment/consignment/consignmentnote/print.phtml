@@ -1,0 +1,266 @@
+<?php
+    /* @var $consignmentNoteVO Margshri_Transport_VO_Consignment_Consignment_ConsignmentNoteVO */
+    $consignmentNoteVO = $this->getConsignmentNoteVO(); 
+?>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+<style>
+<!--
+ 
+-->
+</style>
+
+<!--  
+<div class="content-header">
+    <table cellspacing="0">
+        <tr>
+            <td style="width:50%;"><h3 class="icon-head head-permissions-role"><?php // echo ($this->getConsignmentNoteID() != null ) ? ($this->__('Edit Consignment Note') ) : $this->__('Add Consignment Note') ?></h3></td>
+            <td class="form-buttons">
+                <?php // echo $this->getBackButtonHtml() ?>
+                <?php // echo $this->getPrintButtonHtml() ?>
+            </td>
+        </tr>
+    </table>
+</div>
+-->
+<div class="container " style="width: 790px !important;  height: 1100px !important; font-size: small;">
+    <div class=" mt-1 border" id="PrintableArea">
+    	<div class="d-flex justify-content-between mb-1">
+            <div class="p-1 ">
+            	<!--  
+            	<p><b>GSTIN No. </b>D8AAIHG4052J1Z7</p>
+            	<p style="line-height: 0.2em;"><b>PAN No. </b>AAIHG4052J</p>
+            	-->
+            </div>
+            <div class="p-1 "><p><b>!!OM!!</b></p></div>
+            <div class="p-1 "><p style="text-align: right;"><b>Subject to Sri Ganganagar Jurisdiction Only</b></p></div>
+        </div>
+        
+        
+        <div class="d-flex mb-1 ">
+            <div class="ml-1 p-1 border" style="width: 300px !important;">
+        		<p style="font-size: medium;" ><b>FROM : </b><?php echo $consignmentNoteVO->getSourceCityName() ?></p>
+        		<p style="font-size: medium;" ><b>TO : </b><?php echo $consignmentNoteVO->getDestinationCityName() ?></p>
+            </div>
+            <div class="p-1 " style="width: 490px !important; text-align: center; vertical-align: middle;">
+    			<p style="line-height: 0.5em; font-size: xx-large; font-weight: bold;">GUPTA TRANSPORT CO.</p>
+    			<p style="line-height: 0.2em; font-weight: bold;">Office: Shop No. 44, Udhyog Market, Near New Dhan Mandi Gate,</p> 
+    			<p style="line-height: 0.2em; font-weight: bold;">Shiv Chowk, SRI GANGANAGAR (Raj.) 335001.</p>
+    			<p style="line-height: 0.2em; font-weight: bold;">e-mail: gupta.trp.co@gmail.com | Mob: 9414093841, 9214400041,</p> 
+    			<p style="line-height: 0.2em; font-weight: bold;">Hanumangarh: 94143-18584</p>
+    			
+    			<p style="font-size: medium;"><b>GSTIN No. </b>08AAIHG4052J1Z7 <b> &nbsp;&nbsp; PAN No. </b>AAIHG4052J</p>
+            	
+    		</div>
+        </div>	
+        
+        
+        <div class="d-flex mb-1 ">
+            <div class="p-1 border">
+            	<p style="line-height: 0.5em; font-size: medium;" class="pt-1"><b>CONSIGNOR :- </b><?php echo ($consignmentNoteVO->getConsignorName() != null) ? $consignmentNoteVO->getConsignorName() : "--------------------------" ?></p>
+    			<p style="line-height: 0.5em; font-size: medium;"><?php echo ($consignmentNoteVO->getConsignorAddress() != null) ? $consignmentNoteVO->getConsignorAddress() : "-------------------------------------------------------------------------------" ?></p>
+    			<p style="line-height: 0.5em; font-size: medium;"><b>GSTIN :-</b><?php echo ($consignmentNoteVO->getConsignorGstinNo() != null) ? strtoupper( $consignmentNoteVO->getConsignorGstinNo()) : "--------------------------------------" ?><b> &nbsp; &nbsp; Mob. </b><?php echo ($consignmentNoteVO->getConsignorMobileNo() != null ) ? $consignmentNoteVO->getConsignorMobileNo() : "--------------------"  ?></p>
+    			<hr style="margin-top: 0.2em !important; margin-bottom: 0.2em !important;">
+    			<p style="line-height: 0.5em; font-size: medium;" class="pt-1"><b>CONSIGNEE :- </b><?php echo ($consignmentNoteVO->getConsigneeName() != null) ? $consignmentNoteVO->getConsigneeName() : "--------------------------" ?></p>
+    			<p style="line-height: 0.5em; font-size: medium;"><?php echo ($consignmentNoteVO->getConsigneeAddress() != null) ? $consignmentNoteVO->getConsigneeAddress() : "-------------------------------------------------------------------------------" ?></p>
+    			<p style="line-height: 0.5em; font-size: medium;"><b>GSTIN :-</b><?php echo ($consignmentNoteVO->getConsigneeGstinNo() != null) ? strtoupper( $consignmentNoteVO->getConsigneeGstinNo()) : "--------------------------------------" ?><b> &nbsp; &nbsp; Mob. </b><?php echo ($consignmentNoteVO->getConsigneeMobileNo() != null ) ? $consignmentNoteVO->getConsigneeMobileNo() : "--------------------"  ?></p>
+    			<br>
+    			<p style="line-height: 0.5em; font-size: medium;"><b>Del At :- </b><?php echo ($consignmentNoteVO->getDestinationCityName() != null) ? $consignmentNoteVO->getDestinationCityName() : '--------------------------' ?></p>
+            </div>
+            <div class="p-1 flex-wrap ">
+    			<p style="font-size: medium; color:white; background-color: #6B68AB;"><b>Branch : Kalaamb, Hisar, Sirsa, Ellnabad.</b></p>
+    			
+    			<p style="font-size: medium; text-align: left;"><b>Date:-</b><?php echo date("d-m-Y", strtotime($consignmentNoteVO->getConsignmentDate())) ?> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>GR No:- </b><?php echo $consignmentNoteVO->getConsignmentNo() ?> </p>
+    			<p style="font-size: medium; text-align: left;"><b>Truck No:- </b><?php echo strtoupper($consignmentNoteVO->getVahicaleNumber()) ?></p>
+    			
+    			<br /><br />
+    			<p style="line-height: 0.5em; font-size: large; font-weight: bold;">AT OWNER'S RISK</p>
+    			
+    			 
+            </div>
+        </div>
+        
+         <div class="d-flex mb-1 ">
+            <div class="p-1 flex-fill border border-bottom-0 border-right-0">
+            	<p style="font-size:x-small; " class="text-center"><b>ITEMS DESCRIPTION </b></p>
+            	<p style="font-size:x-small; line-height: 0.2em;" class="text-center"><b>(SAID TO CONTAINS) </b></p>
+            	<hr>
+            	<div style="min-height: 100px !important;"></div>
+            	<hr>
+            	<p style="font-size:x-small;"><b>Invoice No :- <?php echo $consignmentNoteVO->getInvoiceNo() ?></b></p>
+            	<p style="font-size:x-small;"><b>HSN Code :- <?php echo $consignmentNoteVO->getHsnCode() ?></b></p>
+            	<p style="font-size:x-small;"><b>Value :- <?php echo ($consignmentNoteVO->getValueOfGoods() != null) ? round($consignmentNoteVO->getValueOfGoods()) : '' ?></b></p>
+            	<hr>
+            	<p style="font-size:x-small;"><b>E-Way Bill No. :- <?php echo $consignmentNoteVO->getEwayBillNo() ?></b></p>
+            	<p style="font-size:x-small;"><b>E-Way Bill Expiry Date :- <?php echo ($consignmentNoteVO->getEwayBillExpiryDate() != "0000-00-00 00:00:00" ) ? date("d-m-Y", strtotime($consignmentNoteVO->getEwayBillExpiryDate()) ) : '' ?></b></p>
+            </div>
+            
+            <div class="p-1 flex-fill border border-bottom-0 border-right-0">
+    			<div class="d-flex mb-1 ">
+    				<div class="p-1 flex-fill border border-top-0  border-left-0">
+    					<p style="font-size:x-small; line-height: 0.2em;" class="text-center"><b>TYPE OF</b></p>
+    					<p style="font-size:x-small; line-height: 0.2em;" class="text-center"><b>PACKING</b></p>
+    					<hr style="margin-top: 0.2em !important; margin-bottom: 0.2em !important;">
+    					<div style="min-height: 75px !important;"></div>
+    				</div>
+    				<div class="p-1 flex-fill border border-top-0  border-left-0 ">
+    					<p style="font-size:x-small; line-height: 0.2em;" class="text-center"><b>Actual</b></p>
+    					<p style="font-size:x-small; line-height: 0.2em;" class="text-center"><b>Weight</b></p>
+    					<hr style="margin-top: 0.2em !important; margin-bottom: 0.2em !important;">
+    					<div style="min-height: 75px !important;"></div>
+    				</div>
+    				<div class="p-1 flex-fill border border-top-0  border-left-0 ">
+    					<p style="font-size:x-small; line-height: 0.2em;" class="text-center"><b>Charge</b></p>
+    					<p style="font-size:x-small; line-height: 0.2em;" class="text-center"><b>Weight</b></p>
+    					<hr style="margin-top: 0.2em !important; margin-bottom: 0.2em !important;">
+    					<div style="min-height: 75px !important;"></div>
+    				</div>
+    				<div class="p-1 flex-fill border border-top-0 border-left-0 border-right-0 ">
+    					<p style="font-size:x-small; line-height: 0.2em;" class="text-center"><b>Rate </b></p>
+    					<p style="font-size:x-small; line-height: 0.2em;" class="text-center"><b>Per Qtl</b></p>
+    					<hr style="margin-top: 0.2em !important; margin-bottom: 0.2em !important;">
+    					<div style="min-height: 75px !important;"></div>
+    				</div>
+    			</div>
+    			
+    			<p style="font-size:x-small;">
+    				<b>Delivery At :-
+    					&nbsp; Godown &nbsp;<input type="checkbox" name="Godown" id="Godown" <?php echo ($consignmentNoteVO->getDeliveryAt() == 'Godown') ? "checked='checked'" : "" ?> onclick="return false;" />
+						&nbsp; Door &nbsp;<input type="checkbox" name="Door" id="Door" <?php echo ($consignmentNoteVO->getDeliveryAt() == 'Door') ? "checked='checked'" : "" ?> onclick="return false;" />
+    				</b>
+    			<hr style="margin-top: 0.2em !important; margin-bottom: 0.2em !important;">
+    			
+    			<div class="d-flex mb-1 ">
+    				<div class="p-1 flex-fill border border-top-0  border-left-0"></div>
+    				<div class="p-1 flex-fill border border-top-0  border-left-0 ">
+    					<p style="font-size:x-small; line-height: 0.2em;" class="text-center"><b>DIMENSION</b></p>
+    				</div>
+    				<div class="p-1 flex-fill border border-top-0 border-left-0 border-right-0 "></div>
+    			</div>
+    			
+    			<div class="d-flex mb-1 ">
+    				<div class="p-1 flex-fill border border-top-0  border-left-0">
+    					<p style="font-size:x-small; line-height: 0.2em;" class="text-center"><b>Length</b></p>
+    				</div>
+    				<div class="p-1 flex-fill border border-top-0  border-left-0 ">
+    					<p style="font-size:x-small; line-height: 0.2em;" class="text-center"><b>Width</b></p>
+    				</div>
+    				<div class="p-1 flex-fill border border-top-0 border-left-0 border-right-0 ">
+    					<p style="font-size:x-small; line-height: 0.2em;" class="text-center"><b>Height</b></p>
+    				</div>
+    			</div>
+    			
+    			<div class="d-flex mb-1 ">
+    				<div class="p-1 flex-fill border border-top-0  border-left-0" style="height: 20px !important;"></div>
+    				<div class="p-1 flex-fill border border-top-0  border-left-0 " style="height: 20px !important;"></div>
+    				<div class="p-1 flex-fill border border-top-0 border-left-0 border-right-0 " style="height: 20px !important;"></div>
+    			</div>
+    			
+    			<p style="font-size:x-small;"><b>CONSIGNEMENT ACKNOWLEDGEMENT BY CONSIGNEE</b></p>
+    			<p style="font-size:x-small;"><b>Recevied the shipment as per details contained herein</b></p>
+    			<p style="font-size:x-small;"><b>Remarks:- <?php echo $consignmentNoteVO->getRemarks() ?></b></p>
+    			<div class="p-1 flex-fill border border-top-0 border-left-0 border-right-0 " style="height: 20px !important;"></div>
+    			
+    			<div class="p-1 flex-fill " style="height: 50px !important;"></div>
+    			<p style="font-size:x-small;"><b>Signature With Company Seal and Date</b></p>
+    			<hr style="margin-top: 0.2em !important; margin-bottom: 0.2em !important;">	
+    		</div>
+    		
+    		<div class="p-1 flex-fill border border-bottom-0 border-right-0">
+        		
+        			<p style="font-size:x-small; ">
+        				<b>
+        				FREIGHT MODE:
+						&nbsp;To Paid &nbsp;<input type="checkbox" name="ToPaid" id="ToPaid" <?php echo ($consignmentNoteVO->getToPaid() == 1) ? "checked='checked'" : "" ?> onclick="return false;" />
+						&nbsp;To Pay &nbsp;<input type="checkbox" name="ToPay" id="ToPay" <?php echo ($consignmentNoteVO->getToPay() == 1) ? "checked='checked'" : "" ?> onclick="return false;" />
+						TBB <input type="checkbox" name="TBB" id="TBB" <?php echo ($consignmentNoteVO->getTBB() == 1) ? "checked='checked'" : "" ?> onclick="return false;" />
+						</b>
+                	</p>
+        			<p style="font-size:x-small; "><b>Billing Station: </b></p>
+        			<hr style="margin-top: 0.2em !important; margin-bottom: 0.2em !important;">
+        		
+        			<div class="d-flex mb-1 ">
+        				<div class="p-1 flex-fill border border-top-0  border-left-0">
+        					<p style="font-size:x-small; line-height: 0.2em;" class="text-center"><b>Freight Detail</b></p>
+        				</div>
+        				<div class="p-1 flex-fill border border-top-0  border-left-0 ">
+        					<p style="font-size:x-small; line-height: 0.2em;" class="text-center"><b>Rs.</b></p>
+        				</div>
+        				
+        				<div class="p-1 flex-fill border border-top-0 border-left-0 border-right-0 ">
+        					<p style="font-size:x-small; line-height: 0.2em;" class="text-center"><b>P.</b></p>
+        				</div>
+        			</div>
+        			
+        			<?php $freightDataArr = array("Freight", "S.T. Charges", "Col. Charges", "Other", "Advance", "Balance", "","","Total", "CGST@  %", "SGST@  %", "IGST@  %", "G. Total"); ?>
+        			<?php foreach ($freightDataArr as $val): ?>
+        			<div class="d-flex mb-1 ">
+        				<div class="p-1 flex-fill border border-top-0  border-left-0" style="width: 50px !important;">
+        					<p style="font-size:x-small; line-height: 0.2em;"><b><?php echo $val ?></b></p>
+        				</div>
+        				<div class="p-1 flex-fill border border-top-0  border-left-0 " style="width: 30px !important;">
+        					<p style="font-size:x-small; line-height: 0.2em;">
+        					<b>
+							<?php if($val=="Freight"): ?>
+							<?php  echo round($consignmentNoteVO->getFreight()) ?>
+							<?php elseif($val=="Advance"): ?>
+							<?php  echo round($consignmentNoteVO->getAdvance()) ?>
+							<?php elseif($val=="Balance"): ?>
+							<?php  echo round($consignmentNoteVO->getBalance()) ?>	
+							<?php elseif($val=="Total"): ?>
+							<?php  echo round($consignmentNoteVO->getTotalAmount()) ?>
+							
+							<?php endif;?>        					
+        					</b></p>
+        				</div>
+        				
+        				<div class="p-1 flex-fill border border-top-0 border-left-0 border-right-0 " style="width: 20px !important;">
+        					<p style="font-size:x-small; line-height: 0.2em;" ><b></b></p>
+        				</div>
+        			</div>
+        			<?php endforeach;; ?>
+        			
+        			
+        			<p style="font-size:x-small;">
+        				<b>
+        					GST paid By
+        					&nbsp; C.NOR &nbsp;<input type="checkbox" name="CNOR" id="CNOR" onclick="return false;" />
+						    &nbsp; C.NEE &nbsp;<input type="checkbox" name="CNEE" id="CNEE" onclick="return false;" />
+						    T. Agency <input type="checkbox" name="TAgency" id="TAgency" onclick="return false;" />
+        				</b>
+        			</p>
+        			<p style="font-size:x-small;"><b>For Gupa Transport co.</b></p>
+        			<div class="p-1 flex-fill " style="height: 20px !important;"></div>
+        			<p style="font-size:x-small; text-align: right;"><b>Auth. Sign.</b></p>
+        		
+    		</div>
+        </div>	
+    </div>		
+ 
+ 	<!--
+    <div class="d-flex p-1 flex-fill btn-group text-center">
+      <button type="button" class="btn btn-secondary" onclick="<?php echo 'window.location.href=\''.$this->getUrl('*/*/').'\''; ?>">Back</button>
+        
+      <button type="button" class="btn btn-success" onclick="printDiv('PrintableArea')">Print</button>
+    </div>
+    -->
+</div>
+
+
+<script type="text/javascript">
+<!--
+function printDiv(divName) {
+    var printContents = document.getElementById(divName).innerHTML;
+    var originalContents = document.body.innerHTML;
+
+    document.body.innerHTML = printContents;
+
+    window.print();
+
+    document.body.innerHTML = originalContents;
+}
+//-->
+</script>

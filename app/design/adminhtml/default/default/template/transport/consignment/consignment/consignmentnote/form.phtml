@@ -1,0 +1,1255 @@
+<?php
+    $HTMLFormID = $this->getHTMLFormID();
+    /* @var $consignmentNoteVO Margshri_Transport_VO_Consignment_Consignment_ConsignmentNoteVO */
+    $consignmentNoteVO = $this->getConsignmentNoteVO();
+    $commonOptions = $this->getCommonOptions();
+    $commonList = $this->getCommonList();
+    // $vahicaleOptions = $this->getVahicaleOptions();
+    // $vahicaleOwnerOptions = $this->getVahicaleOwnerOptions();
+    // $driverOptions = $this->getDriverOptions();
+?>
+
+<script type="text/javascript">
+<!--
+/*
+var vahicaleJson = '<?php // echo (sizeof($vahicaleOptions) > 0) ? json_encode($vahicaleOptions) : '' ?>';
+var vahicaleArray = '';
+if(vahicaleJson != ''){
+	vahicaleArray = JSON.parse(vahicaleJson);
+}
+
+var vahicaleOwnerJson = '<?php // echo (sizeof($vahicaleOwnerOptions) > 0) ? json_encode($vahicaleOwnerOptions) : '' ?>';
+var vahicaleOwnerArray = '';
+if(vahicaleOwnerJson != ''){
+	vahicaleOwnerArray = JSON.parse(vahicaleOwnerJson);
+}
+
+
+var driverJson = '<?php // echo (sizeof($driverOptions) > 0) ? json_encode($driverOptions) : '' ?>';
+var driverArray = '';
+if(driverJson != ''){
+	driverArray = JSON.parse(driverJson);
+}
+*/
+
+var commonListJson = '<?php echo (sizeof($commonList) > 0) ? json_encode($commonList) : '' ?>';
+var commonListArray = '';
+if(commonListJson != ''){
+	commonListArray = JSON.parse(commonListJson);
+}
+// console.log(commonListArray);
+
+//-->
+</script>
+
+<div class="content-header">
+    <table cellspacing="0">
+        <tr>
+            <td style="width:50%;"><h3 class="icon-head head-permissions-role"><?php echo ($this->getConsignmentNoteID() != null ) ? ($this->__('Edit Consignment Note') ) : $this->__('Add Consignment Note') ?></h3></td>
+            <td class="form-buttons">
+                <?php echo $this->getBackButtonHtml() ?>
+                <?php echo $this->getResetButtonHtml() ?>
+                <?php echo $this->getPrintButtonHtml() ?>
+                <?php echo $this->getSaveButtonHtml() ?>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<form action="<?php echo $this->getUrl('*/*/save') ?>" method="post" id="<?php echo $HTMLFormID ?>">
+    <?php  echo $this->getBlockHtml('formkey')?>
+    
+    <div class="entry-edit">
+    	<div class="entry-edit-head">
+    		<h4 class="icon-head head-edit-form fieldset-legend">Consignor/Consignee Detail</h4>
+    		<div class="form-buttons"></div>
+    	</div>
+    
+    	<div class="fieldset " id="base_fieldset">
+    		<div class="hor-scroll">
+    		
+				<table style="width: 100% !important;">
+				
+					<tr>
+						<td>
+							<table class="form-list">
+                				<tbody>
+                					<tr>
+                						<td class="label">
+                							<label for="ConsignmentNo">Consignment Number</label>
+                						</td>
+                						<td class="label">
+                							<?php // if($consignmentNoteVO->getID() != null && $consignmentNoteVO->getConsignmentNo() == null): ?>
+                								<input type="text" name="ConsignmentNo" id="ConsignmentNo" value="<?php echo $consignmentNoteVO->getConsignmentNo() ?>" class="input-text " />
+                							<?php // else: ?>
+                								<!-- 
+                								<input type="text" name="ConsignmentNo" id="ConsignmentNo" value="<?php // echo $consignmentNoteVO->getConsignmentNo() ?>" class="input-text " readonly="readonly" />
+                                                -->                    							
+                                                <?php // endif; ?>
+                						</td>
+                					</tr>			
+                				</tbody>
+                			</table>
+						</td>
+						
+						<td>
+							<table class="form-list">
+                				<tbody>
+                					<tr>
+                						<td class="label">
+                							<label for="ConsignmentDate">Consignment Date<span class="required">*</span></label>
+                						</td>
+                						<td class="value">
+                							<input id="ConsignmentDate" name="ConsignmentDate" value="<?php echo  ($consignmentNoteVO->getConsignmentDate() != '0000-00-00 00:00:00' && $consignmentNoteVO->getConsignmentDate() != null ) ? date('Y-m-d',strtotime($consignmentNoteVO->getConsignmentDate())) : date('Y-m-d') ?>" class="required-entry input-text" type="text" readonly="readonly" />
+                							<img src="<?php  echo Mage::getDesign()->getSkinUrl('images/grid-cal.gif') ?>"
+                								alt="" class="v-middle" id="ConsignmentDateIMG" title="Select Date" style="">
+                								 
+                							<script type="text/javascript">
+                	                          //<![CDATA[
+                                                 Calendar.setup({
+                                                      inputField: "ConsignmentDate",
+                                                      ifFormat: "%Y-%m-%d",
+                                                      showsTime: 12,
+                                                      button: "ConsignmentDateIMG",
+                                                      align: "Bl",
+                                                      singleClick : true
+                                                 });
+                                              //]]>
+                	                       </script>
+                						</td>
+                					</tr>			
+                				</tbody>
+                			</table>
+						</td>
+						
+					</tr>
+										
+				
+					<tr>
+						<td>
+							
+            				<table class="form-list">
+                				<tbody>
+                					
+                					<tr>
+                						<td class="label">
+                							<label for="ConsignorName">Consignor Name<span class="required">*</span></label>
+                						</td>
+                						<td class="value">
+                							<input type="text" name="ConsignorName" id="ConsignorName" value="<?php echo $consignmentNoteVO->getConsignorName() ?>" class="input-text required-entry" />
+                						</td>
+                					</tr>
+                					
+                					<tr>
+                						<td class="label">
+                							<label for="ConsignorGstinNo">Consignor Gstin No</label>
+                						</td>
+                						<td class="value">
+                							<input type="text" name="ConsignorGstinNo" id="ConsignorGstinNo" value="<?php echo $consignmentNoteVO->getConsignorGstinNo() ?>" class="input-text" maxlength="15" />
+                						</td>
+                					</tr>
+                					
+                					<tr>
+                						<td class="label">
+                							<label for="ConsignorMobileNo">Consignor Mobile No</label>
+                						</td>
+                						<td class="value">
+                							<input type="text" name="ConsignorMobileNo" id="ConsignorMobileNo"
+                							value="<?php echo $consignmentNoteVO->getConsignorMobileNo() ?>" 
+                							class="input-text validate-digits" maxlength="10" />
+                						</td>
+                					</tr>
+                					
+                					
+                					<tr>
+                						<td class="label">
+                							<label for="ConsignorAddress">Consignor Address</label>
+                						</td>
+                						
+            							<td class="value">
+            								<textarea rows="3" cols="10" name="ConsignorAddress" id="ConsignorAddress" style="height: 40px;" ><?php echo $consignmentNoteVO->getConsignorAddress() ?></textarea>
+            							</td>
+            	   						
+                					</tr>
+                					
+                					
+                					<!--  
+                					<tr>
+                						<td class="label">
+                							<label for="ConsignorCityID">Consignor City<span class="required">*</span></label>
+                						</td>
+                						<td class="value">
+                							<select name="ConsignorCityID" id="ConsignorCityID" class="validate-select">
+                								<option value="">--Select--</option>
+                								<?php // foreach ($this->getCityOptions() as $cityID=>$cityDataObj): ?>
+                									<option value="<?php // echo $cityID ?>" <?php // echo ($consignmentNoteVO->getConsignorCityID() == $cityID) ? 'Selected = "Selected"' : '' ?> ><?php // echo $cityDataObj['Name'] ?></option>
+                								<?php // endforeach; ?>
+                							</select>
+                						</td>
+                					</tr>
+                					-->
+                					
+                					
+                					<tr>
+                						<td class="label">
+                							<label for="SourceCityName">Source / From City<span class="required">*</span></label>
+                						</td>
+                						
+            							<td class="value">
+            								<input type="text" name="SourceCityName" id="SourceCityName" class="input-text required-entry" value="<?php echo $consignmentNoteVO->getSourceCityName() ?>" />
+            							</td>
+            	   						
+                					</tr>
+                					
+                					
+                					<!--  
+                					<tr>
+                						<td class="label">
+                							<label for="SourceCityID">Source / From City<span class="required">*</span></label>
+                						</td>
+                						<td class="value">
+                							<select name="SourceCityID" id="SourceCityID" class="validate-select">
+                								<option value="">--Select--</option>
+                								<?php // foreach ($this->getCityOptions() as $sourceCityID=>$sourceCityDataObj): ?>
+                									<option value="<?php // echo $sourceCityID ?>" <?php // echo ($consignmentNoteVO->getSourceCityID() == $sourceCityID) ? 'Selected = "Selected"' : '' ?> ><?php // echo $sourceCityDataObj['Name'] ?></option>
+                								<?php // endforeach; ?>
+                							</select>
+                						</td>
+                					</tr>
+                					-->
+                					
+                				</tbody>
+                			</table>		
+						
+						</td>
+
+
+						<td>
+							<table class="form-list">
+                				<tbody>
+                					
+                					<tr>
+                						<td class="label">
+                							<label for="ConsigneeName">Consignee Name<span class="required">*</span></label>
+                						</td>
+                						<td class="value">
+                							<input type="text" name="ConsigneeName" id="ConsigneeName" value="<?php echo $consignmentNoteVO->getConsigneeName() ?>" class="input-text required-entry" />
+                						</td>
+                					</tr>
+                					
+                					<tr>
+                						<td class="label">
+                							<label for="ConsigneeGstinNo">Consignee Gstin No</label>
+                						</td>
+                						<td class="value">
+                							<input type="text" name="ConsigneeGstinNo" id="ConsigneeGstinNo" value="<?php echo $consignmentNoteVO->getConsigneeGstinNo() ?>" class="input-text" maxlength="15" />
+                						</td>
+                					</tr>
+                					
+                					<tr>
+                						<td class="label">
+                							<label for="ConsigneeMobileNo">Consignee Mobile No</label>
+                						</td>
+                						<td class="value">
+                							<input type="text" name="ConsigneeMobileNo" id="ConsigneeMobileNo"
+                							value="<?php echo $consignmentNoteVO->getConsigneeMobileNo() ?>" 
+                							class="input-text validate-digits" maxlength="10" />
+                						</td>
+                					</tr>
+                					
+                					
+                					<tr>
+                						<td class="label">
+                							<label for="ConsigneeAddress">Consignee Address</label>
+                						</td>
+                						
+            							<td class="value">
+            								<textarea rows="3" cols="10" name="ConsigneeAddress" id="ConsigneeAddress" style="height: 40px;" ><?php echo $consignmentNoteVO->getConsigneeAddress() ?></textarea>
+            							</td>
+            	   						
+                					</tr>
+                					
+                					
+                					<tr>
+                						<td class="label">
+                							<label for="DestinationCityName">Destination / To City <span class="required">*</span><br />Delivery Address</label>
+                						</td>
+                						
+            							<td class="value">
+            								<input type="text" name="DestinationCityName" id="DestinationCityName" class="input-text required-entry" value="<?php echo $consignmentNoteVO->getDestinationCityName() ?>" />
+            							</td>
+            	   					</tr>	
+            	   					
+            	   					<tr>
+                						<td class="label">
+                							<label for="DeliveryAt">Delivery At</label>
+                						</td>
+                						<td class="value">
+                						<?php $deliveryAt = array("Godown"=>"Godown", "Door"=>"Door"); ?>
+                							<select name="DeliveryAt" id="DeliveryAt">
+                								<option value="">--Select--</option>
+                								<?php foreach ($deliveryAt as $key=>$val): ?>
+                									<option value="<?php echo $key ?>" <?php echo ($consignmentNoteVO->getDeliveryAt() == $key) ? 'Selected = "Selected"' : '' ?> ><?php echo $val ?></option>
+                								<?php endforeach; ?>
+                							</select>
+                						</td>
+                					</tr>
+            	   					
+            	   					
+                					<!--  
+                					<tr>
+                						<td class="label">
+                							<label for="ConsigneeCityID">Consignee City<span class="required">*</span></label>
+                						</td>
+                						<td class="value">
+                							<select name="ConsigneeCityID" id="ConsigneeCityID" class="validate-select">
+                								<option value="">--Select--</option>
+                								<?php // foreach ($this->getCityOptions() as $cityID=>$cityDataObj): ?>
+                									<option value="<?php // echo $cityID ?>" <?php // echo ($consignmentNoteVO->getConsigneeCityID() == $cityID) ? 'Selected = "Selected"' : '' ?> ><?php // echo $cityDataObj['Name'] ?></option>
+                								<?php // endforeach; ?>
+                							</select>
+                						</td>
+                					</tr>
+                					
+                					
+                					<tr>
+                						<td class="label">
+                							<label for="DestinationCityID">Destination / To City<span class="required">*</span></label>
+                						</td>
+                						<td class="value">
+                							<select name="DestinationCityID" id="DestinationCityID" class="validate-select">
+                								<option value="">--Select--</option>
+                								<?php // foreach ($this->getCityOptions() as $destinationCityID=>$destinationCityDataObj): ?>
+                									<option value="<?php // echo $destinationCityID ?>" <?php // echo ($consignmentNoteVO->getDestinationCityID() == $destinationCityID) ? 'Selected = "Selected"' : '' ?> ><?php // echo $destinationCityDataObj['Name'] ?></option>
+                								<?php // endforeach; ?>
+                							</select>
+                						</td>
+                					</tr>
+                					
+                					-->
+                					
+                				</tbody>
+                			</table>		
+						
+						</td>
+					
+					</tr>
+				</table>
+				    		   
+    		  		 
+    			
+    		</div>
+    	</div>
+    </div>
+    
+    
+    
+    
+    <div class="entry-edit">
+    	<div class="entry-edit-head">
+    		<h4 class="icon-head head-edit-form fieldset-legend">Truck Detail</h4>
+    		<div class="form-buttons"></div>
+    	</div>
+    
+    	<div class="fieldset ">
+    		<div class="hor-scroll">
+    		
+				<table style="width: 100% !important;">
+				
+				 
+				
+				
+					<tr>
+						<td>
+							
+            				<table class="form-list">
+                				<tbody>
+                					
+                					<tr>
+                						<td class="label">
+                							<label for="CommonID">Truck Number</label>
+                						</td>
+                						<td class="value">
+                							<select name="CommonID" id="CommonID" onchange="consignmentNoteFormJS.setOwnerDriver(event)" >
+                								<option value="">--Select--</option>
+                								<?php foreach ($commonOptions as $commonID=>$commonName): ?>
+                									<option value="<?php echo $commonID ?>" <?php echo ($consignmentNoteVO->getCommonID() == $commonID) ? 'Selected = "Selected"' : '' ?> ><?php echo $commonName; ?></option>
+                								<?php endforeach; ?>
+                							</select>
+                						</td>
+                					</tr>
+                				
+                				
+									
+									<!--                  					
+                					<tr>
+                						<td class="label">
+                							<label for="TruckNumber">Truck Number<span class="required">*</span></label>
+                						</td>
+                						<td class="value">
+                							<input type="text" name="VahicaleNumber" id="VahicaleNumber" value="<?php // echo $consignmentNoteVO->getVahicaleNumber() ?>" class="input-text required-entry" autocomplete="off" />
+                						</td>
+                					</tr>
+                					
+
+                					<tr>
+                						<td class="label">
+                							<label for="VahicaleOwnerID">Vahicale Owner<span class="required">*</span></label>
+                						</td>
+                						<td class="value">
+                							<select name="VahicaleOwnerID" id="VahicaleOwnerID" class="validate-select"></select>
+                						</td>
+                					</tr>
+
+
+                					<tr>
+                						<td class="label">
+                							<label for="DriverID">Driver<span class="required">*</span></label>
+                						</td>
+                						<td class="value">
+                							<select name="DriverID" id="DriverID" class="validate-select"></select>
+                						</td>
+                					</tr>
+                					-->
+                					
+                					<tr>
+                						<td class="label">
+                							<label for="OwnerName">Owner Name<span class="required">*</span></label>
+                						</td>
+                						<td class="value">
+                							<input type="text" name="OwnerName" id="OwnerName"
+                							value="<?php echo $consignmentNoteVO->getOwnerName() ?>" 
+                							class="input-text required-entry " />
+                						</td>
+                					</tr>
+                					
+                					
+                					<tr>
+                						<td class="label">
+                							<label for="OwnerMobileNo">Owner Mobile No<span class="required">*</span></label>
+                						</td>
+                						<td class="value">
+                							<input type="text" name="OwnerMobileNo" id="OwnerMobileNo" maxlength="10"
+                							value="<?php echo $consignmentNoteVO->getOwnerMobileNo() ?>" 
+                							class="input-text required-entry validate-digits " />
+                						</td>
+                					</tr>
+                					
+                					
+                				</tbody>
+                			</table>		
+						
+						</td>
+
+
+						<td>
+							 
+							<table class="form-list">
+                				<tbody>
+                					
+									<!--   
+                					<tr>
+                						<td class="label">
+                							<label for="StatusID">Status<span class="required">*</span></label>
+                						</td>
+                						<td class="value">
+                							<select name="StatusID" id="StatusID" class="validate-select">
+                								<option value="">--Select--</option>
+                								<?php // foreach ($this->getStatusOptions() as $statusID=>$statusName): ?>
+                									<option value="<?php // echo $statusID ?>" <?php // echo ($consignmentNoteVO->getStatusID() == $statusID) ? 'Selected = "Selected"' : '' ?> ><?php // echo $statusName; ?></option>
+                								<?php // endforeach; ?>
+                							</select>
+                						</td>
+                					</tr>
+                					-->
+                					
+                					<tr>
+                						<td class="label">
+                							<label for="VahicaleNumber">Truck Number<span class="required">*</span></label>
+                						</td>
+                						<td class="value">
+                							<input type="text" name="VahicaleNumber" id="VahicaleNumber" value="<?php echo $consignmentNoteVO->getVahicaleNumber() ?>" class="input-text required-entry " />
+                						</td>
+                					</tr>
+                						
+                					
+                					<tr>
+                						<td class="label">
+                							<label for="DriverName">Driver Name<span class="required">*</span></label>
+                						</td>
+                						<td class="value">
+                							<input type="text" name="DriverName" id="DriverName" value="<?php echo $consignmentNoteVO->getDriverName() ?>" class="input-text required-entry " />
+                						</td>
+                					</tr>
+                					
+                					
+                					<tr>
+                						<td class="label">
+                							<label for="DriverMobileNo">Driver Mobile Number<span class="required">*</span></label>
+                						</td>
+                						<td class="value">
+                							<input type="text" name="DriverMobileNo" id="DriverMobileNo" maxlength="10"
+                							value="<?php echo $consignmentNoteVO->getDriverMobileNo() ?>" 
+                							class="input-text required-entry validate-digits " />
+                						</td>
+                					</tr>
+                					
+                				</tbody>
+                			</table>
+                				
+						</td>
+					</tr>
+				</table>
+    			
+    		</div>
+    	</div>
+    </div>
+    
+
+
+    <div class="entry-edit">
+    	<div class="entry-edit-head">
+    		<h4 class="icon-head head-edit-form fieldset-legend">Goods / Payment Detail</h4>
+    		<div class="form-buttons"></div>
+    	</div>
+    
+    	<div class="fieldset ">
+    		<div class="hor-scroll">
+    		
+				<table style="width: 100% !important;">
+					<tr>
+						<td>
+            				<table class="form-list">
+                				<tbody>
+                					<tr>
+                						<td class="label">
+                							<label for="TotalWeight">Weight</label>
+                						</td>
+                						<td class="value">
+                							<input type="text" name="TotalWeight" id="TotalWeight" value="<?php echo $consignmentNoteVO->getTotalWeight() ?>" class="input-text validate-number" style="width: 200px !important;" onkeypress="consignmentNoteFormJS.calculateRate(event)" />
+                							
+                							<select name="UnitTypeID" id="UnitTypeID" class="validate-select" style="width: 70px !important;">
+                								<?php foreach ($this->getUnitTypeOptions() as $unitID=>$unitName): ?>
+                									<?php if($consignmentNoteVO->getID() != null): ?>
+                										<option value="<?php echo $unitID ?>" <?php echo ($consignmentNoteVO->getUnitTypeID() == $unitID) ? 'Selected = "Selected"' : '' ?> ><?php echo $unitName; ?></option>	
+                									<?php else: ?>
+                										<option value="<?php echo $unitID ?>" <?php echo ($unitID == 2) ? 'Selected = "Selected"' : '' ?> ><?php echo $unitName; ?></option>	
+                									<?php endif;?>
+                								<?php endforeach; ?>
+                							</select>
+                						</td>
+                					</tr>
+                					
+                					<tr>
+                						<td class="label">
+                							<label for="Rate">Rate</label>
+                						</td>
+                						<td class="value">
+                							<input type="text" name="Rate" id="Rate" value="<?php echo $consignmentNoteVO->getRate() ?>" class="input-text validate-number" onkeypress="consignmentNoteFormJS.calculateFreight(event)" />
+                						</td>
+                					</tr>
+                					
+                					<tr>
+                						<td class="label">
+                							<label for="Freight">Freight</label>
+                						</td>
+                						<td class="value">
+                							<input type="text" name="Freight" id="Freight" value="<?php echo $consignmentNoteVO->getFreight() ?>" class="input-text validate-number" readonly="readonly" />
+                						</td>
+                					</tr>
+                					
+                					
+                					<tr>
+                						<td class="label">
+                							<label for="Description">Description</label>
+                						</td>
+                						<td class="value">
+            								<textarea rows="3" cols="10" name="Description" id="Description" style="height: 40px;" ><?php echo $consignmentNoteVO->getDescription() ?></textarea>
+            							</td>
+                					</tr>
+                					
+                				</tbody>
+                			</table>		
+						</td>
+
+
+						<td>
+							<table class="form-list">
+                				<tbody>
+                					<tr>
+                						<td class="label">
+                							<label for="TotalAmount">Amount<span class="required">*</span></label>
+                						</td>
+                						<td class="value">
+                							<input type="text" name="TotalAmount" id="TotalAmount" value="<?php echo $consignmentNoteVO->getTotalAmount() ?>" class="input-text required-entry validate-number" onkeypress="consignmentNoteFormJS.calculateAdvance(event)"  />
+                						</td>
+                					</tr>
+                					
+                					
+                					<tr>
+                						<td class="label">
+                							<label for="Advance">Advance</label>
+                						</td>
+                						<td class="value">
+                							<input type="text" name="Advance" id="Advance" value="<?php echo $consignmentNoteVO->getAdvance() ?>" class="input-text validate-number" onkeypress="consignmentNoteFormJS.calculateBalance(event)" />
+                						</td>
+                					</tr>
+                					
+                					
+                					<tr>
+                						<td class="label">
+                							<label for="Balance">Balance</label>
+                						</td>
+                						<td class="value">
+                							<input type="text" name="Balance" id="Balance" value="<?php echo $consignmentNoteVO->getBalance() ?>" class="input-text validate-number" />
+                						</td>
+                					</tr>
+                					
+                					
+                					<tr>
+                						<td class="label">
+                							<label for="FreightMode">Freight Mode</label>
+                						</td>
+                						<td class="value">
+                							To Paid &nbsp;&nbsp;<input type="checkbox" name="ToPaid" id="ToPaid" <?php echo ($consignmentNoteVO->getToPaid() == 1) ? "checked='checked'" : "" ?> onchange="consignmentNoteFormJS.setToPaidToPayTBB(this)" />
+                							&nbsp; | &nbsp; To Pay &nbsp;&nbsp;<input type="checkbox" name="ToPay" id="ToPay" <?php echo ($consignmentNoteVO->getToPay() == 1) ? "checked='checked'" : "" ?> onchange="consignmentNoteFormJS.setToPaidToPayTBB(this)" />
+                							&nbsp; | &nbsp; TBB &nbsp;&nbsp;<input type="checkbox" name="TBB" id="TBB" <?php echo ($consignmentNoteVO->getTBB() == 1) ? "checked='checked'" : "" ?> onchange="consignmentNoteFormJS.setToPaidToPayTBB(this)" />
+                						</td>
+                					</tr>
+                					
+                					<tr>
+                						<td class="label">
+                							<label for="ValueOfGoods">Value Of Goods</label>
+                						</td>
+                						<td class="value">
+                							<input type="text" name="ValueOfGoods" id="ValueOfGoods" value="<?php echo $consignmentNoteVO->getValueOfGoods() ?>" class="input-text validate-number" />
+                						</td>
+                					</tr>
+                					
+                					
+                					<!--  
+                					<tr>
+                						<td class="label">
+                							<label for="ToPaid">To Paid</label>
+                						</td>
+                						<td class="value">
+                							<input type="checkbox" name="ToPaid" id="ToPaid" <?php // echo ($consignmentNoteVO->getToPaid() == 1) ? "checked='checked'" : "" ?>/>
+                						</td>
+                					</tr>
+                					
+                					<tr>
+                						<td class="label">
+                							<label for="ToPay">To Pay</label>
+                						</td>
+                						<td class="value">
+                							<input type="checkbox" name="ToPay" id="ToPay" <?php // echo ($consignmentNoteVO->getToPay() == 1) ? "checked='checked'" : "" ?> />
+                						</td>
+                					</tr>
+                					-->
+                					
+                				</tbody>
+                			</table>		
+						</td>
+					</tr>
+				</table>
+    		</div>
+    	</div>
+    </div>
+    
+    
+    <div class="entry-edit">
+    	<div class="entry-edit-head">
+    		<h4 class="icon-head head-edit-form fieldset-legend">Other Info</h4>
+    		<div class="form-buttons"></div>
+    	</div>
+    
+    	<div class="fieldset ">
+    		<div class="hor-scroll">
+    		
+    			<table style="width: 100% !important;">
+					<tr>
+						<td>
+    		
+            				<table class="form-list">
+            					<tbody>
+                					<tr>
+                						<td class="label">
+                							<label for="InvoiceNo">Invoice / Bill No.</label>
+                						</td>
+                						<td class="value">
+                							<input type="text" name="InvocieNo" id="InvoiceNo" value="<?php echo $consignmentNoteVO->getInvoiceNo() ?>" class="input-text" />
+                						</td>
+                					</tr>
+                					
+                					<tr>
+                						<td class="label">
+                							<label for="HsnCode">HSN Code</label>
+                						</td>
+                						<td class="value">
+                							<input type="text" name="HsnCode" id="HsnCode" value="<?php echo $consignmentNoteVO->getHsnCode() ?>" class="input-text" />
+                						</td>
+                					</tr>
+            					</tbody>	
+            				</table>
+            			</td>
+            			
+            			<td>
+            				<table class="form-list">
+            					<tbody>
+                					<tr>
+                						<td class="label">
+                							<label for="EwayBillNo">E-Way Bill No</label>
+                						</td>
+                						<td class="value">
+                							<input type="text" name="EwayBillNo" id="EwayBillNo" value="<?php echo $consignmentNoteVO->getEwayBillNo() ?>" class="input-text" />
+                						</td>
+                					</tr>
+                					
+                					<tr>
+                						<td class="label">
+                							<label for="EwayBillExpiryDate">E-Way Expiry Date</label>
+                						</td>
+                						<td class="value">
+                							<input id="EwayBillExpiryDate" name="EwayBillExpiryDate" value="<?php echo  ($consignmentNoteVO->getEwayBillExpiryDate() != '0000-00-00 00:00:00' && $consignmentNoteVO->getEwayBillExpiryDate() != null ) ? date('Y-m-d',strtotime($consignmentNoteVO->getEwayBillExpiryDate())) : '' ?>" class="input-text" type="text" readonly="readonly" />
+                							<img src="<?php  echo Mage::getDesign()->getSkinUrl('images/grid-cal.gif') ?>"
+                								alt="" class="v-middle" id="EwayBillExpiryDateIMG" title="Select Date" style="">
+                								 
+                							<script type="text/javascript">
+                	                          //<![CDATA[
+                                                 Calendar.setup({
+                                                      inputField: "EwayBillExpiryDate",
+                                                      ifFormat: "%Y-%m-%d",
+                                                      showsTime: 12,
+                                                      button: "EwayBillExpiryDateIMG",
+                                                      align: "Bl",
+                                                      singleClick : true
+                                                 });
+                                              //]]>
+                	                       </script>
+                						</td>
+                					</tr>
+            					</tbody>
+            				</table>
+            			</td>
+            			
+            		</tr>
+            	</table>		
+				
+    		</div>
+    	</div>
+    </div>
+    
+    
+    <input type="hidden" id="ID" name="ID" value="<?php echo ($consignmentNoteVO->getID() != null && $consignmentNoteVO->getID() != "") ? $consignmentNoteVO->getID() : 0 ?>" />
+    
+         
+</form>
+
+<script type="text/javascript">
+
+function consignmentNoteVO(){
+	this.ID = null;
+	this.ConsignmentNo = null;
+	this.ConsignmentDate = null;
+	this.ConsignorName = null;
+	this.ConsignorAddress = null;
+	this.ConsignorGstinNo = null;
+	this.ConsignorMobileNo = null;
+	this.ConsignorCityID = null;
+	this.ConsigneeName = null;
+	this.ConsigneeAddress = null;
+	this.ConsigneeGstinNo = null;
+	this.ConsigneeMobileNo = null;
+	this.ConsigneeCityID = null;
+	this.SourceCityID = null;
+	this.SourceCityName = null;
+	this.DestinationCityID = null;
+	this.DestinationCityName = null;
+	this.TotalWeight = null;
+	this.UnitTypeID = null;
+	this.Freight = null;
+	this.TotalAmount = null;
+	this.Advance = null;
+	this.Balance = null;
+	this.ValueOfGoods = null;
+	this.ToPaid = null;
+	this.ToPay = null;
+	this.TBB = null;
+	this.Description = null;
+	this.CommonID = null;  
+	this.StatusID = null;
+
+	this.InvoiceNo = null;
+	this.HsnCode = null;
+	 
+	this.EwayBillNo = null;
+	this.EwayBillExpiryDate = null;
+	this.DeliveryAt = null;
+	 
+
+	this.OwnerName = null;
+	this.OwnerMobileNo = null;
+	this.DriverName = null;
+	this.DriverMobileNo = null;
+
+	
+	// this.VahicaleID = null;
+	// this.DriverID = null;
+	// this.VahicaleOwnerID = null;
+	this.VahicaleNumber = null;
+	
+}
+var newConsignmentNoteDTO = new consignmentNoteVO();
+
+var consignmentNoteFormObj = new varienForm('<?php echo $HTMLFormID; ?>');
+var consignmentNoteFormJS={
+
+		vahicaleID:"",
+		vahicaleOwnerID:"",
+		driverID:"",
+		 
+		submit : function(){
+    		if(!consignmentNoteFormJS.saveValidation()) return ;
+    		consignmentNoteFormJS.saveAjax();
+		},
+
+		saveValidation : function(){
+			var errorMsg = '';
+			
+         	if(!(consignmentNoteFormObj.validator && consignmentNoteFormObj.validator.validate())){
+    	    	return false;
+	    	}
+         	
+         	// SET VOs
+         	newConsignmentNoteDTO.ID = ($('ID').value).strip();
+         	newConsignmentNoteDTO.ConsignmentNo = ($('ConsignmentNo').value).strip();
+         	newConsignmentNoteDTO.ConsignmentDate = ($('ConsignmentDate').value).strip();
+         	newConsignmentNoteDTO.ConsignorName = ($('ConsignorName').value).strip();
+         	newConsignmentNoteDTO.ConsignorAddress = ($('ConsignorAddress').value).strip();
+         	newConsignmentNoteDTO.ConsignorGstinNo = ($('ConsignorGstinNo').value).strip();
+         	newConsignmentNoteDTO.ConsignorMobileNo = ($('ConsignorMobileNo').value).strip();
+         	newConsignmentNoteDTO.ConsigneeName = ($('ConsigneeName').value).strip();
+         	newConsignmentNoteDTO.ConsigneeAddress = ($('ConsigneeAddress').value).strip();
+         	newConsignmentNoteDTO.ConsigneeGstinNo = ($('ConsigneeGstinNo').value).strip();
+         	newConsignmentNoteDTO.ConsigneeMobileNo = ($('ConsigneeMobileNo').value).strip();
+         	newConsignmentNoteDTO.SourceCityName = ($('SourceCityName').value).strip();
+         	newConsignmentNoteDTO.DestinationCityName = ($('DestinationCityName').value).strip();
+         	newConsignmentNoteDTO.TotalWeight = ($('TotalWeight').value).strip();
+         	newConsignmentNoteDTO.Rate = ($('Rate').value).strip();
+         	newConsignmentNoteDTO.UnitTypeID = ($('UnitTypeID').value).strip();
+         	newConsignmentNoteDTO.Freight = ($('Freight').value).strip();
+         	newConsignmentNoteDTO.TotalAmount = ($('TotalAmount').value).strip();
+         	newConsignmentNoteDTO.Advance = ($('Advance').value).strip();
+         	newConsignmentNoteDTO.Balance = ($('Balance').value).strip();
+         	newConsignmentNoteDTO.ValueOfGoods = ($('ValueOfGoods').value).strip();
+         	if($('ToPaid').checked){
+         		newConsignmentNoteDTO.ToPaid = 1;
+         	}else{
+         		newConsignmentNoteDTO.ToPaid = 0;
+            }
+
+            if($('ToPay').checked){
+            	newConsignmentNoteDTO.ToPay = 1;
+            }else{
+            	newConsignmentNoteDTO.ToPay = 0;
+            }
+
+            if($('TBB').checked){
+            	newConsignmentNoteDTO.TBB = 1;
+            }else{
+            	newConsignmentNoteDTO.TBB = 0;
+            }
+            
+
+         	newConsignmentNoteDTO.Description = ($('Description').value).strip();
+         	newConsignmentNoteDTO.CommonID = ($('CommonID').value).strip();
+         	newConsignmentNoteDTO.StatusID = 1; // ($('StatusID').value).strip();
+
+         	newConsignmentNoteDTO.InvoiceNo = ($('InvoiceNo').value).strip();
+         	newConsignmentNoteDTO.HsnCode = ($('HsnCode').value).strip();
+         	
+         	newConsignmentNoteDTO.EwayBillNo = ($('EwayBillNo').value).strip();
+         	newConsignmentNoteDTO.EwayBillExpiryDate = ($('EwayBillExpiryDate').value).strip();
+         	newConsignmentNoteDTO.DeliveryAt = ($('DeliveryAt').value).strip();
+         	
+
+         	newConsignmentNoteDTO.VahicaleNumber = ($('VahicaleNumber').value).strip();
+         	newConsignmentNoteDTO.OwnerName = ($('OwnerName').value).strip();
+         	newConsignmentNoteDTO.OwnerMobileNo = ($('OwnerMobileNo').value).strip();
+         	newConsignmentNoteDTO.DriverName = ($('DriverName').value).strip();
+         	newConsignmentNoteDTO.DriverMobileNo = ($('DriverMobileNo').value).strip();
+         	
+         	// newConsignmentNoteDTO.VahicaleID = consignmentNoteFormJS.vahicaleID;
+			// newConsignmentNoteDTO.VahicaleOwnerID = ($('VahicaleOwnerID').value).strip();
+			// newConsignmentNoteDTO.DriverID = ($('DriverID').value).strip();
+         	
+         	if(errorMsg != ''){
+            	alert(errorMsg);
+				return false;
+			}
+
+         	return true;
+		},	
+
+        saveAjax: function(){
+        	var URL = "<?php echo $this->getUrl('*/*/save')?>" ;
+		    var parameters= {"ConsignmentNoteDataObj": JSON.stringify(newConsignmentNoteDTO,null) };
+		    var callBackMethod ="consignmentNoteFormJS.responseSave";
+		    var callBackArgs =null;
+		    ajaxRequest.execute(	URL, parameters, callBackMethod , callBackArgs );
+		    return false;
+     	},
+
+	    responseSave : function(response,args) {
+	    	if(response.SuccessMessage !=null){
+	    		window.location.href = "<?php echo $this->getUrl('*/*/index')?>";
+			 	return;
+			}else if(response.ErrorMessage !=null){
+				alert(response.ErrorMessage);
+				return false;
+ 			}
+ 	 	},
+
+ 	 	 	 	
+ 	 	setOwnerDriver : function(event){
+ 	 		
+ 	 		var commonID = ($('CommonID').value).strip();
+ 	 		if(commonID == null || commonID == ""){
+
+ 	 			$('VahicaleNumber').value = "";
+ 	 	 		$('OwnerName').value = "";
+ 	 	 		$('OwnerMobileNo').value = "";
+ 	 	 		$('DriverName').value = "";
+ 	 	 		$('DriverMobileNo').value = "";
+ 	 	 		
+ 	 			$('CommonID').focus();
+				return false;
+ 	 	 	}else{
+ 	 	 		$('VahicaleNumber').value = commonListArray[commonID]['Vahicale']['VahicaleNumber'];
+ 	 	 		$('OwnerName').value = commonListArray[commonID]['Owner']['Name'];
+ 	 	 		$('OwnerMobileNo').value = commonListArray[commonID]['Owner']['MobileNo'];
+ 	 	 		$('DriverName').value = commonListArray[commonID]['Driver']['Name'];
+ 	 	 		$('DriverMobileNo').value = commonListArray[commonID]['Driver']['MobileNo'];
+ 			}
+ 	 	}, 	
+
+ 	 	
+ 	 	calculateRate : function(event){
+ 	 		if (event.keyCode !== 13) {
+ 	 	        return false;
+ 	 	    }
+
+ 	 		var weight = ($('TotalWeight').value).strip();
+ 	 		if(weight == null || weight == ""){
+ 	 			$('TotalWeight').focus();
+				return false;
+ 	 	 	}
+
+ 	 		$('Rate').focus();
+ 	 	}, 	
+ 	 	
+ 	 	calculateFreight : function(event){
+			
+ 	 		if (event.keyCode !== 13) {
+ 	 	        return false;
+ 	 	    }
+ 	 	 	
+ 	 		var weight = ($('TotalWeight').value).strip();
+ 	 		var rate = ($('Rate').value).strip();
+ 	 		
+ 	 		if(weight == null || weight == ""){
+				// alert("Please enter weight first.");
+				$('Rate').value = "";
+				$('TotalWeight').focus();
+				return false;
+ 	 	 	}
+
+ 	 		if(rate == null || rate == ""){
+				// alert("Please enter rate.");
+				$('Rate').focus();
+				return false;
+ 	 	 	}
+
+ 	 		var freight = parseFloat(weight) * parseFloat(rate);
+ 	 		freight = parseInt(freight);
+ 	 		$('Freight').value = freight;
+ 	 		$('TotalAmount').value = freight;
+ 	 		$('Balance').value = freight;
+
+ 	 	    $('Advance').value = "";
+ 	 		$('Advance').focus();
+ 	 		return false;
+ 	 	},
+
+ 	 	calculateAdvance : function(event){
+ 	 		if (event.keyCode !== 13) {
+ 	 	        return false;
+ 	 	    }
+
+ 	 		var totalAmount = ($('TotalAmount').value).strip();
+ 	 		if(totalAmount == null || totalAmount == ""){
+ 	 			$('TotalAmount').focus();
+				return false;
+ 	 	 	}
+
+ 	 		$('Advance').focus();
+ 	 	}, 	
+
+ 	 	calculateBalance : function(){
+
+ 	 		if (event.keyCode !== 13) {
+ 	 	        return false;
+ 	 	    }
+ 	 	    
+ 	 		var totalAmount = ($('TotalAmount').value).strip();
+ 	 		var advance = ($('Advance').value).strip();
+ 	 		
+ 	 		if(totalAmount == null || totalAmount == ""){
+				// alert("Please enter amount first.");
+				$('TotalAmount').focus();
+				return false;
+ 	 	 	}
+
+ 	 		if(advance == null || advance == ""){
+				// alert("Please enter amount first.");
+				$('Advance').focus();
+				return false;
+ 	 	 	}
+
+ 	 		totalAmount = parseFloat(totalAmount);
+ 	 		advance = parseFloat(advance);
+ 	 		
+ 	 		if(advance > totalAmount){
+ 	 			$('Advance').value = "";
+ 	 			$('Advance').focus();
+ 	 			return false;
+ 	 	 	}
+ 	 		var balance = totalAmount - advance;
+ 	 		balance = parseInt(balance);
+ 	 		$('Balance').value = balance;
+ 	 		$('ToPaid').focus();
+ 	 		return false;
+ 	 	},
+
+
+ 	 	setToPaidToPayTBB: function(obj){
+ 	 	 	if(obj.id == 'ToPaid'){
+ 	 	 	 	if(obj.checked){
+					$('ToPay').checked = false;
+					$('TBB').checked = false;
+ 	 	 	 	}
+ 	 	 	}
+
+ 	 	 	if(obj.id == 'ToPay'){
+ 	 	 	 	if(obj.checked){
+					$('ToPaid').checked = false;
+					$('TBB').checked = false;
+ 	 	 	 	}
+ 	 	 	}
+
+ 	 	 	if(obj.id == 'TBB'){
+ 	 	 	 	if(obj.checked){
+					$('ToPaid').checked = false;
+					$('ToPay').checked = false;
+				}
+ 	 	 	} 	 	
+ 	 	},
+
+ 	 	
+ 	 	setOwnerOptions: function(){
+ 	 	 	return false;
+ 	 		var ownerEleObj = $('VahicaleOwnerID');
+ 	 	 	var ownerHtml = '<option value="">--Select--</option>';
+ 	 	 	for(ownerID in vahicaleOwnerArray){
+ 	 	 		var selected = '';
+ 	 	 	 	if(ownerID == consignmentNoteFormJS.vahicaleOwnerID){
+ 	 	 	 		selected = "selected='selected'";
+ 	 	 	 	}
+ 	 	 	 	ownerHtml += '<option value="'+ownerID+'" '+selected+'>'+vahicaleOwnerArray[ownerID]+'</option>';
+ 	 		}
+ 	 	 	ownerEleObj.innerHTML = ownerHtml;
+ 	 	},
+ 	 	
+ 	 	setDriverOptions: function(){
+ 	 		return false;
+ 	 		var driverEleObj = $('DriverID');
+ 	 	 	var driverHtml = '<option value="">--Select--</option>';
+ 	 	 	for(driverID in driverArray){
+ 	 	 		var selected = '';
+ 	 	 	 	if(driverID == consignmentNoteFormJS.driverID){
+ 	 	 	 		selected = "selected='selected'";
+ 	 	 	 	}
+ 	 			driverHtml += '<option value="'+driverID+'" '+selected+'>'+driverArray[driverID]+'</option>';
+ 	 		}
+ 	 		driverEleObj.innerHTML = driverHtml;
+ 	 	},
+
+ 	 	getByVahicaleNumber : function(){
+ 	 		newConsignmentNoteDTO.VahicaleNumber = ($('VahicaleNumber').value).strip();
+
+ 	 		if(newConsignmentNoteDTO.VahicaleNumber == null || newConsignmentNoteDTO.VahicaleNumber == ""){
+				alert("Please enter truck number.");
+				return false;
+ 	 	 	}
+
+ 	 		var URL = "<?php echo $this->getUrl('*/*/getByVahicaleNumber')?>" ;
+		    var parameters= {"ConsignmentNoteDataObj": JSON.stringify(newConsignmentNoteDTO,null) };
+		    var callBackMethod ="consignmentNoteFormJS.responseGetByVahicaleNumber";
+		    var callBackArgs =null;
+		    ajaxRequest.execute(	URL, parameters, callBackMethod , callBackArgs );
+		    return false;
+ 	 	},
+
+ 	 	responseGetByVahicaleNumber : function(response,args) {
+ 	 		// console.log(response.ResponseData);
+	    	if(response.SuccessMessage !=null){
+
+	    		var responseData = response.ResponseData;
+
+	    		console.log(responseData.VahicalDataObj);
+	    		
+	    		$('VahicaleID').value = responseData.VahicalDataObj['ID']; 
+	    		$('VahicaleOwnerID').value = responseData.VahicalOwnerDataObj['ID'];
+	    		// $('DriverID').value = responseData.DriverDataObj['ID'];
+	    				    	
+	    		
+			 	return;
+			}else if(response.ErrorMessage !=null){
+				alert(response.ErrorMessage);
+				return false;
+ 			}
+ 	 	}
+			
+}; 
+
+// consignmentNoteFormJS.vahicaleID = '<?php // echo ($consignmentNoteVO->getVahicaleID() != null) ? $consignmentNoteVO->getVahicaleID() : "" ?>';
+// consignmentNoteFormJS.vahicaleOwnerID = '<?php // echo ($consignmentNoteVO->getVahicaleOwnerID() != null) ? $consignmentNoteVO->getVahicaleOwnerID() : "" ?>';
+// consignmentNoteFormJS.driverID = '<?php // echo ($consignmentNoteVO->getDriverID() != null) ? $consignmentNoteVO->getDriverID() : "" ?>';
+// consignmentNoteFormJS.setOwnerOptions();
+// consignmentNoteFormJS.setDriverOptions();
+
+
+</script>    	 
+
+
+<script>
+function autocomplete(inp, arr) {
+  /*the autocomplete function takes two arguments,
+  the text field element and an array of possible autocompleted values:*/
+  var currentFocus;
+  /*execute a function when someone writes in the text field:*/
+  inp.addEventListener("input", function(e) {
+      var a, b, i, val = this.value;
+      /*close any already open lists of autocompleted values*/
+      closeAllLists();
+      if (!val) { return false;}
+      currentFocus = -1;
+      /*create a DIV element that will contain the items (values):*/
+      a = document.createElement("DIV");
+      a.setAttribute("id", this.id + "autocomplete-list");
+      a.setAttribute("class", "autocomplete-items");
+      a.setAttribute("style", "border: 1px solid #c8c8c8; height:110px !important; overflow-y:scroll;");
+      /*append the DIV element as a child of the autocomplete container:*/
+      this.parentNode.appendChild(a);
+      /*for each item in the array...*/
+      for (i in arr) {
+        /*check if the item starts with the same letters as the text field value:*/
+        
+        // if (arr[i]['Value'].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
+        if ( (arr[i]['Value'].toUpperCase()).indexOf(val.toUpperCase()) > -1 ) {
+        	
+          /*create a DIV element for each matching element:*/
+          b = document.createElement("DIV");
+          /*make the matching letters bold:*/
+          b.innerHTML = "<strong>" + arr[i]['Value'].substr(0, val.length) + "</strong>";
+          b.innerHTML += arr[i]['Value'].substr(val.length);
+          /*insert a input field that will hold the current array item's value:*/
+          b.innerHTML += "<input type='hidden' value='" + arr[i]['Value'] + "'>";
+          
+          /*execute a function when someone clicks on the item value (DIV element):*/
+          b.addEventListener("click", function(e) {
+              /*insert the value for the autocomplete text field:*/
+              inp.value = this.getElementsByTagName("input")[0].value;
+
+			  // set values
+              consignmentNoteFormJS.vahicaleID = arr[i]['VahicaleID']; 
+              consignmentNoteFormJS.vahicaleOwnerID = arr[i]['VahicaleOwnerID'];
+              consignmentNoteFormJS.driverID = arr[i]['DriverID'];
+
+              consignmentNoteFormJS.setOwnerOptions();
+              consignmentNoteFormJS.setDriverOptions();
+                            
+              
+              /*close the list of autocompleted values,
+              (or any other open lists of autocompleted values:*/
+              closeAllLists();
+          });
+          a.appendChild(b);
+        }
+      }
+  });
+  /*execute a function presses a key on the keyboard:*/
+  inp.addEventListener("keydown", function(e) {
+      var x = document.getElementById(this.id + "autocomplete-list");
+      if (x) x = x.getElementsByTagName("div");
+      if (e.keyCode == 40) {
+        /*If the arrow DOWN key is pressed,
+        increase the currentFocus variable:*/
+        currentFocus++;
+        /*and and make the current item more visible:*/
+        addActive(x);
+      } else if (e.keyCode == 38) { //up
+        /*If the arrow UP key is pressed,
+        decrease the currentFocus variable:*/
+        currentFocus--;
+        /*and and make the current item more visible:*/
+        addActive(x);
+      } else if (e.keyCode == 13) {
+        /*If the ENTER key is pressed, prevent the form from being submitted,*/
+        e.preventDefault();
+        if (currentFocus > -1) {
+          /*and simulate a click on the "active" item:*/
+          if (x) x[currentFocus].click();
+        }
+      }
+  });
+  function addActive(x) {
+    /*a function to classify an item as "active":*/
+    if (!x) return false;
+    /*start by removing the "active" class on all items:*/
+    removeActive(x);
+    if (currentFocus >= x.length) currentFocus = 0;
+    if (currentFocus < 0) currentFocus = (x.length - 1);
+    /*add class "autocomplete-active":*/
+    x[currentFocus].classList.add("autocomplete-active");
+  }
+  function removeActive(x) {
+    /*a function to remove the "active" class from all autocomplete items:*/
+    for (var i = 0; i < x.length; i++) {
+      x[i].classList.remove("autocomplete-active");
+    }
+  }
+  function closeAllLists(elmnt) {
+    /*close all autocomplete lists in the document,
+    except the one passed as an argument:*/
+    var x = document.getElementsByClassName("autocomplete-items");
+    for (var i = 0; i < x.length; i++) {
+      if (elmnt != x[i] && elmnt != inp) {
+        x[i].parentNode.removeChild(x[i]);
+      }
+    }
+  }
+  /*execute a function when someone clicks in the document:*/
+  document.addEventListener("click", function (e) {
+      closeAllLists(e.target);
+  });
+}
+
+/*An array containing all the country names in the world:*/
+var countries = ["Afghanistan","Albania","Algeria","Andorra","Angola","Anguilla","Antigua & Barbuda","Argentina","Armenia","Aruba","Australia","Austria","Azerbaijan","Bahamas","Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bermuda","Bhutan","Bolivia","Bosnia & Herzegovina","Botswana","Brazil","British Virgin Islands","Brunei","Bulgaria","Burkina Faso","Burundi","Cambodia","Cameroon","Canada","Cape Verde","Cayman Islands","Central Arfrican Republic","Chad","Chile","China","Colombia","Congo","Cook Islands","Costa Rica","Cote D Ivoire","Croatia","Cuba","Curacao","Cyprus","Czech Republic","Denmark","Djibouti","Dominica","Dominican Republic","Ecuador","Egypt","El Salvador","Equatorial Guinea","Eritrea","Estonia","Ethiopia","Falkland Islands","Faroe Islands","Fiji","Finland","France","French Polynesia","French West Indies","Gabon","Gambia","Georgia","Germany","Ghana","Gibraltar","Greece","Greenland","Grenada","Guam","Guatemala","Guernsey","Guinea","Guinea Bissau","Guyana","Haiti","Honduras","Hong Kong","Hungary","Iceland","India","Indonesia","Iran","Iraq","Ireland","Isle of Man","Israel","Italy","Jamaica","Japan","Jersey","Jordan","Kazakhstan","Kenya","Kiribati","Kosovo","Kuwait","Kyrgyzstan","Laos","Latvia","Lebanon","Lesotho","Liberia","Libya","Liechtenstein","Lithuania","Luxembourg","Macau","Macedonia","Madagascar","Malawi","Malaysia","Maldives","Mali","Malta","Marshall Islands","Mauritania","Mauritius","Mexico","Micronesia","Moldova","Monaco","Mongolia","Montenegro","Montserrat","Morocco","Mozambique","Myanmar","Namibia","Nauro","Nepal","Netherlands","Netherlands Antilles","New Caledonia","New Zealand","Nicaragua","Niger","Nigeria","North Korea","Norway","Oman","Pakistan","Palau","Palestine","Panama","Papua New Guinea","Paraguay","Peru","Philippines","Poland","Portugal","Puerto Rico","Qatar","Reunion","Romania","Russia","Rwanda","Saint Pierre & Miquelon","Samoa","San Marino","Sao Tome and Principe","Saudi Arabia","Senegal","Serbia","Seychelles","Sierra Leone","Singapore","Slovakia","Slovenia","Solomon Islands","Somalia","South Africa","South Korea","South Sudan","Spain","Sri Lanka","St Kitts & Nevis","St Lucia","St Vincent","Sudan","Suriname","Swaziland","Sweden","Switzerland","Syria","Taiwan","Tajikistan","Tanzania","Thailand","Timor L'Este","Togo","Tonga","Trinidad & Tobago","Tunisia","Turkey","Turkmenistan","Turks & Caicos","Tuvalu","Uganda","Ukraine","United Arab Emirates","United Kingdom","United States of America","Uruguay","Uzbekistan","Vanuatu","Vatican City","Venezuela","Vietnam","Virgin Islands (US)","Yemen","Zambia","Zimbabwe"];
+
+/*initiate the autocomplete function on the "myInput" element, and pass along the countries array as possible autocomplete values:*/
+// autocomplete(document.getElementById("VahicaleNumber"), vahicaleArray);
+
+
+</script>

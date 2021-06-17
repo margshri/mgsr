@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Inchoo_BlockCaching>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Inchoo_BlockCaching>
+    </modules>
+</config>  

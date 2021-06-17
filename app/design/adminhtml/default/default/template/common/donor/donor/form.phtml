@@ -1,0 +1,357 @@
+<?php
+    $HTMLFormID = $this->getHTMLFormID();
+    /* @var $donationVO Margshri_Common_VO_Donation_Donation_DonationVO */
+    $donationVO = $this->getDonationVO();    
+    
+    // $cityOptions = $this->getCityOptions();
+?>
+
+<div class="content-header">
+    <table cellspacing="0">
+        <tr>
+            <td style="width:50%;"><h3 class="icon-head head-permissions-role"><?php echo ($this->getDonationID() != null ) ? ($this->__('Edit Donor') ) : $this->__('Add Donor') ?></h3></td>
+            <td class="form-buttons">
+                <?php echo $this->getBackButtonHtml() ?>
+                <?php echo $this->getResetButtonHtml() ?>
+                <?php echo $this->getSaveButtonHtml() ?>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<form action="<?php echo $this->getUrl('*/*/save') ?>" method="post" id="<?php echo $HTMLFormID ?>">
+    <?php  echo $this->getBlockHtml('formkey')?>
+    
+    <div class="entry-edit">
+    	<div class="entry-edit-head">
+    		<h4 class="icon-head head-edit-form fieldset-legend">Donor Detail</h4>
+    		<div class="form-buttons"></div>
+    	</div>
+    
+    	<div class="fieldset " id="base_fieldset">
+    		<div class="hor-scroll">
+    		   
+      			<table class="form-list">
+    				<tbody>
+    
+    					<tr>
+    						<td class="label">
+    							<label for="DonorNameList">Donor Name List</label>
+    						</td>
+    						<td class="value">
+    							<select name="UserID" id="UserID">
+    								<option value="">--Select--</option>
+    								<?php foreach ($this->getUserOptions() as $userID=>$userName): ?>
+    									<option value="<?php echo $userID ?>" <?php echo ($donationVO->getUserID() == $userID) ? 'Selected = "Selected"' : '' ?> ><?php echo $userName ?></option>
+    								<?php endforeach; ?>
+    							</select>
+    						</td>
+    					</tr>
+    					
+    					
+    					<tr>
+    						<td class="label">
+    							<label for="DonorName">Donor Name</label>
+    						</td>
+    						<td class="value">
+    							<input type="text" name="DonorName" id="DonorName" value="<?php echo $donationVO->getDonorName() ?>" class="input-text" />
+    						</td>
+    					</tr>
+    					
+    					
+    					<tr>
+    						<td class="label">
+    							<label for="ContactNumber">Mobile Number</label>
+    						</td>
+    						<td class="value">
+    							<input type="text" name="ContactNumber" id="ContactNumber" maxlength="10"
+    							value="<?php echo $donationVO->getContactNumber() ?>" 
+    							class="input-text validate-digits" />
+    						</td>
+    					</tr>
+    					
+    					
+    					<tr>
+    						<td class="label">
+    							<label for="DonationType">Donation Type<span class="required">*</span></label>
+    						</td>
+    						<td class="value">
+    							<select name="DonationTypeID" id="DonationTypeID" class="required-entry">
+    								<option value="">--Select--</option>
+    								<?php foreach ($this->getDonationTypeOptions() as $typeID=>$typeName): ?>
+    									<?php $selected = '' ?>
+    									<?php if($donationVO->getID() == null && $typeID == Margshri_Common_VO_Donation_DonationType_DonationTypeVO::$CASH_WITH_RECEIPT): ?>
+    									<?php $selected = 'Selected = "Selected"' ?>
+    									<?php else: ?>
+    											<?php if($donationVO->getDonationTypeID() == $typeID): ?>
+    												<?php $selected = 'Selected = "Selected"' ?>
+    											<?php endif; ?>
+    									<?php endif; ?>
+    									<option value="<?php echo $typeID ?>" <?php echo $selected ?> ><?php echo $typeName ?></option>
+    								<?php endforeach; ?>
+    							</select>
+    						</td>
+    					</tr>
+    					
+    					
+    					<tr>
+    						<td class="label">
+    							<label for="ProgrammeID">Programme</label>
+    						</td>
+    						<td class="value">
+    							<select name="ProgrammeID" id="ProgrammeID">
+    								<option value="">--Select--</option>
+    								<?php foreach ($this->getProgrammeOptions() as $programmeID=>$programmeName): ?>
+    									<option value="<?php echo $programmeID ?>" <?php echo ($donationVO->getProgrammeID() == $programmeID) ? 'Selected = "Selected"' : '' ?> ><?php echo $programmeName ?></option>
+    								<?php endforeach; ?>
+    							</select>
+    						</td>
+    					</tr>
+    					
+    					
+    					<tr>
+    						<td class="label">
+    							<label for="ReceiptBookID">Receipt Book</label>
+    						</td>
+    						<td class="value">
+    							<select name="ReceiptBookID" id="ReceiptBookID">
+    								<option value="">--Select--</option>
+    								<?php foreach ($this->getReceiptBookOptions() as $receiptBookID=>$receiptBookName): ?>
+    									<option value="<?php echo $receiptBookID ?>" <?php echo ($donationVO->getReceiptBookID() == $receiptBookID) ? 'Selected = "Selected"' : '' ?> ><?php echo $receiptBookName ?></option>
+    								<?php endforeach; ?>
+    							</select>
+    						</td>
+    					</tr>
+    					
+    					
+    					<tr>
+    						<td class="label">
+    							<label for="ReceiptNumber">Receipt Number</label>
+    						</td>
+    						<td class="value">
+    							<input type="text" name="ReceiptNumber" id="ReceiptNumber" 
+    							value="<?php echo $donationVO->getReceiptNumber() ?>" 
+    							class="input-text" />
+    						</td>
+    					</tr>
+    					
+    					
+    					<tr>
+    						<td class="label">
+    							<label for="DonatedAmount">Donated Amount</label>
+    						</td>
+    						<td class="value">
+    							<input type="text" name="DonatedAmount" id="DonatedAmount" 
+    							value="<?php echo $donationVO->getDonatedAmount() ?>" 
+    							class="input-text" />
+    						</td>
+    					</tr>
+    					
+    					<!--  
+    					<tr>
+    						<td class="label">
+    							<label for="DonationYear">Donation Year</label>
+    						</td>
+    						<td class="value">
+    							<input type="text" name="DonationYear" id="DonationYear" 
+    							value="<?php // echo $donationVO->getDonationYear() ?>" 
+    							class="input-text" />
+    						</td>
+    					</tr>
+    					-->
+    					
+    					
+    					<tr>
+    						<td class="label">
+    							<label for="DonationDate">Donation Date</label>
+    						</td>
+    						<td class="value">
+    							<input type="text" name="DonationDate" id="DonationDate" 
+    							value="<?php echo $donationVO->getDonationDate() ?>" 
+    							class="input-text" />
+    						</td>
+    					</tr>
+    					
+    					<!--  
+    					<tr>
+    						<td class="label">
+    							<label for="DonationTime">Donation Time</label>
+    						</td>
+    						<td class="value">
+    							<input type="text" name="DonationTime" id="DonationTime" 
+    							value="<?php // echo $donationVO->getDonationTime() ?>" 
+    							class="input-text" />
+    						</td>
+    					</tr>
+    					-->
+    					
+    					<tr>
+    						<td class="label">
+    							<label for="StatusID">Donation Status</label>
+    						</td>
+    						<td class="value">
+    							<select name="StatusID" id="StatusID">
+    								<option value="">--Select--</option>
+    								<?php foreach ($this->getDonationSatusOptions() as $statusID=>$statusName): ?>
+    									<?php $selected = '' ?>
+    									<?php if($donationVO->getID() == null && $statusID == Margshri_Common_VO_Donation_DonationStatus_DonationStatusVO::$PAID): ?>
+    									<?php $selected = 'Selected = "Selected"' ?>
+    									<?php else: ?>
+    											<?php if($donationVO->getStatusID() == $statusID): ?>
+    												<?php $selected = 'Selected = "Selected"' ?>
+    											<?php endif; ?>
+    									<?php endif; ?>
+    									<option value="<?php echo $statusID ?>" <?php echo $selected ?> ><?php echo $statusName ?></option>	
+    								<?php endforeach; ?>
+    							</select>
+    						</td>
+    					</tr>
+    					
+    					<tr>
+    						<td class="label">
+    							<label for="Address">Address</label>
+    						</td>
+    						
+							<td class="value">
+								<textarea rows="3" cols="10" name="Address" id="Address" style="height: 40px;" ><?php echo $donationVO->getAddress() ?></textarea>
+							</td>
+	   						
+    					</tr>
+    					
+    					<tr>
+    						<td class="label">
+    							<label for="Description">Description</label>
+    						</td>
+    						<td class="value">
+    							<textarea rows="3" cols="10" name="Description" id="Description" style="height: 40px;" ><?php echo $donationVO->getDescription() ?></textarea>
+    						</td>
+    					</tr>
+    					
+    					
+    					<!--  
+    					<tr>
+    						<td class="label">
+    							<label for="CityID">City<span class="required">*</span></label>
+    						</td>
+    						<td class="value">
+    							<select name="CityID" id="CityID" class="validate-select">
+    								<option value="">--Select--</option>
+    								<?php // foreach ($cityOptions as $cityID=>$cityDataObj): ?>
+    									<?php // if ($cityDataObj['DistrictID'] != 31) continue; ?>
+    									<option value="<?php // echo $cityID ?>" <?php // echo ($firmVO->getCityID() == $cityID) ? 'Selected = "Selected"' : '' ?> ><?php // echo $cityDataObj['Name'] ?></option>
+    								<?php // endforeach; ?>
+    							</select>
+    						</td>
+    					</tr>
+    					
+    					
+    					<tr>
+    						<td class="label">
+    							<label for="Area">Area</label>
+    						</td>
+    						<td class="value">
+    							<input type="text" name="Area" id="Area" 
+    							value="<?php // echo $userVO->getArea() ?>" 
+    							class="input-text" />
+    							
+    							
+    						</td>
+    					</tr>
+    					-->
+    				</tbody>
+    			</table>		
+    		  		 
+    			
+    		</div>
+    	</div>
+    </div>
+    
+    <input type="hidden" id="ID" name="ID" value="<?php echo ($donationVO->getID() != null && $donationVO->getID() != "") ? $donationVO->getID() : 0 ?>" />
+</form>
+
+<script type="text/javascript">
+
+function donationVO(){
+	this.ID = null;
+	this.DonorName = null;
+	this.ContactNumber = null;
+	this.Address = null;
+	this.UserID = null;
+	this.DonationTypeID = null;
+	this.ProgrammeID = null;
+	this.ReceiptBookID = null;
+	this.ReceiptNumber = null;
+	this.DonatedAmount = null;
+	this.DonationYear = null;
+	this.DonationDate = null;
+	this.DonationTime = null;
+	this.Description = null;
+	this.StatusID = null;
+}
+var newDonationDTO = new donationVO();
+
+var donationFormObj = new varienForm('<?php echo $HTMLFormID; ?>');
+var donationFormJS={
+
+		submit : function(){
+    		if(!donationFormJS.saveValidation()) return ;
+    			donationFormJS.saveAjax();
+		},
+
+		saveValidation : function(){
+			var errorMsg = '';
+			
+         	if(!(donationFormObj.validator && donationFormObj.validator.validate())){
+    	    	return false;
+	    	}
+         	
+         	// SET VOs
+         	newDonationDTO.ID = ($('ID').value).strip();
+         	newDonationDTO.DonorName = ($('DonorName').value).strip();
+         	newDonationDTO.ContactNumber = ($('ContactNumber').value).strip();
+         	newDonationDTO.Address = ($('Address').value).strip();
+         	
+         	newDonationDTO.UserID = ($('UserID').value).strip();
+         	newDonationDTO.DonationTypeID = ($('DonationTypeID').value).strip();
+         	newDonationDTO.ProgrammeID = ($('ProgrammeID').value).strip();
+         	newDonationDTO.ReceiptBookID = ($('ReceiptBookID').value).strip();
+         	newDonationDTO.ReceiptNumber = ($('ReceiptNumber').value).strip();
+         	newDonationDTO.DonatedAmount = ($('DonatedAmount').value).strip();
+         	// newDonationDTO.DonationYear = ($('DonationYear').value).strip();
+         	newDonationDTO.DonationDate = ($('DonationDate').value).strip();
+         	// newDonationDTO.DonationTime = ($('DonationTime').value).strip();
+         	newDonationDTO.Description = ($('Description').value).strip();
+         	newDonationDTO.StatusID = ($('StatusID').value).strip();
+         	   
+         	
+         	if(errorMsg != ''){
+            	alert(errorMsg);
+				return false;
+			}
+
+         	return true;
+		},	
+
+        saveAjax: function(){
+        	var URL = "<?php echo $this->getUrl('*/*/save')?>" ;
+		    var parameters= {"DonationDataObj": JSON.stringify(newDonationDTO,null) };
+		    var callBackMethod ="donationFormJS.responseSave";
+		    var callBackArgs =null;
+		    ajaxRequest.execute(	URL, parameters, callBackMethod , callBackArgs );
+		    return false;
+     	},
+
+	    responseSave : function(response,args) {
+	    	if(response.SuccessMessage !=null){
+	    		window.location.href = "<?php echo $this->getUrl('*/*/index')?>";
+			 	return;
+			}else if(response.ErrorMessage !=null){
+				alert(response.ErrorMessage);
+				return false;
+ 			}
+ 	 	}
+			
+}; 
+ 
+
+</script>    	 

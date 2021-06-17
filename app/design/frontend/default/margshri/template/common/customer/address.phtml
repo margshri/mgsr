@@ -1,0 +1,835 @@
+<?php
+$rAddressVO = $this->getRAddressVO();
+$oAddressVO = $this->getOAddressVO();
+$pAddressVO = $this->getPAddressVO();
+$bAddressVO = $this->getBAddressVO();
+$sAddressVO = $this->getSAddressVO();
+
+
+if($rAddressVO == null){
+	$rAddressVO = new Margshri_Common_VO_Customer_AddressVO();
+}
+
+if($oAddressVO == null){
+	$oAddressVO = new Margshri_Common_VO_Customer_AddressVO();
+}
+
+
+if($pAddressVO == null){
+	$pAddressVO = new Margshri_Common_VO_Customer_AddressVO();
+}	
+
+if($bAddressVO == null){
+	$bAddressVO = new Margshri_Common_VO_Customer_AddressVO();
+}
+
+if($sAddressVO == null){
+	$sAddressVO = new Margshri_Common_VO_Customer_AddressVO();
+}
+
+$rCountryOptions = $this->getCountryOptions();
+$rStateOptions   = $this->getStateOptions();
+$rDistrictOptions= $this->getDistrictOptions();
+$rCityOptions    = $this->getCityOptions();
+
+$oCountryOptions = $this->getCountryOptions();
+$oStateOptions   = $this->getStateOptions();
+$oDistrictOptions= $this->getDistrictOptions();
+$oCityOptions    = $this->getCityOptions();
+
+$pCountryOptions = $this->getCountryOptions();
+$pStateOptions   = $this->getStateOptions();
+$pDistrictOptions= $this->getDistrictOptions();
+$pCityOptions    = $this->getCityOptions();
+
+$bCountryOptions = $this->getCountryOptions();
+$bStateOptions   = $this->getStateOptions();
+$bDistrictOptions= $this->getDistrictOptions();
+$bCityOptions    = $this->getCityOptions();
+
+$sCountryOptions = $this->getCountryOptions();
+$sStateOptions   = $this->getStateOptions();
+$sDistrictOptions= $this->getDistrictOptions();
+$sCityOptions    = $this->getCityOptions();
+
+?>
+
+<script type="text/javascript">
+<!--
+
+var rStateList = '';
+var rStateOptions = '<?php echo (sizeof($rStateOptions) > 0) ?  json_encode($rStateOptions) : '' ?>';
+if(rStateOptions != ''){ 
+	rStateList = JSON.parse(rStateOptions);	
+}
+ 
+var rDistrictList = '';
+var rDistrictOptions = '<?php echo (sizeof($rDistrictOptions) > 0) ?  json_encode($rDistrictOptions) : '' ?>';
+if(rDistrictOptions != ''){ 
+	rDistrictList = JSON.parse(rDistrictOptions);	
+}
+ 
+var rCityList = '';
+var rCityOptions = '<?php echo (sizeof($rCityOptions) > 0) ?  json_encode($rCityOptions) : '' ?>';
+if(rCityOptions != ''){ 
+	rCityList = JSON.parse(rCityOptions);	
+}
+
+var RADDRESSVO  = '';
+var RADDRESSDTO = '<?php echo ($rAddressVO->getID() != null) ? json_encode($rAddressVO->getDataArray()) : '' ?>';
+if(RADDRESSDTO != ''){
+	RADDRESSVO = JSON.parse(RADDRESSDTO);
+}
+
+
+
+var oStateList = '';
+var oStateOptions = '<?php echo (sizeof($oStateOptions) > 0) ?  json_encode($oStateOptions) : '' ?>';
+if(oStateOptions != ''){ 
+	oStateList = JSON.parse(oStateOptions);	
+}
+ 
+var oDistrictList = '';
+var oDistrictOptions = '<?php echo (sizeof($oDistrictOptions) > 0) ?  json_encode($oDistrictOptions) : '' ?>';
+if(oDistrictOptions != ''){ 
+	oDistrictList = JSON.parse(oDistrictOptions);	
+}
+ 
+var oCityList = '';
+var oCityOptions = '<?php echo (sizeof($oCityOptions) > 0) ?  json_encode($oCityOptions) : '' ?>';
+if(oCityOptions != ''){ 
+	oCityList = JSON.parse(oCityOptions);	
+}
+
+var OADDRESSVO  = '';
+var OADDRESSDTO = '<?php echo ($oAddressVO->getID() != null) ? json_encode($oAddressVO->getDataArray()) : '' ?>';
+if(OADDRESSDTO != ''){
+	OADDRESSVO = JSON.parse(OADDRESSDTO);
+}
+
+
+var pStateList = '';
+var pStateOptions = '<?php echo (sizeof($pStateOptions) > 0) ?  json_encode($pStateOptions) : '' ?>';
+if(pStateOptions != ''){ 
+	pStateList = JSON.parse(pStateOptions);	
+}
+ 
+var pDistrictList = '';
+var pDistrictOptions = '<?php echo (sizeof($pDistrictOptions) > 0) ?  json_encode($pDistrictOptions) : '' ?>';
+if(pDistrictOptions != ''){ 
+	pDistrictList = JSON.parse(pDistrictOptions);	
+}
+ 
+var pCityList = '';
+var pCityOptions = '<?php echo (sizeof($pCityOptions) > 0) ?  json_encode($pCityOptions) : '' ?>';
+if(pCityOptions != ''){ 
+	pCityList = JSON.parse(pCityOptions);	
+}
+
+var PADDRESSVO  = '';
+var PADDRESSDTO = '<?php echo ($pAddressVO->getID() != null) ? json_encode($pAddressVO->getDataArray()) : '' ?>';
+if(PADDRESSDTO != ''){
+	PADDRESSVO = JSON.parse(PADDRESSDTO);
+}
+
+
+
+var bStateList = '';
+var bStateOptions = '<?php echo (sizeof($bStateOptions) > 0) ?  json_encode($bStateOptions) : '' ?>';
+if(bStateOptions != ''){ 
+	bStateList = JSON.parse(bStateOptions);	
+}
+ 
+var bDistrictList = '';
+var bDistrictOptions = '<?php echo (sizeof($bDistrictOptions) > 0) ?  json_encode($bDistrictOptions) : '' ?>';
+if(bDistrictOptions != ''){ 
+	bDistrictList = JSON.parse(bDistrictOptions);	
+}
+ 
+var bCityList = '';
+var bCityOptions = '<?php echo (sizeof($bCityOptions) > 0) ?  json_encode($bCityOptions) : '' ?>';
+if(bCityOptions != ''){ 
+	bCityList = JSON.parse(bCityOptions);	
+}
+
+var BADDRESSVO  = '';
+var BADDRESSDTO = '<?php echo ($bAddressVO->getID() != null) ? json_encode($bAddressVO->getDataArray()) : '' ?>';
+if(BADDRESSDTO != ''){
+	BADDRESSVO = JSON.parse(BADDRESSDTO);
+}
+
+
+
+var sStateList = '';
+var sStateOptions = '<?php echo (sizeof($sStateOptions) > 0) ?  json_encode($sStateOptions) : '' ?>';
+if(sStateOptions != ''){ 
+	sStateList = JSON.parse(sStateOptions);	
+}
+ 
+var sDistrictList = '';
+var sDistrictOptions = '<?php echo (sizeof($sDistrictOptions) > 0) ?  json_encode($sDistrictOptions) : '' ?>';
+if(sDistrictOptions != ''){ 
+	sDistrictList = JSON.parse(sDistrictOptions);	
+}
+ 
+var sCityList = '';
+var sCityOptions = '<?php echo (sizeof($sCityOptions) > 0) ?  json_encode($sCityOptions) : '' ?>';
+if(sCityOptions != ''){ 
+	sCityList = JSON.parse(sCityOptions);	
+}
+
+var SADDRESSVO  = '';
+var SADDRESSDTO = '<?php echo ($sAddressVO->getID() != null) ? json_encode($sAddressVO->getDataArray()) : '' ?>';
+if(SADDRESSDTO != ''){
+	SADDRESSVO = JSON.parse(SADDRESSDTO);
+}
+
+//-->
+</script>
+
+ 
+<div class="block block-list block-categories" style="margin: 0px 0px 0px 0px;">
+	<div id="block-categories" class="block-account-edit-title active" style="margin: 0px 0px 5px 0px;">
+		<strong><span><?php echo $this->__("Address Book") ?> </span> </strong> 
+	</div>
+</div>
+
+<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+<form action="<?php echo $this->getUrl("common/Frontend_Customer_Address/save") ?>" method="post" id="form-validate">
+    
+    <div class="fieldset">
+        <h2 class="legend"><?php echo $this->__('Residence Address') ?></h2>
+        <ul class="form-list">
+        
+        
+            <li class="wide">
+                <label for="RAddress" class="required"><em>*</em><?php echo $this->__('Address') ?></label>
+                <div class="input-box">
+                    <input type="text" id="RAddress" name="RAddress"  
+                     value="<?php echo $this->escapeHtml($rAddressVO->getAddress()) ?>"  class="input-text required-entry" />
+                </div>
+            </li>
+        
+            
+            <li class="fields">
+            	<div class="field">
+            	    <label for="RCountryID"><?php echo $this->__('Country') ?></label>
+                    <div class="input-box">
+                    	<?php foreach ($rCountryOptions as $key=>$value): ?>
+                    		<input type="text" id="RCountryID_Text" name="RCountryID_Text" value="<?php echo $value ?>" class="input-text" readonly = "readonly">
+                    		<input type="hidden" id="RCountryID" name="RCountryID"  value="<?php echo $key ?>" > 
+                    	<?php endforeach; ?>
+                    </div>
+                </div>
+
+                
+                <div class="field">
+                    <label for="RStateID" class="required"><em>*</em><?php echo $this->__('State') ?></label>
+                    <div class="input-box">
+                    	<select id="RStateID" name="RStateID" onchange="addressFormJS.setRDistrictList(this.value)" class="validate-select" >
+                           <option value=""><?php echo $this->__('Please Select State') ?></option>
+                           <?php foreach ($rStateOptions as $key=>$value): ?>
+								<option value="<?php echo $key ?>" <?php echo ($rAddressVO->getStateID() == $key ) ? 'selected="selected"' : '' ?> ><?php echo $value['Name'] ?></option>	
+							<?php endforeach; ?>
+                        </select>
+                    </div>
+                </div>
+            </li>
+            
+              
+            <li class="fields">
+            	<div class="field">
+                    <label for="RDistrictID" class="required"><em>*</em><?php echo $this->__('District') ?></label>
+                    <div class="input-box">
+                    	<select id="RDistrictID" name="RDistrictID" onchange="addressFormJS.setRCityList(this.value)" class="validate-select"  ></select>
+                    </div>
+                </div>
+                
+                
+                <div class="field">
+                    <label for="RCityID" class="required"><em>*</em><?php echo $this->__('City') ?></label>
+                    <div class="input-box">
+                    	<select id="RCityID" name="RCityID" class="validate-select" ></select>
+                    </div>
+                </div>
+                
+            </li>
+            
+            
+            <li class="fields">
+            	<div class="field">
+                    <label for="RPinCode"><?php echo $this->__('Zip/Postal Code') ?></label>
+                    <div class="input-box">
+                        <input type="text" id="RPinCode" name="RPinCode" value="<?php echo $this->escapeHtml($rAddressVO->getPinCode()) ?>" class="input-text" /> 
+                    </div>
+                </div>
+                
+                <div class="field">
+                    <label for="RMobileNumber"><?php echo $this->__('Mobile Number') ?></label>
+                    <div class="input-box">
+                        <input type="text" id="RMobileNumber" name="RMobileNumber"  
+                         value="<?php echo $this->escapeHtml($rAddressVO->getMobileNumber()) ?>" class="input-text" />
+                    </div>
+                </div>
+            </li>
+            
+        </ul>
+    </div>
+    
+    
+    <div class="fieldset">
+        <h2 class="legend"><?php echo $this->__('Office Address') ?></h2>
+        <ul class="form-list">
+        
+        
+            <li class="wide">
+                <label for="OAddress"><?php echo $this->__('Address') ?></label>
+                <div class="input-box">
+                    <input type="text" id="OAddress" name="OAddress"  
+                     value="<?php echo $this->escapeHtml($oAddressVO->getAddress()) ?>"  class="input-text" />
+                </div>
+            </li>
+        
+            
+            <li class="fields">
+            	<div class="field">
+            	    <label for="OCountryID"><?php echo $this->__('Country') ?></label>
+                    <div class="input-box">
+                    	<?php foreach ($oCountryOptions as $key=>$value): ?>
+                    		<input type="text" id="OCountryID_Text" name="OCountryID_Text" value="<?php echo $value ?>" class="input-text" readonly = "readonly">
+                    		<input type="hidden" id="OCountryID" name="OCountryID"  value="<?php echo $key ?>" > 
+                    	<?php endforeach; ?>
+                    </div>
+                </div>
+
+                
+                <div class="field">
+                    <label for="RStateID"><?php echo $this->__('State') ?></label>
+                    <div class="input-box">
+                    	<select id="OStateID" name="OStateID" onchange="addressFormJS.setODistrictList(this.value)" >
+                           <option value=""><?php echo $this->__('Please Select State') ?></option>
+                           <?php foreach ($oStateOptions as $key=>$value): ?>
+								<option value="<?php echo $key ?>" <?php echo ($oAddressVO->getStateID() == $key ) ? 'selected="selected"' : '' ?> ><?php echo $value['Name'] ?></option>	
+							<?php endforeach; ?>
+                        </select>
+                    </div>
+                </div>
+            </li>
+            
+              
+            <li class="fields">
+            	<div class="field">
+                    <label for="ODistrictID" ><?php echo $this->__('District') ?></label>
+                    <div class="input-box">
+                    	<select id="ODistrictID" name="ODistrictID" onchange="addressFormJS.setOCityList(this.value)" ></select>
+                    </div>
+                </div>
+                
+                
+                <div class="field">
+                    <label for="OCityID"><?php echo $this->__('City') ?></label>
+                    <div class="input-box">
+                    	<select id="OCityID" name="OCityID"></select>
+                    </div>
+                </div>
+                
+            </li>
+            
+            
+            <li class="fields">
+            	<div class="field">
+                    <label for="OPinCode"><?php echo $this->__('Zip/Postal Code') ?></label>
+                    <div class="input-box">
+                        <input type="text" id="OPinCode" name="OPinCode" value="<?php echo $this->escapeHtml($oAddressVO->getPinCode()) ?>" class="input-text" /> 
+                    </div>
+                </div>
+                
+                <div class="field">
+                    <label for="OMobileNumber"><?php echo $this->__('Mobile Number') ?></label>
+                    <div class="input-box">
+                        <input type="text" id="OMobileNumber" name="OMobileNumber"  
+                         value="<?php echo $this->escapeHtml($oAddressVO->getMobileNumber()) ?>" class="input-text" />
+                    </div>
+                </div>
+            </li>
+            
+        </ul>
+    </div>
+    
+    
+    <div class="fieldset">
+        <h2 class="legend"><?php echo $this->__('Permanent Address') ?></h2>
+        <ul class="form-list">
+        
+        
+            <li class="wide">
+                <label for="PAddress" class="required"><em>*</em><?php echo $this->__('Address') ?></label>
+                <div class="input-box">
+                    <input type="text" id="PAddress" name="PAddress"  
+                     value="<?php echo $this->escapeHtml($pAddressVO->getAddress()) ?>"  class="input-text" />
+                </div>
+            </li>
+        
+            
+            <li class="fields">
+            	<div class="field">
+            	    <label for="PCountryID"><?php echo $this->__('Country') ?></label>
+                    <div class="input-box">
+                    	<?php foreach ($pCountryOptions as $key=>$value): ?>
+                    		<input type="text" id="PCountryID_Text" name="PCountryID_Text" value="<?php echo $value ?>" class="input-text" readonly = "readonly">
+                    		<input type="hidden" id="PCountryID" name="PCountryID"  value="<?php echo $key ?>" > 
+                    	<?php endforeach; ?>
+                    </div>
+                </div>
+
+                
+                <div class="field">
+                    <label for="PStateID" ><?php echo $this->__('State') ?></label>
+                    <div class="input-box">
+                    	<select id="PStateID" name="PStateID" class="validate-select" onchange="addressFormJS.setPDistrictList(this.value)" >
+                           <option value=""><?php echo $this->__('Please Select State') ?></option>
+                           <?php foreach ($pStateOptions as $key=>$value): ?>
+								<option value="<?php echo $key ?>" <?php echo ($pAddressVO->getStateID() == $key ) ? 'selected="selected"' : '' ?> ><?php echo $value['Name'] ?></option>	
+							<?php endforeach; ?>
+                        </select>
+                    </div>
+                </div>
+            </li>
+            
+              
+            <li class="fields">
+            	<div class="field">
+                    <label for="PDistrictID" class="required"><em>*</em><?php echo $this->__('District') ?></label>
+                    <div class="input-box">
+                    	<select id="PDistrictID" name="PDistrictID" onchange="addressFormJS.setPCityList(this.value)" class="validate-select" ></select>
+                    </div>
+                </div>
+                
+                
+                <div class="field">
+                    <label for="PCityID" class="required"><em>*</em><?php echo $this->__('City') ?></label>
+                    <div class="input-box">
+                    	<select id="PCityID" name="PCityID"  onchange="addressFormJS.setCityName(this.value)"   class="validate-select" ></select>
+                    </div>
+                </div>
+                
+            </li>
+            
+            
+            <li class="fields">
+            	<div class="field">
+                    <label for="PPinCode"><?php echo $this->__('Zip/Postal Code') ?></label>
+                    <div class="input-box">
+                        <input type="text" id="PPinCode" name="PPinCode" value="<?php echo $this->escapeHtml($pAddressVO->getPinCode()) ?>" class="input-text" /> 
+                    </div>
+                </div>
+                
+                <div class="field">
+                    <label for="PMobileNumber"><?php echo $this->__('Mobile Number') ?></label>
+                    <div class="input-box">
+                        <input type="text" id="PMobileNumber" name="PMobileNumber"  
+                         value="<?php echo $this->escapeHtml($pAddressVO->getMobileNumber()) ?>" class="input-text" />
+                    </div>
+                </div>
+            </li>
+            
+        </ul>
+    </div>
+    
+    
+    
+    
+    
+    <!-- 
+    <div class="fieldset">
+        <h2 class="legend"><?php echo $this->__('Billing Address') ?></h2>
+        <ul class="form-list">
+        
+        
+            <li class="wide">
+                <label for="BAddress"><?php echo $this->__('Address') ?></label>
+                <div class="input-box">
+                    <input type="text" id="BAddress" name="BAddress"  
+                     value="<?php echo $this->escapeHtml($bAddressVO->getAddress()) ?>"  class="input-text" />
+                </div>
+            </li>
+        
+            
+            <li class="fields">
+            	<div class="field">
+            	    <label for="BCountryID"><?php echo $this->__('Country') ?></label>
+                    <div class="input-box">
+                    	<?php foreach ($bCountryOptions as $key=>$value): ?>
+                    		<input type="text" id="BCountryID_Text" name="BCountryID_Text" value="<?php echo $value ?>" class="input-text" readonly = "readonly">
+                    		<input type="hidden" id="BCountryID" name="BCountryID"  value="<?php echo $key ?>" > 
+                    	<?php endforeach; ?>
+                    </div>
+                </div>
+
+                
+                <div class="field">
+                    <label for="BStateID"><?php echo $this->__('State') ?></label>
+                    <div class="input-box">
+                    	<select id="BStateID" name="BStateID" onchange="addressFormJS.setBDistrictList(this.value)" >
+                           <option value=""><?php echo $this->__('Please Select State') ?></option>
+                           <?php foreach ($bStateOptions as $key=>$value): ?>
+								<option value="<?php echo $key ?>" <?php echo ($bAddressVO->getStatusID() == $key ) ? 'selected="selected"' : '' ?> ><?php echo $value['Name'] ?></option>	
+							<?php endforeach; ?>
+                        </select>
+                    </div>
+                </div>
+            </li>
+            
+              
+            <li class="fields">
+            	<div class="field">
+                    <label for="BDistrictID" ><?php echo $this->__('District') ?></label>
+                    <div class="input-box">
+                    	<select id="BDistrictID" name="BDistrictID" onchange="addressFormJS.setBCityList(this.value)" ></select>
+                    </div>
+                </div>
+                
+                
+                <div class="field">
+                    <label for="BCityID"><?php echo $this->__('City') ?></label>
+                    <div class="input-box">
+                    	<select id="BCityID" name="BCityID"></select>
+                    </div>
+                </div>
+                
+            </li>
+            
+            
+            <li class="fields">
+            	<div class="field">
+                    <label for="BPinCode"><?php echo $this->__('Zip/Postal Code') ?></label>
+                    <div class="input-box">
+                        <input type="text" id="BPinCode" name="BPinCode" value="<?php echo $this->escapeHtml($bAddressVO->getPinCode()) ?>" class="input-text" /> 
+                    </div>
+                </div>
+                
+                <div class="field">
+                    <label for="BMobileNumber"><?php echo $this->__('Mobile Number') ?></label>
+                    <div class="input-box">
+                        <input type="text" id="BMobileNumber" name="BMobileNumber"  
+                         value="<?php echo $this->escapeHtml($bAddressVO->getMobileNumber()) ?>" class="input-text" />
+                    </div>
+                </div>
+            </li>
+            
+        </ul>
+    </div>
+    
+    <div class="fieldset">
+        <h2 class="legend"><?php echo $this->__('Shipping Address') ?></h2>
+        <ul class="form-list">
+        
+        
+            <li class="wide">
+                <label for="SAddress"><?php echo $this->__('Address') ?></label>
+                <div class="input-box">
+                    <input type="text" id="SAddress" name="SAddress"  
+                     value="<?php echo $this->escapeHtml($sAddressVO->getAddress()) ?>"  class="input-text" />
+                </div>
+            </li>
+        
+            
+            <li class="fields">
+            	<div class="field">
+            	    <label for="SCountryID"><?php echo $this->__('Country') ?></label>
+                    <div class="input-box">
+                    	<?php foreach ($sCountryOptions as $key=>$value): ?>
+                    		<input type="text" id="SCountryID_Text" name="SCountryID_Text" value="<?php echo $value ?>" class="input-text" readonly = "readonly">
+                    		<input type="hidden" id="SCountryID" name="SCountryID"  value="<?php echo $key ?>" > 
+                    	<?php endforeach; ?>
+                    </div>
+                </div>
+
+                
+                <div class="field">
+                    <label for="SStateID"><?php echo $this->__('State') ?></label>
+                    <div class="input-box">
+                    	<select id="SStateID" name="SStateID" onchange="addressFormJS.setSDistrictList(this.value)" >
+                           <option value=""><?php echo $this->__('Please Select State') ?></option>
+                           <?php foreach ($sStateOptions as $key=>$value): ?>
+								<option value="<?php echo $key ?>" <?php echo ($sAddressVO->getStatusID() == $key ) ? 'selected="selected"' : '' ?> ><?php echo $value['Name'] ?></option>	
+							<?php endforeach; ?>
+                        </select>
+                    </div>
+                </div>
+            </li>
+            
+              
+            <li class="fields">
+            	<div class="field">
+                    <label for="SDistrictID" ><?php echo $this->__('District') ?></label>
+                    <div class="input-box">
+                    	<select id="SDistrictID" name="SDistrictID" onchange="addressFormJS.setSCityList(this.value)" ></select>
+                    </div>
+                </div>
+                
+                
+                <div class="field">
+                    <label for="SCityID"><?php echo $this->__('City') ?></label>
+                    <div class="input-box">
+                    	<select id="SCityID" name="SCityID"></select>
+                    </div>
+                </div>
+                
+            </li>
+            
+            
+            <li class="fields">
+            	<div class="field">
+                    <label for="SPinCode"><?php echo $this->__('Zip/Postal Code') ?></label>
+                    <div class="input-box">
+                        <input type="text" id="SPinCode" name="SPinCode" value="<?php echo $this->escapeHtml($sAddressVO->getPinCode()) ?>" class="input-text" /> 
+                    </div>
+                </div>
+                
+                <div class="field">
+                    <label for="SMobileNumber"><?php echo $this->__('Mobile Number') ?></label>
+                    <div class="input-box">
+                        <input type="text" id="SMobileNumber" name="SMobileNumber"  
+                         value="<?php echo $this->escapeHtml($sAddressVO->getMobileNumber()) ?>" class="input-text" />
+                    </div>
+                </div>
+            </li>
+            
+        </ul>
+    </div>
+    -->
+        
+    <div class="buttons-set">
+        <p class="required"><?php echo $this->__('* Required Fields') ?></p>
+        <p class="back-link"><a href="<?php echo $this->escapeUrl($this->getBackUrl()) ?>"><small>&laquo; </small><?php echo $this->__('Back') ?></a></p>
+        <button type="submit" title="<?php echo $this->__('Save Address') ?>" class="button"><span><span><?php echo $this->__('Save Address') ?></span></span></button>
+        
+        <input type="hidden" id="PID" name="PID" value="<?php echo ($pAddressVO->getID() != null) ? $pAddressVO->getID() : "0" ?>" />
+        <input type="hidden" id="RID" name="RID" value="<?php echo ($rAddressVO->getID() != null) ? $rAddressVO->getID() : "0" ?>" />
+        <input type="hidden" id="OID" name="OID" value="<?php echo ($oAddressVO->getID() != null) ? $oAddressVO->getID() : "0" ?>" />
+        <input type="hidden" id="BID" name="BID" value="<?php echo ($bAddressVO->getID() != null) ? $bAddressVO->getID() : "0" ?>" />
+        <input type="hidden" id="SID" name="SID" value="<?php echo ($sAddressVO->getID() != null) ? $sAddressVO->getID() : "0" ?>" />
+    </div>
+</form>
+<script type="text/javascript">
+//<![CDATA[
+    var dataForm = new VarienForm('form-validate', true);
+    
+    var addressFormJS = {
+
+			setRDistrictList: function(rStateID){
+    			
+    			var innerHTML = '<option value="">--Select--</option>';
+    			for(var key in rDistrictList){
+    				if(rDistrictList[key].StateID == rStateID){
+    					if(key == RADDRESSVO.DistrictID)
+    						innerHTML += '<option value="'+key+'" selected = "selected">'+rDistrictList[key].Name+'</option>';
+    					else
+    						innerHTML += '<option value="'+key+'">'+rDistrictList[key].Name+'</option>';	
+    				}
+    			}
+    			UI.elementDisabled($('RDistrictID'), false);
+    			$('RDistrictID').innerHTML = innerHTML;
+    			return; 
+    		},
+
+			setODistrictList: function(oStateID){
+    			
+    			var innerHTML = '<option value="">--Select--</option>';
+    			for(var key in oDistrictList){
+    				if(oDistrictList[key].StateID == oStateID){
+    					if(key == OADDRESSVO.DistrictID)
+    						innerHTML += '<option value="'+key+'" selected = "selected">'+oDistrictList[key].Name+'</option>';
+    					else
+    						innerHTML += '<option value="'+key+'">'+oDistrictList[key].Name+'</option>';	
+    				}
+    			}
+    			UI.elementDisabled($('ODistrictID'), false);
+    			$('ODistrictID').innerHTML = innerHTML;
+    			return; 
+    		},
+    	    
+    		setPDistrictList: function(pStateID){
+    			
+    			var innerHTML = '<option value="">--Select--</option>';
+    			for(var key in pDistrictList){
+    				if(pDistrictList[key].StateID == pStateID){
+    					if(key == PADDRESSVO.DistrictID)
+    						innerHTML += '<option value="'+key+'" selected = "selected">'+pDistrictList[key].Name+'</option>';
+    					else
+    						innerHTML += '<option value="'+key+'">'+pDistrictList[key].Name+'</option>';	
+    				}
+    			}
+    			UI.elementDisabled($('PDistrictID'), false);
+    			$('PDistrictID').innerHTML = innerHTML;
+    			return; 
+    		},
+
+    		
+
+			setBDistrictList: function(bStateID){
+    			
+    			var innerHTML = '<option value="">--Select--</option>';
+    			for(var key in bDistrictList){
+    				if(bDistrictList[key].StateID == bStateID){
+    					if(key == BADDRESSVO.DistrictID)
+    						innerHTML += '<option value="'+key+'" selected = "selected">'+bDistrictList[key].Name+'</option>';
+    					else
+    						innerHTML += '<option value="'+key+'">'+bDistrictList[key].Name+'</option>';	
+    				}
+    			}
+    			UI.elementDisabled($('BDistrictID'), false);
+    			$('BDistrictID').innerHTML = innerHTML;
+    			return; 
+    		},
+
+			setSDistrictList: function(sStateID){
+    			
+    			var innerHTML = '<option value="">--Select--</option>';
+    			for(var key in sDistrictList){
+    				if(sDistrictList[key].StateID == sStateID){
+    					if(key == SADDRESSVO.DistrictID)
+    						innerHTML += '<option value="'+key+'" selected = "selected">'+sDistrictList[key].Name+'</option>';
+    					else
+    						innerHTML += '<option value="'+key+'">'+sDistrictList[key].Name+'</option>';	
+    				}
+    			}
+    			UI.elementDisabled($('SDistrictID'), false);
+    			$('SDistrictID').innerHTML = innerHTML;
+    			return; 
+    		},
+    		
+
+			setRCityList: function(rDistrictID){
+    			
+    			var innerHTML = '<option value="">--Select--</option>';
+    			for(var key in rCityList){
+    				if(rCityList[key].DistrictID == rDistrictID){
+    					if(key == RADDRESSVO.CityID)
+    						innerHTML += '<option value="'+key+'" selected = "selected">'+rCityList[key].Name+'</option>';
+    					else		
+    						innerHTML += '<option value="'+key+'">'+rCityList[key].Name+'</option>';
+    				}
+    			}
+    			UI.elementDisabled($('RCityID'), false);
+    			$('RCityID').innerHTML = innerHTML;
+    			return; 
+    		},
+
+
+			setOCityList: function(oDistrictID){
+    			
+    			var innerHTML = '<option value="">--Select--</option>';
+    			for(var key in oCityList){
+    				if(oCityList[key].DistrictID == oDistrictID){
+    					if(key == OADDRESSVO.CityID)
+    						innerHTML += '<option value="'+key+'" selected = "selected">'+oCityList[key].Name+'</option>';
+    					else		
+    						innerHTML += '<option value="'+key+'">'+oCityList[key].Name+'</option>';
+    				}
+    			}
+    			UI.elementDisabled($('OCityID'), false);
+    			$('OCityID').innerHTML = innerHTML;
+    			return; 
+    		},
+    		
+    		setPCityList: function(pDistrictID){
+    			
+    			var innerHTML = '<option value="">--Select--</option>';
+    			for(var key in pCityList){
+    				if(pCityList[key].DistrictID == pDistrictID){
+    					if(key == PADDRESSVO.CityID)
+    						innerHTML += '<option value="'+key+'" selected = "selected">'+pCityList[key].Name+'</option>';
+    					else		
+    						innerHTML += '<option value="'+key+'">'+pCityList[key].Name+'</option>';
+    				}
+    			}
+    			UI.elementDisabled($('PCityID'), false);
+    			$('PCityID').innerHTML = innerHTML;
+    			return; 
+    		},
+
+
+			
+
+
+			setBCityList: function(bDistrictID){
+    			
+    			var innerHTML = '<option value="">--Select--</option>';
+    			for(var key in bCityList){
+    				if(bCityList[key].DistrictID == bDistrictID){
+    					if(key == BADDRESSVO.CityID)
+    						innerHTML += '<option value="'+key+'" selected = "selected">'+bCityList[key].Name+'</option>';
+    					else		
+    						innerHTML += '<option value="'+key+'">'+bCityList[key].Name+'</option>';
+    				}
+    			}
+    			UI.elementDisabled($('BCityID'), false);
+    			$('BCityID').innerHTML = innerHTML;
+    			return; 
+    		},
+
+
+			setSCityList: function(sDistrictID){
+    			
+    			var innerHTML = '<option value="">--Select--</option>';
+    			for(var key in sCityList){
+    				if(sCityList[key].DistrictID == sDistrictID){
+    					if(key == SADDRESSVO.CityID)
+    						innerHTML += '<option value="'+key+'" selected = "selected">'+sCityList[key].Name+'</option>';
+    					else		
+    						innerHTML += '<option value="'+key+'">'+sCityList[key].Name+'</option>';
+    				}
+    			}
+    			UI.elementDisabled($('SCityID'), false);
+    			$('SCityID').innerHTML = innerHTML;
+    			return; 
+    		},
+
+    		defaultSetting: function(){
+
+    			UI.elementDisabled($('RDistrictID'), true);
+    			UI.elementDisabled($('RCityID'), true);
+
+    			UI.elementDisabled($('ODistrictID'), true);
+    			UI.elementDisabled($('OCityID'), true);
+    			
+        		
+    			UI.elementDisabled($('PDistrictID'), true);
+    			UI.elementDisabled($('PCityID'), true);
+
+
+    			UI.elementDisabled($('BDistrictID'), true);
+    			UI.elementDisabled($('BCityID'), true);
+
+    			UI.elementDisabled($('SDistrictID'), true);
+    			UI.elementDisabled($('SCityID'), true);
+    		}
+    		 
+        };
+
+ 	// FOR EDIT 
+    if(RADDRESSVO != ''){
+
+    	addressFormJS.setRDistrictList(RADDRESSVO.StateID);
+    	addressFormJS.setRCityList(RADDRESSVO.DistrictID);
+
+    	addressFormJS.setODistrictList(OADDRESSVO.StateID);
+    	addressFormJS.setOCityList(OADDRESSVO.DistrictID);
+    	
+    	addressFormJS.setPDistrictList(PADDRESSVO.StateID);
+    	addressFormJS.setPCityList(PADDRESSVO.DistrictID);
+
+    	addressFormJS.setBDistrictList(BADDRESSVO.StateID);
+    	addressFormJS.setBCityList(BADDRESSVO.DistrictID);
+
+    	addressFormJS.setSDistrictList(SADDRESSVO.StateID);
+    	addressFormJS.setSCityList(SADDRESSVO.DistrictID);		
+    }else{
+    	addressFormJS.defaultSetting();
+    }
+    
+    
+//]]>
+</script>

@@ -1,0 +1,132 @@
+<?php
+	$HTMLFormID = $this->getHTMLFormID();
+?>
+<div class="content-header">
+    <table cellspacing="0">
+        <tr>
+
+            <td style="width:50%;"><h3 class="icon-head head-permissions-role"><?php echo $this->__('Send Legal Email') ?></h3></td>
+            <td class="form-buttons">
+                <?php echo $this->getBackButtonHtml() ?>
+                <?php echo $this->getResetButtonHtml() ?>
+                <?php echo $this->getSaveButtonHtml() ?>
+            </td>
+        </tr>
+    </table>
+</div>
+<form action="<?php echo $this->getUrl('*/*/sendEmail') ?>" method="post" id="<?php echo $HTMLFormID;?>">
+    <?php echo $this->getBlockHtml('formkey')?>
+    <?php echo $this->getEntropy(); ?>
+</form>
+ 
+
+
+<script type="text/javascript">
+
+function sendEmailVO(){
+	this.EmailTemplateID = null;
+	this.EmailConfigID = null;
+	this.ReceiverEmail = null;
+	this.PNRNumber = null;
+	this.PaymentLink = null;
+	this.CollectibleAmount = null;
+}
+var newSendEmailDTO = new sendEmailVO();
+
+
+var newSendEmailDTO = new sendEmailVO();
+var formObj = new varienForm('<?php echo $HTMLFormID; ?>');
+var formJS  = {
+
+		submit : function(){
+    		if(  !formJS.saveValidation() ) return ;
+				formJS.saveAjax();
+		},
+
+		saveValidation : function(){
+			var errorMsg = '';
+         	if( !(formObj.validator && formObj.validator.validate())  ){
+    	    	return false;
+	    	}
+
+         	newSendEmailDTO.EmailConfigID = $('EmailConfigID').value.strip();
+         	newSendEmailDTO.EmailTemplateID = $('EmailTemplateID').value.strip();
+			newSendEmailDTO.ReceiverEmail = $('ReceiverEmail').value.strip();
+			newSendEmailDTO.PNRNumber = $('PNRNumber').value.strip();
+			newSendEmailDTO.PaymentLink = $('PaymentLink').value.strip();
+			newSendEmailDTO.CollectibleAmount = $('CollectibleAmount').value.strip();
+
+			
+			if(newSendEmailDTO.EmailConfigID == null || newSendEmailDTO.EmailConfigID == ''){
+				errorMsg += "=> Please Select Sender Email ! \n";
+			}
+			
+			if(newSendEmailDTO.EmailTemplateID == null || newSendEmailDTO.EmailTemplateID == ''){
+				errorMsg += "=> Please Select Email Template ! \n";
+			}
+
+			if(newSendEmailDTO.PNRNumber == null || newSendEmailDTO.PNRNumber == ''){
+				errorMsg += "=> Please Enter PNR Number ! \n";
+			}
+
+			if(newSendEmailDTO.PaymentLink == null || newSendEmailDTO.PaymentLink == ''){
+				errorMsg += "=> Please Enter Payment Link ! \n";
+			}
+
+			if(newSendEmailDTO.CollectibleAmount == null || newSendEmailDTO.CollectibleAmount == ''){
+				errorMsg += "=> Please Enter Collectible Amount ! \n";
+			}
+
+			if(newSendEmailDTO.ReceiverEmail == null || newSendEmailDTO.ReceiverEmail == ''){
+				errorMsg += "=> Please Enter Customer Email ! \n";
+			} 
+
+			if(newSendEmailDTO.PNRNumber.length != 10){
+				errorMsg += "=> Please Enter Valid PNR Number ! \n";
+			}
+			
+			if(errorMsg != ''){
+            	alert(errorMsg);
+				return false;
+			}
+			
+			// DISABLE SEND BUTTON FOR PREVENT DUPLICATE ENTRY
+			$('SendLegalEmailSendButtonID').style.disabled = true;
+			
+			return true;
+		},
+
+
+		saveAjax: function(){
+        	var URL = "<?php echo $this->getUrl('*/*/sendEmail')?>" ;
+		    var parameters= {"SendEmailDataObj": JSON.stringify(newSendEmailDTO,null) };
+		    var callBackMethod ="formJS.responseSave";
+		    var callBackArgs =null;
+
+		    if(confirm("Are you sure you want to send email to "+newSendEmailDTO.ReceiverEmail+"?") == true){
+		    	ajaxRequest.execute(URL, parameters, callBackMethod , callBackArgs );
+		    }else{
+				return false;
+			}
+		    
+     	},
+
+     	
+	    responseSave : function(response,args) {
+	    	$('SendLegalEmailSendButtonID').style.disabled = false;
+	     	var msg = new Array();
+        	if(response.SuccessMessage !=null){
+			 	msg[0] = response.SuccessMessage;
+			 	MESSAGEHANDLER.successMessagePublish(msg, $('messages'));
+			 	return;
+			}else if(response.ErrorMessage !=null){
+				msg[0] = response.ErrorMessage;
+				MESSAGEHANDLER.errorMessagePublish(msg, $('messages'));
+    			return false;
+ 			}
+ 	 	}
+		
+		 
+};
+ 
+</script>

@@ -1,0 +1,421 @@
+<?php
+$registrationVO = $this->getRegistrationVO();
+if($registrationVO == null){
+	$registrationVO = new Margshri_MedicalCamp_VO_RegistrationVO();
+}
+$HTMLFormID = $this->getHTMLFormID();
+?>
+
+<script type="text/javascript">
+
+var registrationDataStr = '<?php echo (sizeof($registrationVO->getBaseDataArray()) > 0) ? json_encode($registrationVO->getBaseDataArray()) : "" ?>';
+var registrationDataObj = null;
+if(registrationDataStr != ''){
+	registrationDataObj = JSON.parse(registrationDataStr); 		
+}
+
+</script>
+
+<style>
+<!--
+.requiredField:after {content:"*";color:red;}  
+-->
+</style>
+<!--  
+<div class="jumbotron text-center" style="margin-bottom:10px !important;">
+  <h5>शाक्य महासभा समिति गंगानगर</h5>
+  <p>प्रतिभा सम्मान समारोह</p> 
+</div>
+-->
+
+<div class="card bg-light text-dark" style="margin-bottom: 10px !important;">
+	<div class="card-body" style="padding:0px !important;">
+		<table class="table" style="margin-bottom: 0px !important;">
+			<tbody>
+				<tr>
+					<td style="border-top:none; width: 20% !important;" class="text-left">
+						  <img class="rounded-circle" width="100px" height="100px" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN) . 'frontend/default/default/images/buddhaG.png'  ?>" alt="buddhaG image"  />
+					</td>
+					
+					<td style="border-top:none; vertical-align: middle; " class="text-center">
+						<h5>शाक्य महासभा समिति गंगानगर</h5>
+  						<p>प्रतिभा सम्मान समारोह</p>
+					</td>
+					<!--  
+					<td style="border-top:none; width: 20% !important;" class="text-left"></td>
+					
+					-->
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+
+
+<div class="card bg-light text-dark" style="margin-bottom: 10px !important;">
+	<div class="card-body" style="padding:0px !important;">
+		<table class="table" style="margin-bottom: 0px !important;">
+			<tbody>
+				<tr>
+					<td style="border-top:none; width: 20% !important;" class="text-left">
+						<!--  
+						  <img class="rounded-circle" width="50px" height="50px" src="<?php //echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . 'web_portal/frontend/bid/backButton.png'  ?>" alt="back button image" onclick="loginFormJS.redirect('<?php echo $this->getUrl("") ?>')" />
+						 --> 
+					</td>
+					
+					<td style="border-top:none; vertical-align: middle; " class="text-center">
+						<span style="font-weight:bold;">Registration Form</span>
+					</td>
+					
+					<td style="border-top:none; width: 20% !important;" class="text-left"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+
+
+<form action="<?php echo $this->getUrl('medicalcamp/Registration_Registration/save') ?>" method="post" id="<?php echo $HTMLFormID ?>" enctype="multipart/form-data" >
+	<?php echo $this->getBlockHtml('formkey')?>
+	
+    <div class="container">
+      <div class="row">
+        
+        <div class="col-sm-6">
+            <div class="card-deck">
+        		<div class="card bg-light text-dark">
+        			<div class="card-body">
+              
+                      <div class="form-group">          
+                        <label for="Name" class="requiredField">Student Name</label>
+                        <input type="text" class="form-control" name="Name" id="Name" value="<?php echo $registrationVO->getName() ?>" />
+                      </div>
+                      
+                      <div class="form-group">          
+                        <label for="FatherName" class="requiredField">Father Name</label>
+                        <input type="text" class="form-control" name="FatherName" id="FatherName" value="<?php echo $registrationVO->getFatherName() ?>" />
+                      </div>
+                      
+                      <!--  
+                      <div class="form-group">          
+                        <label for="MotherName" class="requiredField">Mother Name</label>
+                        <input type="text" class="form-control" name="MotherName" id="MotherName" value="<?php // echo $registrationVO->getMotherName() ?>" />
+                      </div>
+                      
+                      <div class="form-group">          
+                        <label for="Age" class="requiredField">Age</label>
+                        <input type="text" class="form-control" name="Age" id="Age" maxlength="2" value="<?php // echo $registrationVO->getAge() ?>" />
+                      </div>
+                      
+                      
+                      <div class="form-group">          
+                        <label for="DOB" class="requiredField">Date Of Birth</label>
+                        <input type="text" class="form-control" name="DOB" id="DOB" maxlength="2" value="<?php // echo $registrationVO->getDOB() ?>" />
+                        <img src="<?php  // echo Mage::getDesign()->getSkinUrl('images/grid-cal.gif') ?>" alt="" class="v-middle" id="DOBIMG" title="Select Date" style="" />
+                        
+                        <script type="text/javascript">
+                                 //<![CDATA[
+                                 Calendar.setup({
+                                      inputField: "DOB",
+                                      ifFormat: "%Y-%m-%d",
+                                      //showsTime: 12,
+                                      button: "DOBIMG",
+                                      align: "Bl",
+                                      singleClick : true
+                                 });
+                                 //]]>
+                        </script>
+                      </div>
+                      -->  
+                    
+                    
+                      <div class="form-group">          
+                        <label for="MobileNumber" class="requiredField">Mobile Number</label>
+                        <input type="text" class="form-control" name="MobileNumber" id="MobileNumber" maxlength="10" pattern="[0-9]*" inputmode="numeric" value="<?php echo $registrationVO->getMobileNumber() ?>" placeholder="10 digit only (without +91 or 0)" />
+                      </div>
+                      
+                      <div class="form-group">          
+                        <label for="Class" class="requiredField">Class</label>
+                        <select class="form-control" id="ClassID" name="ClassID" onchange="return studentFormJS.showClassBox()">
+                            <option value="" >--Select--</option>
+                    		<?php foreach ($this->getClassOptions() as $key=>$value): ?>
+            	        		<option value="<?php echo $key ?>" <?php echo ($key == $registrationVO->getClassID()) ? "selected='selected'" : "" ?>><?php echo $value ?></option>
+            	        	<?php endforeach; ?>
+                        </select>
+                      </div>
+                      
+                      <div class="form-group" id="ClassBox" style="display: none;">          
+                        <label for="Qualification" class="requiredField">Class Value</label>
+                        <input type="text" class="form-control" name="Qualification" id="Qualification" value="<?php echo $registrationVO->getQualification() ?>" />
+                      </div>
+                      
+                      <div class="form-group">          
+                        <label for="City" class="requiredField">City</label>
+                        <select class="form-control" id="CityID" name="CityID">
+                            <option value="" >--Select--</option>
+                    		<?php foreach ($this->getCityOptions() as $key=>$value): ?>
+            	        		<option value="<?php echo $key ?>" <?php echo ($key == $registrationVO->getCityID()) ? "selected='selected'" : "" ?>><?php echo $value ?></option>
+            	        	<?php endforeach; ?>
+                        </select>
+                        
+                        <input type="hidden" name="CountryID" id="CountryID" value="1" />
+                        <input type="hidden" name="StateID" id="StateID" value="29" />
+                        <input type="hidden" name="DistrictID" id="DistrictID" value="31" />
+                      </div>
+                      
+                      
+                      <div class="form-group">          
+                        <label for="Address" class="requiredField">Address</label>
+                        <textarea class="form-control" name="Address" id="Address" rows="3"><?php echo $registrationVO->getAddress() ?></textarea>
+                      </div>
+                       
+              		</div>
+              		
+        		</div>
+    		</div>
+        </div>
+        
+        
+        <div class="col-sm-6">
+        	<div class="form-group">
+                <div class="card">
+                	<div class="card-header requiredField">Student Image</div>
+                    <div class="card-body">
+                    	<img id="StudentImgPreview" alt="" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . $registrationVO->getImageURL() ?>" class="img-thumbnail" style="min-width:120px; min-height: 150px; max-width:120px !important; max-height: 150px !important;"  />
+    				    <input type="file" id="StudentImgFile" name="StudentImgFile" onchange="return studentFormJS.getStudentImgPath()" style="display: none;" />
+    				    <input type="hidden" id="StudentImgURL" name="StudentImgURL" value="" />
+                    </div>
+                    <div class="card-footer">
+                		<div class="col-xs-9 col-xs-offset-3">
+                            <button type="button" class="btn btn-info" id="StudentImgBrowse" name="StudentImgBrowse" value="Submit" onclick="return studentFormJS.browseStudentImgFile()" >Browse</button>
+                        </div>    
+                    </div>
+                </div>
+			</div>
+			<div class="form-group">
+              	<div class="card">
+                	<div class="card-header requiredField">Document Image</div>
+                    <div class="card-body">
+                    	<img id="QualificationImgPreview" alt="" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . $registrationVO->getQualificationURL() ?>" class="img-thumbnail" style="min-width:120px; min-height: 150px; max-width:120px !important; max-height: 150px !important;" />
+    				    <input type="file" id="QualificationImgFile" name="QualificationImgFile" onchange="return studentFormJS.getQualificationImgPath()" style="display: none;" />
+    				    <input type="hidden" id="QualificationURL" name="QualificationImgURL" value="" />
+                    </div>
+                    <div class="card-footer">
+                		<div class="col-xs-9 col-xs-offset-3">
+                            <button type="button" class="btn btn-info" id="QualificationImgBrowse" name="QualificationImgBrowse" value="Submit" onclick="return studentFormJS.browseQualificationImgFile()" >Browse</button>
+                        </div>    
+                    </div>
+                </div>
+            </div>
+        </div> 
+      </div>  
+      
+      <div class="row" style="margin-top: 10px !important;">
+      	<div class="col-sm-12">  
+            <div class="card bg-light text-dark">
+            	<div class="card-body">
+                	<div class="form-group">
+                        <div class="col-xs-6 col-xs-offset-3">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" id="TermsAndCondition" name="TermsAndCondition" /> Agree with the <span onclick="return bidTermsFormJS.showTermsBox()" style="color: rgb(0, 0, 170) !important; font-weight: bold;">terms and conditions</span> 
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="form-group">
+                        <div class="col-xs-9 col-xs-offset-3">
+                            <button type="submit" class="btn btn-info" id="StudentRegistrationButton" name="StudentRegistrationButton" value="Submit" onclick="return studentFormJS.submit()" >Submit</button>
+                            <input type="hidden" id="ID" name="ID" value="0" />
+                        </div>
+                    </div>
+         		</div>
+    		</div>
+    	</div>	
+      </div> 
+      
+    </div>
+  
+</form>
+
+<script type="text/javascript">
+//<![CDATA[
+
+    var studentFormJS = {
+
+    		browseStudentImgFile: function(){
+    			$('#StudentImgFile').click();
+    		},
+
+    		getStudentImgPath: function(){
+    			var studentImgURL = document.getElementById("StudentImgFile").files[0];
+    			$("#StudentImgPreview").attr("src",window.URL.createObjectURL(studentImgURL));
+    		},
+    		 
+
+    		browseQualificationImgFile: function(){
+    			$('#QualificationImgFile').click();
+    		},
+
+    		getQualificationImgPath: function(){
+    			var qualificationImgURL = document.getElementById("QualificationImgFile").files[0];
+    			$("#QualificationImgPreview").attr("src",window.URL.createObjectURL(qualificationImgURL));
+    		},
+    		
+    		
+    		submit : function(){
+        		if(!studentFormJS.saveValidation()){
+            		return false;
+        		}
+				$("#overlay").css("display","block");
+    			$("#loader").css("display","block");
+    			$('#<?php echo $HTMLFormID ?>').submit();
+    		},
+
+    		saveValidation : function(){
+
+    			var studentName = $.trim($('#Name').val());
+    			var fatherName = $.trim($('#FatherName').val());
+    			var mobileNumber = $.trim($('#MobileNumber').val());
+    			var classID = $.trim($('#ClassID').val());
+    			var address = $.trim($('#Address').val());
+    			var cityID = $.trim($('#CityID').val());
+
+    			var studentImgFile = $.trim($('#StudentImgFile').val());
+    			var qualificationImgFile = $.trim($('#QualificationImgFile').val());
+    			
+    			if(studentName == null || studentName == ""){
+    				$('#AlertBoxModal').modal('show');
+    				$('#AlertBoxModalBody').html("Please Enter Student Name.");
+    				$('#AlertBoxModal').on('hidden.bs.modal', function () {
+    					$('#Name').focus();
+    				});
+    				return false;
+    			}
+
+
+    			if(fatherName == null || fatherName == ""){
+    				$('#AlertBoxModal').modal('show');
+    				$('#AlertBoxModalBody').html("Please Enter Father Name.");
+    				$('#AlertBoxModal').on('hidden.bs.modal', function () {
+    					$('#FatherName').focus();
+    				});
+    				return false;
+    			}
+    			
+    			if(mobileNumber == null || mobileNumber == ""){
+    				$('#AlertBoxModal').modal('show');
+    				$('#AlertBoxModalBody').html("Please Enter Mobile Number.");
+    				$('#AlertBoxModal').on('hidden.bs.modal', function () {
+    					$('#MobileNumber').focus();
+    				});
+    				return false;
+    			}
+
+    			if(!Validate.isMobileNOValid(mobileNumber)){
+    				$('#AlertBoxModal').modal('show');
+    				$('#AlertBoxModalBody').html('Please Enter Valid Mobile Number.');
+    				$('#AlertBoxModal').on('hidden.bs.modal', function () {
+    					$('#MobileNumber').val("");
+    			    	$('#MobileNumber').focus();
+    				});
+    				return false;
+    			}
+
+    			if(classID == null || classID == ""){
+    				$('#AlertBoxModal').modal('show');
+    				$('#AlertBoxModalBody').html("Please Select Class.");
+    				$('#AlertBoxModal').on('hidden.bs.modal', function () {
+    					$('#ClassID').focus();
+    				});
+    				return false;
+    			}else{
+    				var otherClassID = 7;
+        			if(classID == otherClassID){
+        				var qualification = $.trim($('#Qualification').val());
+        				if(qualification == null || qualification == ""){
+        					$('#AlertBoxModal').modal('show');
+            				$('#AlertBoxModalBody').html("Please Enter Class Value.");
+            				$('#AlertBoxModal').on('hidden.bs.modal', function () {
+            					$('#Qualification').focus();
+            				});
+            			}
+        			}
+            	}
+    			
+    			if(address == null || address == ""){
+    				$('#AlertBoxModal').modal('show');
+    				$('#AlertBoxModalBody').html("Please Enter Address.");
+    				$('#AlertBoxModal').on('hidden.bs.modal', function () {
+    					$('#Address').focus();
+    				});
+    				return false;
+    			}
+
+    			if(cityID == null || cityID == ""){
+    				$('#AlertBoxModal').modal('show');
+    				$('#AlertBoxModalBody').html("Please Select City.");
+    				$('#AlertBoxModal').on('hidden.bs.modal', function () {
+    					$('#CityID').focus();
+    				});
+    				return false;
+    			}
+    			
+    			if(studentImgFile == null || studentImgFile == ""){
+    				$('#AlertBoxModal').modal('show');
+    				$('#AlertBoxModalBody').html("Please Select Student Image.");
+    				$('#AlertBoxModal').on('hidden.bs.modal', function () {
+    					$('#StudentImgFile').focus();
+    				});
+    				return false;
+    			}
+
+    			if(qualificationImgFile == null || qualificationImgFile == ""){
+    				$('#AlertBoxModal').modal('show');
+    				$('#AlertBoxModalBody').html("Please Select Document Image.");
+    				$('#AlertBoxModal').on('hidden.bs.modal', function () {
+    					$('#QualificationImgFile').focus();
+    				});
+    				return false;
+    			}
+				
+				if(!$('#TermsAndCondition').prop("checked") == true){
+					$('#AlertBoxModal').modal('show');
+    				$('#AlertBoxModalBody').html("Please Accept Term And Conditions.");
+    				$('#AlertBoxModal').on('hidden.bs.modal', function () {
+    					$('#TermsAndCondition').focus();
+    				});
+    				return false;
+    			}
+				
+    	    	return true;
+    		},
+
+    		showClassBox: function(){
+        		var classID = $.trim($('#ClassID').val());
+    			var otherClassID = 7;
+    			if(classID == otherClassID){
+    				$("#ClassBox").css("display","block");
+    			}else{
+        			$('#Qualification').val("");
+        			$('#ClassBox').css("display", "none");
+        		}
+        		return false; 
+    		},
+    		
+    		defaultSetting: function(){
+    			if(registrationDataObj != null && registrationDataObj != ""){
+        			$('#AlertBoxModal').modal('show');
+    				$('#AlertBoxModalBody').html(registrationDataObj.ErrorMessage);
+    				$('#AlertBoxModal').on('hidden.bs.modal', function () {});
+    			}
+    		} 
+    		
+    };
+
+    studentFormJS.defaultSetting();	
+//]]>
+</script>

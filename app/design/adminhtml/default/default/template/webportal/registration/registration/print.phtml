@@ -1,0 +1,121 @@
+
+<style>
+  span {
+    font-size: 2rem;
+    font-family: 'Mukta', sans-serif;
+  }
+</style>
+
+<?php
+    $registrationVO = $this->getRegistrationVO();    
+    
+    if($registrationVO == null){
+    	$registrationVO = new Margshri_MedicalCamp_VO_RegistrationVO();
+    }
+?>
+
+<div id="print" style="background-image: url(<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . 'mgsr/common/images/registration/print_bg.png' ?>); background-repeat:no-repeat; width: 842px !important; height: 595px !important; background-size: 842px 595px !important;">
+    	
+    	
+    	
+    	
+    	 <!--  
+    	 <span id="Name"><?php // echo $registrationVO->getName() ?></span>
+    	 <span id="FatherName"><?php // echo $registrationVO->getFatherName() ?></span>
+    	 <span id="Address"><?php // echo $registrationVO->getAddress() ?></span>
+    	 
+    	 
+    	<input type="hidden" id="hdnStudentName" value="<?php echo $registrationVO->getName() ?>" />
+    	<input type="hidden" id="hdnFatherName" value="<?php echo $registrationVO->getFatherName() ?>" />
+    	<input type="hidden" id="hdnAddress" value="<?php echo $registrationVO->getAddress() ?>" />
+
+	-->
+</div>
+
+<img id="Image" width="100" height="100" style="border-radius: 50%; position: absolute; left: 689px; top: 124.5px;" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . $registrationVO->getImageURL() ?>" alt="The Scream">
+
+<span id="Name" style="color: #081E71; font-size: 12pt; width:250px; height:20px; text-align:center; position: absolute; left: 185px; top: 326px;"><?php echo $registrationVO->getName() ?></span>
+  
+<span id="FatherName" style="color: #081E71; font-size: 12pt; width:250px; height:20px; text-align:center; position: absolute; left: 550px; top: 326px;"><?php echo $registrationVO->getFatherName() ?></span>
+
+<span id="Address" style="color: #081E71; font-size: 12pt; width:650px; height:20px; text-align:center; position: absolute; left: 130px; top: 353px;"><?php echo $registrationVO->getAddress() ?></span>
+
+<span id="Qualification" style="color: #081E71; font-size: 12pt; width:360px; height:20px; text-align:center; position: absolute; left: 94px; top: 380px;"><?php echo $registrationVO->getQualification() ?></span>
+ 
+<!--
+<canvas id="StudentName" width="270" height="20" style="border:1px solid black;"></canvas>
+<canvas id="FatherName" width="270" height="20" style="border:1px solid black;"></canvas>
+<canvas id="Address" width="750" height="20" style="border:1px solid black;"></canvas>
+-->
+
+
+<script>
+/*
+var hdnStudentName = document.getElementById("hdnStudentName").value;
+var hdnFatherName = document.getElementById("hdnFatherName").value;
+var hdnAddress = document.getElementById("hdnAddress").value;
+
+
+var studentName = document.getElementById("StudentName");
+var fatherName = document.getElementById("FatherName");
+var address = document.getElementById("Address");
+ 
+
+studentName.style.left = "240px";
+studentName.style.top = "390px";
+studentName.style.position = "absolute";
+
+
+fatherName.style.left = "660px";
+fatherName.style.top = "390px";
+fatherName.style.position = "absolute";
+
+address.style.left = "180px";
+address.style.top = "420px";
+address.style.position = "absolute";
+
+ 
+
+var studentNameContext = studentName.getContext("2d");
+
+var studentNameGradient = studentNameContext.createLinearGradient(0, 0, studentName.width, 0);
+// studentNameGradient.addColorStop("0"," magenta");
+studentNameGradient.addColorStop("0.5", "blue");
+// studentNameGradient.addColorStop("1.0", "red");
+
+studentNameContext.font = "12px Arial";
+studentNameContext.fillStyle = studentNameGradient;
+studentNameContext.textAlign = "center";
+studentNameContext.fillText(hdnStudentName,135,12);
+
+
+var fatherNameContext = fatherName.getContext("2d");
+var fatherNameGradient = studentNameContext.createLinearGradient(0, 0, fatherName.width, 0);
+// fatherNameGradient.addColorStop("0"," magenta");
+fatherNameGradient.addColorStop("0.5", "blue");
+// fatherNameGradient.addColorStop("1.0", "red");
+
+fatherNameContext.font = "12px Arial";
+fatherNameContext.fillStyle = fatherNameGradient;
+fatherNameContext.textAlign = "center";
+fatherNameContext.fillText(hdnFatherName,135,12);
+
+var addressContext = address.getContext("2d");
+var addressGradient = studentNameContext.createLinearGradient(0, 0, address.width, 0);
+// addressGradient.addColorStop("0"," magenta");
+addressGradient.addColorStop("0.5", "blue");
+// addressGradient.addColorStop("1.0", "red");
+
+addressContext.font = "12px Arial";
+addressContext.fillStyle = addressGradient;
+addressContext.textAlign = "center";
+addressContext.fillText(hdnAddress,375,12);
+
+*/ 
+ 
+</script>
+ 
+ 
+ 
+ 
+

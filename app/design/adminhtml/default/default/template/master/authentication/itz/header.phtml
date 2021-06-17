@@ -1,0 +1,18 @@
+<?php
+?>
+<div class="content-header">
+    <table cellspacing="0">
+        <tr>
+            <td style="width:50%;"><h3 class="icon-head head-permissions-role"><?php echo $this->__('ITZ Master') ?></h3></td>
+            <td class="form-buttons">
+            <?php  //if(Dakiya_Helper_Utility::isACLAllowed('admin/master/email/emailtemplate/add/')): ?>
+            	<button class="scalable add" onclick="window.location='<?php echo $this->getUrl('*/*/bank') ?>'"><span><?php echo $this->__('Bank') ?></span></button>
+            	<button class="scalable add" onclick="window.location='<?php echo $this->getUrl('*/*/state') ?>'"><span><?php echo $this->__('State') ?></span></button>
+            	<button class="scalable add" onclick="window.location='<?php echo $this->getUrl('*/*/city') ?>'"><span><?php echo $this->__('City') ?></span></button>
+            	<button class="scalable add" onclick="window.location='<?php echo $this->getUrl('*/*/branch') ?>'"><span><?php echo $this->__('Branch') ?></span></button>
+            <?php  //endif;?>
+            </td>
+        </tr>
+    </table>
+</div>
+<?php echo $this->getGridHtml() ?>

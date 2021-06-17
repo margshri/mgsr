@@ -1,0 +1,134 @@
+<?xml version="1.0"?>
+<config>
+
+    <modules>
+        <Yes_CatalogUpload>
+            <version>1.0.0.0</version>
+        </Yes_CatalogUpload>
+    </modules>
+    
+    <global>
+     		<models>	
+     				<yescatalogupload>
+     						<class>Yes_CatalogUpload_Model</class>
+     						<resourceModel>yescatalogupload_mysql4</resourceModel>		
+     				</yescatalogupload>
+     				<yescatalogupload_mysql4>
+     						<class>Yes_CatalogUpload_Model_MySql4</class>
+     						<entities>
+     								
+     								  
+     								<catalogfileupload><table>yes_catalogfileupload</table></catalogfileupload>
+     								<catalogproductwebsite><table>catalog_product_website</table></catalogproductwebsite>
+     								<eavattribute><table>eav_attribute</table></eavattribute>
+     								<corestore><table>core_store</table></corestore>
+     								<corewebsite><table>core_website</table></corewebsite>
+     								<catalogcategoryproduct><table>catalog_category_product</table></catalogcategoryproduct>
+     								<catalogcategoryentityvarchar><table>catalog_category_entity_varchar</table></catalogcategoryentityvarchar>
+     								     								
+     								<catalogproductentityvarchar><table>catalog_product_entity_varchar</table></catalogproductentityvarchar>
+     								<catalogproductentitytext><table>catalog_product_entity_text</table></catalogproductentitytext>
+     								<catalogproductentitydecimal><table>catalog_product_entity_decimal</table></catalogproductentitydecimal>
+     								<catalogproductentitydatetime><table>catalog_product_entity_datetime</table></catalogproductentitydatetime>
+     								<catalogproductentityint><table>catalog_product_entity_int</table></catalogproductentityint>
+     								<catalogproductentitymediagallery><table>catalog_product_entity_media_gallery</table></catalogproductentitymediagallery>
+     								<catalogproductentitymediagalleryvalue><table>catalog_product_entity_media_gallery_value</table></catalogproductentitymediagalleryvalue>
+     								
+     								<cataloginventorystockstatus><table>cataloginventory_stock_status</table></cataloginventorystockstatus>
+     								<cataloginventorystockitem><table>cataloginventory_stock_item</table></cataloginventorystockitem>
+     									
+     								<catalogproductentity><table>catalog_product_entity</table></catalogproductentity>
+     								<fileupload><table>yes_fileupload</table></fileupload>
+     								<fileuploadstatus><table>yes_fileuploadstatus</table></fileuploadstatus>
+     								<fileuploadtemplate><table>yes_fileuploadtemplate</table></fileuploadtemplate>
+     								<fileuploadtype><table>yes_fileuploadtype</table></fileuploadtype>
+     								<officezone><table>yes_officezone</table></officezone>
+     								<officetype><table>yes_officetype</table></officetype>
+     								<office><table>yes_officetype</table></office>
+     						</entities>
+     				</yescatalogupload_mysql4>
+     		</models>
+     		
+     		  <resources>
+		            <admin_setup>
+		                <setup>
+		                    <module>Yes_CatalogUpload</module>
+		                </setup>
+		            </admin_setup>
+      		  </resources>
+      		  
+      		   <blocks>
+            		<yescatalogupload>
+                			<class>Yes_CatalogUpload_Block</class>
+            		</yescatalogupload>
+        		</blocks>
+        		
+        		  <helpers>
+		            <yescatalogupload>
+		                <class>Yes_CatalogUpload_Helper</class>
+		            </yescatalogupload>
+		        </helpers>
+    </global>
+    
+    <admin>
+    		<routers>
+    				<yescatalogupload>
+    						<use>admin</use>
+    						<args>
+    								<module>Yes_CatalogUpload</module>
+    								<frontName>yescatalogupload</frontName>
+    						</args>
+    				</yescatalogupload>
+    		</routers>		
+    </admin>
+    
+   <adminhtml>    
+	    <menu>
+	    		<catalog>
+	                    <children>
+	                            <yescatalogupload translate="title" module="admin">
+	                            	<title>File Upload</title>
+	                            	<children>
+	                            		<productupload>
+		                            		<title>Product Upload</title>
+		                                    <sort_order>01</sort_order>
+		                                    <action>yescatalogupload/productUpload/index</action>
+										</productupload>
+										<priceupload>
+		                            		<title>Price Upload</title>
+		                                    <sort_order>02</sort_order>
+		                                    <action>yescatalogupload/priceUpload/index</action>
+										</priceupload>
+										<inventoryupload>
+		                            		<title>Inventory Upload</title>
+		                                    <sort_order>03</sort_order>
+		                                    <action>yescatalogupload/inventoryUpload/index</action>
+										</inventoryupload>	                                    
+	                            	</children>
+	                            		
+	                                    
+	                            </yescatalogupload>
+	                    </children>
+	            </catalog>
+	    </menu>
+	    <acl>
+	    		<resources>
+	    				<admin>
+	    					<children>
+	    						<yescatalogupload translate="title" module="adminhtml">
+	    								<title>File Upload</title>
+	    								<sort_order>01</sort_order>
+	    								<children>
+	    										<productupload>
+	    													<title>Catalog Product Upload</title>
+	    													<sort_order>01</sort_order>
+	    										</productupload>
+	    								</children>
+	    						</yescatalogupload>
+	    					  </children>	
+	    				</admin>
+	    		</resources>
+	    </acl>
+	   
+	 </adminhtml>   
+</config>

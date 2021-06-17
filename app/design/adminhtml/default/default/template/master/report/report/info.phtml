@@ -1,0 +1,119 @@
+<?php
+$HTMLFormID = $this->getHTMLFormID();
+?>
+
+<div class="content-header">
+    <table cellspacing="0">
+        <tr>
+
+            <td style="width:50%;"><h3 class="icon-head head-permissions-role"><?php echo ($this->getReportID() != null ) ? $this->__('Edit Report') : $this->__('Create New Report') ?></h3></td>
+            <td class="form-buttons">
+                <?php echo $this->getBackButtonHtml() ?>
+                <?php echo $this->getResetButtonHtml() ?>
+                <?php echo $this->getSaveButtonHtml() ?>
+            </td>
+        </tr>
+    </table>
+</div>
+<form action="<?php echo $this->getUrl('*/*/save') ?>" method="post" id="<?php echo $HTMLFormID;?>">
+    <?php echo $this->getBlockHtml('formkey')?>
+    <?php echo $this->getEntropy(); ?>
+</form>
+<?php echo $this->getWYSIWYGHTML() ?>
+
+<script type="text/javascript">
+function reportVO(){
+	this.ReportID = null;
+	this.ReportName = null;
+	this.ReportCode = null;
+	this.ReportDesc = null;
+	this.Users = null;
+	this.Query = null;
+	this.ReportColumns = null;
+	this.ColumnKeys = null;
+	this.ReportTotalColumns = null;	
+	this.StatusID = null;
+}
+
+</script>
+
+
+<script type="text/javascript">
+
+var formObj = new varienForm('<?php echo $HTMLFormID; ?>');
+var formJS  = {
+        	
+			submit : function(){
+        		if(  !formJS.saveValidation() ) return ;
+					formJS.saveAjax();
+			},
+
+            saveValidation : function(){
+				var errorMsg = '';
+             	if( !(formObj.validator && formObj.validator.validate())  ){
+	    	    	return false;
+    	    	}
+             	var newReportDTO = new reportVO();
+
+             	newReportDTO.ReportID = ($('ReportID').value).strip();
+             	newReportDTO.ReportName = ($('ReportName').value).strip();
+             	newReportDTO.ReportCode = ($('ReportCode').value).strip();
+             	newReportDTO.ReportDesc = ($('ReportDesc').value).strip();
+             	//newReportDTO.Users = ($('Users').value).strip();
+             	//newReportDTO.Query = ($('Query').value).strip();
+             	newReportDTO.ReportColumns = ($('ReportColumns').value).strip();
+             	newReportDTO.ColumnKeys = ($('ColumnKeys').value).strip();
+             	//newReportDTO.ReportTotalColumns = ($('ReportTotalColumns').value).strip();
+             	newReportDTO.StatusID = ($('StatusID').value).strip();
+             	
+             	if(newReportDTO.ReportName == '' || newReportDTO.ReportName == null){
+					alert("Please Enter Report Name");
+					return false;
+				}
+
+             	if(newReportDTO.ReportCode == '' || newReportDTO.ReportCode == null){
+					alert("Please Enter Report Code");
+					return false;
+				}
+
+             	if(newReportDTO.ReportColumns == '' || newReportDTO.ReportColumns == null){
+					alert("Please Enter Report Column");
+					return false;
+				}
+
+             	if(newReportDTO.ColumnKeys == '' || newReportDTO.ColumnKeys == null){
+					alert("Please Enter Report Column Keys");
+					return false;
+				}
+ 
+             	if(newReportDTO.StatusID == '' || newReportDTO.StatusID == null){
+             		alert("Please Select Status");
+             		return false;
+				}
+				
+				// DISABLE SAVE BUTTON FOR PREVENT DUPLICATE ENTRY
+				$('ReportSaveButtonID').style.disabled = true;
+
+				var URL = "<?php echo $this->getUrl('*/*/save')?>" ;
+			    var parameters= {"ReportDataObj": JSON.stringify(newReportDTO,null) };
+			    var callBackMethod ="formJS.responseSave";
+			    var callBackArgs =null;
+			    ajaxRequest.execute(URL, parameters, callBackMethod , callBackArgs );
+			    	            
+            },					
+	     	
+  	     	responseSave : function(response,args) {
+  	     		// ENABLE SAVE BUTTON 
+				$('ReportSaveButtonID').style.disabled = true;
+				var msg = new Array();
+            	if(response.SuccessMessage !=null){
+				 	window.location.href = "<?php echo $this->getUrl('*/*/index')?>";
+				 	return;
+				}else if(response.ErrorMessage !=null){
+					msg[0] = response.ErrorMessage;
+					MESSAGEHANDLER.errorMessagePublish(msg, $('messages'));
+	    			return false;
+	 			}
+     	 	}
+};
+</script>

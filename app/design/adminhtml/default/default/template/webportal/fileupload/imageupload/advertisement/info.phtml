@@ -1,0 +1,98 @@
+<?php
+$HTMLFormID = $this->getHTMLFormID();
+?>
+<div class="content-header">
+    <table cellspacing="0">
+        <tr>
+            
+            <td style="width:50%;"><h3 class="icon-head head-permissions-role"><?php echo ($this->getID() != null ) ? ($this->__('Edit') ) : $this->__('Add') ?></h3></td>
+            <td class="form-buttons">
+                <?php echo $this->getBackButtonHtml() ?>
+                <?php echo $this->getResetButtonHtml() ?>
+                <?php echo $this->getSaveButtonHtml() ?>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<form action="<?php echo $this->getUrl('*/*/save') ?>" method="post" id="<?php echo $HTMLFormID ?>" enctype="multipart/form-data">
+    <?php  echo $this->getBlockHtml('formkey')?>
+    <?php  echo $this->getEntropy()?>
+</form>
+
+<script type="text/javascript">
+
+var formObj = new varienForm('<?php echo $HTMLFormID; ?>');
+var formJS={
+
+		submit : function(){
+			if(!formJS.saveValidation()) return ;
+    		$('<?php echo $HTMLFormID ?>').submit();
+		},
+
+		saveValidation : function(){
+			if(!(formObj.validator && formObj.validator.validate())){
+    	    	return false;
+	    	}
+	    	return true;
+		},	
+        
+		setDistrictList: function(stateID){
+			var innerHTML = '<option value="">--Select--</option>';
+			for(var key in districtList){
+				if(districtList[key].StateID == stateID){
+					if(key == ADVERTISEMENTVO.DistrictID)
+						innerHTML += '<option value="'+key+'" selected = "selected">'+districtList[key].Name+'</option>';
+					else
+						innerHTML += '<option value="'+key+'">'+districtList[key].Name+'</option>';	
+				}
+			}
+			UI.elementDisabled($('DistrictID'), false);
+			$('DistrictID').innerHTML = innerHTML;
+			$('CityID').innerHTML = '<option value="">--Select--</option>';
+			return; 
+		},
+
+		setCityList: function(districtID){
+			var innerHTML = '<option value="">--Select--</option>';
+			for(var key in cityList){
+				if(cityList[key].DistrictID == districtID){
+					if(key == ADVERTISEMENTVO.CityID)
+						innerHTML += '<option value="'+key+'" selected = "selected">'+cityList[key].Name+'</option>';
+					else		
+						innerHTML += '<option value="'+key+'">'+cityList[key].Name+'</option>';
+				}
+			}
+			UI.elementDisabled($('CityID'), false);
+			$('CityID').innerHTML = innerHTML;
+			return; 
+		},
+		
+		browseImageFile: function(){
+			$('Image').click();
+		},
+
+		getFilePath: function(){
+		    var image = $("Image").files[0];
+		    $("Preview").src = window.URL.createObjectURL(image);
+		},
+		
+		
+		defaultSetting: function(){
+			UI.elementDisabled($('DistrictID'), true);
+			UI.elementDisabled($('CityID'), true);
+		}
+			
+}; 
+
+
+// FOR EDIT 
+if(ADVERTISEMENTVO != ''){
+	formJS.setDistrictList(ADVERTISEMENTVO.StateID);
+	formJS.setCityList(ADVERTISEMENTVO.DistrictID);		
+	
+}else{
+	formJS.defaultSetting();
+}
+
+</script>

@@ -1,0 +1,94 @@
+<?php
+
+?>
+
+<div class="entry-edit">
+	<div class="entry-edit-head">
+		<h4 class="icon-head head-edit-form fieldset-legend">Send SMS</h4>
+		<div class="form-buttons"></div>
+	</div>
+	
+	<div class="fieldset ">
+		<div class="hor-scroll">
+			<table class="form-list">
+				<tbody>
+					<tr>
+						<td>
+							<table class="form-list">
+								<tbody>
+									<tr>
+										<td class="label">
+											<label>Used SMS Template</label>
+										</td>
+										<td class="value">
+											<input type="checkbox" id="IsSMSTemplateUsed" name="IsSMSTemplateUsed" onchange="return formJS.disableSMSContent()" />
+						 				</td>
+									</tr>
+									
+									
+									<tr>
+										<td class="label">
+											<label>SMS Template<span class="required">*</span></label>
+										</td>
+										<td class="value">
+											<select id="SMSTemplateID" name="SMSTemplateID" class="validate-select" disabled="disabled">
+												<option value="">--Select--</option>
+												<?php foreach ($this->getSMSTemplateOptions() as $key=>$value): ?>
+						 								<option value="<?php echo $key ?>"><?php echo $value ?></option>
+						 						<?php endforeach; ?>
+						 					</select>
+						 				</td>
+									</tr>
+									
+								
+									<tr>
+										<td class="label">
+											<label>SMS Content<span class="required">*</span></label>
+										</td>
+										<td class="value">
+											<textarea id="SMSContent" name="SMSContent" style="height: 100px !important;"></textarea>
+										</td>
+									</tr>
+								</tbody>
+							</table>	
+						</td>
+						
+						<td style="width: 100px !important;"></td>
+						
+						<td>
+							<table class="form-list" style="margin-top: 20px !important;">
+								<tbody>
+									
+									<tr>
+										<td class="label">
+											<label>SMS Sender<span class="required">*</span></label>
+										</td>
+										<td class="value">
+											<select id="SMSConfigID" name="SMSConfigID"  class="validate-select">
+											    <option value="">--Select--</option>
+						 						<?php foreach ($this->getSMSSenderOptions() as $key=>$value): ?>
+						 							<option value="<?php echo $key ?>"><?php echo $value ?></option>
+						 						<?php endforeach; ?>
+											</select>
+										</td>
+									</tr>
+									
+									<tr>
+										<td class="label">
+											<label>Mobile Numbers<span class="required">*</span><br />(comma separated, accept only 10 digit, without 0, +91 etc)</label>
+										</td>
+										<td class="value">
+											<textarea id="ReceiverMobileNO" name="ReceiverMobileNO" style="height: 100px !important;"><?php echo $this->getUserMobileNOs() ?></textarea>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+					</tr>				
+					
+				</tbody>	 
+			</table>
+			 
+		</div>
+	</div>
+</div>

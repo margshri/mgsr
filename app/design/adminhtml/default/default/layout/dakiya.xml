@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+
+<layout>
+    
+    <!-- Start Send Email -->
+	<dakiya_email_sendemail_sendemail_index>
+		<reference name="head">
+			<action method="setTitle" translate="title"><title>Send Email-BookMyTrain</title></action>
+		</reference>
+		
+		<reference name="content">
+			<block type="dakiya/Email_SendEmail_Buttons" name="email.sendemail.buttons" />
+		</reference>
+    </dakiya_email_sendemail_sendemail_index>
+    
+    <dakiya_email_sendemail_sendemail_sentemaillist>
+		<reference name="head">
+			<action method="setTitle" translate="title"><title>Send Email List</title></action>
+		</reference>
+		<reference name="content">
+			<block type="dakiya/Email_SendEmail_Header" name="email.sendemail.header">
+				<block type="dakiya/Email_SendEmail_Grid" name="email.sendemail.grid" as="grid" />
+			</block>
+		</reference>
+	</dakiya_email_sendemail_sendemail_sentemaillist>
+	
+	<dakiya_email_sendemail_sendlegalemail_index>
+		<reference name="head">
+			<action method="setTitle" translate="title"><title>Send Legal Email</title></action>
+		</reference>
+		
+		<reference name="content">
+			<block type="dakiya/Email_SendLegalEmail_Buttons" name="email.sendlegalemail.buttons" />
+		</reference>
+    </dakiya_email_sendemail_sendlegalemail_index>
+	
+    <!-- End Send Email -->
+    
+    
+    <!-- Start Send SMS -->
+    <dakiya_sms_sendsms_index>
+		<reference name="head">
+			<action method="setTitle" translate="title"><title>Send SMS-BookMyTrain</title></action>
+		</reference>
+		
+		<reference name="content">
+			<block type="dakiya/SMS_SendSMS_Buttons" name="sms.sendsms.buttons" />
+		</reference>
+	</dakiya_sms_sendsms_index>
+	
+	<dakiya_sms_sendsms_sentsmslist>
+		<reference name="head">
+			<action method="setTitle" translate="title"><title>Send SMS List</title></action>
+		</reference>
+		<reference name="content">
+			<block type="dakiya/SMS_SendSMS_Header" name="sms.sendsms.header">
+				<block type="dakiya/SMS_SendSMS_Grid" name="sms.sendsms.grid" as="grid" />
+			</block>
+		</reference>
+	</dakiya_sms_sendsms_sentsmslist>
+	
+    <!-- End Send SMS -->
+    
+      
+    <!-- Start Email -->
+	<dakiya_master_email_emailtemplate_emailtemplate_index>
+		<reference name="content">
+			<block type="dakiya/Master_Email_EmailTemplate_EmailTemplate_Header" name="master.email.emailtemplate.emailtemplate.header" >
+				<block type="dakiya/Master_Email_EmailTemplate_EmailTemplate_Grid" name="master.email.emailtemplate.emailtemplate.grid" as="grid" />
+			</block>
+		</reference>
+    </dakiya_master_email_emailtemplate_emailtemplate_index>
+    <!-- End Email -->
+    
+    <!-- Start SMS -->
+	<dakiya_master_sms_smstemplate_smstemplate_index>
+		<reference name="content">
+			<block type="dakiya/Master_SMS_SMSTemplate_SMSTemplate_Header" name="master.sms.smstemplate.smstemplate.header" >
+				<block type="dakiya/Master_SMS_SMSTemplate_SMSTemplate_Grid" name="master.sms.smstemplate.smstemplate.grid" as="grid" />
+			</block>
+		</reference>
+    </dakiya_master_sms_smstemplate_smstemplate_index>
+    <!-- End SMS -->
+     
+    
+</layout>

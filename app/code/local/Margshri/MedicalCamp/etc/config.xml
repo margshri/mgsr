@@ -1,0 +1,191 @@
+<?xml version="1.0"?>
+<config>
+	<modules>
+		<Margshri_MedicalCamp>
+			<version>1.0.0.0</version>
+		</Margshri_MedicalCamp>
+	</modules>
+
+	<global>
+		<models>
+			<medicalcamp>
+				<class>Margshri_MedicalCamp_Model</class>
+				<resourceModel>medicalcamp_mysql4</resourceModel>
+			</medicalcamp>
+
+			<medicalcamp_mysql4>
+				<class>Margshri_MedicalCamp_Model_MySql4</class>
+				<entities>
+				    
+					<medicalcampstatus>
+						<table>medical_camp_status</table>
+					</medicalcampstatus>
+
+					<medicalcampgenderlist>
+						<table>medical_camp_gender_list</table>
+					</medicalcampgenderlist>
+					
+					<medicalcampbloodgrouplist>
+						<table>medical_camp_blood_group_list</table>
+					</medicalcampbloodgrouplist>
+					
+					<medicalcamptestlist>
+						<table>medical_camp_test_list</table>
+					</medicalcamptestlist>
+					
+					<medicalcampdoctorlist>
+						<table>medical_camp_doctor_list</table>
+					</medicalcampdoctorlist>
+					
+					<medicalcampregistration>
+						<table>medical_camp_registration</table>
+					</medicalcampregistration>
+					
+					<studentregistration>
+						<table>student_registration</table>
+					</studentregistration>
+
+					<citylist>
+						<table>mgsr_city_list</table>
+					</citylist>
+				</entities>
+			</medicalcamp_mysql4>
+		</models>
+
+		<resources>
+			<admin_setup>
+				<setup>
+					<module>Margshri_MedicalCamp</module>
+				</setup>
+			</admin_setup>
+		</resources>
+
+		<blocks>
+			<medicalcamp>
+				<class>Margshri_MedicalCamp_Block</class>
+			</medicalcamp>
+		</blocks>
+
+		<helpers>
+			<medicalcamp>
+				<class>Margshri_MedicalCamp_Helper</class>
+			</medicalcamp>
+		</helpers>
+
+
+	</global>
+
+	<frontend>
+		<routers>
+			<medicalcamp>
+				<use>standard</use>
+				<args>
+					<module>Margshri_MedicalCamp</module>
+					<frontName>medicalcamp</frontName>
+				</args>
+			</medicalcamp>
+		</routers>
+
+		<layout>
+			<updates>
+				<medicalcamp module="Margshri_MedicalCamp">
+					<file>medicalcamp.xml</file>
+				</medicalcamp>
+			</updates>
+		</layout>
+	</frontend>
+
+
+	<admin>
+		<routers>
+			<medicalcamp>
+				<use>admin</use>
+				<args>
+					<module>Margshri_MedicalCamp</module>
+					<frontName>medicalcamp</frontName>
+				</args>
+			</medicalcamp>
+		</routers>
+
+		<layout>
+			<updates>
+				<medicalcamp module="Margshri_MedicalCamp">
+					<file>margshri_medicalcamp.xml</file>
+				</medicalcamp>
+			</updates>
+		</layout>
+
+	</admin>
+
+
+	<adminhtml>
+		<menu>
+  
+			<master>
+				<children>
+					<report translate="title" module="admin">
+						<title>Report</title>
+						<sort_order>100</sort_order>
+						<children>
+							<reportfilter translate="title" module="admin">
+								<title>Report Filter</title>
+								<sort_order>01</sort_order>
+								<action>report/Report_Filter/index</action>
+							</reportfilter>
+							
+							<report translate="title" module="admin">
+								<title>Report</title>
+								<sort_order>10</sort_order>
+								<action>report/Report_Report/index</action>
+							</report>
+
+						</children>
+					</report>
+				</children>
+			</master>
+
+		</menu>
+
+		<acl>
+			<resources>
+				<admin>
+					<children>
+						<!--  
+						<master translate="title" module="admin">
+							<title>Master</title>
+							<sort_order>20</sort_order>
+							<children>
+								<table translate="title" module="admin">
+									<title>Table</title>
+									<sort_order>01</sort_order>
+									<children>
+										<apctwebtable translate="title" module="admin">
+											<title>Web Table</title>
+											<sort_order>01</sort_order>
+										</apctwebtable>
+
+										<apctwebtabletype translate="title" module="admin">
+											<title>Web Table Type</title>
+											<sort_order>02</sort_order>
+										</apctwebtabletype>
+									</children>
+								</table>
+							</children>
+						</master>
+						-->
+					</children>
+				</admin>
+			</resources>
+		</acl>
+
+		<layout>
+			<updates>
+				<medicalcamp module="Margshri_MedicalCamp">
+					<file>margshri_medicalcamp.xml</file>
+				</medicalcamp>
+			</updates>
+		</layout>
+
+
+	</adminhtml>
+</config>

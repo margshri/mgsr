@@ -1,0 +1,164 @@
+<?php
+    $HTMLFormID = $this->getHTMLFormID();
+    /* @var $areaListVO Margshri_Common_VO_Directory_AreaList_AreaListVO */
+    $areaListVO = $this->getAreaListVO();        
+?>
+
+<div class="content-header">
+    <table cellspacing="0">
+        <tr>
+            <td style="width:50%;"><h3 class="icon-head head-permissions-role"><?php echo ($this->getAreaID() != null ) ? ($this->__('Edit Area') ) : $this->__('Add Area') ?></h3></td>
+            <td class="form-buttons">
+                <?php echo $this->getBackButtonHtml() ?>
+                <?php echo $this->getResetButtonHtml() ?>
+                <?php echo $this->getSaveButtonHtml() ?>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<form action="<?php echo $this->getUrl('*/*/save') ?>" method="post" id="<?php echo $HTMLFormID ?>">
+    <?php  echo $this->getBlockHtml('formkey')?>
+    
+    <div class="entry-edit">
+    	<div class="entry-edit-head">
+    		<h4 class="icon-head head-edit-form fieldset-legend">Area Detail</h4>
+    		<div class="form-buttons"></div>
+    	</div>
+    
+    	<div class="fieldset " id="base_fieldset">
+    		<div class="hor-scroll">
+    		   
+      			<table class="form-list">
+    				<tbody>
+    				
+    					<tr>
+    						<td class="label">
+    							<label for="AreaCode">Area Code<span class="required">*</span></label>
+    						</td>
+    						<td class="value">
+    							<input type="text" name="Code" id="Code"
+    							value="<?php echo $areaListVO->getCode() ?>" 
+    							class="input-text required-entry" />
+    						</td>
+    						</td>
+    					</tr>
+    
+    					<tr>
+    						<td class="label">
+    							<label for="AreaName">Area Name<span class="required">*</span></label>
+    						</td>
+    						<td class="value">
+    							<input type="text" name="Value" id="Value"
+    							value="<?php echo $areaListVO->getValue() ?>" 
+    							class="input-text required-entry" />
+    						</td>
+    					</tr>
+    					  
+    					
+    					<tr>
+    						<td class="label">
+    							<label for="CityList">City Name<span class="required">*</span></label>
+    						</td>
+    						<td class="value">
+    							<select name="CityID" id="CityID" class="required-entry">
+    								<option value="">--Select--</option>
+    								<?php foreach ($this->getCityListOptions() as $cityID => $cityListDataObj): ?>
+    									<option value="<?php echo $cityID ?>" <?php echo ($areaListVO->getCityID() == $cityID) ? 'Selected = "Selected"' : '' ?> ><?php echo $cityListDataObj['Name'] ?></option>
+    								<?php endforeach; ?>
+    							</select>
+    						</td>
+    					</tr>
+    					
+    					
+    					<tr>
+    						<td class="label">
+    							<label for="StatusID">Status<span class="required">*</span></label>
+    						</td>
+    						<td class="value">
+    							<select name="StatusID" id="StatusID" class="required-entry">
+    								<option value="">--Select--</option>
+    								<?php foreach ($this->getSatusOptions() as $statusID=>$statusName): ?>
+    									<option value="<?php echo $statusID ?>" <?php echo ($areaListVO->getStatusID() == $statusID) ? 'Selected = "Selected"' : '' ?> ><?php echo $statusName ?></option>
+    								<?php endforeach; ?>
+    							</select>
+    						</td>
+    					</tr>
+    					
+    					
+    					 
+    				</tbody>
+    			</table>		
+    		  		 
+    			
+    		</div>
+    	</div>
+    </div>
+    
+    <input type="hidden" id="ID" name="ID" value="<?php echo ($areaListVO->getID() != null && $areaListVO->getID() != "") ? $areaListVO->getID() : 0 ?>" />
+</form>
+
+<script type="text/javascript">
+
+function areaListVO(){
+	this.ID = null;
+	this.Code = null;
+	this.Value = null;
+	this.CityID = null;
+	this.StatusID = null;
+}
+var newAreaListDTO = new areaListVO();
+
+var areaListFormObj = new varienForm('<?php echo $HTMLFormID; ?>');
+var areaListFormJS={
+
+		submit : function(){
+    		if(!areaListFormJS.saveValidation()) return ;
+    		areaListFormJS.saveAjax();
+		},
+
+		saveValidation : function(){
+			var errorMsg = '';
+			
+         	if(!(areaListFormObj.validator && areaListFormObj.validator.validate())){
+    	    	return false;
+	    	}
+         	
+         	// SET VOs
+         	newAreaListDTO.ID = ($('ID').value).strip();
+         	newAreaListDTO.Code = ($('Code').value).strip();
+         	newAreaListDTO.Value = ($('Value').value).strip();
+         	newAreaListDTO.CityID = ($('CityID').value).strip();
+         	newAreaListDTO.StatusID = ($('StatusID').value).strip();
+         	
+         	if(errorMsg != ''){
+            	alert(errorMsg);
+				return false;
+			}
+
+         	return true;
+		},	
+
+        saveAjax: function(){
+        	var URL = "<?php echo $this->getUrl('*/*/save')?>" ;
+		    var parameters= {"AreaListDataObj": JSON.stringify(newAreaListDTO,null) };
+		    var callBackMethod ="areaListFormJS.responseSave";
+		    var callBackArgs =null;
+		    ajaxRequest.execute(	URL, parameters, callBackMethod , callBackArgs );
+		    return false;
+     	},
+
+	    responseSave : function(response,args) {
+	    	if(response.SuccessMessage !=null){
+	    		window.location.href = "<?php echo $this->getUrl('*/*/index')?>";
+			 	return;
+			}else if(response.ErrorMessage !=null){
+				alert(response.ErrorMessage);
+				return false;
+ 			}
+ 	 	}
+			
+}; 
+ 
+
+</script>    	 

@@ -1,0 +1,111 @@
+<?php
+    $HTMLFormID = $this->getHTMLFormID();
+    $firmVO = $this->getFirmVO();    
+    
+    if($firmVO == null){
+    	$firmVO = new Margshri_WebPortal_VO_Firm_Firm_FirmVO();
+    }
+    $cityOptions = $this->getCityOptions();
+?>
+
+<div class="entry-edit">
+	<div class="entry-edit-head">
+		<h4 class="icon-head head-edit-form fieldset-legend">Member Detail</h4>
+		<div class="form-buttons"></div>
+	</div>
+
+	<div class="fieldset " id="base_fieldset">
+		<div class="hor-scroll">
+		   
+  			<table class="form-list">
+				<tbody>
+
+					<tr>
+						<td class="label">
+							<label for="Value">Name<span class="required">*</span></label>
+						</td>
+						<td class="value">
+							<input type="text" name="Value" id="Value" 
+							value="<?php echo $firmVO->getValue() ?>" 
+							class="required-entry input-text" />
+						</td>
+					</tr>
+
+					<tr>
+						<td class="label">
+							<label for="ContactPersonName">Father Name</label>
+						</td>
+						<td class="value">
+							<input type="text" name="ContactPersonName" id="ContactPersonName" 
+							value="<?php echo $firmVO->getContactPersonName() ?>" 
+							class="input-text" />
+						</td>
+					</tr>
+
+					<tr>
+						<td class="label">
+							<label for="MobileNumber1">Mobile Number 1<span class="required">*</span></label>
+						</td>
+						<td class="value">
+							<input type="text" name="MobileNumber1" id="MobileNumber1" maxlength="10"
+							value="<?php echo $firmVO->getMobileNumber1() ?>" 
+							class="required-entry input-text validate-digits" />
+						</td>
+					</tr>
+					
+					
+					<tr>
+						<td class="label">
+							<label for="MobileNumber2">Mobile Number 2</label>
+						</td>
+						<td class="value">
+							<input type="text" name="MobileNumber2" id="MobileNumber2" maxlength="10"
+							value="<?php echo $firmVO->getMobileNumber2() ?>" 
+							class="input-text validate-digits" />
+						</td>
+					</tr>
+					
+					<tr>
+						<td class="label">
+							<label for="Address">Address<span class="required">*</span></label>
+						</td>
+						<td class="value">
+							<textarea rows="3" cols="10" name="Address" id="Address" class="required-entry" style="height: 40px;" ><?php echo $firmVO->getAddress() ?></textarea>
+						</td>
+					</tr>
+					
+					<tr>
+						<td class="label">
+							<label for="CityID">City<span class="required">*</span></label>
+						</td>
+						<td class="value">
+							<select name="CityID" id="CityID" class="validate-select">
+								<option value="">--Select--</option>
+								<?php foreach ($cityOptions as $cityID=>$cityDataObj): ?>
+									<?php if ($cityDataObj['DistrictID'] != 31) continue; ?>
+									<option value="<?php echo $cityID ?>" <?php echo ($firmVO->getCityID() == $cityID) ? 'Selected = "Selected"' : '' ?> ><?php echo $cityDataObj['Name'] ?></option>
+								<?php endforeach; ?>
+							</select>
+						</td>
+					</tr>
+					
+					<tr>
+						<td class="label">
+							<label for="Area">Area</label>
+						</td>
+						<td class="value">
+							<input type="text" name="Area" id="Area" 
+							value="<?php echo $firmVO->getArea() ?>" 
+							class="input-text" />
+							
+							<input type="hidden" id="ID" name="ID" value="<?php echo ($firmVO->getID() != null && $firmVO->getID() != "") ? $firmVO->getID() : 0 ?>" />
+						</td>
+					</tr>
+					
+				</tbody>
+			</table>		
+		  		 
+			
+		</div>
+	</div>
+</div>	 

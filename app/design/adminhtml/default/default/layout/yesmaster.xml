@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+
+<layout>
+
+ 
+ 
+		<!-- office Master start -->
+		<yesmaster_office_office_index>
+				<reference name="content">
+						<block type="yesmaster/office_offices" name="yesmaster.office.index" template="YesMaster/office.phtml">
+				 			<block type="yesmaster/office_offices_grid_offices" name="yesmaster.office.offices"	as="grid" />
+						</block>
+				</reference>
+		</yesmaster_office_office_index>
+		
+		<yesmaster_office_office_offices>
+				<remove name="root" />
+				<block type="yesmaster/office_offices_grid_offices" name="yesmaster.office.offices" as="grid" />
+		</yesmaster_office_office_offices>
+		
+		<!-- office  Master end -->
+
+
+
+		<!-- userOffice Master start -->
+		<yesmaster_office_useroffice_index>
+			<reference name="content">
+					<block type="yesmaster/office_userOffice" name="wmsmasters.useroffice.index" template="YesMaster/userOffice.phtml">
+							<block type="yesmaster/office_userOffice_grid_userOffice" name="yesmaster.useroffice.userofficegrid" as="grid" />
+					</block>
+			</reference>
+		</yesmaster_office_useroffice_index>
+		<yesmaster_office_useroffice_userofficegrid>
+				<remove name="root" />
+				<block type="yesmaster/office_userOffice_grid_userOffice" name="yesmaster.useroffice.userofficegrid" as="grid" />
+		</yesmaster_office_useroffice_userofficegrid>
+
+	<!-- userOffice  Master end -->
+
+
+		<!-- office Type start -->
+		<yesmaster_office_officetype_index>
+			<reference name="content">
+				<block type="yesmaster/office_officeType" name="wmsmasters.officetype.index" template="YesMaster/OfficeType/home.phtml">
+					<block type="yesmaster/office_officeType_grid_OfficeTypeList"  name="wmsmasters.officetype.grid.officetypelist" as="grid" />
+				</block>
+			</reference>
+		</yesmaster_office_officetype_index>
+		
+		<yesmaster_office_officetype_officetypelist>
+			<remove name="root" />
+					<block type="yesmaster/office_officeType_grid_officeTypeList"  name="wmsmasters.officetype.grid.officetypelist" as="grid" />	
+		</yesmaster_office_officetype_officetypelist>
+		
+		 
+		 	<!-- office Type  end -->
+ 
+</layout>

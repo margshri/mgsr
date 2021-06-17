@@ -1,0 +1,179 @@
+<?php
+    $HTMLFormID = $this->getHTMLFormID();
+    /* @var $programmeVO Margshri_Common_VO_Programme_Programme_ProgrammeVO */
+    $programmeVO = $this->getProgrammeVO();    
+    $adminUserID = Mage::getSingleton('admin/session')->getUser()->getId();    
+?>
+
+<div class="content-header">
+    <table cellspacing="0">
+        <tr>
+            <td style="width:50%;"><h3 class="icon-head head-permissions-role"><?php echo ($this->getProgrammeID() != null ) ? ($this->__('Edit Programme') ) : $this->__('Add Programme') ?></h3></td>
+            <td class="form-buttons">
+                <?php echo $this->getBackButtonHtml() ?>
+                <?php echo $this->getResetButtonHtml() ?>
+                <?php echo $this->getSaveButtonHtml() ?>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<form action="<?php echo $this->getUrl('*/*/save') ?>" method="post" id="<?php echo $HTMLFormID ?>">
+    <?php  echo $this->getBlockHtml('formkey')?>
+    
+    <div class="entry-edit">
+    	<div class="entry-edit-head">
+    		<h4 class="icon-head head-edit-form fieldset-legend">Programme Detail</h4>
+    		<div class="form-buttons"></div>
+    	</div>
+    
+    	<div class="fieldset " id="base_fieldset">
+    		<div class="hor-scroll">
+    		   
+      			<table class="form-list">
+    				<tbody>
+    
+    					<tr>
+							<td class="label">
+								<label for="Programme Date">Programme Date<span class="required">*</span>
+							</label>
+							</td>
+							<td class="value"><input id="ProgrammeDate"
+								name="ProgrammeDate" readonly="readonly"
+								value="<?php echo ($programmeVO->getProgrammeDate() != null && $programmeVO->getProgrammeDate() != "0000-00-00" ) ? $programmeVO->getProgrammeDate() : date("Y-m-d h:i:s", Mage::getModel('core/date')->timestamp(time())) ?>"
+								class="required-entry input-text" style="width: 275px;"
+								type="text" /> <img
+								src="<?php  echo Mage::getDesign()->getSkinUrl('images/grid-cal.gif') ?>"
+								alt="" class="v-middle" id="ProgrammeDateIMG"
+								title="Select Date" style=""> 
+								<script type="text/javascript">
+	                                 //<![CDATA[ 
+	                                 Calendar.setup({
+                                          inputField: "ProgrammeDate",
+                                          ifFormat: "%Y-%m-%d %H:%M:%S",
+                                          showsTime: 12,
+                                          button: "ProgrammeDateIMG",
+                                          align: "Bl",
+                                          onClose   : function() { this.hide(); return validationControl.dateTime(); },
+                                          singleClick : true
+                                     });
+                                    //]]> 
+                                </script>
+							</td>	
+						</tr>
+    
+    					
+    					<tr>
+    						<td class="label">
+    							<label for="ProgrammeName">Programme Name<span class="required">*</span>
+    						</td>
+    						<td class="value">
+    							<input type="text" name="ProgrammeName" id="ProgrammeName" value="<?php echo $programmeVO->getProgrammeName() ?>" class="input-text required-entry" />
+    						</td>
+    					</tr>
+    					
+    					
+    					<tr>
+    						<td class="label">
+    							<label for="TypeID">Programme Type<span class="required">*</span>
+    						</td>
+    						<td class="value">
+    							<select name="TypeID" id="TypeID" class="validate-select">
+    								<option value="">--Select--</option>
+    								<?php foreach ($this->getProgrammeTypeOptions() as $typeID=>$typeName): ?>
+    										<option value="<?php echo $typeID ?>" <?php echo ($programmeVO->getTypeID() == $typeID) ? 'selected="selected"' : '' ?> ><?php echo $typeName ?></option>
+    								<?php endforeach; ?>
+    							</select>
+    						</td>
+    					</tr>
+    					
+    					<tr>
+    						<td class="label">
+    							<label for="StatusID">Programme Status<span class="required">*</span>
+    						</td>
+    						<td class="value">
+    							<select name="StatusID" id="StatusID" class="validate-select">
+    								<option value="">--Select--</option>
+    								<?php foreach ($this->getProgrammeStatusOptions() as $statusID=>$statusName): ?>
+    										<option value="<?php echo $statusID ?>" <?php echo ($programmeVO->getStatusID() == $statusID) ? 'selected="selected"' : '' ?> ><?php echo $statusName ?></option>
+    								<?php endforeach; ?>
+    							</select>
+    						</td>
+    					</tr>
+    					
+    				</tbody>
+    			</table>		
+    		  		 
+    			
+    		</div>
+    	</div>
+    </div>
+    
+    <input type="hidden" id="ID" name="ID" value="<?php echo ($programmeVO->getID() != null && $programmeVO->getID() != "") ? $programmeVO->getID() : 0 ?>" />
+</form>
+
+<script type="text/javascript">
+
+function programmeVO(){
+	this.ID = null;
+	this.ProgrammeName = null;
+	this.ProgrammeDate = null;
+	this.TypeID = null;
+	this.StatusID = null;
+}
+var newProgrammeDTO = new programmeVO();
+
+var programmeFormObj = new varienForm('<?php echo $HTMLFormID; ?>');
+var programmeFormJS={
+
+		submit : function(){
+    		if(!programmeFormJS.saveValidation()) return ;
+    			programmeFormJS.saveAjax();
+		},
+
+		saveValidation : function(){
+			
+         	if(!(programmeFormObj.validator && programmeFormObj.validator.validate())){
+    	    	return false;
+	    	}
+         	
+         	// SET VOs
+         	newProgrammeDTO.ID = ($('ID').value).strip();
+         	newProgrammeDTO.ProgrammeName = ($('ProgrammeName').value).strip();
+         	newProgrammeDTO.ProgrammeDate = ($('ProgrammeDate').value).strip();
+         	newProgrammeDTO.TypeID = ($('TypeID').value).strip();
+         	newProgrammeDTO.StatusID = ($('StatusID').value).strip();
+         	
+         	if(newProgrammeDTO.ProgrammeName == null || newProgrammeDTO.ProgrammeName == ""){
+				alert("Please Enter Programme Name.");
+				$("ProgrammeName").focus();
+				return false;
+			}
+         	
+         	 
+         	return true;
+		},	
+
+        saveAjax: function(){
+        	var URL = "<?php echo $this->getUrl('*/*/save')?>" ;
+		    var parameters= {"ProgrammeDataObj": JSON.stringify(newProgrammeDTO,null) };
+		    var callBackMethod ="programmeFormJS.responseSave";
+		    var callBackArgs =null;
+		    ajaxRequest.execute(	URL, parameters, callBackMethod , callBackArgs );
+		    return false;
+     	},
+
+	    responseSave : function(response,args) {
+	    	if(response.SuccessMessage !=null){
+	    		window.location.href = "<?php echo $this->getUrl('*/*/index')?>";
+			 	return;
+			}else if(response.ErrorMessage !=null){
+				alert(response.ErrorMessage);
+				return false;
+ 			}
+ 	 	}
+			
+}; 
+ 
+
+</script>    	 

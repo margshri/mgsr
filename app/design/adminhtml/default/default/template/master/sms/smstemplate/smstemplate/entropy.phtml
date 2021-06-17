@@ -1,0 +1,84 @@
+<?php
+/* @var $smsTemplateVO Dakiya_VO_Master_SMS_SMSTemplateVO */ 
+$smsTemplateVO = $this->getSMSTemplateVO();
+if($smsTemplateVO == null){
+	$smsTemplateVO = new Dakiya_VO_Master_SMS_SMSTemplateVO();
+}
+?>
+
+<div class="entry-edit">
+
+	<div class="entry-edit-head">
+		<h4 class="icon-head head-edit-form fieldset-legend">SMS Template</h4>
+		<div class="form-buttons"></div>
+	</div>
+
+	<div class="fieldset ">
+		<div class="hor-scroll">
+			
+		 
+				
+					 
+			<table class="form-list">
+				<tbody>
+					<tr>
+						<td class="label">
+							<label for="TemplateName">Template Name<span class="required">*</span></label>
+						</td>
+						<td class="value">
+							<input id="TemplateName" name="TemplateName" value="<?php echo $smsTemplateVO->getTemplateName() ?>" 
+							class="required-entry input-text" type="text" />
+						</td>
+					</tr>
+					
+					<tr>
+						<td class="label">
+							<label for="TemplateCode">Template Code<span class="required">*</span></label>
+						</td>
+						<td class="value">
+							<input id="TemplateCode" name="TemplateCode" value="<?php echo $smsTemplateVO->getTemplateCode() ?>" 
+							class="required-entry input-text" type="text" />
+						</td>
+					</tr>
+					
+					<tr>
+						<td class="label">
+							<label for="Query">Template Query</label>
+						</td>
+						<td class="value">
+							<textarea rows="" cols="" id="Query" name="Query" style="height: 94px !important;" ><?php echo $smsTemplateVO->getQuery() ?></textarea>
+						</td>
+					</tr>
+					
+					<tr>
+						<td class="label">
+							<label for="Content">Template Content<span class="required">*</span></label>
+						</td>
+						<td class="value">
+							<textarea rows="" cols="" id="Content" name="Content" style="height: 94px !important;"  class="required-entry"><?php echo $smsTemplateVO->getContent() ?></textarea>
+						</td>
+					</tr>
+					
+					<tr>
+						<td class="label">
+							<label for="Status">Status<span class="required">*</span></label>
+						</td>
+						<td class="value">
+							<select id="StatusID" name="StatusID" class = "validate-select" >
+								<option value="">--Select--</option>
+								<?php foreach ($this->getStatusOptions() as $key=> $value): ?>
+	     						<option value="<?php echo $key; ?>"  <?php  echo ( $key == $smsTemplateVO->getStatusID()) ?   'selected="selected"' : '' ?> > <?php echo $value; ?> </option>
+	     						<?php endforeach; ?>
+	     					</select>
+	     					<input id="TemplateID" name="TemplateID" value="<?php echo ($smsTemplateVO->getTemplateID() != null) ? $smsTemplateVO->getTemplateID() : 0  ?>" type="hidden" />
+	     				</td>
+	     			</tr>
+	     			
+				</tbody>
+			</table>						
+						 
+						 
+		</div>
+	</div>
+
+</div>

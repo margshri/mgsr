@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Margshri_Common>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Margshri_Common>
+        
+        <Margshri_Report>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Margshri_Report>                
+        
+        <Margshri_WebPortal>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Margshri_WebPortal>                
+        
+        <Margshri_ShoppingWebsite>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Margshri_ShoppingWebsite>
+        
+        <Margshri_MedicalCamp>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Margshri_MedicalCamp>
+        
+        <Margshri_Transport>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Margshri_Transport>
+	</modules>
+</config>

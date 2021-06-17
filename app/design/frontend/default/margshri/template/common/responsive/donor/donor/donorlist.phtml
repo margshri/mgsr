@@ -1,0 +1,211 @@
+<?php
+$todayDateTimeStamp = Mage::getModel('core/date')->timestamp(time());
+$donationVOs = $this->getDonationVOs();
+$total = sizeof($donationVOs);
+
+/* @var $newDonationVO Margshri_Common_VO_Donation_Donation_DonationVO */
+$totalDonation = 0;
+$totalRecord = 0;
+foreach ($donationVOs as $donationVO){
+    $newDonationVOs = $donationVO['DonationVOs'];
+    foreach ($newDonationVOs as $newDonationVO){
+        $totalDonation = $totalDonation + $newDonationVO->getDonatedAmount();
+        $totalRecord++;
+    }
+}
+
+
+ 
+?>
+
+<div class="card bg-light text-dark" style="margin: 50px 0px 10px 0px !important;">
+	<div class="card-body" style="padding:0px !important;">
+		<table class="table" style="margin-bottom: 0px !important;">
+			<tbody>
+				<tr>
+					<td style="border-top:none; width: 20% !important;" class="text-left">
+						<span style="font-size:20px;" onclick="baseFormJS.redirect('<?php echo $this->getUrl("common/Frontend_Programme_Programme/showProgrammeList", array("Code"=>"donation")) ?>')">&laquo;</span>
+					</td>
+					
+					<td style="border-top:none; vertical-align: middle;" class="text-center">
+						<span style="font-weight:bold;">Donor List</span>
+					</td>
+					
+					<td style="border-top:none; width: 20% !important; vertical-align: middle; " class="text-left">
+						<span style="font-weight:bold;">
+							<?php if($newDonationVO->getDonationTypeID() == Margshri_Common_VO_Donation_DonationType_DonationTypeVO::$BLOOD || $newDonationVO->getDonationTypeID() == Margshri_Common_VO_Donation_DonationType_DonationTypeVO::$BLOOD_SDP): ?>
+								<?php echo $totalRecord; ?>
+							<?php else: ?>
+								<?php echo $totalDonation; ?>
+							<?php endif;?>
+						</span>	
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	
+	<div class="card-body" style="padding:0px !important;">
+		<table class="table" style="margin-bottom: 0px !important;">
+			<tbody>
+				<tr>
+					<td style="border-top:none; vertical-align: middle;" class="text-center">
+						<input class="form-control" id="Search" type="text" placeholder="Search..">
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<div class="card bg-light">
+    <div class="card-body" id="DonorContainer" style="padding: unset !important;" >
+    <?php if($total > 0):?>
+        <?php $counter = 0; ?>
+        <ul class="list-group" id="DonorList">
+        <?php foreach($donationVOs as $donationVO): ?>
+        	<?php /* @var $userVO Margshri_Common_VO_User_User_UserVO */ ?>
+        	<?php $userVO = $donationVO['UserVO'] ?>
+        	<?php $counter++;?>
+        	<li class="list-group-item p-1 ">
+            	<div class="media">
+            		<div class="m-1 rounded text-center" style="width:50px;">
+            	
+            	 	
+            	<?php $imgFilePath =  $_SERVER['DOCUMENT_ROOT'] . "/mgsr/media/" ?>	
+            	 
+                <?php if($userVO->getUserImageURL() != null && $userVO->getUserImageURL() != ""  ): ?>
+                	<?php if( file_exists($imgFilePath . $userVO->getUserImageURL()) ): ?>
+                	 	<img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . $userVO->getUserImageURL() ?>" alt="donor" class="rounded text-center" style="width:50px;">
+                	<?php else: ?>
+                	 	<i class="fa fa-user" style="font-size:50px"></i>
+                	<?php endif; ?>
+                <?php else: ?>
+                	 <i class="fa fa-user" style="font-size:50px"></i>
+                <?php endif; ?>
+                	</div>
+            
+                    <div class="media-body text-left">
+                        <p style="margin-bottom: 0px !important;" ><small><b><?php echo ($userVO->getName() != null && $userVO->getName() != "") ?  ucwords(strtolower($userVO->getNamePrefix() . " " . $userVO->getName())) : ''  ?></b></small></p>
+                        <!--  
+                        <p style="margin-bottom: 0px !important; font-size: 7pt !important; font-style: italic;"><?php // echo ($userVO->getParentName() != null && $userVO->getParentName() != "" ) ? ucwords(strtolower($userVO->getParentName())) : '' ?></p>
+                        -->
+                        
+                        <p style="margin-bottom: 0px !important; font-size: 7pt !important; font-style: italic;"><?php echo ($userVO->getFatherName() != null && $userVO->getFatherName() != "" ) ? "Mr. " . ucwords(strtolower($userVO->getFatherName())) : '' ?></p>
+                        
+                        <?php if(!($newDonationVO->getDonationTypeID() == Margshri_Common_VO_Donation_DonationType_DonationTypeVO::$BLOOD || $newDonationVO->getDonationTypeID() == Margshri_Common_VO_Donation_DonationType_DonationTypeVO::$BLOOD_SDP)): ?>
+               		
+                        <p style="margin-bottom: 0px !important; font-size: 7pt !important; font-style: italic;">
+                        	<?php echo ($userVO->getMobileNumber1() != null && $userVO->getMobileNumber1() != "" ) ? ($userVO->getMobileNumber1() != '9999999999' ? '<i class="fa fa-phone"></i> ' . $userVO->getMobileNumber1() : '' )  : '' ?>
+                        </p>
+                        
+                        <?php endif; ?>
+                        
+                        <?php $address = (strpos($userVO->getArea(), $userVO->getAddress()) == false) ? $userVO->getAddress() . ", " : "" ?>
+                        <p style="margin-bottom: 0px !important; font-size: 7pt !important; font-style: italic;"><?php echo ($userVO->getArea() != null && $userVO->getArea() != "") ? '<i class="fa fa-home"></i> ' . $address . $userVO->getArea() . ', ' . $userVO->getCityName() : '' ?></p>
+                    </div>
+            		
+               </div>
+            	
+
+				<?php $newDonationVOs = $donationVO['DonationVOs']; ?>
+				<?php /* @var $newDonationVO Margshri_Common_VO_Donation_Donation_DonationVO */ ?>
+				<?php foreach ($newDonationVOs as $newDonationVO): ?>
+				
+    				<?php /* @var $donationTypeVO Margshri_Common_VO_Donation_DonationType_DonationTypeVO */ ?>
+    				<?php $donationTypeVO = $newDonationVO->getDonationTypeVO(); ?>
+    				
+    				<!--  
+    				<?php // if($donationTypeVO->getTypeImage() != null && $donationTypeVO->getTypeImage() != "" ): ?>
+                	 <img src="<?php // echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . $donationTypeVO->getTypeImage() ?>" alt="donor" class="m-1 rounded text-center" style="width:50px;">
+                	<?php // else: ?>
+                	 <div class="m-1 rounded text-center" style="width:50px;"></i></div>
+                	<?php // endif; ?>
+                    -->
+               		
+               		
+               		<?php if($newDonationVO->getDonationTypeID() == Margshri_Common_VO_Donation_DonationType_DonationTypeVO::$BLOOD || $newDonationVO->getDonationTypeID() == Margshri_Common_VO_Donation_DonationType_DonationTypeVO::$BLOOD_SDP): ?>
+               		
+               		<?php 
+               		   
+               		$donationDateTimeStamp = $todayDateTimeStamp;
+               		if($newDonationVO->getDonationDate() != null){
+               		    $donationDateTimeStamp = strtotime($newDonationVO->getDonationDate());
+               		}
+               		
+               		$datediff = $todayDateTimeStamp - $donationDateTimeStamp;
+               		$diffDays = round($datediff / (60 * 60 * 24));
+               		
+               		?>
+               		
+               		
+               		<div class="media">
+            			   		
+            			<!--         
+                        <div class="text-left">
+                        	<p class="small" style="font-size: 7pt !important; font-style: italic;"><?php // echo "Last Donation Date: " . date($newDonationVO->getDonationDate()) ?></p>
+                        </div>
+                        --> 
+                        
+                        <div class="media-body text-center">
+                        	<p style="margin-bottom: 0px !important; font-size: 7pt !important; font-style: italic;"><?php echo $diffDays ." दिन पहले रक्तदान किया "; ?></p>
+                        </div>
+                        
+                        
+                        <!--
+                    	<div class="text-right" >
+                		    <p class="small font-italic" style="margin-bottom: 0px !important; " ><?php  // echo $diffDays . 'days' ?></p>
+                      	</div>
+                      	-->
+                      	
+                	</div>	
+                	
+                	<?php else: ?>
+                	
+                	<div class="media">
+            			   		     
+                        <div class="text-left">
+                        	<p class="small" style="font-size: 7pt !important; font-style: italic;"><?php echo date($newDonationVO->getDonationDate()) ?></p>
+                        </div>
+                        
+                        <div class="media-body text-center">
+                        	<p style="margin-bottom: 0px !important; font-size: 7pt !important; font-style: italic;">
+                        		<?php if($newDonationVO->getDonatedAmount() != null && $newDonationVO->getDonatedAmount() != "" && $newDonationVO->getDonatedAmount() > 0) : ?>
+                        			<?php echo 'Cash'; ?>
+                        		<?php elseif($newDonationVO->getDescription() != null && $newDonationVO->getDescription() != "" ): ?>
+                        			<?php echo $newDonationVO->getDescription(); ?>
+                        		<?php elseif( $donationTypeVO->getTypeName() != null &&  $donationTypeVO->getTypeName() != ""): ?>
+                        			<?php echo $donationTypeVO->getTypeName(); ?>
+                        		<?php else: ?>
+                        			<?php echo ''; ?>
+                        		<?php endif; ?>
+                        	</p>
+                        </div>
+                        
+                    	<div class="text-right" >
+                		    <p class="small font-italic" style="margin-bottom: 0px !important; " ><?php echo ($newDonationVO->getDonatedAmount() != null && $newDonationVO->getDonatedAmount() != "" && $newDonationVO->getDonatedAmount() > 0) ? '<i class="fa fa-rupee"></i> ' . round($newDonationVO->getDonatedAmount()) : '' ?></p>
+                      	</div>
+                      	
+                	</div>	
+                	
+                	<?php endif; ?>
+				<?php endforeach; ?>            	
+            	
+            	 
+        	</li>
+    	<?php endforeach; ?>
+    	</ul>
+    <?php endif; ?>
+    </div>
+</div>
+
+<script>
+$(document).ready(function(){
+  $("#Search").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#DonorList li").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>

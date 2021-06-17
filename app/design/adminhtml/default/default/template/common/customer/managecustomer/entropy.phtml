@@ -1,0 +1,51 @@
+<?php
+	
+    $HTMLFormID = $this->getHTMLFormID();
+    $customerVO = $this->getCustomerVO();    
+    
+    if($customerVO == null){
+    	$customerVO = new Margshri_Common_VO_Customer_CustomerVO();
+    }
+    
+?>
+
+<div class="entry-edit">
+	<div class="entry-edit-head">
+		<h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__("Manage Customer") ?></h4>
+		<div class="form-buttons"></div>
+	</div>
+
+	<div class="fieldset " id="base_fieldset">
+		<div class="hor-scroll">
+		  <table class="form-list">
+		  	<tr>
+				<td class="value" colspan="2">
+					<div style="border: 1px solid; border-color: #AAA #C8C8C8 #C8C8C8 #AAA;">
+						<img id="CustomerImagePreview" alt="CustomerImage" src="<?php echo ($customerVO->getCustomerImage() != null && $customerVO->getCustomerImage() != '' )  ?  Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . "customer/profile_pic/" . $customerVO->getCustomerImage() : '' ?>"  width="200px" height="250px" style="border-style: hidden;"/>
+						<input type="file" id="CustomerImage" name="CustomerImage" onchange="return formJS.getCustomerImagePath()" style="display: none;" />
+				   	</div>
+			   	</td>
+			</tr>
+			
+			<tr>
+				<td class="value">
+					<input type="checkbox" id="IsShowProfile" name="IsShowProfile" <?php echo ($customerVO->getIsShowProfile() == 1) ? 'checked = "checked"' : '' ?> />
+				</td>
+				
+				<td class="value">
+					<span>Is Show Profile</span>
+				</td>
+			</tr>
+			
+			<tr>
+				<td class="value" colspan="2" style="text-align: right;">
+					<button type="button" id="CustomerImageBrowse" name="CustomerImageBrowse" onclick="return formJS.browseCustomerImageFile()" >Browse</button>
+					<input type="hidden" id="ID" name="ID" value="<?php echo ($customerVO->getID() != null) ? $customerVO->getID() : 0  ?>">
+					<input type="hidden" id="LastPicName" name="LastPicName" value="<?php echo ($customerVO->getCustomerImage() != null) ? $customerVO->getCustomerImage() : '' ?>">
+					
+				</td>
+			</tr>
+		  </table>
+		</div>
+	</div>
+</div>

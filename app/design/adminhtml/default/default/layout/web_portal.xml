@@ -1,0 +1,266 @@
+<?xml version="1.0"?>
+<layout>
+    	<!-- Master -->
+		<webportal_backend_master_table_tabletype_index>
+				<reference name="content">
+						<block type="webportal/Backend_Master_Table_TableType_Header" name="Backend_Master_Table_TableType_Header" template="webportal/master/table/tabletype/header.phtml">
+				 			<block type="webportal/Backend_Master_Table_TableType_Grid" name="Backend_Master_Table_TableType_Grid"	as="grid" />
+						</block>
+				</reference>
+		</webportal_backend_master_table_tabletype_index>
+		
+		<webportal_backend_master_table_table_index>
+				<reference name="content">
+						<block type="webportal/Backend_Master_Table_Table_Header" name="Backend_Master_Table_Table_Header" template="webportal/master/table/table/header.phtml">
+				 			<block type="webportal/Backend_Master_Table_Table_Grid" name="Backend_Master_Table_Table_Grid"	as="grid" />
+						</block>
+				</reference>
+		</webportal_backend_master_table_table_index>
+		
+		
+		
+		<webportal_backend_master_office_officetype_index>
+				<reference name="content">
+						<block type="webportal/Backend_Master_Office_OfficeType_Header" name="Backend_Master_Office_OfficeType_Header" template="webportal/master/office/officetype/header.phtml">
+				 			<block type="webportal/Backend_Master_Office_OfficeType_Grid" name="Backend_Master_Office_OfficeType_Grid"	as="grid" />
+						</block>
+				</reference>
+		</webportal_backend_master_office_officetype_index>
+		
+		<webportal_backend_master_office_office_index>
+				<reference name="content">
+						<block type="webportal/Backend_Master_Office_Office_Header" name="Backend_Master_Office_Office_Header" template="webportal/master/office/office/header.phtml">
+				 			<block type="webportal/Backend_Master_Office_Office_Grid" name="Backend_Master_Office_Office_Grid"	as="grid" />
+						</block>
+				</reference>
+		</webportal_backend_master_office_office_index>
+		
+		<webportal_backend_master_office_useroffice_index>
+				<reference name="content">
+						<block type="webportal/Backend_Master_Office_UserOffice_Header" name="Backend_Master_Office_UserOffice_Header" template="webportal/master/office/useroffice/header.phtml">
+				 			<block type="webportal/Backend_Master_Office_UserOffice_Grid" name="Backend_Master_Office_UserOffice_Grid"	as="grid" />
+						</block>
+				</reference>
+		</webportal_backend_master_office_useroffice_index>
+		
+		
+		<webportal_backend_master_subpage_entity_index>
+				<reference name="content">
+						<block type="webportal/Backend_Master_SubPage_Entity_Header" name="Backend_Master_SubPage_Entity_Header" template="webportal/master/subpage/entity/header.phtml">
+				 			<block type="webportal/Backend_Master_SubPage_Entity_Grid" name="Backend_Master_SubPage_Entity_Grid"	as="grid" />
+						</block>
+				</reference>
+		</webportal_backend_master_subpage_entity_index>
+		
+		
+		<webportal_backend_master_subpage_attribute_index>
+				<reference name="content">
+						<block type="webportal/Backend_Master_SubPage_Attribute_Header" name="Backend_Master_SubPage_Attribute_Header" template="webportal/master/subpage/attribute/header.phtml">
+				 			<block type="webportal/Backend_Master_SubPage_Attribute_Grid" name="Backend_Master_SubPage_Attribute_Grid"	as="grid" />
+						</block>
+				</reference>
+		</webportal_backend_master_subpage_attribute_index>
+		
+		
+		<webportal_backend_master_subpage_entityattribute_index>
+				<reference name="content">
+						<block type="webportal/Backend_Master_SubPage_EntityAttribute_Header" name="Backend_Master_SubPage_EntityAttribute_Header" template="webportal/master/subpage/entityattribute/header.phtml">
+				 			<block type="webportal/Backend_Master_SubPage_EntityAttribute_Grid" name="Backend_Master_SubPage_EntityAttribute_Grid"	as="grid" />
+						</block>
+				</reference>
+		</webportal_backend_master_subpage_entityattribute_index>
+		
+		
+		<webportal_backend_master_subpage_service_index>
+				<reference name="content">
+						<block type="webportal/Backend_Master_SubPage_Service_Header" name="Backend_Master_SubPage_Service_Header" template="webportal/master/subpage/service/header.phtml">
+				 			<block type="webportal/Backend_Master_SubPage_Service_Grid" name="Backend_Master_SubPage_Service_Grid"	as="grid" />
+						</block>
+				</reference>
+		</webportal_backend_master_subpage_service_index>
+		
+		
+		
+		<webportal_backend_master_bidding_createbid_index>
+				<reference name="content">
+						<block type="webportal/Backend_Master_Bidding_CreateBid_Header" name="Backend_Master_Bidding_CreateBid_Header" template="webportal/master/bidding/createbid/header.phtml">
+				 			<block type="webportal/Backend_Master_Bidding_CreateBid_Grid" name="Backend_Master_Bidding_CreateBid_Grid"	as="grid" />
+						</block>
+				</reference>
+		</webportal_backend_master_bidding_createbid_index>
+		
+		
+		<webportal_backend_master_bidding_productmapping_index>
+				<reference name="content">
+						<block type="webportal/Backend_Master_Bidding_ProductMapping_Header" name="Backend_Master_Bidding_ProductMapping_Header" template="webportal/master/bidding/productmapping/header.phtml">
+				 			<block type="webportal/Backend_Master_Bidding_ProductMapping_Grid" name="Backend_Master_Bidding_ProductMapping_Grid"	as="grid" />
+						</block>
+				</reference>
+		</webportal_backend_master_bidding_productmapping_index>
+		
+		
+		<webportal_backend_master_system_systemconfig_index>
+				<reference name="content">
+						<block type="webportal/Backend_Master_System_SystemConfig_Header" name="Backend_Master_System_SystemConfig_Header" template="webportal/master/system/systemconfig/header.phtml">
+				 			<block type="webportal/Backend_Master_System_SystemConfig_Grid" name="Backend_Master_System_SystemConfig_Grid"	as="grid" />
+						</block>
+				</reference>
+		</webportal_backend_master_system_systemconfig_index>
+				
+		<!-- Master -->
+    
+    
+    	<!-- Registration Start-->
+    	<webportal_backend_registration_registration_registration_index>
+			<reference name="content">
+					<block type="webportal/Backend_Registration_Registration_Header" name="Backend_Registration_Registration_Header" template="webportal/registration/registration/header.phtml">
+			 			<block type="webportal/Backend_Registration_Registration_Grid" name="Backend_Registration_Registration_Grid" as="grid" />
+					</block>
+			</reference>
+		</webportal_backend_registration_registration_registration_index>
+		
+		
+		<webportal_backend_registration_registration_registration_print>
+		 	<remove name="header"/>
+		 	<remove name="head"/>
+		 	<remove name="menu"/>
+			<reference name="content">
+					<block type="webportal/Backend_Registration_Registration_Print" name="Backend_Registration_Registration_Print" as="print" template="webportal/registration/registration/print.phtml" />
+			</reference>
+		</webportal_backend_registration_registration_registration_print>
+    	<!-- Registration End-->
+    	
+    	
+    	<!-- Bidding Start-->
+    	<webportal_backend_bidding_bidtran_index>
+			<reference name="content">
+					<block type="webportal/Backend_Bidding_BidTran_Header" name="Backend_Bidding_BidTran_Header" template="webportal/bidding/bidtran/header.phtml">
+			 			<block type="webportal/Backend_Bidding_BidTran_Grid" name="Backend_Bidding_BidTran_Grid" as="grid" />
+					</block>
+			</reference>
+		</webportal_backend_bidding_bidtran_index>
+    	<!-- Bidding End-->
+    	
+    	
+    	<!-- CLP Start-->
+    	<webportal_backend_clp_clppoints_clppoints_index>
+			<reference name="content">
+					<block type="webportal/Backend_CLP_CLPPoints_Header" name="Backend_CLP_CLPPoints_Header" template="webportal/clp/clppoints/header.phtml">
+			 			<block type="webportal/Backend_CLP_CLPPoints_Grid" name="Backend_CLP_CLPPoints_Grid" as="grid" />
+					</block>
+			</reference>
+		</webportal_backend_clp_clppoints_clppoints_index>
+		
+		<webportal_backend_clp_clppoints_clppointstran_index>
+			<reference name="content">
+					<block type="webportal/Backend_CLP_CLPPointsTran_Header" name="Backend_CLP_CLPPointsTran_Header" template="webportal/clp/clppointstran/header.phtml">
+			 			<block type="webportal/Backend_CLP_CLPPointsTran_Grid" name="Backend_CLP_CLPPointsTran_Grid" as="grid" />
+					</block>
+			</reference>
+		</webportal_backend_clp_clppoints_clppointstran_index>
+		
+    	<!-- CLP End-->
+    	
+ 
+		<!-- Manage Data Start -->
+		  
+		<webportal_backend_center_content_type1_bank_branch_index>
+				<reference name="content">
+						<block type="webportal/Backend_Center_Content_Type1_Bank_Branch_Header" name="Backend_Center_Content_Type1_Bank_Branch_Header" template="webportal/center/content/type1/bank/branch/header.phtml">
+				 			<block type="webportal/Backend_Center_Content_Type1_Bank_Branch_grid" name="Backend_Center_Content_Type1_Bank_Branch_Grid"	as="grid" />
+						</block>
+				</reference>
+		</webportal_backend_center_content_type1_bank_branch_index>
+		
+		<webportal_backend_center_content_type1_bank_atm_index>
+				<reference name="content">
+						<block type="webportal/Backend_Center_Content_Type1_Bank_ATM_Header" name="Backend_Center_Content_Type1_Bank_ATM_Header" template="webportal/center/content/type1/bank/atm/header.phtml">
+				 			<block type="webportal/Backend_Center_Content_Type1_Bank_ATM_grid" name="Backend_Center_Content_Type1_Bank_ATM_Grid"	as="grid" />
+						</block>
+				</reference>
+		</webportal_backend_center_content_type1_bank_atm_index>
+		
+		<webportal_backend_center_content_type2_professional_professional_index>
+				<reference name="content">
+						<block type="webportal/Backend_Center_Content_Type2_Professional_Professional_Header" name="Backend_Center_Content_Type2_Professional_Professional_Header" template="webportal/center/content/type2/professional/professional/header.phtml">
+				 			<block type="webportal/Backend_Center_Content_Type2_Professional_Professional_Grid" name="Backend_Center_Content_Type2_Professional_Professional_Grid"	as="grid" />
+						</block>
+				</reference>
+		</webportal_backend_center_content_type2_professional_professional_index>
+		
+		<webportal_backend_center_content_type2_citydiamonds_citydiamonds_index>
+				<reference name="content">
+						<block type="webportal/Backend_Center_Content_Type2_CityDiamonds_CityDiamonds_Header" name="Backend_Center_Content_Type2_CityDiamonds_CityDiamonds_Header" template="webportal/center/content/type2/citydiamonds/citydiamonds/header.phtml">
+				 			<block type="webportal/Backend_Center_Content_Type2_CityDiamonds_CityDiamonds_Grid" name="Backend_Center_Content_Type2_CityDiamonds_CityDiamonds_Grid"	as="grid" />
+						</block>
+				</reference>
+		</webportal_backend_center_content_type2_citydiamonds_citydiamonds_index>
+		
+		<webportal_backend_center_content_type2_blooddonor_blooddonor_index>
+				<reference name="content">
+						<block type="webportal/Backend_Center_Content_Type2_BloodDonor_BloodDonor_Header" name="Backend_Center_Content_Type2_CityDiamonds_CityDiamonds_Header" template="webportal/center/content/type2/blooddonor/blooddonor/header.phtml">
+				 			<block type="webportal/Backend_Center_Content_Type2_BloodDonor_BloodDonor_Grid" name="Backend_Center_Content_Type2_CityDiamonds_CityDiamonds_Grid"	as="grid" />
+						</block>
+				</reference>
+		</webportal_backend_center_content_type2_blooddonor_blooddonor_index>
+
+
+		
+		<webportal_backend_center_content_type5_viewer_viewer_index>
+				<reference name="content">
+						<block type="webportal/Backend_Center_Content_Type5_Viewer_Viewer_Header" name="Backend_Center_Content_Type2_Professional_Professional_Header" template="webportal/center/content/type5/viewer/viewer/header.phtml">
+				 			<block type="webportal/Backend_Center_Content_Type5_Viewer_Viewer_Grid" name="Backend_Center_Content_Type5_Viewer_Viewer_Grid"	as="grid" />
+						</block>
+				</reference>
+		</webportal_backend_center_content_type5_viewer_viewer_index>
+				
+		<webportal_backend_center_content_type7_event_event_index>
+				<reference name="content">
+						<block type="webportal/Backend_Center_Content_Type7_Event_Event_Header" name="Backend_Center_Content_Type7_Event_Event_Header" template="webportal/center/content/type7/event/event/header.phtml">
+				 			<block type="webportal/Backend_Center_Content_Type7_Event_Event_Grid" name="Backend_Center_Content_Type7_Event_Event_Grid"	as="grid" />
+						</block>
+				</reference>
+		</webportal_backend_center_content_type7_event_event_index>
+
+		
+		
+		<webportal_backend_center_content_type7_achivement_achivement_index>
+				<reference name="content">
+						<block type="webportal/Backend_Center_Content_Type7_Achivement_Achivement_Header" name="Backend_Center_Content_Type7_Achivement_Achivement_Header" template="webportal/center/content/type7/achivement/achivement/header.phtml">
+				 			<block type="webportal/Backend_Center_Content_Type7_Achivement_Achivement_Grid" name="Backend_Center_Content_Type7_Achivement_Achivement_Grid"	as="grid" />
+						</block>
+				</reference>
+		</webportal_backend_center_content_type7_achivement_achivement_index>
+
+
+
+		<webportal_backend_center_content_type7_news_news_index>
+				<reference name="content">
+						<block type="webportal/Backend_Center_Content_Type7_News_News_Header" name="Backend_Center_Content_Type7_News_News_Header" template="webportal/center/content/type7/news/news/header.phtml">
+				 			<block type="webportal/Backend_Center_Content_Type7_News_News_Grid" name="Backend_Center_Content_Type7_News_News_Grid"	as="grid" />
+						</block>
+				</reference>
+		</webportal_backend_center_content_type7_news_news_index>
+
+
+		
+		<webportal_backend_firm_firm_index>
+				<reference name="content">
+						<block type="webportal/Backend_Firm_Firm_Header" name="Backend_Firm_Firm_Header" template="webportal/firm/firm/header.phtml">
+				 			<block type="webportal/Backend_Firm_Firm_Grid" name="Backend_Firm_Firm_Grid"	as="grid" />
+						</block>
+				</reference>
+		</webportal_backend_firm_firm_index>
+		
+		<webportal_backend_fileupload_imageupload_advertisement_index>
+				<reference name="content">
+						<block type="webportal/Backend_FileUpload_ImageUpload_Advertisement_Header" name="Backend_FileUpload_ImageUpload_Advertisement_Header" template="webportal/fileupload/imageupload/advertisement/header.phtml">
+				 			<block type="webportal/Backend_FileUpload_ImageUpload_Advertisement_Grid" name="Backend_FileUpload_ImageUpload_Advertisement_Grid"	as="grid" />
+						</block>
+				</reference>
+		</webportal_backend_fileupload_imageupload_advertisement_index>
+				
+		<!-- Manage Data End -->
+ 
+ 
+</layout>

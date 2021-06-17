@@ -1,0 +1,268 @@
+<?xml version="1.0"?>
+<config>
+	<modules>
+		<Margshri_Transport>
+			<version>1.0.0.0</version>
+		</Margshri_Transport>
+	</modules>
+
+	<global>
+		<models>
+			<transport>
+				<class>Margshri_Transport_Model</class>
+				<resourceModel>transport_mysql4</resourceModel>
+			</transport>
+
+			<transport_mysql4>
+				<class>Margshri_Transport_Model_MySql4</class>
+				<entities>
+				    
+				    <mgsrvahicaleowner>
+						<table>mgsr_vahicale_owner</table>
+					</mgsrvahicaleowner>
+				    
+					<mgsrvahicale>
+						<table>mgsr_vahicale</table>
+					</mgsrvahicale>
+					
+					<mgsrvahicaletype>
+						<table>mgsr_vahicale_type</table>
+					</mgsrvahicaletype>
+					
+					<mgsrvahicaledriver>
+						<table>mgsr_vahicale_driver</table>
+					</mgsrvahicaledriver>
+					
+					<mgsrvahicalecommon>
+						<table>mgsr_vahicale_common</table>
+					</mgsrvahicalecommon>
+					
+					<mgsrconsignmentnote>
+						<table>mgsr_transport_consignment_note</table>
+					</mgsrconsignmentnote>
+					
+					<mgsrconsignmentnotestatus>
+						<table>mgsr_transport_consignment_note_status</table>
+					</mgsrconsignmentnotestatus>
+				</entities>
+			</transport_mysql4>
+		</models>
+
+		<resources>
+			<admin_setup>
+				<setup>
+					<module>Margshri_Transport</module>
+				</setup>
+			</admin_setup>
+		</resources>
+
+		<blocks>
+			<transport>
+				<class>Margshri_Transport_Block</class>
+			</transport>
+		</blocks>
+
+		<helpers>
+			<transport>
+				<class>Margshri_Transport_Helper</class>
+			</transport>
+		</helpers>
+
+
+	</global>
+
+	<frontend>
+		<routers>
+			<transport>
+				<use>standard</use>
+				<args>
+					<module>Margshri_Transport</module>
+					<frontName>transport</frontName>
+				</args>
+			</transport>
+		</routers>
+
+		<layout>
+			<updates>
+				<transport module="Margshri_Transport">
+					<file>transport.xml</file>
+				</transport>
+			</updates>
+		</layout>
+	</frontend>
+
+
+	<admin>
+		<routers>
+			<transport>
+				<use>admin</use>
+				<args>
+					<module>Margshri_Transport</module>
+					<frontName>transport</frontName>
+				</args>
+			</transport>
+		</routers>
+
+		<layout>
+			<updates>
+				<transport module="Margshri_Transport">
+					<file>transport.xml</file>
+				</transport>
+			</updates>
+		</layout>
+
+	</admin>
+
+
+	<adminhtml>
+		<menu>
+			<transport translate="title" module="admin">
+				<title>Transport</title>
+				<sort_order>21</sort_order>
+				<children>
+					<master translate="title" module="admin">
+						<title>Master</title>
+						<sort_order>01</sort_order>
+						<children>
+							
+							<owner translate="title" module="admin">
+								<title>Vahicale Owner</title>
+								<sort_order>01</sort_order>
+								<action>transport/Backend_Master_Vahicale_Owner/index</action>
+							</owner>
+						
+							<vahicale translate="title" module="admin">
+								<title>Vahicale List</title>
+								<sort_order>02</sort_order>
+								<action>transport/Backend_Master_Vahicale_Vahicale/index</action>
+							</vahicale>
+							
+							<driver translate="title" module="admin">
+								<title>Driver List</title>
+								<sort_order>03</sort_order>
+								<action>transport/Backend_Master_Vahicale_Driver/index</action>
+							</driver>
+							
+							<common translate="title" module="admin">
+								<title>Common List</title>
+								<sort_order>04</sort_order>
+								<action>transport/Backend_Master_Vahicale_Common/index</action>
+							</common>
+							
+						</children>
+					</master>
+					
+					<consignment translate="title" module="admin">
+						<title>Consignment</title>
+						<sort_order>01</sort_order>
+						<children>
+							
+							<consignmentnote translate="title" module="admin">
+								<title>Consignment Note</title>
+								<sort_order>01</sort_order>
+								<action>transport/Backend_Consignment_Consignment_ConsignmentNote/index</action>
+							</consignmentnote>
+							
+						</children>
+					</consignment>
+					
+				</children>	
+			</transport>
+		</menu>
+
+		<acl>
+			<resources>
+				<admin>
+					<children>
+						<transport translate="title" module="admin">
+							<title>Transport</title>
+							<sort_order>21</sort_order>
+							<children>
+								<master translate="title" module="admin">
+									<title>Master</title>
+									<sort_order>01</sort_order>
+									<children>
+									
+										<owner translate="title" module="admin">
+											<title>Vahicale Owner</title>
+											<sort_order>01</sort_order>
+										</owner>
+									
+										<vahicale translate="title" module="admin">
+											<title>Vahicale List</title>
+											<sort_order>02</sort_order>
+										</vahicale>
+										
+										<driver translate="title" module="admin">
+											<title>Driver List</title>
+											<sort_order>03</sort_order>
+										</driver>
+										
+										<common translate="title" module="admin">
+											<title>Common List</title>
+											<sort_order>04</sort_order>
+											<children>
+												<add translate="title" module="admin">
+													<title>Add</title>
+													<sort_order>01</sort_order>
+												</add>
+												
+												<edit translate="title" module="admin">
+													<title>Edit</title>
+													<sort_order>02</sort_order>
+												</edit>	
+											</children>
+										</common>
+							
+									</children>
+								</master>
+								
+								<consignment translate="title" module="admin">
+									<title>Consignment</title>
+									<sort_order>01</sort_order>
+									<children>
+										
+										<consignmentnote translate="title" module="admin">
+											<title>Consignment Note</title>
+											<sort_order>01</sort_order>
+											<children>
+												<add translate="title" module="admin">
+													<title>Add</title>
+													<sort_order>01</sort_order>
+												</add>
+												
+												<edit translate="title" module="admin">
+													<title>Edit</title>
+													<sort_order>02</sort_order>
+												</edit>
+												
+												<print translate="title" module="admin">
+													<title>Print</title>
+													<sort_order>03</sort_order>
+												</print>
+													
+											</children>
+										</consignmentnote>
+										
+									</children>
+								</consignment>
+								
+								
+							</children>	
+						</transport>
+					</children>
+				</admin>
+			</resources>
+		</acl>
+
+		<layout>
+			<updates>
+				<transport module="Margshri_Transport">
+					<file>transport.xml</file>
+				</transport>
+			</updates>
+		</layout>
+
+
+	</adminhtml>
+</config>

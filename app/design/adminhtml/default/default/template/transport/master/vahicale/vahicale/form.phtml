@@ -1,0 +1,170 @@
+<?php
+    $HTMLFormID = $this->getHTMLFormID();
+    /* @var $vahicaleVO Margshri_Transport_VO_Master_Vahicale_VahicaleVO */
+    $vahicaleVO = $this->getVahicaleVO();    
+    
+    // $cityOptions = $this->getCityOptions();
+?>
+
+<div class="content-header">
+    <table cellspacing="0">
+        <tr>
+            <td style="width:50%;"><h3 class="icon-head head-permissions-role"><?php echo ($this->getVahicaleID() != null ) ? ($this->__('Edit Vahicale') ) : $this->__('Add Vahicale') ?></h3></td>
+            <td class="form-buttons">
+                <?php echo $this->getBackButtonHtml() ?>
+                <?php echo $this->getResetButtonHtml() ?>
+                <?php echo $this->getSaveButtonHtml() ?>
+            </td>
+        </tr>
+    </table>
+</div>
+<!--  
+Vahicale Detail
+-->
+
+
+<!--  
+<div class="page-header">
+    <div class="page-block">
+        <div class="row align-items-center">
+            <div class="col-md-12">
+                <div class="page-header-title">
+                    <h5 class="m-b-10">Form Elements</h5>
+                </div>
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html"><i class="feather icon-home"></i></a></li>
+                    <li class="breadcrumb-item"><a href="javascript:">Form Componants</a></li>
+                    <li class="breadcrumb-item"><a href="javascript:">Form Elements</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+-->
+
+
+     <div class="container">
+        <div class="row">
+        	<div class="col">
+                <form action="<?php echo $this->getUrl('*/*/save') ?>" method="post" id="<?php echo $HTMLFormID ?>">
+                    <?php  echo $this->getBlockHtml('formkey')?>
+                    
+                    
+                    <div class="form-group">
+                    	<label for="VahicaleNumber">Vahicale Number<span class="required">*</span></label>
+                        <input type="text" class="form-control required-entry" name="VahicaleNumber" id="VahicaleNumber" placeholder="Enter Vahicale Number" value="<?php echo $vahicaleVO->getVahicaleNumber() ?>" />
+                    </div>
+                    
+                    <div class="form-group">
+                    	<label for="ChasisNumber">Chasis Number</label>
+                        <input type="text" class="form-control " name="ChasisNumber" id="ChasisNumber" value="<?php echo $vahicaleVO->getChasisNumber() ?>" placeholder="Enter Chasis Number" />
+                    </div>
+                    
+                    <div class="form-group">
+                    	<label for="EngineNumber">Engine Number</label>
+                        <input type="text" class="form-control " name="EngineNumber" id="EngineNumber" value="<?php echo $vahicaleVO->getEngineNumber() ?>"  placeholder="Enter Engine Number" />
+                    </div>
+                    
+                    <div class="form-group">
+                    	<label for="WeightCapacity">Weight Capacity</label>
+                        <input type="text" class="form-control validate-digits" name="WeightCapacity" id="WeightCapacity" value="<?php echo $vahicaleVO->getWeightCapacity() ?>" placeholder="Enter Weight Capacity" />
+                    </div>
+                    
+                    <div class="form-group">
+                    	<label for="OwnerID">Owner<span class="required">*</span></label>
+                        <select name="OwnerID" id="OwnerID" class="form-control required-entry">
+            				<option value="">--Select--</option>
+            				<?php  foreach ($this->getOwnerOptions() as $ownerID=>$ownerName): ?>
+            					<option value="<?php echo $ownerID ?>" <?php echo ($ownerID == $vahicaleVO->getOwnerID()) ? 'Selected = "Selected"' : '' ?> ><?php echo $ownerName ?></option>
+            				<?php  endforeach; ?>
+            			</select>
+                    </div>    
+                    					
+                    <div class="form-group">
+                    	<label for="StatusID">Status<span class="required">*</span></label>
+                        <select name="StatusID" id="StatusID" class="form-control required-entry">
+            				<option value="">--Select--</option>
+            				<?php  foreach ($this->getStatusOptions() as $statusID=>$statusName): ?>
+            					<option value="<?php echo $statusID ?>" <?php echo ($statusID == $vahicaleVO->getID()) ? 'Selected = "Selected"' : '' ?> ><?php echo $statusName ?></option>
+            				<?php  endforeach; ?>
+            			</select>
+                    </div>					
+                    
+                    <div class="form-group">
+                    	<input type="hidden" class="form-control " id="ID" name="ID" value="<?php echo ($vahicaleVO->getID() != null && $vahicaleVO->getID() != "") ? $vahicaleVO->getID() : 0 ?>" />
+                    </div>	
+            </form>
+		</div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+
+function vahicaleVO(){
+	this.ID = null;
+	this.VahicaleNumber = null;
+	this.ChasisNumber = null;
+	this.EngineNumber = null;
+	this.WeightCapacity = null;
+	this.OwnerID = null;
+	this.StatusID = null;
+}
+var newVahicaleDTO = new vahicaleVO();
+
+var vahicaleFormObj = new varienForm('<?php echo $HTMLFormID; ?>');
+var vahicaleFormJS={
+
+		submit : function(){
+    		if(!vahicaleFormJS.saveValidation()) return ;
+    		vahicaleFormJS.saveAjax();
+		},
+
+		saveValidation : function(){
+			var errorMsg = '';
+			
+         	if(!(vahicaleFormObj.validator && vahicaleFormObj.validator.validate())){
+    	    	return false;
+	    	}
+         	
+         	// SET VOs
+         	newVahicaleDTO.ID = ($('ID').value).strip();
+         	newVahicaleDTO.VahicaleNumber = ($('VahicaleNumber').value).strip();
+         	newVahicaleDTO.ChasisNumber = ($('ChasisNumber').value).strip();
+         	newVahicaleDTO.EngineNumber = ($('EngineNumber').value).strip();
+         	newVahicaleDTO.WeightCapacity = ($('WeightCapacity').value).strip();
+         	newVahicaleDTO.OwnerID = ($('OwnerID').value).strip();
+         	newVahicaleDTO.StatusID = ($('StatusID').value).strip();
+         	
+         	
+         	if(errorMsg != ''){
+            	alert(errorMsg);
+				return false;
+			}
+
+         	return true;
+		},	
+
+        saveAjax: function(){
+        	var URL = "<?php echo $this->getUrl('*/*/save')?>" ;
+		    var parameters= {"VahicaleDataObj": JSON.stringify(newVahicaleDTO,null) };
+		    var callBackMethod ="vahicaleFormJS.responseSave";
+		    var callBackArgs =null;
+		    ajaxRequest.execute(	URL, parameters, callBackMethod , callBackArgs );
+		    return false;
+     	},
+
+	    responseSave : function(response,args) {
+	    	if(response.SuccessMessage !=null){
+	    		window.location.href = "<?php echo $this->getUrl('*/*/index')?>";
+			 	return;
+			}else if(response.ErrorMessage !=null){
+				alert(response.ErrorMessage);
+				return false;
+ 			}
+ 	 	}
+			
+}; 
+ 
+
+</script>    	 

@@ -1,0 +1,7 @@
+ERROR SMTP connect() failed.|admin@xhat.us
+ERROR SMTP connect() failed.|perampokcc2@gmail.com
+ERROR SMTP connect() failed.|oxo.foxo@yandex.com
+ERROR SMTP connect() failed.|dev.mex@yahoo.com
+ERROR SMTP connect() failed.|presidenjahat@outlook.com
+ERROR SMTP connect() failed.|sinkaj42@yahoo.com
+ERROR SMTP connect() failed.|sempaktamvan@outlook.com

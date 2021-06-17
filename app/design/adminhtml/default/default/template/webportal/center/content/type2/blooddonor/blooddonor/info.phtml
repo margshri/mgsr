@@ -1,0 +1,96 @@
+<?php
+$HTMLFormID = $this->getHTMLFormID();
+?>
+<div class="content-header">
+    <table cellspacing="0">
+        <tr>
+            
+            <td style="width:50%;"><h3 class="icon-head head-permissions-role"><?php echo ($this->getID() != null ) ? ($this->__('Edit') ) : $this->__('Add') ?></h3></td>
+            <td class="form-buttons">
+                <?php echo $this->getBackButtonHtml() ?>
+                <?php echo $this->getResetButtonHtml() ?>
+                <?php echo $this->getSaveButtonHtml() ?>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<form action="<?php echo $this->getUrl('*/*/save') ?>" method="post" id="<?php echo $HTMLFormID ?>">
+    <?php  echo $this->getBlockHtml('formkey')?>
+    <?php  echo $this->getEntropy()?>
+</form>
+
+<script type="text/javascript">
+
+function BloodDonorVO(){
+	this.ID = null;
+	this.CustomerID = null;
+	this.IsDonated = null;
+	this.LastDonatedAt = null;
+	this.StatusID=null;
+	this.BloodGroupID=null;
+	
+}
+var newBloodDonorDTO = new BloodDonorVO();
+
+var formObj = new varienForm('<?php echo $HTMLFormID; ?>');
+var formJS={
+
+		submit : function(){
+    		if(!formJS.saveValidation()) return ;
+    			formJS.saveAjax();
+		},
+
+		saveValidation : function(){
+
+			if(!(formObj.validator && formObj.validator.validate())){
+    	    	return false;
+	    	}
+	    	
+         	// SET VOs 
+            newBloodDonorDTO.ID = ($('ID').value).strip();
+            newBloodDonorDTO.CustomerID = ($('CustomerID').value).strip();
+            newBloodDonorDTO.IsDonated = ($('IsDonated').value).strip();
+            newBloodDonorDTO.LastDonatedAt = ($('LastDonatedAt').value).strip();
+            newBloodDonorDTO.StatusID = ($('StatusID').value).strip();
+            newBloodDonorDTO.BloodGroupID = ($('BloodGroupID').value).strip();
+
+            if(newBloodDonorDTO.IsDonated == 1){ // 1 for YES 
+				if(newBloodDonorDTO.LastDonatedAt == null || newBloodDonorDTO.LastDonatedAt == ""){
+					alert("Please Enter Last Donation Date.");
+					return false;
+				}
+            }else{
+            	if(newBloodDonorDTO.LastDonatedAt != null && newBloodDonorDTO.LastDonatedAt != ""){
+            		newBloodDonorDTO.IsDonated = 1;
+				}
+            }     
+            
+			return true;	
+		},	
+
+        saveAjax: function(){
+        	var URL = "<?php echo $this->getUrl('*/*/save')?>" ;
+		    var parameters= {"BloodDonorDataObj": JSON.stringify(newBloodDonorDTO,null) };
+		    var callBackMethod ="formJS.responseSave";
+		    var callBackArgs =null;
+		    ajaxRequest.execute(	URL, parameters, callBackMethod , callBackArgs );
+		    return false;
+     	},
+     	
+	    responseSave : function(response,args) {
+        	if(response.SuccessMessage !=null){
+			 	window.location.href = "<?php echo $this->getUrl('*/*/index')?>" ;
+			 	return;
+			}else if(response.ErrorMessage !=null){
+				alert(response.ErrorMessage);
+    			return false;
+ 			}
+ 	 	},
+		
+		  
+}; 
+
+ 
+
+</script>

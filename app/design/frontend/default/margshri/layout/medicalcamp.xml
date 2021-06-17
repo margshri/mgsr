@@ -1,0 +1,90 @@
+<?xml version="1.0"?> 
+<layout version="0.1.0">
+      
+    <default></default>
+
+	<medicalcamp_index_index>
+	
+		<reference name="header">
+            <remove name="top.menu"/>
+        </reference>
+	
+        <reference name="content">
+		    <block type="medicalcamp/Registration_Home"  name="Registration_Home">
+		    	<block type="medicalcamp/Registration_Header"  name="Registration_Header" />
+		    	<block type="medicalcamp/Registration_Footer"  name="Registration_Footer" />
+		    </block>
+		</reference>
+	</medicalcamp_index_index>
+	
+	
+    <medicalcamp_registration_registration_index>
+    
+    	<reference name="header">
+            <remove name="top.menu"/>
+        </reference>
+        
+        <reference name="content">
+		    <block type="medicalcamp/Registration_Home"  name="Registration_Home">
+		    	<block type="medicalcamp/Registration_Header"  name="Registration_Header" />
+		    	<block type="medicalcamp/Registration_Footer"  name="Registration_Footer" />
+		    </block>
+		</reference>
+	</medicalcamp_registration_registration_index>
+    
+    <medicalcamp_registration_registration_shownewform>
+    	
+    	<reference name="header">
+            <remove name="top.menu"/>
+        </reference>
+    
+        <reference name="content">
+		    <block type="medicalcamp/Registration_Form"  name="Registration_Form">
+		    	<block type="medicalcamp/Registration_Header"  name="Registration_Header" />
+		    	<block type="medicalcamp/Registration_Footer"  name="Registration_Footer" />
+		    </block>
+		</reference>
+	</medicalcamp_registration_registration_shownewform>
+    
+    <medicalcamp_registration_registration_edit>
+    	
+    	<reference name="header">
+            <remove name="top.menu"/>
+        </reference>
+    
+        <reference name="content">
+		    <block type="medicalcamp/Registration_Form"  name="Registration_Form">
+		    	<block type="medicalcamp/Registration_Header"  name="Registration_Header" />
+		    	<block type="medicalcamp/Registration_Footer"  name="Registration_Footer" />
+		    </block>
+		</reference>
+	</medicalcamp_registration_registration_edit>
+	
+	<medicalcamp_registration_registration_response>
+	
+		<reference name="header">
+            <remove name="top.menu"/>
+        </reference>
+	
+        <reference name="content">
+		    <block type="medicalcamp/Registration_Response"  name="Registration_Response">
+		    	<block type="medicalcamp/Registration_Header"  name="Registration_Header" />
+		    	<block type="medicalcamp/Registration_Footer"  name="Registration_Footer" />
+		    </block>
+		</reference>
+	</medicalcamp_registration_registration_response>
+	
+	<medicalcamp_registration_registration_showgenius>
+	
+		<reference name="header">
+            <remove name="top.menu"/>
+        </reference>
+	
+        <reference name="content">
+		    <block type="medicalcamp/Registration_Genius"  name="Registration_Genius">
+		    	<block type="medicalcamp/Registration_Header"  name="Registration_Header" />
+		    	<block type="medicalcamp/Registration_Footer"  name="Registration_Footer" />
+		    </block>
+		</reference>
+	</medicalcamp_registration_registration_showgenius>
+</layout>

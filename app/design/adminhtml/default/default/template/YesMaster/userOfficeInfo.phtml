@@ -1,0 +1,68 @@
+<?php
+?>
+<div class="content-header">
+    <table cellspacing="0">
+        <tr>
+            
+            <td style="width:50%;"><h3 class="icon-head head-permissions-role"><?php echo ($this->getData('user_id') > 0 ) ? ($this->__('User Office') . " '{$this->getUserOfficeInfo('userName')}'") : $this->__('') ?></h3></td>
+            <td class="form-buttons">
+                <?php echo $this->getBackButtonHtml() ?>
+                <?php echo $this->getResetButtonHtml() ?>
+                <?php echo $this->getSaveButtonHtml() ?>
+            </td>
+        </tr>
+    </table>
+</div>
+
+
+
+<form action="<?php echo $this->getUrl('*/*/saveuserOffice') ?>" method="post" id="useroffice_edit_form">
+    <?php  echo $this->getBlockHtml('formkey')?>
+    <?php  echo $this->getUserOfficeEntropy()?>
+</form>
+<script type="text/javascript">
+    var productForm = new varienForm('useroffice_edit_form');
+    var userOfficeJS = {
+            isProductCodeExist: "" ,
+            submit : function() {
+                                           
+                                 if(  !(productForm.validator && productForm.validator.validate())  ){
+                                          return false;
+                                 }
+                                              userOfficeJS.save();                                                                   
+            } ,
+
+            save : function() {
+		            	var checked = $$('input[type="checkbox"][name="reportingOfficesChk"]')
+		            	
+		                for (var i = 0; i < checked.length; ++i) {
+		                	
+		                    if($('reportingOffice'+i).checked){
+		                    	$('reportingOffices').value += $('reportingOffices').value !="" ?"," :"";
+		                    	$('reportingOffices').value += $('reportingOffice'+i).value
+		                    }
+		                }
+		                
+		                productForm.submit();
+            },
+            
+
+            
+            isnumeric : function(input){
+                    var RE = /^-{0,1}\d*\.{0,1}\d+$/;
+                    return RE.test(input) ;
+            }            
+              
+    };
+
+    function show_props(obj, obj_name) {
+        var result = ""
+        for (var i in obj)
+        result += obj_name + "." + i + " = " + obj[i] +"\n ";   
+        alert(result);
+        //document.write(result);
+        //document.write(obj_name + "." + i + " = " + obj[i]+"<br/>");
+    }
+
+    
+</script>

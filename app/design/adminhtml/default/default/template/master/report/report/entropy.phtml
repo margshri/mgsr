@@ -1,0 +1,104 @@
+<?php
+$reportVO = $this->getReportVO();
+if($reportVO == null){
+	$reportVO = new Dakiya_VO_Master_Report_ReportVO();
+}
+?>
+
+<div class="entry-edit">
+
+	<div class="entry-edit-head">
+		<h4 class="icon-head head-edit-form fieldset-legend">Report Master</h4>
+		<div class="form-buttons"></div>
+	</div>
+
+	<div class="fieldset ">
+		<div class="hor-scroll">
+			<table class="form-list">
+				<tbody>
+					<tr>
+						<td>
+							<table class="form-list">
+								<tbody>
+									<tr>
+										<td class="label">
+											<label for="ReportName">Report Name<span class="required">*</span></label>
+										</td>
+										<td class="value">
+											<input id="ReportName" name="ReportName" value="<?php echo $reportVO->getReportName() ?>" 
+											class="required-entry input-text" type="text" />
+										</td>
+									</tr>
+									
+									<tr>
+										<td class="label">
+											<label for="ReportCode">Report Code<span class="required">*</span></label>
+										</td>
+										<td class="value">
+											<input id="ReportCode" name="ReportCode" value="<?php echo $reportVO->getReportCode() ?>" 
+											class="required-entry input-text" type="text" />
+										</td>
+									</tr>
+									
+									<tr>
+										<td class="label">
+											<label for="ReportColumns">Report Columns<span class="required">*</span></label>
+										</td>
+										<td class="value">
+											<textarea id="ReportColumns" name="ReportColumns" class="required-entry input-text" style="height: 100px !important;" ><?php echo $reportVO->getReportColumns() ?></textarea><br />
+											<span style="color: red;">(Use Pipe Sign '|' Separator For Multipal Columns )</span>
+										</td>
+									</tr> 
+									
+									<tr>
+										<td class="label">
+											<label for="ColumnKeys">Column Keys<span class="required">*</span></label>
+										</td>
+										<td class="value">
+											<textarea id="ColumnKeys" name="ColumnKeys" class="required-entry input-text" style="height: 100px !important;" ><?php echo $reportVO->getColumnKeys() ?></textarea><br />
+											<span style="color: red;">(Use Pipe Sign '|' Separator For Multipal Columns)</span>
+										</td>
+									</tr>
+								</tbody>
+							</table>	
+						</td>
+						
+						<td>
+							<table class="form-list">
+								<tbody>
+									<tr>
+										<td class="label">
+											<label for="ReportDesc">Description</label>
+										</td>
+										
+										<td class="value">
+											<textarea id="ReportDesc" name="ReportDesc" class="input-text" style="height: 100px !important;"><?php echo $reportVO->getReportDesc() ?></textarea>
+										</td>
+									</tr> 
+									
+									<tr>
+										<td class="label">
+											<label for="Status">Status<span class="required">*</span></label>
+										</td>
+										<td class="value">
+											<select id="StatusID" name="StatusID" class = "validate-select" >
+												<option value="">--Select--</option>
+												<?php foreach ($this->getStatusOptions() as $key=> $value): ?>
+					     						<option value="<?php echo $key; ?>"  <?php  echo ( $key == $reportVO->getStatusID()) ?   'selected="selected"' : '' ?> > <?php echo $value; ?> </option>
+					     						<?php endforeach; ?>
+					     					</select>
+					     					<input id="ReportID" name="ReportID" value="<?php echo ($reportVO->getReportID() != null) ? $reportVO->getReportID() : 0  ?>" type="hidden" />
+					     					
+					     				</td>
+					     			</tr>	
+								</tbody>
+							</table>
+						</td>
+					</tr>		
+					
+				</tbody>
+			</table>
+						 
+		</div>
+	</div>
+</div>
