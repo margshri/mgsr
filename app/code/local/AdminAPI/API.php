@@ -162,7 +162,7 @@ class AdminAPI_API
 	
 	
 	public static function getImportantLinksSrl(){
-	    return AdminAPI_RetailSales_SalesBL::getBaseStockForOfflineSale();
+	    return AdminAPI_Srl_ImportantLinks_ImportantLinksBL::getAllActiveRecord();
 	}
 	
 }
