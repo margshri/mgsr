@@ -1,0 +1,268 @@
+<?xml version="1.0"?>
+<config>
+	<modules>
+		<Margshri_Srl>
+			<version>1.0.0.0</version>
+		</Margshri_Srl>
+	</modules>
+
+	<global>
+		<models>
+			<srl>
+				<class>Margshri_Srl_Model</class>
+				<resourceModel>srl_mysql4</resourceModel>
+			</srl>
+
+			<srl_mysql4>
+				<class>Margshri_Srl_Model_MySql4</class>
+				<entities>
+				    
+				    <mgsrvahicaleowner>
+						<table>mgsr_vahicale_owner</table>
+					</mgsrvahicaleowner>
+				    
+					<mgsrvahicale>
+						<table>mgsr_vahicale</table>
+					</mgsrvahicale>
+					
+					<mgsrvahicaletype>
+						<table>mgsr_vahicale_type</table>
+					</mgsrvahicaletype>
+					
+					<mgsrvahicaledriver>
+						<table>mgsr_vahicale_driver</table>
+					</mgsrvahicaledriver>
+					
+					<mgsrvahicalecommon>
+						<table>mgsr_vahicale_common</table>
+					</mgsrvahicalecommon>
+					
+					<mgsrconsignmentnote>
+						<table>mgsr_transport_consignment_note</table>
+					</mgsrconsignmentnote>
+					
+					<mgsrconsignmentnotestatus>
+						<table>mgsr_transport_consignment_note_status</table>
+					</mgsrconsignmentnotestatus>
+				</entities>
+			</srl_mysql4>
+		</models>
+
+		<resources>
+			<admin_setup>
+				<setup>
+					<module>Margshri_Srl</module>
+				</setup>
+			</admin_setup>
+		</resources>
+
+		<blocks>
+			<srl>
+				<class>Margshri_Srl_Block</class>
+			</srl>
+		</blocks>
+
+		<helpers>
+			<srl>
+				<class>Margshri_Srl_Helper</class>
+			</srl>
+		</helpers>
+
+
+	</global>
+
+	<frontend>
+		<routers>
+			<srl>
+				<use>standard</use>
+				<args>
+					<module>Margshri_Srl</module>
+					<frontName>srl</frontName>
+				</args>
+			</srl>
+		</routers>
+
+		<layout>
+			<updates>
+				<srl module="Margshri_Srl">
+					<file>srl.xml</file>
+				</srl>
+			</updates>
+		</layout>
+	</frontend>
+
+
+	<admin>
+		<routers>
+			<srl>
+				<use>admin</use>
+				<args>
+					<module>Margshri_Srl</module>
+					<frontName>srl</frontName>
+				</args>
+			</srl>
+		</routers>
+
+		<layout>
+			<updates>
+				<srl module="Margshri_Srl">
+					<file>srl.xml</file>
+				</srl>
+			</updates>
+		</layout>
+
+	</admin>
+
+
+	<adminhtml>
+		<menu>
+			<srl translate="title" module="admin">
+				<title>Saral Business</title>
+				<sort_order>21</sort_order>
+				<children>
+					<master translate="title" module="admin">
+						<title>Master</title>
+						<sort_order>01</sort_order>
+						<children>
+							
+							<owner translate="title" module="admin">
+								<title>Vahicale Owner</title>
+								<sort_order>01</sort_order>
+								<action>srl/Backend_Master_Vahicale_Owner/index</action>
+							</owner>
+						
+							<vahicale translate="title" module="admin">
+								<title>Vahicale List</title>
+								<sort_order>02</sort_order>
+								<action>srl/Backend_Master_Vahicale_Vahicale/index</action>
+							</vahicale>
+							
+							<driver translate="title" module="admin">
+								<title>Driver List</title>
+								<sort_order>03</sort_order>
+								<action>srl/Backend_Master_Vahicale_Driver/index</action>
+							</driver>
+							
+							<common translate="title" module="admin">
+								<title>Common List</title>
+								<sort_order>04</sort_order>
+								<action>srl/Backend_Master_Vahicale_Common/index</action>
+							</common>
+							
+						</children>
+					</master>
+					
+					<consignment translate="title" module="admin">
+						<title>Consignment</title>
+						<sort_order>01</sort_order>
+						<children>
+							
+							<consignmentnote translate="title" module="admin">
+								<title>Consignment Note</title>
+								<sort_order>01</sort_order>
+								<action>srl/Backend_Consignment_Consignment_ConsignmentNote/index</action>
+							</consignmentnote>
+							
+						</children>
+					</consignment>
+					
+				</children>	
+			</srl>
+		</menu>
+
+		<acl>
+			<resources>
+				<admin>
+					<children>
+						<srl translate="title" module="admin">
+							<title>Saral Business</title>
+							<sort_order>21</sort_order>
+							<children>
+								<master translate="title" module="admin">
+									<title>Master</title>
+									<sort_order>01</sort_order>
+									<children>
+									
+										<owner translate="title" module="admin">
+											<title>Vahicale Owner</title>
+											<sort_order>01</sort_order>
+										</owner>
+									
+										<vahicale translate="title" module="admin">
+											<title>Vahicale List</title>
+											<sort_order>02</sort_order>
+										</vahicale>
+										
+										<driver translate="title" module="admin">
+											<title>Driver List</title>
+											<sort_order>03</sort_order>
+										</driver>
+										
+										<common translate="title" module="admin">
+											<title>Common List</title>
+											<sort_order>04</sort_order>
+											<children>
+												<add translate="title" module="admin">
+													<title>Add</title>
+													<sort_order>01</sort_order>
+												</add>
+												
+												<edit translate="title" module="admin">
+													<title>Edit</title>
+													<sort_order>02</sort_order>
+												</edit>	
+											</children>
+										</common>
+							
+									</children>
+								</master>
+								
+								<consignment translate="title" module="admin">
+									<title>Consignment</title>
+									<sort_order>01</sort_order>
+									<children>
+										
+										<consignmentnote translate="title" module="admin">
+											<title>Consignment Note</title>
+											<sort_order>01</sort_order>
+											<children>
+												<add translate="title" module="admin">
+													<title>Add</title>
+													<sort_order>01</sort_order>
+												</add>
+												
+												<edit translate="title" module="admin">
+													<title>Edit</title>
+													<sort_order>02</sort_order>
+												</edit>
+												
+												<print translate="title" module="admin">
+													<title>Print</title>
+													<sort_order>03</sort_order>
+												</print>
+													
+											</children>
+										</consignmentnote>
+										
+									</children>
+								</consignment>
+								
+								
+							</children>	
+						</srl>
+					</children>
+				</admin>
+			</resources>
+		</acl>
+
+		<layout>
+			<updates>
+				<srl module="Margshri_Srl">
+					<file>srl.xml</file>
+				</srl>
+			</updates>
+		</layout>
+
+
+	</adminhtml>
+</config>

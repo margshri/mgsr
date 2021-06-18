@@ -30,5 +30,11 @@
             <active>true</active>
             <codePool>local</codePool>
         </Margshri_Transport>
+
+	<Margshri_Srl>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Margshri_Srl>
+
 	</modules>
 </config>
