@@ -40,6 +40,11 @@
 	 
  
 
-	AdminAPI_API::isAuthentic();
- 	call_user_func( 'AdminAPI_API'."::".$uri[3]);
+	// AdminAPI_API::isAuthentic();
+ 	// call_user_func( 'AdminAPI_API'."::".$uri[3]);
+ 	
+ 	
+ 	Margshri_API_AdminAPI::isAuthentic();
+ 	call_user_func( 'Margshri_API_AdminAPI'."::".$uri[3]);
+ 	
 ?>
