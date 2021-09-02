@@ -37,7 +37,7 @@ class Margshri_WebPortal_Block_Backend_Master_Office_UserOffice_Info extends Mag
     
     public function getStatusOptions(){
     	$options = array();
-    	$model = Mage::getModel('webportal/Status_Status');
+    	$model = Mage::getModel('common/Status_Status');
     	$options = $model->getResource()->getOptions();
     	return $options;
     }

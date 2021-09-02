@@ -11,8 +11,11 @@ class Margshri_Common_VO_Donation_ReceiptBook_ReceiptBookVO extends Margshri_Com
     
     protected $_ID;
     protected $_BookName;
+    protected $_BookCode;
     protected $_TotalAmount;
     protected $_Description;
+    protected $_SocietyID;
+    protected $_OfficeID;
     protected $_StatusID;
 	protected $_CreatedAt;
 	protected $_CreatedBy;
@@ -39,7 +42,7 @@ class Margshri_Common_VO_Donation_ReceiptBook_ReceiptBookVO extends Margshri_Com
 	  $this->_ID = $value;
 	}
 	
-	    
+	
 	public function getBookName(){
 	    return $this->_BookName;
 	}
@@ -48,6 +51,15 @@ class Margshri_Common_VO_Donation_ReceiptBook_ReceiptBookVO extends Margshri_Com
 	  $this->set('BookName' , $value);
 	}
 
+	
+	public function getBookCode(){
+	    return $this->_BookCode;
+	}
+	public function setBookCode($value){
+	    $this->_BookCode = $value;
+	    $this->set('BookCode' , $value);
+	}
+	
 	
 	public function getTotalAmount(){
 	    return $this->_TotalAmount;
@@ -64,6 +76,24 @@ class Margshri_Common_VO_Donation_ReceiptBook_ReceiptBookVO extends Margshri_Com
 	public function setDescription($value){
 	    $this->_Description = $value;
 	    $this->set('Description' , $value);
+	}
+	
+	
+	public function getSocietyID() {
+	    return $this->_SocietyID;
+	}
+	public function setSocietyID($value){
+	    $this->_SocietyID = $value;
+	    $this->set('SocietyID' , $value);
+	}
+	
+	
+	public function getOfficeID() {
+	    return $this->_OfficeID;
+	}
+	public function setOfficeID($value){
+	    $this->_OfficeID = $value;
+	    $this->set('OfficeID' , $value);
 	}
 	
 	

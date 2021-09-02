@@ -72,7 +72,7 @@ class Margshri_Common_Block_Backend_Member_Member_Form extends Mage_Adminhtml_Bl
         return $options;
     }
     
-    
+    /*
     public function getReceiptBookOptions(){
         $adminUserID = Mage::getSingleton('admin/session')->getUser()->getId();
         $adminUserDataObj = Mage::getModel('admin/user')->load($adminUserID)->getData();
@@ -96,6 +96,38 @@ class Margshri_Common_Block_Backend_Member_Member_Form extends Mage_Adminhtml_Bl
             $newOptions = $options;
         }
         return $newOptions;
+    }
+    */
+    
+    public function getReceiptBookOptions(){
+        $adminUserID = Mage::getSingleton('admin/session')->getUser()->getId();
+        $adminUserDataObj = Mage::getModel('admin/user')->load($adminUserID)->getData();
+        $adminUserName = $adminUserDataObj["username"];
+        
+        $options = array();
+        $receiptBookModel = Mage::getModel(Margshri_Common_VO_Donation_ReceiptBook_ReceiptBookVO::$modelName);
+        $receiptBookDataObjs = $receiptBookModel->getResource()->getList();
+        
+        
+        $options = array();
+        if(sizeof($receiptBookDataObjs) > 0){
+            foreach ($receiptBookDataObjs as $receiptBookDataObj){
+                $receiptBookDTO = new Margshri_Common_VO_Donation_ReceiptBook_ReceiptBookVO();
+                /* @var $receiptBookVO Margshri_Common_VO_Donation_ReceiptBook_ReceiptBookVO */
+                $receiptBookVO = Margshri_WebPortal_Model_DataAccess::callInstanceFunction($receiptBookDTO, $receiptBookDataObj);
+            
+                if($adminUserID != 1){ // 1 for admin
+                    if(strtolower(trim($receiptBookVO->getBookCode())) == strtolower(trim($adminUserName))){
+                        $options[$receiptBookVO->getID()] = $receiptBookVO->getBookName();
+                    }
+                }else{
+                    $options[$receiptBookVO->getID()] = $receiptBookVO->getBookName();
+                }
+            }
+        }
+        
+        
+        return $options;
     }
     
     

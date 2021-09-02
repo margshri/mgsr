@@ -39,33 +39,33 @@ class Margshri_WebPortal_Block_Backend_Master_Office_Office_Info extends Mage_Ad
     }
 
     public function getStoreOptions(){
-    	return array("1"=>"Web Portal", "2"=>"Shopping Website");;
+    	return array("1"=>"Default", "2"=>"Margshri");;
     }
     
     public function getCountryOptions(){
     	$options = array();
-    	$model = Mage::getModel('webportal/Directory_CountryList');
-    	$options = $model->getResource()->getOptions();
+    	//$model = Mage::getModel('common/Directory_CountryList');
+    	//$options = $model->getResource()->getOptions();
     	return $options;
     }
     
     public function getStateOptions(){
     	$options = array();
-    	$model = Mage::getModel('webportal/Directory_StateList');
-    	$options = $model->getResource()->getOptions();
+    	//$model = Mage::getModel('common/Directory_StateList');
+    	//$options = $model->getResource()->getOptions();
     	return $options;
     }
     
     public function getDistrictOptions(){
     	$options = array();
-    	$model = Mage::getModel('webportal/Directory_DistrictList');
+    	$model = Mage::getModel(Margshri_Common_VO_Directory_DistrictList_DistrictListVO::$modelName);
     	$options = $model->getResource()->getOptions();
     	return $options;
     }
     
     public function getCityOptions(){
     	$options = array();
-    	$model = Mage::getModel('webportal/Directory_CityList');
+    	$model = Mage::getModel(Margshri_Common_VO_Directory_CityList_CityListVO::$modelName);
     	$options = $model->getResource()->getOptions();
     	return $options;
     }
@@ -73,7 +73,7 @@ class Margshri_WebPortal_Block_Backend_Master_Office_Office_Info extends Mage_Ad
     
     public function getStatusOptions(){
     	$options = array();
-    	$model = Mage::getModel('webportal/Status_Status');
+    	$model = Mage::getModel(Margshri_Common_VO_Status_StatusVO::$modelName);
     	$options = $model->getResource()->getOptions();
     	return $options;
     }

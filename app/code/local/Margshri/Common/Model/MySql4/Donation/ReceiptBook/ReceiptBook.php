@@ -24,18 +24,53 @@ class Margshri_Common_Model_Mysql4_Donation_ReceiptBook_ReceiptBook extends Mage
 	
 	
 	
+// 	public function getOptions(){
+// 	    $list = $this->getList();
+// 	    $option = array();
+	    
+// 	    foreach($list as $row){
+// 	        $DTO = new Margshri_Common_VO_Donation_ReceiptBook_ReceiptBookVO();
+// 	        /* @var $VO Margshri_Common_VO_Donation_ReceiptBook_ReceiptBookVO */ 
+// 	        $VO = Margshri_WebPortal_Model_DataAccess::callInstanceFunction($DTO, $row);
+// 	        $option[$VO->getID()]= $VO->getBookName();
+// 	    }
+// 	    return 	$option;
+// 	}
+	
+	
 	public function getOptions(){
 	    $list = $this->getList();
 	    $option = array();
 	    
+	    $adminUserID = Mage::getSingleton('admin/session')->getUser()->getId();
+	    
+	    
+	    $userOfficeModel = Mage::getModel('webportal/Master_Office_UserOffice_UserOffice');
+	    $userOfficeDataObj = $userOfficeModel->getResource()->getByAdminUserID($adminUserID);
+	    $userOfficeVO = new Margshri_WebPortal_VO_Master_Office_UserOfficeVO();
+	    if($userOfficeDataObj != null){
+    	    $userOfficeDTO = new Margshri_WebPortal_VO_Master_Office_UserOfficeVO();
+    	    $userOfficeVO = Margshri_WebPortal_Model_DataAccess::callInstanceFunction($userOfficeDTO, $userOfficeDataObj);
+	    }
+	    
+	    
 	    foreach($list as $row){
 	        $DTO = new Margshri_Common_VO_Donation_ReceiptBook_ReceiptBookVO();
-	        /* @var $VO Margshri_Common_VO_Donation_ReceiptBook_ReceiptBookVO */ 
+	        /* @var $VO Margshri_Common_VO_Donation_ReceiptBook_ReceiptBookVO */
 	        $VO = Margshri_WebPortal_Model_DataAccess::callInstanceFunction($DTO, $row);
-	        $option[$VO->getID()]= $VO->getBookName();
+	        if($adminUserID != 1){
+	            if($VO->getOfficeID() == $userOfficeVO->getOfficeID()){
+	                $option[$VO->getID()]= $VO->getBookName();
+	            }
+	        }else{
+	            $option[$VO->getID()]= $VO->getBookName();
+	        }
+	        
 	    }
 	    return 	$option;
 	}
+	
+	
 	
 	public function getOpenList(){
 	    $openStatusID = 1;
@@ -59,5 +94,9 @@ class Margshri_Common_Model_Mysql4_Donation_ReceiptBook_ReceiptBook extends Mage
 	    }
 	    return 	$option;
 	}
+	
+	
+	
+	
 	
 }

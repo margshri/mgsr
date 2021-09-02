@@ -3,7 +3,7 @@ class Margshri_WebPortal_Model_Mysql4_Status_Status extends Mage_Core_Model_Mysq
 
 	protected function _construct()
 	{
-		$this->_init('webportal/apctstatus', 'ID');
+		$this->_init('webportal/mgsrstatus', 'ID');
 	}
 	
 	public function getList(){

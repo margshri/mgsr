@@ -23,9 +23,9 @@ class Margshri_WebPortal_Block_Backend_Master_Office_UserOffice_Grid extends Mag
 		try{
 			$collection =  Mage::getModel("webportal/Master_Office_UserOffice_UserOffice")->getCollection();
 			$collection->getSelect()->reset()->from(array("main_table"=>$collection->getTable('webportal/adminuser')), array("main_table.user_id"=>"main_table.user_id", "main_table.FirstName"=>"main_table.firstname", "main_table.LastName"=>"main_table.lastname", "main_table.UserName"=>"main_table.username",    "main_table.edit"=> new Zend_Db_Expr("'Edit'") ));
-			$collection->getSelect()->joinLeft(array("useroffice"=>$collection->getTable('webportal/apctwebuseroffice')), 'main_table.user_id = useroffice.AdminUserID', array("useroffice.ID"=>"useroffice.ID", "useroffice.AdminUserID"=>"useroffice.AdminUserID", "useroffice.OfficeID"=>"useroffice.OfficeID", "useroffice.StatusID"=> "useroffice.StatusID" ));
-			$collection->getSelect()->joinLeft(array("office"=>$collection->getTable('webportal/apctweboffice')), 'useroffice.OfficeID = office.ID', array("office.ID"=>"office.ID", "office.Value"=>"office.Value"));
-			$collection->getSelect()->joinLeft(array("status"=>$collection->getTable('webportal/apctstatus')), 'useroffice.StatusID = status.ID', array("status.ID"=>"status.ID", "status.Value"=>"status.Value"));
+			$collection->getSelect()->joinLeft(array("useroffice"=>$collection->getTable('webportal/mgsruseroffice')), 'main_table.user_id = useroffice.AdminUserID', array("useroffice.ID"=>"useroffice.ID", "useroffice.AdminUserID"=>"useroffice.AdminUserID", "useroffice.OfficeID"=>"useroffice.OfficeID", "useroffice.StatusID"=> "useroffice.StatusID" ));
+			$collection->getSelect()->joinLeft(array("office"=>$collection->getTable('webportal/mgsroffice')), 'useroffice.OfficeID = office.ID', array("office.ID"=>"office.ID", "office.Value"=>"office.Value"));
+			// $collection->getSelect()->joinLeft(array("status"=>$collection->getTable('webportal/mgsrstatus')), 'useroffice.StatusID = status.ID', array("status.ID"=>"status.ID", "status.Value"=>"status.Value"));
 			if($this->currentRoleID != Margshri_WebPortal_VO_Master_ConfigVO::$ADMIN_ROLE_ID){
 				$collection->getSelect()->Where('main_table.user_id != ?', 1);
 			}
@@ -77,7 +77,7 @@ class Margshri_WebPortal_Block_Backend_Master_Office_UserOffice_Grid extends Mag
 				'header'    =>Mage::helper('adminhtml')->__('Status'),
 				'type'  => 'options',
 				'index' => 'useroffice.StatusID',
-				'options' => Mage::getModel('webportal/Status_Status')->getResource()->getOptions()
+				'options' => Mage::getModel('common/Status_Status')->getResource()->getOptions()
 		));
 		
 		$this->addColumn('edit', array(

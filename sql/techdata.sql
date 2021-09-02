@@ -1734,3 +1734,191 @@ update student_registration set programmeid = 11 where date(CreatedAt) > '2020-1
 
 
 scp aapnicuc@96.125.162.36:/home2/aapnicuc/public_html/mgsr/app/code/local/Margshri/WebPortal/Block/Backend/Registration/Registration/
+
+
+
+/* DATE 23-08-2021 */
+insert into mgsr_society values(1, 'smss', 'Shakya Mahasabha Samiti Sri Ganganagar', null, null, 2, 1, now(), 1, now(), 1);
+insert into mgsr_society values(2, 'hmh', 'Shakya Mahasabha Hanumangarh', null, null, 55, 1, now(), 1, now(), 1);
+
+alter table `mgsr_receipt_book` add column `SocietyID` int(11) unsigned DEFAULT NULL AFTER `Description`, add KEY `mgsr_receipt_book_SocietyID_index_4` (`SocietyID`) USING BTREE, add CONSTRAINT `mgsr_receipt_book_SocietyID_ibfk_4` FOREIGN KEY (`SocietyID`) REFERENCES `mgsr_society` (`ID`);
+
+update mgsr_receipt_book set SocietyID = 1;
+
+
+
+
+
+insert into `mgsr_receipt_book`(`BookName`, `SocietyID`, `StatusID`, `CreatedAt`, `CreatedBy`, `UpdatedAt`, `UpdatedBy`) values ('Book Number 11', 2, 1, now(), 1, now(), 1);
+insert into `mgsr_receipt_book`(`BookName`, `SocietyID`, `StatusID`, `CreatedAt`, `CreatedBy`, `UpdatedAt`, `UpdatedBy`) values ('Book Number 12', 2, 1, now(), 1, now(), 1);
+insert into `mgsr_receipt_book`(`BookName`, `SocietyID`, `StatusID`, `CreatedAt`, `CreatedBy`, `UpdatedAt`, `UpdatedBy`) values ('Book Number 13', 2, 1, now(), 1, now(), 1);
+insert into `mgsr_receipt_book`(`BookName`, `SocietyID`, `StatusID`, `CreatedAt`, `CreatedBy`, `UpdatedAt`, `UpdatedBy`) values ('Book Number 14', 2, 1, now(), 1, now(), 1);
+insert into `mgsr_receipt_book`(`BookName`, `SocietyID`, `StatusID`, `CreatedAt`, `CreatedBy`, `UpdatedAt`, `UpdatedBy`) values ('Book Number 15', 2, 1, now(), 1, now(), 1);
+insert into `mgsr_receipt_book`(`BookName`, `SocietyID`, `StatusID`, `CreatedAt`, `CreatedBy`, `UpdatedAt`, `UpdatedBy`) values ('Book Number 16', 2, 1, now(), 1, now(), 1);
+insert into `mgsr_receipt_book`(`BookName`, `SocietyID`, `StatusID`, `CreatedAt`, `CreatedBy`, `UpdatedAt`, `UpdatedBy`) values ('Book Number 17', 2, 1, now(), 1, now(), 1);
+insert into `mgsr_receipt_book`(`BookName`, `SocietyID`, `StatusID`, `CreatedAt`, `CreatedBy`, `UpdatedAt`, `UpdatedBy`) values ('Book Number 18', 2, 1, now(), 1, now(), 1);
+insert into `mgsr_receipt_book`(`BookName`, `SocietyID`, `StatusID`, `CreatedAt`, `CreatedBy`, `UpdatedAt`, `UpdatedBy`) values ('Book Number 19', 2, 1, now(), 1, now(), 1);
+insert into `mgsr_receipt_book`(`BookName`, `SocietyID`, `StatusID`, `CreatedAt`, `CreatedBy`, `UpdatedAt`, `UpdatedBy`) values ('Book Number 20', 2, 1, now(), 1, now(), 1);
+
+
+
+CREATE TABLE `mgsr_dynamic_column` (
+  `ID` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `Value` varchar(200) NOT NULL,
+  `Code` varchar(100) DEFAULT NULL,
+  `StatusID` int(11) unsigned DEFAULT NULL,
+  `CreatedAt` datetime NOT NULL,
+  `CreatedBy` int(11) unsigned NOT NULL,
+  `UpdatedAt` datetime NOT NULL,
+  `UpdatedBy` int(11) unsigned NOT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `mgsr_dynamic_column_StatusID_index1` (`StatusID`) USING BTREE,
+  KEY `mgsr_dynamic_column_CreatedBy_index2` (`CreatedBy`) USING BTREE,
+  KEY `mgsr_dynamic_column_UpdatedBy_index3` (`UpdatedBy`) USING BTREE,
+  CONSTRAINT `mgsr_dynamic_column_CreatedBy_ibfk_2` FOREIGN KEY (`CreatedBy`) REFERENCES `admin_user` (`user_id`),
+  CONSTRAINT `mgsr_dynamic_column_StatusID_ibfk_1` FOREIGN KEY (`StatusID`) REFERENCES `mgsr_status` (`ID`),
+  CONSTRAINT `mgsr_dynamic_column_UpdatedBy_ibfk_3` FOREIGN KEY (`UpdatedBy`) REFERENCES `admin_user` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
+CREATE TABLE `mgsr_office_type` (
+  `ID` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `Value` varchar(500) NOT NULL,
+  `Code` varchar(100) DEFAULT NULL,
+  `StatusID` int(11) unsigned DEFAULT NULL,
+  `CreatedAt` datetime NOT NULL,
+  `CreatedBy` int(11) unsigned NOT NULL,
+  `UpdatedAt` datetime NOT NULL,
+  `UpdatedBy` int(11) unsigned NOT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `mgsr_office_type_StatusID_index1` (`StatusID`) USING BTREE,
+  KEY `mgsr_office_type_CreatedBy_index2` (`CreatedBy`) USING BTREE,
+  KEY `mgsr_office_type_UpdatedBy_index3` (`UpdatedBy`) USING BTREE,
+  CONSTRAINT `mgsr_office_type_CreatedBy_ibfk_2` FOREIGN KEY (`CreatedBy`) REFERENCES `admin_user` (`user_id`),
+  CONSTRAINT `mgsr_office_type_StatusID_ibfk_1` FOREIGN KEY (`StatusID`) REFERENCES `mgsr_status` (`ID`),
+  CONSTRAINT `mgsr_office_type_UpdatedBy_ibfk_3` FOREIGN KEY (`UpdatedBy`) REFERENCES `admin_user` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+insert into mgsr_office_type values (1, 'Country', 01, 1, now(), 1, now(), 1);
+insert into mgsr_office_type values (2, 'State', 02, 1, now(), 1, now(), 1);
+insert into mgsr_office_type values (3, 'District', 03, 1, now(), 1, now(), 1);
+insert into mgsr_office_type values (4, 'City', 04, 1, now(), 1, now(), 1);
+ 
+
+
+
+CREATE TABLE `mgsr_office` (
+  `ID` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `Value` varchar(200) NOT NULL,
+  `Code` varchar(100) DEFAULT NULL,
+  `UserID` int(11) DEFAULT NULL,
+  `Order` int(11) DEFAULT NULL,
+  `WebsiteLink` varchar(200) DEFAULT NULL,
+  `IsPaid` tinyint(4) DEFAULT '0',
+  `TinNumber` varchar(100) DEFAULT NULL,
+  `PANNumber` varchar(100) DEFAULT NULL,
+  `Category1ID` int(11) unsigned DEFAULT NULL,
+  `Category1Value` varchar(500) DEFAULT NULL,
+  `Category2ID` int(11) unsigned DEFAULT NULL,
+  `Category2Value` varchar(500) DEFAULT NULL,
+  `Category3ID` int(11) unsigned DEFAULT NULL,
+  `Category3Value` varchar(500) DEFAULT NULL,
+  `TypeID` int(11) unsigned DEFAULT NULL,
+  `StoreID` smallint(11) unsigned DEFAULT NULL,
+  `StatusID` int(11) unsigned DEFAULT NULL,
+  `LandLineNumber` varchar(20) DEFAULT NULL,
+  `MobileNumber1` varchar(20) DEFAULT NULL,
+  `MobileNumber2` varchar(20) DEFAULT NULL,
+  `Email` varchar(100) DEFAULT NULL,
+  `PinCode` varchar(50) DEFAULT NULL,
+  `Address` varchar(500) DEFAULT NULL,
+  `CountryID` int(11) unsigned DEFAULT NULL,
+  `StateID` int(11) unsigned DEFAULT NULL,
+  `DistrictID` int(11) unsigned DEFAULT NULL,
+  `CityID` int(11) unsigned DEFAULT NULL,
+  `CreatedAt` datetime NOT NULL,
+  `CreatedBy` int(11) unsigned NOT NULL,
+  `UpdatedAt` datetime NOT NULL,
+  `UpdatedBy` int(11) unsigned NOT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `mgsr_office_StatusID_index1` (`StatusID`) USING BTREE,
+  KEY `mgsr_office_CountryID_index2` (`CountryID`) USING BTREE,
+  KEY `mgsr_office_StateID_index3` (`StateID`) USING BTREE,
+  KEY `mgsr_office_DistrictID_index4` (`DistrictID`) USING BTREE,
+  KEY `mgsr_office_CityID_index5` (`CityID`) USING BTREE,
+  KEY `mgsr_office_CreatedBy_index6` (`CreatedBy`) USING BTREE,
+  KEY `mgsr_office_UpdatedBy_index7` (`UpdatedBy`) USING BTREE,
+  KEY `mgsr_office_Category1ID_index8` (`Category1ID`) USING BTREE,
+  KEY `mgsr_office_Category2ID_index9` (`Category2ID`) USING BTREE,
+  KEY `mgsr_office_Category3ID_index10` (`Category3ID`) USING BTREE,
+  KEY `mgsr_office_TypeID_index11` (`TypeID`) USING BTREE,
+  KEY `mgsr_office_StoreID_index12` (`StoreID`) USING BTREE,
+  CONSTRAINT `mgsr_office_Category1ID_ibfk_8` FOREIGN KEY (`Category1ID`) REFERENCES `mgsr_dynamic_column` (`ID`),
+  CONSTRAINT `mgsr_office_Category2ID_ibfk_9` FOREIGN KEY (`Category2ID`) REFERENCES `mgsr_dynamic_column` (`ID`),
+  CONSTRAINT `mgsr_office_Category3ID_ibfk_10` FOREIGN KEY (`Category3ID`) REFERENCES `mgsr_dynamic_column` (`ID`),
+  CONSTRAINT `mgsr_office_CityID_ibfk_5` FOREIGN KEY (`CityID`) REFERENCES `mgsr_city_list` (`ID`),
+  CONSTRAINT `mgsr_office_CountryID_ibfk_2` FOREIGN KEY (`CountryID`) REFERENCES `mgsr_country_list` (`ID`),
+  CONSTRAINT `mgsr_office_CreatedBy_ibfk_6` FOREIGN KEY (`CreatedBy`) REFERENCES `admin_user` (`user_id`),
+  CONSTRAINT `mgsr_office_DistrictID_ibfk_4` FOREIGN KEY (`DistrictID`) REFERENCES `mgsr_district_list` (`ID`),
+  CONSTRAINT `mgsr_office_StateID_ibfk_3` FOREIGN KEY (`StateID`) REFERENCES `mgsr_state_list` (`ID`),
+  CONSTRAINT `mgsr_office_StatusID_ibfk_1` FOREIGN KEY (`StatusID`) REFERENCES `mgsr_status` (`ID`),
+  CONSTRAINT `mgsr_office_StoreID_ibfk_12` FOREIGN KEY (`StoreID`) REFERENCES `core_store` (`store_id`),
+  CONSTRAINT `mgsr_office_TypeID_ibfk_11` FOREIGN KEY (`TypeID`) REFERENCES `mgsr_office_type` (`ID`),
+  CONSTRAINT `mgsr_office_UpdatedBy_ibfk_7` FOREIGN KEY (`UpdatedBy`) REFERENCES `admin_user` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
+insert into mgsr_office values(1, 'Sri Ganganagar', '01', null, null, null, 0, null, null, null, null, null, null, null, null, 3, 2, 1, null, null, null, null, null, null, 1, 29, 31, 1, now(), 1, now(), 1);
+
+insert into mgsr_office values(2, 'Hanumangarh', '02', null, null, null, 0, null, null, null, null, null, null, null, null, 3, 2, 1, null, null, null, null, null, null, 1, 29, 15, 14, now(), 1, now(), 1);
+
+CREATE TABLE `mgsr_user_office` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `AdminUserID` int(11) unsigned NOT NULL,
+  `OfficeID` int(11) unsigned NOT NULL,
+  `StatusID` int(11) unsigned DEFAULT NULL,
+  `CreatedAt` datetime NOT NULL,
+  `CreatedBy` int(11) unsigned NOT NULL,
+  `UpdatedAt` datetime NOT NULL,
+  `UpdatedBy` int(11) unsigned NOT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `mgsr_user_office_StatusID_index1` (`StatusID`) USING BTREE,
+  KEY `mgsr_user_office_CreatedBy_index2` (`CreatedBy`) USING BTREE,
+  KEY `mgsr_user_office_UpdatedBy_index3` (`UpdatedBy`) USING BTREE,
+  KEY `mgsr_user_office_AdminUserID_index4` (`AdminUserID`) USING BTREE,
+  KEY `mgsr_user_office_OfficeID_index5` (`OfficeID`) USING BTREE,
+  CONSTRAINT `mgsr_user_office_AdminUserID_ibfk_4` FOREIGN KEY (`AdminUserID`) REFERENCES `admin_user` (`user_id`),
+  CONSTRAINT `mgsr_user_office_CreatedBy_ibfk_2` FOREIGN KEY (`CreatedBy`) REFERENCES `admin_user` (`user_id`),
+  CONSTRAINT `mgsr_user_office_OfficeID_ibfk_5` FOREIGN KEY (`OfficeID`) REFERENCES `mgsr_office` (`ID`),
+  CONSTRAINT `mgsr_user_office_StatusID_ibfk_1` FOREIGN KEY (`StatusID`) REFERENCES `mgsr_status` (`ID`),
+  CONSTRAINT `mgsr_user_office_UpdatedBy_ibfk_3` FOREIGN KEY (`UpdatedBy`) REFERENCES `admin_user` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+insert into `mgsr_user_office` values (1, 1, 1, 1, now(), 1, now(), 1);
+insert into `mgsr_user_office` values (2, 2319, 2, 1, now(), 1, now(), 1);
+
+
+alter table `mgsr_receipt_book` add column `OfficeID` int(11) unsigned DEFAULT NULL AFTER `SocietyID`, add KEY `mgsr_receipt_book_OfficeID_index_5` (`OfficeID`) USING BTREE, add CONSTRAINT `mgsr_receipt_book_OfficeID_ibfk_5` FOREIGN KEY (`OfficeID`) REFERENCES `mgsr_office` (`ID`);
+
+update mgsr_receipt_book set OfficeId = 1 where SocietyID = 1;
+update mgsr_receipt_book set OfficeId = 2 where SocietyID = 2;
+
+ 
+alter table `mgsr_receipt_book` add column `BookCode` varchar(50) DEFAULT NULL AFTER `BookName`, ADD UNIQUE (`BookCode`);
+update `mgsr_receipt_book` set BookCode = 'bookno11' where ID = 34;
+
+update `mgsr_receipt_book` set BookCode = 'bookno12' where ID = 35;
+update `mgsr_receipt_book` set BookCode = 'bookno13' where ID = 36;
+update `mgsr_receipt_book` set BookCode = 'bookno14' where ID = 37;
+update `mgsr_receipt_book` set BookCode = 'bookno15' where ID = 38;
+update `mgsr_receipt_book` set BookCode = 'bookno16' where ID = 39;
+update `mgsr_receipt_book` set BookCode = 'bookno17' where ID = 40;
+update `mgsr_receipt_book` set BookCode = 'bookno18' where ID = 41;
+update `mgsr_receipt_book` set BookCode = 'bookno19' where ID = 42;
+update `mgsr_receipt_book` set BookCode = 'bookno20' where ID = 43;
+
+ 
+

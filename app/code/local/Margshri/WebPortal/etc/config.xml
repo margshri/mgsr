@@ -1049,6 +1049,37 @@
 						<table>apct_web_visitor_counter</table>
 					</apctwebvisitorcounter>
 					
+					
+					
+					
+					<mgsrstatus>
+						<table>mgsr_status</table>
+					</mgsrstatus>
+					
+					
+					<mgsrcitylist>
+						<table>mgsr_city_list</table>
+					</mgsrcitylist>
+					
+					
+					
+					<mgsrofficetype>
+						<table>mgsr_office_type</table>
+					</mgsrofficetype>
+					
+					<mgsroffice>
+						<table>mgsr_office</table>
+					</mgsroffice>
+					
+					<mgsruseroffice>
+						<table>mgsr_user_office</table>
+					</mgsruseroffice>
+					
+					
+					
+					
+					
+					
 				</entities>
 			</webportal_mysql4>
 		</models>

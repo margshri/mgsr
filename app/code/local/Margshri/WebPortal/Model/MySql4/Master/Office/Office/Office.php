@@ -3,7 +3,7 @@ class Margshri_WebPortal_Model_Mysql4_Master_Office_Office_Office extends Mage_C
 	
 	protected function _construct()
 	{
-		$this->_init('webportal/apctweboffice', 'ID');
+		$this->_init('webportal/mgsroffice', 'ID');
 	}
 
 	
